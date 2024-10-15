@@ -3,8 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B96552CBE4FF400D6AC8E /* AppDelegate.swift */; };
+		255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */; };
+		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
+		255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* ViewController.swift */; };
+		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
+		255B96672CBE4FF400D6AC8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */; };
+		255B96682CBE4FF400D6AC8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255B965C2CBE4FF400D6AC8E /* Main.storyboard */; };
+		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
+		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
+		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		255B961F2CBE4EA600D6AC8E /* PBXContainerItemProxy */ = {
@@ -24,47 +37,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96052CBE4EA500D6AC8E /* CheersMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheersMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		255B96552CBE4FF400D6AC8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		255B96562CBE4FF400D6AC8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		255B96582CBE4FF400D6AC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		255B96592CBE4FF400D6AC8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		255B965B2CBE4FF400D6AC8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		255B965E2CBE4FF400D6AC8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
+		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
+		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		692B02A06E2B5A98DB6FF6AB /* Pods-CheersMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMate.release.xcconfig"; path = "Target Support Files/Pods-CheersMate/Pods-CheersMate.release.xcconfig"; sourceTree = "<group>"; };
+		73BAE730DD4D08E1ECE1E2A4 /* Pods-CheersMate-CheersMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMate-CheersMateUITests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMate-CheersMateUITests/Pods-CheersMate-CheersMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8B3E7C59784754F6C5A4F0C /* Pods-CheersMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMate.debug.xcconfig"; path = "Target Support Files/Pods-CheersMate/Pods-CheersMate.debug.xcconfig"; sourceTree = "<group>"; };
+		C5E423002480A204C3D7DE2D /* Pods-CheersMate-CheersMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMate-CheersMateUITests.release.xcconfig"; path = "Target Support Files/Pods-CheersMate-CheersMateUITests/Pods-CheersMate-CheersMateUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		255B96302CBE4EA600D6AC8E /* Exceptions for "CheersMate" folder in "CheersMate" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 255B96042CBE4EA500D6AC8E /* CheersMate */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		255B96072CBE4EA500D6AC8E /* CheersMate */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				255B96302CBE4EA600D6AC8E /* Exceptions for "CheersMate" folder in "CheersMate" target */,
-			);
-			path = CheersMate;
-			sourceTree = "<group>";
-		};
-		255B96212CBE4EA600D6AC8E /* CheersMateTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CheersMateTests;
-			sourceTree = "<group>";
-		};
-		255B962B2CBE4EA600D6AC8E /* CheersMateUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CheersMateUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		255B96022CBE4EA500D6AC8E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,10 +90,12 @@
 		255B95FC2CBE4EA500D6AC8E = {
 			isa = PBXGroup;
 			children = (
-				255B96072CBE4EA500D6AC8E /* CheersMate */,
+				255B965F2CBE4FF400D6AC8E /* CheersMate */,
 				255B96212CBE4EA600D6AC8E /* CheersMateTests */,
 				255B962B2CBE4EA600D6AC8E /* CheersMateUITests */,
 				255B96062CBE4EA500D6AC8E /* Products */,
+				3D6E19BC6232515134862320 /* Pods */,
+				4506163C596DE0D07E2EFDBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +109,58 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		255B96212CBE4EA600D6AC8E /* CheersMateTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CheersMateTests;
+			sourceTree = "<group>";
+		};
+		255B962B2CBE4EA600D6AC8E /* CheersMateUITests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CheersMateUITests;
+			sourceTree = "<group>";
+		};
+		255B965F2CBE4FF400D6AC8E /* CheersMate */ = {
+			isa = PBXGroup;
+			children = (
+				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
+				255B96562CBE4FF400D6AC8E /* Assets.xcassets */,
+				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
+				255B96582CBE4FF400D6AC8E /* Info.plist */,
+				255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */,
+				255B965C2CBE4FF400D6AC8E /* Main.storyboard */,
+				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
+				255B965E2CBE4FF400D6AC8E /* ViewController.swift */,
+			);
+			path = CheersMate;
+			sourceTree = "<group>";
+		};
+		3D6E19BC6232515134862320 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8B3E7C59784754F6C5A4F0C /* Pods-CheersMate.debug.xcconfig */,
+				692B02A06E2B5A98DB6FF6AB /* Pods-CheersMate.release.xcconfig */,
+				73BAE730DD4D08E1ECE1E2A4 /* Pods-CheersMate-CheersMateUITests.debug.xcconfig */,
+				C5E423002480A204C3D7DE2D /* Pods-CheersMate-CheersMateUITests.release.xcconfig */,
+				3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */,
+				5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4506163C596DE0D07E2EFDBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */,
+				5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */,
+				1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,20 +168,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 255B96312CBE4EA600D6AC8E /* Build configuration list for PBXNativeTarget "CheersMate" */;
 			buildPhases = (
+				92D754D1AA4EAC345618BFE1 /* [CP] Check Pods Manifest.lock */,
 				255B96012CBE4EA500D6AC8E /* Sources */,
 				255B96022CBE4EA500D6AC8E /* Frameworks */,
 				255B96032CBE4EA500D6AC8E /* Resources */,
+				AFB4B09B55EB4857C576C6D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				255B96072CBE4EA500D6AC8E /* CheersMate */,
-			);
 			name = CheersMate;
-			packageProductDependencies = (
-			);
 			productName = CheersMate;
 			productReference = 255B96052CBE4EA500D6AC8E /* CheersMate.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 255B96362CBE4EA600D6AC8E /* Build configuration list for PBXNativeTarget "CheersMateTests" */;
 			buildPhases = (
+				ED9B018ED2CBD00653D36926 /* [CP] Check Pods Manifest.lock */,
 				255B961A2CBE4EA600D6AC8E /* Sources */,
 				255B961B2CBE4EA600D6AC8E /* Frameworks */,
 				255B961C2CBE4EA600D6AC8E /* Resources */,
@@ -143,12 +197,7 @@
 			dependencies = (
 				255B96202CBE4EA600D6AC8E /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				255B96212CBE4EA600D6AC8E /* CheersMateTests */,
-			);
 			name = CheersMateTests;
-			packageProductDependencies = (
-			);
 			productName = CheersMateTests;
 			productReference = 255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,21 +206,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 255B96392CBE4EA600D6AC8E /* Build configuration list for PBXNativeTarget "CheersMateUITests" */;
 			buildPhases = (
+				A943E7D189024B444B95CBF5 /* [CP] Check Pods Manifest.lock */,
 				255B96242CBE4EA600D6AC8E /* Sources */,
 				255B96252CBE4EA600D6AC8E /* Frameworks */,
 				255B96262CBE4EA600D6AC8E /* Resources */,
+				1297A252620CD054EDF7FBEA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				255B962A2CBE4EA600D6AC8E /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				255B962B2CBE4EA600D6AC8E /* CheersMateUITests */,
-			);
 			name = CheersMateUITests;
-			packageProductDependencies = (
-			);
 			productName = CheersMateUITests;
 			productReference = 255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -200,6 +246,7 @@
 				};
 			};
 			buildConfigurationList = 255B96002CBE4EA500D6AC8E /* Build configuration list for PBXProject "CheersMate" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -207,8 +254,6 @@
 				Base,
 			);
 			mainGroup = 255B95FC2CBE4EA500D6AC8E;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 255B96062CBE4EA500D6AC8E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,6 +270,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
+				255B96672CBE4FF400D6AC8E /* LaunchScreen.storyboard in Resources */,
+				255B96682CBE4FF400D6AC8E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,11 +292,118 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1297A252620CD054EDF7FBEA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CheersMate-CheersMateUITests/Pods-CheersMate-CheersMateUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CheersMate-CheersMateUITests/Pods-CheersMate-CheersMateUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CheersMate-CheersMateUITests/Pods-CheersMate-CheersMateUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92D754D1AA4EAC345618BFE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CheersMate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A943E7D189024B444B95CBF5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CheersMate-CheersMateUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFB4B09B55EB4857C576C6D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CheersMate/Pods-CheersMate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CheersMate/Pods-CheersMate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CheersMate/Pods-CheersMate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED9B018ED2CBD00653D36926 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CheersMateTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		255B96012CBE4EA500D6AC8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
+				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
+				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
+				255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,9 +436,29 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				255B96592CBE4FF400D6AC8E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		255B965C2CBE4FF400D6AC8E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				255B965B2CBE4FF400D6AC8E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		255B96322CBE4EA600D6AC8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8B3E7C59784754F6C5A4F0C /* Pods-CheersMate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,8 +470,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,14 +479,19 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stitch.CheersMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		255B96332CBE4EA600D6AC8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 692B02A06E2B5A98DB6FF6AB /* Pods-CheersMate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -323,8 +503,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,9 +512,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stitch.CheersMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -375,7 +559,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -438,7 +622,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -459,6 +643,7 @@
 		};
 		255B96372CBE4EA600D6AC8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -478,6 +663,7 @@
 		};
 		255B96382CBE4EA600D6AC8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -497,6 +683,7 @@
 		};
 		255B963A2CBE4EA600D6AC8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73BAE730DD4D08E1ECE1E2A4 /* Pods-CheersMate-CheersMateUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -514,6 +701,7 @@
 		};
 		255B963B2CBE4EA600D6AC8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5E423002480A204C3D7DE2D /* Pods-CheersMate-CheersMateUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -569,6 +757,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */,
+			);
+			currentVersion = 255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */;
+			path = CheersMate.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 255B95FD2CBE4EA500D6AC8E /* Project object */;
 }

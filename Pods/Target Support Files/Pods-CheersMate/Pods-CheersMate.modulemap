@@ -1,0 +1,6 @@
+framework module Pods_CheersMate {
+  umbrella header "Pods-CheersMate-umbrella.h"
+
+  export *
+  module * { export * }
+}
