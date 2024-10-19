@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */; };
+		253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */; };
+		253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */; };
+		253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */; };
+		253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */; };
 		255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B96552CBE4FF400D6AC8E /* AppDelegate.swift */; };
 		255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */; };
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
 		255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* ViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
-		255B96672CBE4FF400D6AC8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */; };
-		255B96682CBE4FF400D6AC8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255B965C2CBE4FF400D6AC8E /* Main.storyboard */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -38,14 +41,17 @@
 
 /* Begin PBXFileReference section */
 		1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
+		253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
+		253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
+		253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
+		253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		255B96052CBE4EA500D6AC8E /* CheersMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheersMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96552CBE4FF400D6AC8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		255B96562CBE4FF400D6AC8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		255B96582CBE4FF400D6AC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		255B96592CBE4FF400D6AC8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		255B965B2CBE4FF400D6AC8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		255B965E2CBE4FF400D6AC8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
@@ -87,6 +93,139 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		253B1B642CC4037A00F7DBF9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
+				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		253B1B652CC4039600F7DBF9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B6A2CC4040C00F7DBF9 /* Interfaces */,
+				253B1B692CC4040500F7DBF9 /* UseCases */,
+				253B1B672CC403B200F7DBF9 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		253B1B662CC403A500F7DBF9 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				255B965E2CBE4FF400D6AC8E /* ViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		253B1B672CC403B200F7DBF9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		253B1B692CC4040500F7DBF9 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		253B1B6A2CC4040C00F7DBF9 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B6B2CC4042500F7DBF9 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		253B1B6B2CC4042500F7DBF9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		253B1B6C2CC4044400F7DBF9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B6F2CC4046500F7DBF9 /* PersistentStorages */,
+				253B1B6E2CC4045E00F7DBF9 /* Network */,
+				253B1B6D2CC4045300F7DBF9 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		253B1B6D2CC4045300F7DBF9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		253B1B6E2CC4045E00F7DBF9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		253B1B6F2CC4046500F7DBF9 /* PersistentStorages */ = {
+			isa = PBXGroup;
+			children = (
+				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
+			);
+			path = PersistentStorages;
+			sourceTree = "<group>";
+		};
+		253B1B702CC4050D00F7DBF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B712CC4051A00F7DBF9 /* Fonts */,
+				255B96582CBE4FF400D6AC8E /* Info.plist */,
+				255B96562CBE4FF400D6AC8E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		253B1B712CC4051A00F7DBF9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */,
+				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
+				253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		253B1B782CC40B5300F7DBF9 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B7A2CC40CC800F7DBF9 /* Constant */,
+				253B1B792CC40C0900F7DBF9 /* Extension */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		253B1B792CC40C0900F7DBF9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */,
+				253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		253B1B7A2CC40CC800F7DBF9 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
 		255B95FC2CBE4EA500D6AC8E = {
 			isa = PBXGroup;
 			children = (
@@ -126,14 +265,12 @@
 		255B965F2CBE4FF400D6AC8E /* CheersMate */ = {
 			isa = PBXGroup;
 			children = (
-				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
-				255B96562CBE4FF400D6AC8E /* Assets.xcassets */,
-				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
-				255B96582CBE4FF400D6AC8E /* Info.plist */,
-				255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */,
-				255B965C2CBE4FF400D6AC8E /* Main.storyboard */,
-				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
-				255B965E2CBE4FF400D6AC8E /* ViewController.swift */,
+				253B1B642CC4037A00F7DBF9 /* Application */,
+				253B1B652CC4039600F7DBF9 /* Domain */,
+				253B1B662CC403A500F7DBF9 /* Presentation */,
+				253B1B6C2CC4044400F7DBF9 /* Data */,
+				253B1B702CC4050D00F7DBF9 /* Resources */,
+				253B1B782CC40B5300F7DBF9 /* Util */,
 			);
 			path = CheersMate;
 			sourceTree = "<group>";
@@ -271,8 +408,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
-				255B96672CBE4FF400D6AC8E /* LaunchScreen.storyboard in Resources */,
-				255B96682CBE4FF400D6AC8E /* Main.storyboard in Resources */,
+				253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */,
+				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
+				253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,8 +539,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
+				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
+				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,25 +576,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		255B965A2CBE4FF400D6AC8E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				255B96592CBE4FF400D6AC8E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		255B965C2CBE4FF400D6AC8E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				255B965B2CBE4FF400D6AC8E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		255B96322CBE4EA600D6AC8E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -466,10 +587,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4VFRVNS33P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CheersMate/Info.plist;
+				INFOPLIST_FILE = CheersMate/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,10 +619,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4VFRVNS33P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CheersMate/Info.plist;
+				INFOPLIST_FILE = CheersMate/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
