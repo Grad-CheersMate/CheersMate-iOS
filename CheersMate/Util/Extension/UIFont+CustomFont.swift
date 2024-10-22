@@ -8,11 +8,21 @@
 import UIKit
 
 extension UIFont {
-    enum Family: String {
+    // 폰트의 굵기
+    enum gmarketSansFamily: String {
         case Light, Medium, Bold
     }
+    enum pretendardFamily: String {
+        case Regular, Medium, SemiBold
+    }
     
-    static func gmarketSans(size: CGFloat = 10, family: Family = .Medium) -> UIFont {
+    // 지마켓 산스
+    static func gmarketSans(size: CGFloat = 10, family: gmarketSansFamily = .Medium) -> UIFont {
         return UIFont(name: "GmarketSans\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
+    // 프리텐다드 폰트
+    static func pretendard(size: CGFloat = 10, family: pretendardFamily = .Medium) -> UIFont {
+        return UIFont(name: "Pretendard-\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
 }
+

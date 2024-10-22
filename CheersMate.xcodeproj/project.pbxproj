@@ -12,10 +12,16 @@
 		253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */; };
 		253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */; };
 		253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */; };
+		253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B842CC4250D00F7DBF9 /* LoginViewModel.swift */; };
+		253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B862CC4251A00F7DBF9 /* LoginView.swift */; };
+		253B1B8B2CC506D200F7DBF9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */; };
+		253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */; };
+		253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */; };
+		253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */; };
 		255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B96552CBE4FF400D6AC8E /* AppDelegate.swift */; };
 		255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */; };
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
-		255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* ViewController.swift */; };
+		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
@@ -46,6 +52,12 @@
 		253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
 		253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		253B1B842CC4250D00F7DBF9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		253B1B862CC4251A00F7DBF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+customHideKeyboard.swift"; sourceTree = "<group>"; };
 		255B96052CBE4EA500D6AC8E /* CheersMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheersMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +65,7 @@
 		255B96562CBE4FF400D6AC8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		255B96582CBE4FF400D6AC8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		255B965E2CBE4FF400D6AC8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +127,7 @@
 		253B1B662CC403A500F7DBF9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				255B965E2CBE4FF400D6AC8E /* ViewController.swift */,
+				253B1B812CC424CC00F7DBF9 /* Login */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -194,6 +206,9 @@
 		253B1B712CC4051A00F7DBF9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */,
+				253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */,
+				253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */,
 				253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */,
 				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
 				253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */,
@@ -215,6 +230,7 @@
 			children = (
 				253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */,
 				253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */,
+				253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -224,6 +240,32 @@
 			children = (
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		253B1B812CC424CC00F7DBF9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B832CC424E200F7DBF9 /* View */,
+				253B1B822CC424DC00F7DBF9 /* ViewModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		253B1B822CC424DC00F7DBF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B842CC4250D00F7DBF9 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		253B1B832CC424E200F7DBF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */,
+				253B1B862CC4251A00F7DBF9 /* LoginView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		255B95FC2CBE4EA500D6AC8E = {
@@ -269,8 +311,8 @@
 				253B1B652CC4039600F7DBF9 /* Domain */,
 				253B1B662CC403A500F7DBF9 /* Presentation */,
 				253B1B6C2CC4044400F7DBF9 /* Data */,
-				253B1B702CC4050D00F7DBF9 /* Resources */,
 				253B1B782CC40B5300F7DBF9 /* Util */,
+				253B1B702CC4050D00F7DBF9 /* Resources */,
 			);
 			path = CheersMate;
 			sourceTree = "<group>";
@@ -409,6 +451,9 @@
 			files = (
 				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
 				253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */,
+				253B1B8B2CC506D200F7DBF9 /* Pretendard-Medium.otf in Resources */,
+				253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */,
+				253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */,
 				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
 				253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */,
 			);
@@ -540,10 +585,13 @@
 			files = (
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
+				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
-				255B96642CBE4FF400D6AC8E /* ViewController.swift in Sources */,
+				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
+				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
+				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +640,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -624,6 +673,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
