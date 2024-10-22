@@ -16,20 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController()
+        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
-        // 사용 가능한 폰트 목록 가져오기
-        let fontFamilies = UIFont.familyNames
-
-        // 폰트 목록 출력
-        for family in fontFamilies {
-            print("Font Family: \(family)")
-            let fontNames = UIFont.fontNames(forFamilyName: family)
-            for name in fontNames {
-                print("    \(name)")
-            }
-            print("\n")
-        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
