@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         let loginNavigationController = UINavigationController(rootViewController: LoginViewController())
+        loginNavigationController.setupBarAppearance()
         window?.rootViewController = loginNavigationController
         window?.makeKeyAndVisible()
     }
