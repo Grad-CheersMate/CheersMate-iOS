@@ -24,6 +24,7 @@ final class LoginViewController: UIViewController {
         setupNavi()
         setupTextFields()
         signUpButtonTapped()
+        searchingEmailButtonTapped()
     }
     
     // MARK: - 네비게이션 설정
@@ -51,7 +52,16 @@ final class LoginViewController: UIViewController {
         // controlEvent는 에러를 방출하지 않고, 메인 스레드에서 동작
         loginView.signUpButton.rx.tap
             .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(SignUpViewController(), animated: true)
+                self?.navigationController?.pushViewController(SignUpViewController(title: ""), animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - 이메일 찾기 버튼이 클릭됬을 때 화면 전환
+    private func searchingEmailButtonTapped() {
+        loginView.emailSearchButton.rx.tap
+            .bind { [weak self] _ in
+                self?.navigationController?.pushViewController(EmailSearchViewController(naviTitle: "이메일 찾기"), animated: true)
             }
             .disposed(by: disposeBag)
     }

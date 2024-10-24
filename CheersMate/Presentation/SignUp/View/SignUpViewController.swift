@@ -13,9 +13,19 @@ class SignUpViewController: UIViewController {
     
     private let signUpView = SignUpView()
     private let disposeBag = DisposeBag()
+    private let naviTitle: String
     
     override func loadView() {
         self.view = signUpView
+    }
+    
+    init(title: String) {
+        self.naviTitle = title
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -27,11 +37,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: - 네비게이션 설정
     private func setupNavi() {
-        self.navigationItem.title = "회원가입"
-        // 라지 타이틀 활성화
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        // 라지 타이틀 폰트 설정
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendard(size: 30, family: .SemiBold)]
+        self.navigationItem.title = naviTitle
     }
     // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {

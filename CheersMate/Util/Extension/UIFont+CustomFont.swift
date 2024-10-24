@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 텍스트의 폰트를 설정
 extension UIFont {
     // 폰트의 굵기
     enum gmarketSansFamily: String {

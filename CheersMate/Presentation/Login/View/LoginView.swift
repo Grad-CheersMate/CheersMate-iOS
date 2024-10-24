@@ -35,7 +35,6 @@ final class LoginView: UIView {
         tf.placeholder = "gachon123@gachon.ac.kr"
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
-        tf.clearButtonMode = .always
         tf.autocorrectionType = .no
         tf.contentVerticalAlignment = .center
         return tf
@@ -48,7 +47,7 @@ final class LoginView: UIView {
         return view
     }()
     // 비밀번호 레이블
-    let passwordLabel: UILabel = {
+    private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.textColor
         label.text = "비밀번호"
@@ -86,15 +85,15 @@ final class LoginView: UIView {
         return view
     }()
     // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 묶는 스택 뷰
-    lazy var stackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [emailFindButton, seperateView1, passwordFindButton, seperateView2, signUpButton])
+    private lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [emailSearchButton, seperateView1, passwordSearchButton, seperateView2, signUpButton])
         sv.axis = .horizontal
         sv.distribution = .equalSpacing
         sv.alignment = .fill
         return sv
     }()
     // 이메일 찾기 버튼
-    private let emailFindButton: UIButton = {
+    let emailSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("이메일 찾기", for: .normal)
         bt.setTitleColor(.textColor, for: .normal)
@@ -102,7 +101,7 @@ final class LoginView: UIView {
         return bt
     }()
     // 비밀번호 찾기 버튼
-    private let passwordFindButton: UIButton = {
+    let passwordSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("비밀번호 찾기", for: .normal)
         bt.setTitleColor(.textColor, for: .normal)

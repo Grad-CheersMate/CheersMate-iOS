@@ -26,6 +26,14 @@
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
+		259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* EmailSearchView.swift */; };
+		259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* EmailSearchViewController.swift */; };
+		259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */; };
+		259E81CD2CCA836A00D63747 /* EmailSearchSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */; };
+		259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */; };
+		259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */; };
+		259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */; };
+		259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -73,6 +81,14 @@
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
+		259E81C62CCA40E800D63747 /* EmailSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchView.swift; sourceTree = "<group>"; };
+		259E81C82CCA417700D63747 /* EmailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchViewController.swift; sourceTree = "<group>"; };
+		259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Spacing.swift"; sourceTree = "<group>"; };
+		259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchSuccessView.swift; sourceTree = "<group>"; };
+		259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchSuccessViewController.swift; sourceTree = "<group>"; };
+		259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureViewController.swift; sourceTree = "<group>"; };
+		259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureView.swift; sourceTree = "<group>"; };
+		259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Appearance.swift"; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,8 +149,9 @@
 		253B1B662CC403A500F7DBF9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				253B1B902CC82A0700F7DBF9 /* SignUp */,
 				253B1B812CC424CC00F7DBF9 /* Login */,
+				253B1B902CC82A0700F7DBF9 /* SignUp */,
+				259E81C32CCA3FAF00D63747 /* SearchingEmail */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -237,8 +254,10 @@
 			children = (
 				253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */,
 				253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */,
+				259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */,
 				259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */,
 				253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */,
+				259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -344,6 +363,35 @@
 			sourceTree = "<group>";
 		};
 		259E81BF2CC9632A00D63747 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		259E81C32CCA3FAF00D63747 /* SearchingEmail */ = {
+			isa = PBXGroup;
+			children = (
+				259E81C42CCA40CF00D63747 /* View */,
+				259E81C52CCA40D500D63747 /* ViewModel */,
+			);
+			path = SearchingEmail;
+			sourceTree = "<group>";
+		};
+		259E81C42CCA40CF00D63747 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				259E81C62CCA40E800D63747 /* EmailSearchView.swift */,
+				259E81C82CCA417700D63747 /* EmailSearchViewController.swift */,
+				259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */,
+				259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */,
+				259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */,
+				259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		259E81C52CCA40D500D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -616,18 +664,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
+				259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */,
+				259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
+				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
+				259E81CD2CCA836A00D63747 /* EmailSearchSuccessView.swift in Sources */,
+				259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
+				259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */,
+				259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
