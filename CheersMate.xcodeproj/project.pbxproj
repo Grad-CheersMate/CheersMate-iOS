@@ -18,11 +18,14 @@
 		253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */; };
 		253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */; };
 		253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */; };
+		253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B922CC82A7600F7DBF9 /* SignUpView.swift */; };
+		253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B942CC82A8C00F7DBF9 /* SignUpViewController.swift */; };
 		255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B96552CBE4FF400D6AC8E /* AppDelegate.swift */; };
 		255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */; };
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
+		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -58,6 +61,8 @@
 		253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+customHideKeyboard.swift"; sourceTree = "<group>"; };
+		253B1B922CC82A7600F7DBF9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		253B1B942CC82A8C00F7DBF9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		255B96052CBE4EA500D6AC8E /* CheersMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheersMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +72,7 @@
 		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
+		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +133,7 @@
 		253B1B662CC403A500F7DBF9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				253B1B902CC82A0700F7DBF9 /* SignUp */,
 				253B1B812CC424CC00F7DBF9 /* Login */,
 			);
 			path = Presentation;
@@ -230,6 +237,7 @@
 			children = (
 				253B1B7D2CC40DC200F7DBF9 /* UIFont+CustomFont.swift */,
 				253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */,
+				259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */,
 				253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */,
 			);
 			path = Extension;
@@ -262,8 +270,26 @@
 		253B1B832CC424E200F7DBF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */,
 				253B1B862CC4251A00F7DBF9 /* LoginView.swift */,
+				255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		253B1B902CC82A0700F7DBF9 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B912CC82A5500F7DBF9 /* View */,
+				259E81BF2CC9632A00D63747 /* ViewModel */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		253B1B912CC82A5500F7DBF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B922CC82A7600F7DBF9 /* SignUpView.swift */,
+				253B1B942CC82A8C00F7DBF9 /* SignUpViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +341,13 @@
 				253B1B702CC4050D00F7DBF9 /* Resources */,
 			);
 			path = CheersMate;
+			sourceTree = "<group>";
+		};
+		259E81BF2CC9632A00D63747 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		3D6E19BC6232515134862320 /* Pods */ = {
@@ -583,13 +616,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
+				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
+				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
 			);

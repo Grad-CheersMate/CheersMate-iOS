@@ -1,44 +1,45 @@
 //
-//  ViewController.swift
+//  SignUpViewController.swift
 //  CheersMate
 //
-//  Created by 재훈 on 10/15/24.
+//  Created by 재훈 on 10/23/24.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class LoginViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
-    private let loginView = LoginView()
+    private let signUpView = SignUpView()
     private let disposeBag = DisposeBag()
     
     override func loadView() {
-        self.view = loginView
+        self.view = signUpView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         setupNavi()
         setupTextFields()
-        signUpButtonTapped()
     }
     
     // MARK: - 네비게이션 설정
     private func setupNavi() {
-        // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.title = "회원가입"
+        // 라지 타이틀 활성화
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        // 라지 타이틀 폰트 설정
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.pretendard(size: 30, family: .SemiBold)]
     }
-    
     // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {
-        [loginView.emailTextField, loginView.passwordTextField]
+        [signUpView.emailTextField, signUpView.passwordTextField, signUpView.nickNameTextField, signUpView.tellTextField]
             .forEach {
+                // 툴바 등록
                 $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped))
+                // 키보드에서 리턴 버튼을 클릭했을 때
                 $0.rx.controlEvent(.editingDidEndOnExit)
                     .bind(onNext: { [weak self] _ in
                         self?.doneButtonTapped()
@@ -46,19 +47,11 @@ final class LoginViewController: UIViewController {
                     .disposed(by: disposeBag)
             }
     }
-    // MARK: - 회원가입 버튼이 클릭됬을 때 화면 전환
-    private func signUpButtonTapped() {
-        // controlEvent는 에러를 방출하지 않고, 메인 스레드에서 동작
-        loginView.signUpButton.rx.tap
-            .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(SignUpViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
     
     // MARK: - 완료버튼을 누르면 키보드 내리기
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
+    
     
 }
