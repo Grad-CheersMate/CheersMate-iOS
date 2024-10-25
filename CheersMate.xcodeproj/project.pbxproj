@@ -34,6 +34,10 @@
 		259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */; };
 		259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */; };
 		259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */; };
+		259E81DE2CCAC91200D63747 /* PasswordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */; };
+		259E81E02CCAC93F00D63747 /* PasswordSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */; };
+		259E81E22CCACF0600D63747 /* PasswordSearchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */; };
+		259E81E42CCACF1A00D63747 /* PasswordSearchSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -89,6 +93,10 @@
 		259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureViewController.swift; sourceTree = "<group>"; };
 		259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureView.swift; sourceTree = "<group>"; };
 		259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Appearance.swift"; sourceTree = "<group>"; };
+		259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchView.swift; sourceTree = "<group>"; };
+		259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchViewController.swift; sourceTree = "<group>"; };
+		259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchSuccessViewController.swift; sourceTree = "<group>"; };
+		259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchSuccessView.swift; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +159,8 @@
 			children = (
 				253B1B812CC424CC00F7DBF9 /* Login */,
 				253B1B902CC82A0700F7DBF9 /* SignUp */,
-				259E81C32CCA3FAF00D63747 /* SearchingEmail */,
+				259E81C32CCA3FAF00D63747 /* EmailSearch */,
+				259E81DA2CCAC89600D63747 /* PasswordSearch */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -369,13 +378,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		259E81C32CCA3FAF00D63747 /* SearchingEmail */ = {
+		259E81C32CCA3FAF00D63747 /* EmailSearch */ = {
 			isa = PBXGroup;
 			children = (
 				259E81C42CCA40CF00D63747 /* View */,
 				259E81C52CCA40D500D63747 /* ViewModel */,
 			);
-			path = SearchingEmail;
+			path = EmailSearch;
 			sourceTree = "<group>";
 		};
 		259E81C42CCA40CF00D63747 /* View */ = {
@@ -392,6 +401,33 @@
 			sourceTree = "<group>";
 		};
 		259E81C52CCA40D500D63747 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		259E81DA2CCAC89600D63747 /* PasswordSearch */ = {
+			isa = PBXGroup;
+			children = (
+				259E81DB2CCAC8EA00D63747 /* View */,
+				259E81DC2CCAC8EE00D63747 /* ViewModel */,
+			);
+			path = PasswordSearch;
+			sourceTree = "<group>";
+		};
+		259E81DB2CCAC8EA00D63747 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */,
+				259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */,
+				259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */,
+				259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		259E81DC2CCAC8EE00D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -669,9 +705,11 @@
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */,
+				259E81E02CCAC93F00D63747 /* PasswordSearchViewController.swift in Sources */,
 				259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
+				259E81DE2CCAC91200D63747 /* PasswordSearchView.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
@@ -680,10 +718,12 @@
 				259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
+				259E81E22CCACF0600D63747 /* PasswordSearchSuccessViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
 				259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */,
 				259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */,
+				259E81E42CCACF1A00D63747 /* PasswordSearchSuccessView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

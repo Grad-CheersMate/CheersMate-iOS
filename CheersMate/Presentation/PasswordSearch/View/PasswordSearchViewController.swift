@@ -1,22 +1,22 @@
 //
-//  SearchingEmailViewController.swift
+//  PasswordSearchViewController.swift
 //  CheersMate
 //
-//  Created by 재훈 on 10/24/24.
+//  Created by 재훈 on 10/25/24.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-final class EmailSearchViewController: UIViewController {
-    
-    private let emailSearchView = EmailSearchView()
+final class PasswordSearchViewController: UIViewController {
+
+    private let passwordSearchView = PasswordSearchView()
     private let disposeBag = DisposeBag()
     private let naviTitle: String
     
     override func loadView() {
-        self.view = emailSearchView
+        self.view = passwordSearchView
     }
     
     init(naviTitle: String) {
@@ -48,7 +48,7 @@ final class EmailSearchViewController: UIViewController {
     // MARK: - 뷰 바인드
     private func bindView() {
         // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
-        [emailSearchView.nickNameTextField, emailSearchView.tellTextField]
+        [passwordSearchView.emailTextField, passwordSearchView.tellTextField]
             .forEach {
                 // 툴바 등록
                 $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped))
@@ -60,26 +60,21 @@ final class EmailSearchViewController: UIViewController {
                     .disposed(by: disposeBag)
             }
         // MARK: - 닉네임과 휴대폰 번호를 입력한 후 이메일 찾기 버튼을 눌렀을 때 화면 전환
-        emailSearchView.emailSearchButton.rx.tap
+        passwordSearchView.passwordSearchButton.rx.tap
             .bind { [weak self] _ in
-                let EmailSearchSuccessViewController = EmailSearchSuccessViewController()
-                EmailSearchSuccessViewController.modalPresentationStyle = .fullScreen
-                self?.present(EmailSearchSuccessViewController, animated: true)
-                // 등록된 계정이 없을 때
-                // self?.navigationController?.pushViewController(EmailSearchFailureViewController(naviTitle: ""), animated: true)
+                let passwordSearchSuccessViewController = PasswordSearchSuccessViewController()
+                passwordSearchSuccessViewController.modalPresentationStyle = .fullScreen
+                self?.present(passwordSearchSuccessViewController, animated: true)
             }
             .disposed(by: disposeBag)
         
         
     } // closed bindView
-     
     
-
-
 } // closed Class
 
 // MARK: - @objc 설정
-extension EmailSearchViewController {
+extension PasswordSearchViewController {
     // MARK: - 완료버튼을 누르면 키보드 내리기
     @objc func doneButtonTapped() {
         view.endEditing(true)
