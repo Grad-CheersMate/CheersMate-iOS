@@ -17,14 +17,13 @@ final class LoginViewController: UIViewController {
     override func loadView() {
         self.view = loginView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         setupNavi()
+        bindView()
         setupTextFields()
-        signUpButtonTapped()
-        searchingEmailButtonTapped()
     }
     
     // MARK: - 네비게이션 설정
@@ -33,7 +32,45 @@ final class LoginViewController: UIViewController {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .black
         self.navigationItem.backBarButtonItem = backBarButtonItem
-    }
+    } // closed setupNavi
+    
+    // MARK: - 바인드 뷰
+    private func bindView() {
+        // MARK: - 회원가입 버튼이 클릭됬을 때 화면 전환
+        // controlEvent는 에러를 방출하지 않고, 메인 스레드에서 동작
+        loginView.signUpButton.rx.tap
+            .bind { [weak self] _ in
+                self?.navigationController?.pushViewController(SignUpViewController(title: ""), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: - 이메일 찾기 버튼이 클릭됬을 때 화면 전환
+        loginView.emailSearchButton.rx.tap
+            .bind { [weak self] _ in
+                self?.navigationController?.pushViewController(EmailSearchViewController(naviTitle: "이메일 찾기"), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: - 비밀번호 찾기 버튼이 클릭됬을 때 화면 전환
+        loginView.passwordSearchButton.rx.tap
+            .bind { [weak self] _ in
+                self?.navigationController?.pushViewController(PasswordSearchViewController(naviTitle: "비밀번호 찾기"), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        PublishRelay
+            .merge(loginView.emailTextField.rx.controlEvent(.editingDidBegin).map { true },
+                   loginView.emailTextField.rx.controlEvent(.editingDidEnd).map { false })
+            .bind(onNext: { [weak self] isEditing in
+                isEditing ? (self?.loginView.emailUnderLine.backgroundColor = .mainColor) : (self?.loginView.emailUnderLine.backgroundColor = .systemGray5)
+            })
+            .disposed(by: disposeBag)
+        
+        
+        
+        
+        
+    } // closed bindView
     
     // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {
@@ -46,29 +83,15 @@ final class LoginViewController: UIViewController {
                     })
                     .disposed(by: disposeBag)
             }
-    }
-    // MARK: - 회원가입 버튼이 클릭됬을 때 화면 전환
-    private func signUpButtonTapped() {
-        // controlEvent는 에러를 방출하지 않고, 메인 스레드에서 동작
-        loginView.signUpButton.rx.tap
-            .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(SignUpViewController(title: ""), animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
+    } // closed setupTextFields
     
-    // MARK: - 이메일 찾기 버튼이 클릭됬을 때 화면 전환
-    private func searchingEmailButtonTapped() {
-        loginView.emailSearchButton.rx.tap
-            .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(EmailSearchViewController(naviTitle: "이메일 찾기"), animated: true)
-            }
-            .disposed(by: disposeBag)
-    }
-    
+} // closed Class
+
+// MARK: - @objc 설정
+extension LoginViewController {
     // MARK: - 완료버튼을 누르면 키보드 내리기
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
     
-}
+} // closed Extension
