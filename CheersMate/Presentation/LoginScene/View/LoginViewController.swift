@@ -58,19 +58,29 @@ final class LoginViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        PublishRelay
-            .merge(loginView.emailTextField.rx.controlEvent(.editingDidBegin).map { true },
-                   loginView.emailTextField.rx.controlEvent(.editingDidEnd).map { false })
-            .bind(onNext: { [weak self] isEditing in
-                isEditing ? (self?.loginView.emailUnderLine.backgroundColor = .mainColor) : (self?.loginView.emailUnderLine.backgroundColor = .systemGray5)
-            })
-            .disposed(by: disposeBag)
-        
         // MARK: - 로그인 버튼이 클릭됬을 때 화면 전환
         loginView.loginButton.rx.tap
             .bind { [weak self] _ in
                 self?.changeRootViewController()
             }
+            .disposed(by: disposeBag)
+        
+        // MARK: - 이메일 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
+        PublishRelay
+            .merge(loginView.emailTextField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
+                   loginView.emailTextField.rx.controlEvent(.editingDidEnd).map { false }) // 편집 종료
+            .bind(onNext: { [weak self] isEditing in
+                isEditing ? (self?.loginView.emailUnderLine.backgroundColor = .mainColor) : (self?.loginView.emailUnderLine.backgroundColor = .systemGray5)
+            })
+            .disposed(by: disposeBag)
+        
+        // MARK: - 비밀번호 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
+        PublishRelay
+            .merge(loginView.passwordTextField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
+                   loginView.passwordTextField.rx.controlEvent(.editingDidEnd).map { false }) // 편집 종료
+            .bind(onNext: { [weak self] isEditing in
+                isEditing ? (self?.loginView.passwordUnderLine.backgroundColor = .mainColor) : (self?.loginView.passwordUnderLine.backgroundColor = .systemGray5)
+            })
             .disposed(by: disposeBag)
         
         
@@ -81,8 +91,8 @@ final class LoginViewController: UIViewController {
     private func setupTextFields() {
         [loginView.emailTextField, loginView.passwordTextField]
             .forEach {
-                $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped))
-                $0.rx.controlEvent(.editingDidEndOnExit)
+                $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped)) // 툴바 적용
+                $0.rx.controlEvent(.editingDidEndOnExit) // return 클릭 시
                     .bind(onNext: { [weak self] _ in
                         self?.doneButtonTapped()
                     })

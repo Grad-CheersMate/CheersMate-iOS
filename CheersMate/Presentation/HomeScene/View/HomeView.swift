@@ -15,7 +15,7 @@ final class HomeView: UIView {
         lb.text = "CheersMate"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
-        lb.textColor = .black // 원하는 색상으로 설정
+        lb.textColor = .black
         return lb
     }()
     
