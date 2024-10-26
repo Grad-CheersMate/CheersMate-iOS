@@ -66,7 +66,12 @@ final class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        
+        // MARK: - 로그인 버튼이 클릭됬을 때 화면 전환
+        loginView.loginButton.rx.tap
+            .bind { [weak self] _ in
+                self?.changeRootViewController()
+            }
+            .disposed(by: disposeBag)
         
         
         
@@ -84,6 +89,12 @@ final class LoginViewController: UIViewController {
                     .disposed(by: disposeBag)
             }
     } // closed setupTextFields
+    
+    // MARK: - 로그인 버튼을 클릭했을 때 루트 뷰를 변경하여 메모리 최적화
+    private func changeRootViewController() {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.changeRootViewController()
+    } // closed changeRootViewController
     
 } // closed Class
 

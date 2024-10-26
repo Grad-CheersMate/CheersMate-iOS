@@ -25,5 +25,10 @@ extension UIFont {
     static func pretendard(size: CGFloat = 10, family: pretendardFamily = .Medium) -> UIFont {
         return UIFont(name: "Pretendard-\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
+    
+    // 어그로 폰트
+    static func Aggro(size: CGFloat = 10) -> UIFont {
+        return UIFont(name: "OTSBAggroB", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
 }
 
