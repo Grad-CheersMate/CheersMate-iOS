@@ -11,8 +11,18 @@ import RxCocoa
 
 final class LoginViewController: UIViewController {
     
-    private let loginView = LoginView()
+    private var loginView = LoginView()
+    private let viewModel: LoginViewModelProtocol
     private let disposeBag = DisposeBag()
+    
+    init (viewModel: LoginViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = loginView
@@ -23,6 +33,7 @@ final class LoginViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         setupNavi()
         bindView()
+        bindViewModel()
         setupTextFields()
     }
     
@@ -83,9 +94,33 @@ final class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        
-        
     } // closed bindView
+    
+    private func bindViewModel() {
+        let input = LoginViewModel.Input(
+            emailTextField: loginView.emailTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asDriver(onErrorJustReturn: ""),
+            passwordTextField: loginView.passwordTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asDriver(onErrorJustReturn: "")
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        output.loginButtonEnabled
+            .drive(onNext: {[weak self] valid in
+                self?.loginView.loginButton.isEnabled = valid
+                valid
+                ? (self?.loginView.loginButton.backgroundColor = .mainColor)
+                : (self?.loginView.loginButton.backgroundColor = .systemGray4)
+            })
+            .disposed(by: disposeBag)
+        
+        
+    }
     
     // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {

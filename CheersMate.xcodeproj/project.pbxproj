@@ -44,6 +44,8 @@
 		259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FB2CCCE74200D63747 /* SearchViewController.swift */; };
 		259E81FE2CCCE77100D63747 /* ChatBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FD2CCCE77100D63747 /* ChatBotViewController.swift */; };
 		259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FF2CCCE78400D63747 /* MyPageViewController.swift */; };
+		259E82092CCE801300D63747 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* NetworkManager.swift */; };
+		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -109,6 +111,8 @@
 		259E81FB2CCCE74200D63747 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		259E81FD2CCCE77100D63747 /* ChatBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotViewController.swift; sourceTree = "<group>"; };
 		259E81FF2CCCE78400D63747 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		259E82082CCE801300D63747 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,9 +217,9 @@
 		253B1B6C2CC4044400F7DBF9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				253B1B6F2CC4046500F7DBF9 /* PersistentStorages */,
-				253B1B6E2CC4045E00F7DBF9 /* Network */,
 				253B1B6D2CC4045300F7DBF9 /* Repositories */,
+				253B1B6E2CC4045E00F7DBF9 /* Network */,
+				253B1B6F2CC4046500F7DBF9 /* PersistentStorages */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -230,6 +234,8 @@
 		253B1B6E2CC4045E00F7DBF9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				259E82082CCE801300D63747 /* NetworkManager.swift */,
+				259E820A2CCE80E800D63747 /* UserNetwork.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -840,8 +846,10 @@
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
 				259E81CD2CCA836A00D63747 /* EmailSearchSuccessView.swift in Sources */,
 				259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */,
+				259E82092CCE801300D63747 /* NetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
 				259E81FE2CCCE77100D63747 /* ChatBotViewController.swift in Sources */,
+				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				259E81E22CCACF0600D63747 /* PasswordSearchSuccessViewController.swift in Sources */,

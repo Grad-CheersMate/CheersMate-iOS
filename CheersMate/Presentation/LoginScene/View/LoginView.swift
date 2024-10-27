@@ -131,14 +131,14 @@ final class LoginView: UIView {
         return view
     }()
     // 로그인 버튼
-    let loginButton: UIButton = {
+    var loginButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("로그인", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 8
         //bt.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.7843137255, blue: 0.8, alpha: 1)
-        bt.backgroundColor = .mainColor
+        bt.backgroundColor = .systemGray4//.mainColor
         return bt
     }()
     // 카카오 로그인 버튼
