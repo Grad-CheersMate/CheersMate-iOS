@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         // 로그인 뷰
-        let loginNavigationController = UINavigationController(rootViewController: LoginViewController())
+        let loginNavigationController = UINavigationController(rootViewController: LoginViewController(viewModel: LoginViewModel()))
         loginNavigationController.setupBarAppearance()
         window?.rootViewController = loginNavigationController
         window?.makeKeyAndVisible()
