@@ -65,9 +65,9 @@ extension LoginViewModel {
         return emailPredicate.evaluate(with: email)
     }
     
-    // 비밀번호 유효성 검사 - 소문자, 숫자, 특수문자 하나 이상 포함 및 길이 8자 이상
+    // 비밀번호 유효성 검사 - 소문자, 숫자 하나 이상 포함 및 길이 8자 이상
     private func isValidPassword(_ password: String) -> Bool {
-        let passwordRegEx = "^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$"
+        let passwordRegEx = "^(?=.*[a-z])(?=.*[0-9]).{8,}$"
         let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordPredicate.evaluate(with: password)
     }

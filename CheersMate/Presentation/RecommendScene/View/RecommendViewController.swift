@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChatBotViewController: UIViewController {
+class RecommendViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
