@@ -14,9 +14,10 @@ final class LoginView: UIView {
     // 메인 로고 이미지 뷰
     private let logoImageView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "logo")
-        view.contentMode = .scaleAspectFit
+        view.image = .cheersMate
+        view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
+        view.layer.cornerRadius = 20
         return view
     }()
     // 이메일 주소 레이블
@@ -179,7 +180,7 @@ final class LoginView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(60)
-            make.height.equalTo(80)
+            make.height.equalTo(200)
         }
         
         emailLabel.snp.makeConstraints { make in

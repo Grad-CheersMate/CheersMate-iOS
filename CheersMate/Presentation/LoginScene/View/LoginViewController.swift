@@ -72,7 +72,17 @@ final class LoginViewController: UIViewController {
         // MARK: - 로그인 버튼이 클릭됬을 때 화면 전환
         loginView.loginButton.rx.tap
             .bind { [weak self] _ in
-                self?.changeRootViewController()
+                let nt = UserNetwork(manager: UserNetworkManager())
+                guard let email = self?.loginView.emailTextField.text, let password = self?.loginView.passwordTextField.text else { return }
+                nt.login(email: email, password: password) { response in
+                    switch response {
+                    case .success(let res):
+                        print(res)
+                        self?.changeRootViewController()
+                    case .failure(let err):
+                        print(err)
+                    }
+                }
             }
             .disposed(by: disposeBag)
         

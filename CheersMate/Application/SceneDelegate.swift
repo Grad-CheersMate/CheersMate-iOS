@@ -34,13 +34,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let searchViewNavigationController = UINavigationController(rootViewController: SearchViewController())
         searchViewNavigationController.setupBarAppearance()
         // 챗 봇 네비게이션 컨트롤러 생성
-        let chatBotNavigationController = UINavigationController(rootViewController: ChatBotViewController())
-        chatBotNavigationController.setupBarAppearance()
+        let recommendViewController = UINavigationController(rootViewController: RecommendViewController())
+        recommendViewController.setupBarAppearance()
         // 마이 페이지 네비게이션 컨트롤러 생성
         let myPageNavigationController = UINavigationController(rootViewController: MyPageViewController())
         myPageNavigationController.setupBarAppearance()
         
-        tabBarController.setViewControllers([homeNavigationController, searchViewNavigationController, chatBotNavigationController, myPageNavigationController], animated: true)
+        tabBarController.setViewControllers([homeNavigationController, searchViewNavigationController, recommendViewController, myPageNavigationController], animated: true)
         
         if let items = tabBarController.tabBar.items {
             items[0].image = .home
