@@ -47,7 +47,10 @@
 		259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* UserNetworkManager.swift */; };
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82102CCE87DA00D63747 /* UserRepository.swift */; };
+		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
+		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
+		25F4288A2CD6390F0044240C /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* LoginUseCase.swift */; };
 		8DEC78756533189224B2F558 /* Pods_CheersMate_CheersMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */; };
 		926EE3D265AE0A8B0B1B2833 /* Pods_CheersMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */; };
 		CFCCF165C666FFA7BDD780EF /* Pods_CheersMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331E1F631CE7F8EE164C7E /* Pods_CheersMate.framework */; };
@@ -116,7 +119,10 @@
 		259E82082CCE801300D63747 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		259E82102CCE87DA00D63747 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		25F428892CD6390F0044240C /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		3BCD95DABEF6D4DE1081BCA5 /* Pods-CheersMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.debug.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5078F39ABD20400EBFFF94A2 /* Pods-CheersMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheersMateTests.release.xcconfig"; path = "Target Support Files/Pods-CheersMateTests/Pods-CheersMateTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EC0DE572DF4C071B53BF062 /* Pods_CheersMate_CheersMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMate_CheersMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +206,7 @@
 		253B1B692CC4040500F7DBF9 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				25F428892CD6390F0044240C /* LoginUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -215,6 +222,7 @@
 		253B1B6B2CC4042500F7DBF9 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				25F428872CD633770044240C /* UserRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 			children = (
 				253B1B6D2CC4045300F7DBF9 /* Repositories */,
 				253B1B6E2CC4045E00F7DBF9 /* Network */,
+				25CFEF092CD6B39C00083081 /* KeyChain */,
 				253B1B6F2CC4046500F7DBF9 /* PersistentStorages */,
 			);
 			path = Data;
@@ -392,8 +401,8 @@
 			isa = PBXGroup;
 			children = (
 				253B1B642CC4037A00F7DBF9 /* Application */,
-				253B1B652CC4039600F7DBF9 /* Domain */,
 				253B1B662CC403A500F7DBF9 /* Presentation */,
+				253B1B652CC4039600F7DBF9 /* Domain */,
 				253B1B6C2CC4044400F7DBF9 /* Data */,
 				253B1B782CC40B5300F7DBF9 /* Util */,
 				253B1B702CC4050D00F7DBF9 /* Resources */,
@@ -404,6 +413,7 @@
 		259E81BF2CC9632A00D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -566,6 +576,13 @@
 			children = (
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		25CFEF092CD6B39C00083081 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = KeyChain;
 			sourceTree = "<group>";
 		};
 		3D6E19BC6232515134862320 /* Pods */ = {
@@ -837,6 +854,7 @@
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
+				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */,
@@ -855,6 +873,7 @@
 				259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
+				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
 				259E81FE2CCCE77100D63747 /* RecommendViewController.swift in Sources */,
 				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
@@ -868,6 +887,7 @@
 				259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */,
 				259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */,
 				259E81E42CCACF1A00D63747 /* PasswordSearchSuccessView.swift in Sources */,
+				25F4288A2CD6390F0044240C /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

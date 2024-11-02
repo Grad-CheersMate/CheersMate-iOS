@@ -5,6 +5,9 @@
 //  Created by 재훈 on 10/15/24.
 //
 
+// MARK: - VC: 뷰 컨트롤러, NVC: 네비게이션 뷰 컨트롤러, VM: 뷰 모델, UC: 유스케이스, RP: 리포지토리, Net: 네트워크
+
+
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -15,10 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        // 로그인 뷰
-        let loginNavigationController = UINavigationController(rootViewController: LoginViewController(viewModel: LoginViewModel()))
-        loginNavigationController.setupBarAppearance()
-        window?.rootViewController = loginNavigationController
+        // MARK: - Data Layer
+        let userNet = UserNetwork(manager: UserNetworkManager())
+        let userRP = UserRepository(network: userNet)
+        // MARK: - Domain Layer
+        let loginUC = LoginUseCase(repository: userRP)
+        let loginVM = LoginViewModel(useCase: loginUC)
+        // MARK: - Presentation Layer
+        let loginVC = LoginViewController(viewModel: loginVM)
+        let loginNVC = UINavigationController(rootViewController: loginVC)
+        loginNVC.setupBarAppearance()
+        
+        window?.rootViewController = loginNVC
         window?.makeKeyAndVisible()
     }
     // MARK: - 로그인 버튼이 클릭됐을 때 메인 홈 화면으로 루트 뷰 교체
@@ -28,19 +39,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         tabBarController.setupBarApperance()
         // 홈 뷰 네비게이션 컨트롤러 생성
-        let homeNavigationController = UINavigationController(rootViewController: HomeViewController())
-        homeNavigationController.setupBarAppearance()
+        let homeNVC = UINavigationController(rootViewController: HomeViewController())
+        homeNVC.setupBarAppearance()
         // 검색 네비게이션 컨트롤러 생성
-        let searchViewNavigationController = UINavigationController(rootViewController: SearchViewController())
-        searchViewNavigationController.setupBarAppearance()
+        let searchNVC = UINavigationController(rootViewController: SearchViewController())
+        searchNVC.setupBarAppearance()
         // 챗 봇 네비게이션 컨트롤러 생성
-        let recommendViewController = UINavigationController(rootViewController: RecommendViewController())
-        recommendViewController.setupBarAppearance()
+        let recommendNVC = UINavigationController(rootViewController: RecommendViewController())
+        recommendNVC.setupBarAppearance()
         // 마이 페이지 네비게이션 컨트롤러 생성
-        let myPageNavigationController = UINavigationController(rootViewController: MyPageViewController())
-        myPageNavigationController.setupBarAppearance()
+        let myPageNVC = UINavigationController(rootViewController: MyPageViewController())
+        myPageNVC.setupBarAppearance()
         
-        tabBarController.setViewControllers([homeNavigationController, searchViewNavigationController, recommendViewController, myPageNavigationController], animated: true)
+        tabBarController.setViewControllers([homeNVC, searchNVC, recommendNVC, myPageNVC], animated: true)
         
         if let items = tabBarController.tabBar.items {
             items[0].image = .home
@@ -48,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             items[1].image = .search
             items[1].title = "검색"
             items[2].image = .chatBot
-            items[2].title = "챗봇"
+            items[2].title = "추천"
             items[3].image = .myPage
             items[3].title = "내정보"
         }

@@ -10,18 +10,18 @@ import Alamofire
 
 // MARK: - http://ceprj.gachon.ac.kr:60021
 
-protocol UserNetworkManagerProtocol {
+public protocol UserNetworkManagerProtocol {
     func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
     func signUp(email:String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
     func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
     func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
 }
 
-final class UserNetworkManager: UserNetworkManagerProtocol {
+final public class UserNetworkManager: UserNetworkManagerProtocol {
     
     private let endpoint: String
     
-    init(endpoint: String = "http://ceprj.gachon.ac.kr:60021") {
+    public init(endpoint: String = "http://ceprj.gachon.ac.kr:60021") {
         self.endpoint = endpoint
     }
     // MARK: -  나중에 jwt를 Bearer 뒤에 추가하기
@@ -44,28 +44,28 @@ final class UserNetworkManager: UserNetworkManagerProtocol {
     }
     
     // MARK: - 로그인 요청
-    func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void ) {
+    public func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void ) {
         let url = "\(endpoint)/users/login"
         let parameters: Parameters = ["email": email, "password": password]
         makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
     } // closed login
     
     // MARK: - 회원가입 요청
-    func signUp(email: String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func signUp(email: String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         let url = "\(endpoint)/register"
         let parameters: Parameters = ["email": email, "password": password, "nickname": nickname, "tell": tell]
         makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
     } // closed signUp
     
     // MARK: - 이메일 찾기 요청
-    func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         let url = "\(endpoint)/emailFind"
         let parameters: Parameters = ["nickname": nickname, "tell": tell]
         makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
     } // closed searchEmail
     
     // MARK: - 비밀번호 찾기 요청
-    func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         let url = "\(endpoint)/passFind"
         let parameters: Parameters = ["email": email, "tell": tell]
         makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
