@@ -9,33 +9,33 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class LoginViewController: UIViewController {
+final public class LoginViewController: UIViewController {
     
     private var loginView = LoginView()
     private let viewModel: LoginViewModelProtocol
     private let disposeBag = DisposeBag()
     
-    init (viewModel: LoginViewModelProtocol) {
+    public init (viewModel: LoginViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    }
+    } // closed init
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
+    } // closed required init
     
-    override func loadView() {
+    public override func loadView() {
         self.view = loginView
-    }
+    } // closed loadView
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         setupNavi()
         bindView()
         bindViewModel()
         setupTextFields()
-    }
+    } // closed viewDidLoad
     
     // MARK: - 네비게이션 설정
     private func setupNavi() {
@@ -69,23 +69,6 @@ final class LoginViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // MARK: - 로그인 버튼이 클릭됬을 때 화면 전환
-        loginView.loginButton.rx.tap
-            .bind { [weak self] _ in
-                let nt = UserNetwork(manager: UserNetworkManager())
-                guard let email = self?.loginView.emailTextField.text, let password = self?.loginView.passwordTextField.text else { return }
-                nt.login(email: email, password: password) { response in
-                    switch response {
-                    case .success(let res):
-                        print(res)
-                        self?.changeRootViewController()
-                    case .failure(let err):
-                        print(err)
-                    }
-                }
-            }
-            .disposed(by: disposeBag)
-        
         // MARK: - 이메일 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
         PublishRelay
             .merge(loginView.emailTextField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
@@ -112,10 +95,13 @@ final class LoginViewController: UIViewController {
                 .orEmpty
                 .distinctUntilChanged()
                 .asDriver(onErrorJustReturn: ""),
+            
             passwordTextField: loginView.passwordTextField.rx.text
                 .orEmpty
                 .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: "")
+                .asDriver(onErrorJustReturn: ""),
+            
+            loginButtonTapped: loginView.loginButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -123,14 +109,24 @@ final class LoginViewController: UIViewController {
         output.loginButtonEnabled
             .drive(onNext: {[weak self] valid in
                 self?.loginView.loginButton.isEnabled = valid
-                valid
-                ? (self?.loginView.loginButton.backgroundColor = .mainColor)
-                : (self?.loginView.loginButton.backgroundColor = .systemGray4)
+                valid ? (self?.loginView.loginButton.backgroundColor = .mainColor) : (self?.loginView.loginButton.backgroundColor = .systemGray4)
             })
             .disposed(by: disposeBag)
         
+        output.loginResponse
+            .emit { [weak self] response in
+                switch response {
+                case .success(let res):
+                    if res.result == 1 {
+                        self?.changeRootViewController()
+                    }
+                case .failure(let err):
+                    print("로그인 에러 \(err)")
+                }
+            }
+            .disposed(by: disposeBag)
         
-    }
+    }  // closed bindViewModel
     
     // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {
@@ -150,6 +146,7 @@ final class LoginViewController: UIViewController {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.changeRootViewController()
     } // closed changeRootViewController
+    
     
 } // closed Class
 

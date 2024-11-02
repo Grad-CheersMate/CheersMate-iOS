@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - 회원 API 명세서
-protocol UserNetworkProtocol {
+public protocol UserNetworkProtocol {
     // 사용자 로그인 API
     func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
     // 사용자 회원가입 API
@@ -20,28 +20,28 @@ protocol UserNetworkProtocol {
 } // closed UserNetworkProtocol
 
 // MARK: - 회원 네트워크
-final class UserNetwork: UserNetworkProtocol {
+final public class UserNetwork: UserNetworkProtocol {
 
     private let manager: UserNetworkManagerProtocol
     
-    init(manager: UserNetworkManagerProtocol) {
+    public init(manager: UserNetworkManagerProtocol) {
         self.manager = manager
     } // closed init
     
     // MARK: - 사용자가 로그인할 때 네트워크 요청
-    func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
+    public func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
         manager.logIn(email: email, password: password, completion: completion)
     } // closed logIn
     
-    func signUp(email: String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func signUp(email: String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         manager.signUp(email: email, password: password, nickname: nickname, tell: tell, completion: completion)
     } // closed signUp
     
-    func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         manager.searchEmail(nickname: nickname, tell: tell, completion: completion)
     } // closed searchEmail
     
-    func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
+    public func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
         manager.searchPassword(email: email, tell: tell, completion: completion)
     } // closed searchPassword
     

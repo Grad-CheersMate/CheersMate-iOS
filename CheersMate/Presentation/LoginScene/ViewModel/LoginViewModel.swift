@@ -9,66 +9,78 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol LoginViewModelProtocol {
+public protocol LoginViewModelProtocol {
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output
 }
 
-final class LoginViewModel: LoginViewModelProtocol {
+final public class LoginViewModel: LoginViewModelProtocol {
     
+    private let useCase: LoginUseCaseProtocol
+    private let emailTextRelay = BehaviorRelay<String>(value: "")
+    private let passwordTextRelay = BehaviorRelay<String>(value: "")
+    private let isValidTextRelay = BehaviorRelay<Bool>(value: false)
+    private let responseRelay = PublishRelay<Result<UserResponse, Error>>()
     private let disposeBag: DisposeBag = DisposeBag()
 
+    public init(useCase: LoginUseCaseProtocol) {
+        self.useCase = useCase
+    } // closed init
     
-//    init(usecase: LoginUsecaseProtocol) {
-//        self.usecase = usecase
-//    }
+    public struct Input {
+        let emailTextField: Driver<String> // 이메일 입력 문자열
+        let passwordTextField: Driver<String> // 비밀번호 입력 문자열
+        let loginButtonTapped: ControlEvent<Void> // 로그인 버튼 클릭 이벤트
+    } // closed Input
     
-    struct Input {
-        let emailTextField: Driver<String>
-        let passwordTextField: Driver<String>
-    } // close Input
-    
-    struct Output {
+    public struct Output {
         let loginButtonEnabled: Driver<Bool>
-    } // close Output
+        let loginResponse: Signal<Result<UserResponse, Error>>
+        
+    } // closed Output
     
-    func transform(input: Input) -> Output {
-        // 이메일 텍스트 필드로부터 텍스트를 전달받고 유효성 검사 실시
-        let emailText = input.emailTextField
-            .map { [weak self] text in
-                self?.isValidEmail(text) ?? false
+    public func transform(input: Input) -> Output {
+        
+        // emailTextField를 구독하고 텍스트를 emailTextRelay로 전달
+        input.emailTextField
+            .drive(onNext: { [weak self] text in
+                self?.emailTextRelay.accept(text)
+            }).disposed(by: disposeBag)
+        
+        // passwordTextField를 구독하고 텍스트를 passwordTextRelay로 전달
+        input.passwordTextField
+            .drive(onNext: { [weak self] text in
+                self?.passwordTextRelay.accept(text)
+            }).disposed(by: disposeBag)
+        
+        // 이메일과 비밀번호의 유효성 검사를 실시하고 그 결과를 isValidTextRelay와 bind
+        Observable.combineLatest(emailTextRelay.asObservable(), passwordTextRelay.asObservable())
+            .map { [weak self] email, password in
+                return self?.useCase.isValidEmail(email) ?? false && self?.useCase.isValidPassword(password) ?? false
             }
+            .bind(to: isValidTextRelay)
+            .disposed(by: disposeBag)
         
-        // 비밀번호 텍스트 필드로부터 텍스트를 전달받고 유효성 검사 실시
-        let passwordText = input.passwordTextField
-            .map { [weak self] text in
-                self?.isValidPassword(text) ?? false
-            }
+        // 유효성 검사를 통과했을 경우만 서버와 로그인 통신을 허용
+        input.loginButtonTapped
+            .withLatestFrom(Observable.combineLatest(emailTextRelay.asObservable(), passwordTextRelay.asObservable(), isValidTextRelay.asObservable()))
+            .filter { $2 }
+            .subscribe(onNext: { [weak self] email, password, _ in
+                self?.useCase.logIn(email: email, password: password, completion: { response in
+                    switch response {
+                    case .success(let res):
+                        self?.responseRelay.accept(.success(res))
+                    case .failure(let err):
+                        self?.responseRelay.accept(.failure(err))
+                    }
+                })
+            })
+            .disposed(by: disposeBag)
         
-        // 이메일 및 비밀번호의 입력이 모두 유효할 시 로그인 버튼 활성화
-        let loginButtonEnabled = Observable.combineLatest(emailText.asObservable(), passwordText.asObservable())
-            .map { $0 && $1 }
-            .asDriver(onErrorJustReturn: false)
+        // 로그인 버튼 활성화 여부
+        let loginButtonEnabled = isValidTextRelay.asDriver(onErrorJustReturn: false)
+        let responseSignal = responseRelay.asSignal()
         
-        
-        return Output(loginButtonEnabled: loginButtonEnabled)
+        return Output(loginButtonEnabled: loginButtonEnabled, loginResponse: responseSignal)
     } // closed transform
     
-    
 } // closed Class
-
-// MARK: - extension
-extension LoginViewModel {
-    // 이메일 유효성 검사
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
-    }
-    
-    // 비밀번호 유효성 검사 - 소문자, 숫자 하나 이상 포함 및 길이 8자 이상
-    private func isValidPassword(_ password: String) -> Bool {
-        let passwordRegEx = "^(?=.*[a-z])(?=.*[0-9]).{8,}$"
-        let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
-        return passwordPredicate.evaluate(with: password)
-    }
-}
