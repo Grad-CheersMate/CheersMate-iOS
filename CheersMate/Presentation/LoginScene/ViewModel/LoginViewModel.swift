@@ -14,15 +14,12 @@ public protocol LoginViewModelProtocol {
 }
 
 final public class LoginViewModel: LoginViewModelProtocol {
-    
-    private let useCase: LoginUseCaseProtocol
-    private let emailTextRelay = BehaviorRelay<String>(value: "")
-    private let passwordTextRelay = BehaviorRelay<String>(value: "")
-    private let isValidTextRelay = BehaviorRelay<Bool>(value: false)
-    private let responseRelay = PublishRelay<Result<UserResponse, Error>>()
+    private let useCase: UserUseCaseProtocol
+    private let isValidTextRelay = BehaviorRelay<Bool>(value: false) // 이메일과 비밀번호가 모두 유효한지 체크
+    private let logInResponseRelay = PublishRelay<UserResponse>() // 로그인 성공 통신
     private let disposeBag: DisposeBag = DisposeBag()
 
-    public init(useCase: LoginUseCaseProtocol) {
+    public init(useCase: UserUseCaseProtocol) {
         self.useCase = useCase
     } // closed init
     
@@ -33,52 +30,41 @@ final public class LoginViewModel: LoginViewModelProtocol {
     } // closed Input
     
     public struct Output {
-        let loginButtonEnabled: Driver<Bool>
-        let loginResponse: Signal<Result<UserResponse, Error>>
+        let loginButtonEnabled: Driver<Bool> // 로그인 버튼의 활성화 체크
+        let loginResponse: Signal<UserResponse> // 로그인 요청에 관한 응답
         
     } // closed Output
     
     public func transform(input: Input) -> Output {
         
-        // emailTextField를 구독하고 텍스트를 emailTextRelay로 전달
-        input.emailTextField
-            .drive(onNext: { [weak self] text in
-                self?.emailTextRelay.accept(text)
-            }).disposed(by: disposeBag)
-        
-        // passwordTextField를 구독하고 텍스트를 passwordTextRelay로 전달
-        input.passwordTextField
-            .drive(onNext: { [weak self] text in
-                self?.passwordTextRelay.accept(text)
-            }).disposed(by: disposeBag)
-        
-        // 이메일과 비밀번호의 유효성 검사를 실시하고 그 결과를 isValidTextRelay와 bind
-        Observable.combineLatest(emailTextRelay.asObservable(), passwordTextRelay.asObservable())
+        // 이메일과 비밀번호의 유효성 검사를 실시하고 그 결과를 isValidTextRelay와 drive
+        Driver.combineLatest(input.emailTextField, input.passwordTextField)
             .map { [weak self] email, password in
-                return self?.useCase.isValidEmail(email) ?? false && self?.useCase.isValidPassword(password) ?? false
+                (self?.useCase.isMatchingRegex(text: email, type: .email) ?? false) &&
+                (self?.useCase.isMatchingRegex(text: password, type: .password) ?? false)
             }
-            .bind(to: isValidTextRelay)
+            .drive(isValidTextRelay)
             .disposed(by: disposeBag)
         
         // 유효성 검사를 통과했을 경우만 서버와 로그인 통신을 허용
+        // loginButtonTapped과 flatMapLatest 내부 Single<UserResponse>이 서로 구독상태인데 에러 발생 시 스트림이 끊어지기 때문에 주의!
         input.loginButtonTapped
-            .withLatestFrom(Observable.combineLatest(emailTextRelay.asObservable(), passwordTextRelay.asObservable(), isValidTextRelay.asObservable()))
+            .withLatestFrom(Driver.combineLatest(input.emailTextField, input.passwordTextField, isValidTextRelay.asDriver()))
             .filter { $2 }
-            .subscribe(onNext: { [weak self] email, password, _ in
-                self?.useCase.logIn(email: email, password: password, completion: { response in
-                    switch response {
-                    case .success(let res):
-                        self?.responseRelay.accept(.success(res))
-                    case .failure(let err):
-                        self?.responseRelay.accept(.failure(err))
-                    }
-                })
+            .flatMapLatest{ [weak self] email, password, _ -> Single<UserResponse> in
+                guard let self = self else { return Single.never() }
+                return self.useCase.logIn(email: email, password: password).catch { err in // 스트림이 끊기지 않게 에러처리
+                    return Single.never()
+                }
+            }
+            .subscribe(onNext: { [weak self] userResponse in
+                self?.logInResponseRelay.accept(userResponse)
             })
             .disposed(by: disposeBag)
         
         // 로그인 버튼 활성화 여부
         let loginButtonEnabled = isValidTextRelay.asDriver(onErrorJustReturn: false)
-        let responseSignal = responseRelay.asSignal()
+        let responseSignal = logInResponseRelay.asSignal()
         
         return Output(loginButtonEnabled: loginButtonEnabled, loginResponse: responseSignal)
     } // closed transform

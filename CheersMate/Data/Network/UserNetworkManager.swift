@@ -7,14 +7,16 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 // MARK: - http://ceprj.gachon.ac.kr:60021
 
+// MARK: - Single을 사용하여 단일 이벤트와 에러처리만. 이벤트가 끝나면 스트림 종료. 따라서 HTTP에 적절한 Traits
 public protocol UserNetworkManagerProtocol {
-    func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
-    func signUp(email:String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
-    func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
-    func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, Error>) -> Void)
+    func logIn(email: String, password: String) -> Single<UserResponse>
+    func signUp(email:String, password: String, nickname: String, tell: String) -> Single<UserResponse>
+    func searchEmail(nickname: String, tell: String) -> Single<UserResponse>
+    func searchPassword(email: String, tell: String) -> Single<UserResponse>
 }
 
 final public class UserNetworkManager: UserNetworkManagerProtocol {
@@ -30,45 +32,48 @@ final public class UserNetworkManager: UserNetworkManagerProtocol {
         return HTTPHeaders([tokenHeader])
     }()
     
-    private func makeRequset(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?, completion: @escaping (Result<UserResponse, Error>) -> Void) {
-        AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseDecodable(of: UserResponse.self) { response in
-                switch response.result {
-                case .success(let res):
-                    completion(.success(res))
-                case .failure(let err):
-                    completion(.failure(err))
+    private func makeRequset(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> Single<UserResponse> {
+        return Single.create { single -> Disposable in
+            let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: UserResponse.self) { response in
+                    switch response.result {
+                    case .success(let res):
+                        single(.success(res))
+                    case .failure(let err):
+                        single(.failure(err))
+                    }
                 }
-            }
+            return Disposables.create { result.cancel() }
+        }
     }
     
     // MARK: - 로그인 요청
-    public func logIn(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void ) {
+    public func logIn(email: String, password: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/login"
         let parameters: Parameters = ["email": email, "password": password]
-        makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
+        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed login
     
     // MARK: - 회원가입 요청
-    public func signUp(email: String, password: String, nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
-        let url = "\(endpoint)/register"
+    public func signUp(email: String, password: String, nickname: String, tell: String) -> Single<UserResponse> {
+        let url = "\(endpoint)/users/register"
         let parameters: Parameters = ["email": email, "password": password, "nickname": nickname, "tell": tell]
-        makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
+        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed signUp
     
     // MARK: - 이메일 찾기 요청
-    public func searchEmail(nickname: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
-        let url = "\(endpoint)/emailFind"
+    public func searchEmail(nickname: String, tell: String) -> Single<UserResponse> {
+        let url = "\(endpoint)/users/emailFind"
         let parameters: Parameters = ["nickname": nickname, "tell": tell]
-        makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
+        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed searchEmail
     
     // MARK: - 비밀번호 찾기 요청
-    public func searchPassword(email: String, tell: String, completion: @escaping (Result<UserResponse, any Error>) -> Void) {
-        let url = "\(endpoint)/passFind"
+    public func searchPassword(email: String, tell: String) -> Single<UserResponse> {
+        let url = "\(endpoint)/users/passFind"
         let parameters: Parameters = ["email": email, "tell": tell]
-        makeRequset(url: url, method: .post, parameters: parameters, headers: nil, completion: completion)
+        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed searchPassword
     
 } // closed NetworkManager
