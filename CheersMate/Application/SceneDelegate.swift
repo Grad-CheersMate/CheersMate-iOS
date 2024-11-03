@@ -14,7 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
@@ -22,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userNet = UserNetwork(manager: UserNetworkManager())
         let userRP = UserRepository(network: userNet)
         // MARK: - Domain Layer
-        let loginUC = LoginUseCase(repository: userRP)
-        let loginVM = LoginViewModel(useCase: loginUC)
+        let userUC = UserUseCase(repository: userRP)
+        let loginVM = LoginViewModel(useCase: userUC)
         // MARK: - Presentation Layer
         let loginVC = LoginViewController(viewModel: loginVM)
         let loginNVC = UINavigationController(rootViewController: loginVC)
