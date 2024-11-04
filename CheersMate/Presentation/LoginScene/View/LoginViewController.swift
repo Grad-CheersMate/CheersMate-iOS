@@ -55,8 +55,8 @@ final public class LoginViewController: UIViewController {
                 let userNT = UserNetwork(manager: UserNetworkManager())
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
-                let userVM = SignUpViewModel(useCase: userUC)
-                let signUpVC = SignUpViewController(viewModel: userVM, title: "")
+                let signUpVM = SignUpViewModel(useCase: userUC)
+                let signUpVC = SignUpViewController(viewModel: signUpVM, title: "")
                 self.navigationController?.pushViewController(signUpVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -64,14 +64,26 @@ final public class LoginViewController: UIViewController {
         // 이메일 찾기 버튼이 클릭됬을 때 화면 전환
         loginView.emailSearchButton.rx.tap
             .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(EmailSearchViewController(naviTitle: "이메일 찾기"), animated: true)
+                guard let self = self else { return }
+                let userNT = UserNetwork(manager: UserNetworkManager())
+                let userRP = UserRepository(network: userNT)
+                let userUC = UserUseCase(repository: userRP)
+                let accountSearchVM = AccountSearchViewModel(useCase: userUC)
+                let accountSearchVC = AccountSearchViewController(viewModel: accountSearchVM, viewType: .searchEmail)
+                self.navigationController?.pushViewController(accountSearchVC, animated: true)
             }
             .disposed(by: disposeBag)
         
         // 비밀번호 찾기 버튼이 클릭됬을 때 화면 전환
         loginView.passwordSearchButton.rx.tap
             .bind { [weak self] _ in
-                self?.navigationController?.pushViewController(PasswordSearchViewController(naviTitle: "비밀번호 찾기"), animated: true)
+                guard let self = self else { return }
+                let userNT = UserNetwork(manager: UserNetworkManager())
+                let userRP = UserRepository(network: userNT)
+                let userUC = UserUseCase(repository: userRP)
+                let accountSearchVM = AccountSearchViewModel(useCase: userUC)
+                let accountSearchVC = AccountSearchViewController(viewModel: accountSearchVM, viewType: .searchPassword)
+                self.navigationController?.pushViewController(accountSearchVC, animated: true)
             }
             .disposed(by: disposeBag)
         

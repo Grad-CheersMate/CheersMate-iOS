@@ -108,8 +108,7 @@ final public class SignUpViewController: UIViewController {
                 .asDriver(onErrorJustReturn: ""),
             
             // 회원가입 버튼 클릭 이벤트를 뷰 모델로 전달
-            signUpButtonTapped: signUpView.signUpButton.rx.tap
-        )
+            signUpButtonTapped: signUpView.signUpButton.rx.tap)
         
         let output = viewModel.transform(input: input)
         

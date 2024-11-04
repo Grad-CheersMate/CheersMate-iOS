@@ -1,18 +1,20 @@
 //
-//  PasswordSearchView.swift
+//  SearchingEmailView.swift
 //  CheersMate
 //
-//  Created by 재훈 on 10/25/24.
+//  Created by 재훈 on 10/24/24.
 //
 
+// MARK: - 사용자의 이메일 또는 비밀번호를 찾기 위한 뷰
 import UIKit
 
-final class PasswordSearchView: UIView {
+final public class AccountSearchView: UIView {
+    
     // 사용자 안내 레이블
     private let infoLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = UIColor.textColor
-        lb.text = "가입 시 등록한 정보를 입력하면 휴대폰 번호로\n임시 비밀번호를 전송해 드릴게요."
+        lb.text = ""
         lb.setLineSpacing(spacing: 3)
         lb.numberOfLines = 2
         lb.font = UIFont.gmarketSans(size: 15, family: .Medium)
@@ -20,21 +22,21 @@ final class PasswordSearchView: UIView {
         return lb
     }()
     
-    // 이메일 주소 레이블
-    private let emailLabel: UILabel = {
+    // 닉네임 또는 이메일 레이블
+    private let contactLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = UIColor.textColor
-        lb.text = "이메일 주소"
+        lb.text = ""
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left
         return lb
     }()
     
-    // 이메일 입력 창
-    let emailTextField: UITextField = {
+    // 닉네임 또는 이메일 입력 창
+    public let contactTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
-        tf.placeholder = "ex) gachon123@gachon.ac.kr"
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
+        tf.placeholder = ""
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -42,8 +44,8 @@ final class PasswordSearchView: UIView {
         return tf
     }()
     
-    // 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
-    var emailUnderLine: UIView = {
+    // 닉네임 또는 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
+    public var contactUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -61,10 +63,10 @@ final class PasswordSearchView: UIView {
     }()
     
     // 휴대폰 번호 입력 창
-    let tellTextField: UITextField = {
+    public let tellTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
-        tf.placeholder = "ex) 010-1234-5678"
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
+        tf.placeholder = "ex) 01012345678"
         tf.keyboardType = .numbersAndPunctuation
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -73,32 +75,30 @@ final class PasswordSearchView: UIView {
     }()
     
     // 휴대폰 번호 입력 창이 클릭됬을 때 표시하는 언더라인
-    var tellUnderLine: UIView = {
+    public var tellUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
         return view
     }()
-    
-    // 이메일 찾기 버튼
-    let passwordSearchButton: UIButton = {
+    // 이메일 또는 비밀번호 찾기 버튼
+    public let contactSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
-        bt.setTitle("비밀번호 찾기", for: .normal)
+        bt.setTitle("", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 8
-        //bt.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.7843137255, blue: 0.8, alpha: 1)
         bt.backgroundColor = .mainColor
         return bt
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayout()
     } // closed init
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     } // closed init
     
@@ -106,7 +106,7 @@ final class PasswordSearchView: UIView {
     private func setupUI() {
         self.backgroundColor = .white
         
-        [infoLabel, emailLabel, emailTextField, emailUnderLine, tellLabel, tellTextField, tellUnderLine, passwordSearchButton]
+        [infoLabel, contactLabel, contactTextField, contactUnderLine, tellLabel, tellTextField, tellUnderLine, contactSearchButton]
             .forEach { self.addSubview($0) }
         
     } // closed setupUI
@@ -119,28 +119,28 @@ final class PasswordSearchView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        emailLabel.snp.makeConstraints { make in
+        contactLabel.snp.makeConstraints { make in
             make.top.equalTo(infoLabel.snp.bottom).offset(60)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
         
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(10)
+        contactTextField.snp.makeConstraints { make in
+            make.top.equalTo(contactLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(25)
         }
         
-        emailUnderLine.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(10)
+        contactUnderLine.snp.makeConstraints { make in
+            make.top.equalTo(contactTextField.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(1)
         }
         
         tellLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailUnderLine.snp.bottom).offset(40)
+            make.top.equalTo(contactUnderLine.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
@@ -159,12 +159,28 @@ final class PasswordSearchView: UIView {
             make.height.equalTo(1)
         }
         
-        passwordSearchButton.snp.makeConstraints { make in
+        contactSearchButton.snp.makeConstraints { make in
             make.top.equalTo(tellUnderLine.snp.bottom).offset(100)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(45)
         }
+        
     } // closed setupLayout
     
-} // closed Class
+    // MARK: - 뷰 타입에 따라 텍스트 설정
+    public func configure(viewType: ViewType) {
+        switch viewType {
+        case .searchEmail:
+            infoLabel.text = "가입 시 등록한 정보를 입력하면\n이메일 주소를 알려드릴게요."
+            contactLabel.text = "닉네임"
+            contactSearchButton.setTitle("이메일 찾기", for: .normal)
+        case .searchPassword:
+            infoLabel.text = "가입 시 등록한 정보를 입력하면 휴대폰 번호로\n임시 비밀번호를 전송해 드릴게요."
+            contactLabel.text = "이메일"
+            contactTextField.placeholder = "seulgi@gachon.ac.kr"
+            contactSearchButton.setTitle("비밀번호 찾기", for: .normal)
+        }
+    } // closed configure
+    
+} // closed class

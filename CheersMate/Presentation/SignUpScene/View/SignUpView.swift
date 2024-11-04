@@ -28,10 +28,11 @@ final class SignUpView: UIView {
         lb.textAlignment = .left
         return lb
     }()
+    
     // 이메일 입력 창
     let emailTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = "ex) gachon123@gachon.ac.kr"
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
@@ -39,6 +40,7 @@ final class SignUpView: UIView {
         tf.contentVerticalAlignment = .center
         return tf
     }()
+    
     // 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
     var emailUnderLine: UIView = {
         let view = UIView()
@@ -46,6 +48,7 @@ final class SignUpView: UIView {
         view.clipsToBounds = true
         return view
     }()
+    
     // 비밀번호 레이블
     let passwordLabel: UILabel = {
         let lb = UILabel()
@@ -55,6 +58,7 @@ final class SignUpView: UIView {
         lb.textAlignment = .left
         return lb
     }()
+    
     // 비밀번호 가리기 버튼
     private let secureButton: UIButton = {
         let button = UIButton()
@@ -62,10 +66,11 @@ final class SignUpView: UIView {
         button.setImage(UIImage(systemName: "eye.slash"), for: .selected)
         return button
     }()
+    
     // 비밀번호 입력 창
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.keyboardType = .numbersAndPunctuation
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -76,6 +81,7 @@ final class SignUpView: UIView {
         //tf.rightViewRect(forBounds: .init(x: 0, y: 0, width: 7, height: 7))
         return tf
     }()
+    
     // 비밀번호 입력 창이 클릭됬을 때 표시하는 언더라인
     var passwordUnderLine: UIView = {
         let view = UIView()
@@ -83,6 +89,7 @@ final class SignUpView: UIView {
         view.clipsToBounds = true
         return view
     }()
+    
     // 닉네임 주소 레이블
     private let nickNameLabel: UILabel = {
         let lb = UILabel()
@@ -92,10 +99,11 @@ final class SignUpView: UIView {
         lb.textAlignment = .left
         return lb
     }()
+    
     // 닉네임 입력 창
     let nickNameTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = ""
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
@@ -103,6 +111,7 @@ final class SignUpView: UIView {
         tf.contentVerticalAlignment = .center
         return tf
     }()
+    
     // 닉네임 입력 창이 클릭됬을 때 표시하는 언더라인
     var nickNameUnderLine: UIView = {
         let view = UIView()
@@ -110,6 +119,7 @@ final class SignUpView: UIView {
         view.clipsToBounds = true
         return view
     }()
+    
     // 휴대폰 번호 레이블
     private let tellLabel: UILabel = {
         let lb = UILabel()
@@ -119,17 +129,19 @@ final class SignUpView: UIView {
         lb.textAlignment = .left
         return lb
     }()
+    
     // 휴대폰 번호 입력 창
     let tellTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
-        tf.placeholder = "ex) 010-1234-5678"
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
+        tf.placeholder = "ex) 01012345678"
         tf.keyboardType = .numbersAndPunctuation
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         tf.contentVerticalAlignment = .center
         return tf
     }()
+    
     // 휴대폰 번호 입력 창이 클릭됬을 때 표시하는 언더라인
     var tellUnderLine: UIView = {
         let view = UIView()
@@ -137,6 +149,7 @@ final class SignUpView: UIView {
         view.clipsToBounds = true
         return view
     }()
+    
     // 가입하기 버튼
     let signUpButton: UIButton = {
         let bt = UIButton(type: .custom)

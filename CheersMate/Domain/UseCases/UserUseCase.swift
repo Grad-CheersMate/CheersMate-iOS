@@ -8,14 +8,6 @@
 import Foundation
 import RxSwift
 
-// MARK: - 텍스트 타입에 따른 정규식 검사 분류
-public enum textType {
-    case email
-    case password
-    case nickname
-    case tell
-}
-
 // MARK: - 사용자가 첫 화면인 로그인 뷰에 진입했을 때 필요한 로그인 유스케이스 프로토콜
 public protocol UserUseCaseProtocol {
     // 사용자 로그인
@@ -27,7 +19,7 @@ public protocol UserUseCaseProtocol {
     // 사용자 비밀번호 찾기
     func searchPassword(email: String, tell: String) -> Single<UserResponse>
     // 사용자 이메일, 비밀번호, 닉네임, 전화번호의 유효성 검사 작업
-    func isMatchingRegex(text: String, type: textType) -> Bool
+    func isMatchingRegex(text: String, type: TextType) -> Bool
     // 액세스 토큰 및 리프레쉬 토큰 저장
     // func saveAccessTokenAndRefreshToken(accessToken: String, refreshToken: String)
     
@@ -68,7 +60,7 @@ final public class UserUseCase: UserUseCaseProtocol {
 //    } // closed saveAccessTokenAndRefreshToken
     
     // 사용자가 입력한 이메일, 비밀번호, 닉네임, 전화번호의 유효성 검사 작업
-    public func isMatchingRegex(text: String, type: textType) -> Bool {
+    public func isMatchingRegex(text: String, type: TextType) -> Bool {
         let textRegEx: String
         switch type {
         case .email:
@@ -78,7 +70,7 @@ final public class UserUseCase: UserUseCaseProtocol {
         case .nickname:
             textRegEx = "^[가-힣a-zA-Z0-9_]{2,20}$"
         case .tell:
-            textRegEx = "^010\\-([0-9]{4})\\-([0-9]{4})"
+            textRegEx = "^01[0-9]{8,9}$"
         }
         let textPredicate = NSPredicate(format: "SELF MATCHES %@", textRegEx)
         return textPredicate.evaluate(with: text)

@@ -32,8 +32,8 @@ final class LoginView: UIView {
     // 이메일 입력 창
     let emailTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
-        tf.placeholder = "gachon123@gachon.ac.kr"
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
+        tf.placeholder = "seulgi@gachon.ac.kr"
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -67,7 +67,7 @@ final class LoginView: UIView {
     // 비밀번호 입력 창
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.pretendard(size: 16, family: .SemiBold)
+        tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.keyboardType = .numbersAndPunctuation
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -177,9 +177,9 @@ final class LoginView: UIView {
     // MARK: - Layout 설정
     private func setupLayout() {
         logoImageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(60)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.height.equalTo(200)
         }
         

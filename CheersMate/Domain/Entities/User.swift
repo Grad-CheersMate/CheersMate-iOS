@@ -11,6 +11,8 @@ public struct UserResponse: Codable {
     let result: Int
     let resultCode: Int
     let user: User?
+    let email: String?
+    let tell: String?
     let accessToken: String?
     let refreshToken: String?
 } // closed UserResponse

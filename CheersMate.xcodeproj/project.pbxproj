@@ -26,18 +26,12 @@
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
-		259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* EmailSearchView.swift */; };
-		259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* EmailSearchViewController.swift */; };
+		259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountSearchView.swift */; };
+		259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* AccountSearchViewController.swift */; };
 		259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */; };
-		259E81CD2CCA836A00D63747 /* EmailSearchSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */; };
-		259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */; };
-		259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */; };
-		259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */; };
+		259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */; };
+		259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */; };
 		259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */; };
-		259E81DE2CCAC91200D63747 /* PasswordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */; };
-		259E81E02CCAC93F00D63747 /* PasswordSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */; };
-		259E81E22CCACF0600D63747 /* PasswordSearchSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */; };
-		259E81E42CCACF1A00D63747 /* PasswordSearchSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */; };
 		259E81E92CCB864200D63747 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81E82CCB864200D63747 /* HomeView.swift */; };
 		259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81EA2CCB865300D63747 /* HomeViewController.swift */; };
 		259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81F02CCCE25900D63747 /* UITabBarController+Appearance.swift */; };
@@ -48,6 +42,8 @@
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82102CCE87DA00D63747 /* UserRepository.swift */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
+		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
+		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
 		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
 		25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* UserUseCase.swift */; };
@@ -98,18 +94,12 @@
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
-		259E81C62CCA40E800D63747 /* EmailSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchView.swift; sourceTree = "<group>"; };
-		259E81C82CCA417700D63747 /* EmailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchViewController.swift; sourceTree = "<group>"; };
+		259E81C62CCA40E800D63747 /* AccountSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchView.swift; sourceTree = "<group>"; };
+		259E81C82CCA417700D63747 /* AccountSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewController.swift; sourceTree = "<group>"; };
 		259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Spacing.swift"; sourceTree = "<group>"; };
-		259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchSuccessView.swift; sourceTree = "<group>"; };
-		259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchSuccessViewController.swift; sourceTree = "<group>"; };
-		259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureViewController.swift; sourceTree = "<group>"; };
-		259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSearchFailureView.swift; sourceTree = "<group>"; };
+		259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchResultView.swift; sourceTree = "<group>"; };
+		259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchResultViewController.swift; sourceTree = "<group>"; };
 		259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Appearance.swift"; sourceTree = "<group>"; };
-		259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchView.swift; sourceTree = "<group>"; };
-		259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchViewController.swift; sourceTree = "<group>"; };
-		259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchSuccessViewController.swift; sourceTree = "<group>"; };
-		259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSearchSuccessView.swift; sourceTree = "<group>"; };
 		259E81E82CCB864200D63747 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		259E81EA2CCB865300D63747 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		259E81F02CCCE25900D63747 /* UITabBarController+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Appearance.swift"; sourceTree = "<group>"; };
@@ -120,6 +110,8 @@
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		259E82102CCE87DA00D63747 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
+		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25F428892CD6390F0044240C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -185,8 +177,7 @@
 			children = (
 				253B1B812CC424CC00F7DBF9 /* LoginScene */,
 				253B1B902CC82A0700F7DBF9 /* SignUpScene */,
-				259E81C32CCA3FAF00D63747 /* EmailSearchScene */,
-				259E81DA2CCAC89600D63747 /* PasswordSearchScene */,
+				259E81C32CCA3FAF00D63747 /* AccountlSearchScene */,
 				259E81E52CCB861900D63747 /* HomeScene */,
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
@@ -276,12 +267,12 @@
 		253B1B712CC4051A00F7DBF9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */,
 				253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */,
 				253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */,
-				253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */,
 				253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */,
-				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
 				253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */,
+				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -313,6 +304,7 @@
 		253B1B7A2CC40CC800F7DBF9 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				25CFEF122CD8BE5100083081 /* Enum.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -418,24 +410,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		259E81C32CCA3FAF00D63747 /* EmailSearchScene */ = {
+		259E81C32CCA3FAF00D63747 /* AccountlSearchScene */ = {
 			isa = PBXGroup;
 			children = (
 				259E81C42CCA40CF00D63747 /* View */,
 				259E81C52CCA40D500D63747 /* ViewModel */,
 			);
-			path = EmailSearchScene;
+			path = AccountlSearchScene;
 			sourceTree = "<group>";
 		};
 		259E81C42CCA40CF00D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				259E81C62CCA40E800D63747 /* EmailSearchView.swift */,
-				259E81C82CCA417700D63747 /* EmailSearchViewController.swift */,
-				259E81CC2CCA836A00D63747 /* EmailSearchSuccessView.swift */,
-				259E81CE2CCA895500D63747 /* EmailSearchSuccessViewController.swift */,
-				259E81D22CCA9F3500D63747 /* EmailSearchFailureView.swift */,
-				259E81D02CCA9F2900D63747 /* EmailSearchFailureViewController.swift */,
+				259E81C62CCA40E800D63747 /* AccountSearchView.swift */,
+				259E81C82CCA417700D63747 /* AccountSearchViewController.swift */,
+				259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */,
+				259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,33 +433,7 @@
 		259E81C52CCA40D500D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		259E81DA2CCAC89600D63747 /* PasswordSearchScene */ = {
-			isa = PBXGroup;
-			children = (
-				259E81DB2CCAC8EA00D63747 /* View */,
-				259E81DC2CCAC8EE00D63747 /* ViewModel */,
-			);
-			path = PasswordSearchScene;
-			sourceTree = "<group>";
-		};
-		259E81DB2CCAC8EA00D63747 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				259E81DD2CCAC91200D63747 /* PasswordSearchView.swift */,
-				259E81DF2CCAC93F00D63747 /* PasswordSearchViewController.swift */,
-				259E81E32CCACF1A00D63747 /* PasswordSearchSuccessView.swift */,
-				259E81E12CCACF0600D63747 /* PasswordSearchSuccessViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		259E81DC2CCAC8EE00D63747 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
+				25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -857,20 +821,18 @@
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
-				259E81D12CCA9F2900D63747 /* EmailSearchFailureViewController.swift in Sources */,
-				259E81E02CCAC93F00D63747 /* PasswordSearchViewController.swift in Sources */,
-				259E81D32CCA9F3500D63747 /* EmailSearchFailureView.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
-				259E81DE2CCAC91200D63747 /* PasswordSearchView.swift in Sources */,
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
+				25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */,
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
-				259E81CD2CCA836A00D63747 /* EmailSearchSuccessView.swift in Sources */,
-				259E81C92CCA417700D63747 /* EmailSearchViewController.swift in Sources */,
+				259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */,
+				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
+				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
 				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
@@ -879,14 +841,12 @@
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				25F428802CD4C0F60044240C /* User.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
-				259E81E22CCACF0600D63747 /* PasswordSearchSuccessViewController.swift in Sources */,
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
-				259E81CF2CCA895500D63747 /* EmailSearchSuccessViewController.swift in Sources */,
-				259E81C72CCA40E800D63747 /* EmailSearchView.swift in Sources */,
-				259E81E42CCACF1A00D63747 /* PasswordSearchSuccessView.swift in Sources */,
+				259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */,
+				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
