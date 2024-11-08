@@ -58,7 +58,7 @@ final public class AccountSearchResultView: UIView {
         bt.setTitle("", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
-        bt.layer.cornerRadius = 8
+        bt.layer.cornerRadius = 12
         bt.backgroundColor = .mainColor
         return bt
     }()
@@ -112,9 +112,9 @@ final public class AccountSearchResultView: UIView {
         
         completeButton.snp.makeConstraints { make in
             make.top.equalTo(contactUnderLine.snp.bottom).offset(100)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(50)
         }
     } // closed setupLayout
     

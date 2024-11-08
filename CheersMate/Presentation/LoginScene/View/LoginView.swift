@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class LoginView: UIView {
+final public class LoginView: UIView {
     // MARK: - 프로퍼티 설정
     // 메인 로고 이미지 뷰
     private let logoImageView: UIImageView = {
@@ -30,7 +30,7 @@ final class LoginView: UIView {
         return label
     }()
     // 이메일 입력 창
-    let emailTextField: UITextField = {
+    public let emailTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = "seulgi@gachon.ac.kr"
@@ -41,7 +41,7 @@ final class LoginView: UIView {
         return tf
     }()
     // 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
-    var emailUnderLine: UIView = {
+    public var emailUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -65,7 +65,7 @@ final class LoginView: UIView {
     }()
     
     // 비밀번호 입력 창
-    lazy var passwordTextField: UITextField = {
+    public lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.keyboardType = .numbersAndPunctuation
@@ -79,7 +79,7 @@ final class LoginView: UIView {
         return tf
     }()
     // 비밀번호 입력 창이 클릭됬을 때 표시하는 언더라인
-    var passwordUnderLine: UIView = {
+    public var passwordUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -94,7 +94,7 @@ final class LoginView: UIView {
         return sv
     }()
     // 이메일 찾기 버튼
-    let emailSearchButton: UIButton = {
+    public let emailSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("이메일 찾기", for: .normal)
         bt.setTitleColor(.textColor, for: .normal)
@@ -102,7 +102,7 @@ final class LoginView: UIView {
         return bt
     }()
     // 비밀번호 찾기 버튼
-    let passwordSearchButton: UIButton = {
+    public let passwordSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("비밀번호 찾기", for: .normal)
         bt.setTitleColor(.textColor, for: .normal)
@@ -110,7 +110,7 @@ final class LoginView: UIView {
         return bt
     }()
     // 회원가입 버튼
-    let signUpButton: UIButton = {
+    public let signUpButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("회원가입", for: .normal)
         bt.setTitleColor(.textColor, for: .normal)
@@ -118,60 +118,57 @@ final class LoginView: UIView {
         return bt
     }()
     // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 나누기 위한 경계선1
-    let seperateView1: UIView = {
+    public let seperateView1: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         view.clipsToBounds = true
         return view
     }()
     // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 나누기 위한 경계선2
-    let seperateView2: UIView = {
+    public let seperateView2: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         view.clipsToBounds = true
         return view
     }()
     // 로그인 버튼
-    var loginButton: UIButton = {
+    public var loginButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("로그인", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
-        bt.layer.cornerRadius = 8
+        bt.layer.cornerRadius = 12
         //bt.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.7843137255, blue: 0.8, alpha: 1)
         bt.backgroundColor = .systemGray4//.mainColor
         return bt
     }()
     // 카카오 로그인 버튼
-    let kakaoLoginImageView: UIImageView = {
+    public let kakaoLoginImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 12
         view.image = .kakaoLogin
         view.clipsToBounds = true
         return view
     }()
     
     // MARK: - 초기화
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayout()
-    }
+    } //closed init
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
+    } // closed required init
     
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        
         [logoImageView, emailLabel, emailTextField, emailUnderLine, passwordLabel, passwordTextField, passwordUnderLine, loginButton, stackView, kakaoLoginImageView].forEach {
             self.addSubview($0)
         }
-        
-        
     } // closed setupUI
 
     // MARK: - Layout 설정
@@ -240,16 +237,16 @@ final class LoginView: UIView {
         
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(stackView.snp.bottom).offset(130)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(50)
         }
         
         kakaoLoginImageView.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(50)
         }
         
     } // closed setupLayout

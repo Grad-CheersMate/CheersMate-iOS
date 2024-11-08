@@ -12,6 +12,13 @@ extension UITabBarController {
         self.modalPresentationStyle = .fullScreen
         self.tabBar.backgroundColor = .white
         self.tabBar.tintColor = .black
+        self.tabBar.barTintColor = .white
+        self.tabBar.isTranslucent = false
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        tabBar.standardAppearance = tabBarAppearance // 일반 상태
+        tabBar.scrollEdgeAppearance = tabBarAppearance // 스크롤 상태
         // 커스텀 폰트
         let attributes = [NSAttributedString.Key.font: UIFont.gmarketSans(size: 10, family: .Medium)]
         // 탭 바 아이템을 커스텀하여 전역적으로 설정
