@@ -1,0 +1,130 @@
+//
+//  ListTableViewCell.swift
+//  CheersMate
+//
+//  Created by 재훈 on 11/6/24.
+//
+
+import UIKit
+import SnapKit
+
+final public class ListTableViewCell: UITableViewCell {
+    // 셀 아이디
+    static let ID = "ListTableViewCell"
+    
+    private let containerView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .white
+        v.layer.cornerRadius = 12
+        v.clipsToBounds = true
+        return v
+    }()
+    
+    // 이모지 레이블
+    private let emojiLabel: UILabel = {
+        let lb = UILabel()
+        lb.textColor = UIColor.textColor
+        lb.text = "😀"
+        lb.font = UIFont.gmarketSans(size: 28, family: .Medium)
+        lb.textAlignment = .left
+        lb.numberOfLines = 0
+        return lb
+    }()
+    
+    // 설명 레이블
+    private let descLabel: UILabel = {
+        let lb = UILabel()
+        lb.textColor = UIColor.textColor
+        lb.text = "기쁨"
+        lb.font = UIFont.gmarketSans(size: 16, family: .Medium)
+        lb.textAlignment = .left
+        lb.numberOfLines = 0
+        return lb
+    }()
+    
+    // 체크박스: 셀 선택 여부 표시
+    private let checkBoxImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(systemName: "checkmark.circle.fill")
+        iv.tintColor = .mainColor
+        iv.clipsToBounds = true
+        // iv.isHidden = false
+        return iv
+    }()
+    
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+        setupLayout()
+        setupShadow()
+    } // closed init
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    } // closed required init
+    
+    // MARK: - UI 설정
+    private func setupUI() {
+        contentView.addSubview(containerView)
+        
+        [emojiLabel, descLabel, checkBoxImageView].forEach { containerView.addSubview($0) }
+    } // closed setupUI
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30))
+    } // closed layoutSubviews
+    
+    // MARK: - Layout 설정
+    private func setupLayout() {
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(10)
+        }
+        
+        emojiLabel.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview().inset(20)
+        }
+        
+        descLabel.snp.makeConstraints { make in
+            make.leading.equalTo(emojiLabel.snp.trailing).offset(30)
+            make.trailing.equalTo(checkBoxImageView.snp.leading)
+            make.top.bottom.equalToSuperview().inset(5)
+        }
+        
+        checkBoxImageView.setContentHuggingPriority(.required, for: .horizontal)
+        
+        checkBoxImageView.snp.makeConstraints { make in
+            make.leading.equalTo(descLabel.snp.trailing)
+            make.trailing.top.bottom.equalToSuperview().inset(20)
+            make.width.equalTo(30)
+        }
+        
+    } // closed setupLayout
+    
+    // MARK: - 기타 함수 설정
+    // 컨피규레이션
+    public func configure(emoji: String, desc: String, isChecked: Bool = false) {
+        emojiLabel.text = emoji
+        descLabel.text = desc
+        checkBoxImageView.isHidden = !isChecked
+    } // closed configure
+    
+    // 셀에 그림자 효과를 설정
+    private func setupShadow() {
+        contentView.layer.shadowColor = UIColor.systemGray.cgColor
+        contentView.layer.masksToBounds = false
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 0) // 위치조정
+        contentView.layer.shadowRadius = 7 // 반경
+        contentView.layer.shadowOpacity = 0.1 // alpha값
+    } // closed setupShadow
+    
+    public func itemSelected() {
+        // containerView.layer.borderColor = UIColor.mainColor.cgColor
+        descLabel.textColor = .mainColor
+        checkBoxImageView.isHidden.toggle()
+    }
+    
+    
+} // clsoed ListTableViewCell

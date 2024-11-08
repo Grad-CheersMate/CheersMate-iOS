@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SignUpView: UIView {
+final public class SignUpView: UIView {
     
     // 사용자 안내 레이블
     private let infoLabel: UILabel = {
@@ -30,7 +30,7 @@ final class SignUpView: UIView {
     }()
     
     // 이메일 입력 창
-    let emailTextField: UITextField = {
+    public let emailTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = "ex) gachon123@gachon.ac.kr"
@@ -42,7 +42,7 @@ final class SignUpView: UIView {
     }()
     
     // 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
-    var emailUnderLine: UIView = {
+    public var emailUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -50,7 +50,7 @@ final class SignUpView: UIView {
     }()
     
     // 비밀번호 레이블
-    let passwordLabel: UILabel = {
+    public let passwordLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = UIColor.textColor
         lb.text = "비밀번호"
@@ -68,7 +68,7 @@ final class SignUpView: UIView {
     }()
     
     // 비밀번호 입력 창
-    lazy var passwordTextField: UITextField = {
+    public lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.keyboardType = .numbersAndPunctuation
@@ -83,7 +83,7 @@ final class SignUpView: UIView {
     }()
     
     // 비밀번호 입력 창이 클릭됬을 때 표시하는 언더라인
-    var passwordUnderLine: UIView = {
+    public var passwordUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -101,7 +101,7 @@ final class SignUpView: UIView {
     }()
     
     // 닉네임 입력 창
-    let nickNameTextField: UITextField = {
+    public let nickNameTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = ""
@@ -113,7 +113,7 @@ final class SignUpView: UIView {
     }()
     
     // 닉네임 입력 창이 클릭됬을 때 표시하는 언더라인
-    var nickNameUnderLine: UIView = {
+    public var nickNameUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -131,7 +131,7 @@ final class SignUpView: UIView {
     }()
     
     // 휴대폰 번호 입력 창
-    let tellTextField: UITextField = {
+    public let tellTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
         tf.placeholder = "ex) 01012345678"
@@ -143,7 +143,7 @@ final class SignUpView: UIView {
     }()
     
     // 휴대폰 번호 입력 창이 클릭됬을 때 표시하는 언더라인
-    var tellUnderLine: UIView = {
+    public var tellUnderLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.clipsToBounds = true
@@ -151,24 +151,24 @@ final class SignUpView: UIView {
     }()
     
     // 가입하기 버튼
-    let signUpButton: UIButton = {
+    public let signUpButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("가입하기", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
-        bt.layer.cornerRadius = 8
+        bt.layer.cornerRadius = 12
         //bt.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.7843137255, blue: 0.8, alpha: 1)
         bt.backgroundColor = .mainColor
         return bt
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayout()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - UI 설정
@@ -269,9 +269,10 @@ final class SignUpView: UIView {
         
         signUpButton.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.bottom).inset(100)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(50)
         }
     } // closed setupLayout
-}
+    
+} // closed SignUpView

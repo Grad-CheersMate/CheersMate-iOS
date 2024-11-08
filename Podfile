@@ -16,6 +16,7 @@ target 'CheersMate' do
     pod 'SkeletonView'
     pod 'Alamofire'
     pod 'RealmSwift'
+    pod 'lottie-ios'
 
   target 'CheersMateTests' do
     inherit! :search_paths

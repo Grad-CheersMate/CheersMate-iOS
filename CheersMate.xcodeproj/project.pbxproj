@@ -36,7 +36,7 @@
 		259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81EA2CCB865300D63747 /* HomeViewController.swift */; };
 		259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81F02CCCE25900D63747 /* UITabBarController+Appearance.swift */; };
 		259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FB2CCCE74200D63747 /* SearchViewController.swift */; };
-		259E81FE2CCCE77100D63747 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FD2CCCE77100D63747 /* RecommendViewController.swift */; };
+		259E81FE2CCCE77100D63747 /* RecommendHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FD2CCCE77100D63747 /* RecommendHomeViewController.swift */; };
 		259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81FF2CCCE78400D63747 /* MyPageViewController.swift */; };
 		259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* UserNetworkManager.swift */; };
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
@@ -44,6 +44,16 @@
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
+		25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF142CD8F26200083081 /* RecommendHomeView.swift */; };
+		25CFEF172CD8F27400083081 /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF162CD8F27400083081 /* RecommendViewModel.swift */; };
+		25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */; };
+		25CFEF1D2CD9528B00083081 /* RecommendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1C2CD9528B00083081 /* RecommendListView.swift */; };
+		25CFEF1F2CD9529B00083081 /* RecommendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */; };
+		25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */; };
+		25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* ListTableViewCell.swift */; };
+		25CFEF272CDB4AC800083081 /* RecommendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* RecommendItem.swift */; };
+		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
+		25CFEF332CDE635100083081 /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF322CDE635100083081 /* cheersLottie.json */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
 		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
 		25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* UserUseCase.swift */; };
@@ -104,7 +114,7 @@
 		259E81EA2CCB865300D63747 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		259E81F02CCCE25900D63747 /* UITabBarController+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Appearance.swift"; sourceTree = "<group>"; };
 		259E81FB2CCCE74200D63747 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		259E81FD2CCCE77100D63747 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
+		259E81FD2CCCE77100D63747 /* RecommendHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHomeViewController.swift; sourceTree = "<group>"; };
 		259E81FF2CCCE78400D63747 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		259E82082CCE801300D63747 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
@@ -112,6 +122,16 @@
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		25CFEF142CD8F26200083081 /* RecommendHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHomeView.swift; sourceTree = "<group>"; };
+		25CFEF162CD8F27400083081 /* RecommendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
+		25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		25CFEF1C2CD9528B00083081 /* RecommendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListView.swift; sourceTree = "<group>"; };
+		25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListViewController.swift; sourceTree = "<group>"; };
+		25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		25CFEF242CDA933D00083081 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		25CFEF262CDB4AC800083081 /* RecommendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItem.swift; sourceTree = "<group>"; };
+		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		25CFEF322CDE635100083081 /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25F428892CD6390F0044240C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -158,6 +178,7 @@
 			children = (
 				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
 				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
+				25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -182,6 +203,7 @@
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
 				259E81F42CCCE49C00D63747 /* MyPageScene */,
+				25CFEF222CDA7EE800083081 /* CustomTabBarScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -190,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				25F4287F2CD4C0F60044240C /* User.swift */,
+				25CFEF262CDB4AC800083081 /* RecommendItem.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -259,6 +282,7 @@
 			children = (
 				253B1B712CC4051A00F7DBF9 /* Fonts */,
 				255B96582CBE4FF400D6AC8E /* Info.plist */,
+				25CFEF322CDE635100083081 /* cheersLottie.json */,
 				255B96562CBE4FF400D6AC8E /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -294,6 +318,7 @@
 				253B1B7F2CC40F7C00F7DBF9 /* UIColor+CustomColor.swift */,
 				259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */,
 				259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */,
+				25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */,
 				253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */,
 				259E81D82CCAAE7500D63747 /* UINavigationController+Appearance.swift */,
 				259E81F02CCCE25900D63747 /* UITabBarController+Appearance.swift */,
@@ -508,6 +533,7 @@
 		259E81F72CCCE6F200D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25CFEF162CD8F27400083081 /* RecommendViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -515,7 +541,11 @@
 		259E81F82CCCE6FA00D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				259E81FD2CCCE77100D63747 /* RecommendViewController.swift */,
+				25CFEF142CD8F26200083081 /* RecommendHomeView.swift */,
+				259E81FD2CCCE77100D63747 /* RecommendHomeViewController.swift */,
+				25CFEF1C2CD9528B00083081 /* RecommendListView.swift */,
+				25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */,
+				25CFEF232CDA931100083081 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -547,6 +577,22 @@
 			children = (
 			);
 			path = KeyChain;
+			sourceTree = "<group>";
+		};
+		25CFEF222CDA7EE800083081 /* CustomTabBarScene */ = {
+			isa = PBXGroup;
+			children = (
+				25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */,
+			);
+			path = CustomTabBarScene;
+			sourceTree = "<group>";
+		};
+		25CFEF232CDA931100083081 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25CFEF242CDA933D00083081 /* ListTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		3D6E19BC6232515134862320 /* Pods */ = {
@@ -684,10 +730,12 @@
 				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
 				253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */,
 				253B1B8B2CC506D200F7DBF9 /* Pretendard-Medium.otf in Resources */,
+				25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */,
 				253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */,
 				253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */,
 				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
 				253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */,
+				25CFEF332CDE635100083081 /* cheersLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +865,7 @@
 			files = (
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
+				25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
@@ -825,10 +874,13 @@
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
+				25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
+				25CFEF172CD8F27400083081 /* RecommendViewModel.swift in Sources */,
 				25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */,
+				25CFEF1D2CD9528B00083081 /* RecommendListView.swift in Sources */,
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
 				259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */,
 				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
@@ -836,7 +888,7 @@
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
 				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
-				259E81FE2CCCE77100D63747 /* RecommendViewController.swift in Sources */,
+				259E81FE2CCCE77100D63747 /* RecommendHomeViewController.swift in Sources */,
 				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				25F428802CD4C0F60044240C /* User.swift in Sources */,
@@ -844,10 +896,14 @@
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */,
+				25CFEF1F2CD9529B00083081 /* RecommendListViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
+				25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */,
 				259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */,
+				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
+				25CFEF272CDB4AC800083081 /* RecommendItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

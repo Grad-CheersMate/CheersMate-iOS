@@ -35,33 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func changeRootViewController() {
         guard let window = self.window else { return }
         // 탭 바
-        let tabBarController = UITabBarController()
-        tabBarController.setupBarApperance()
-        // 홈 뷰 네비게이션 컨트롤러 생성
-        let homeNVC = UINavigationController(rootViewController: HomeViewController())
-        homeNVC.setupBarAppearance()
-        // 검색 네비게이션 컨트롤러 생성
-        let searchNVC = UINavigationController(rootViewController: SearchViewController())
-        searchNVC.setupBarAppearance()
-        // 챗 봇 네비게이션 컨트롤러 생성
-        let recommendNVC = UINavigationController(rootViewController: RecommendViewController())
-        recommendNVC.setupBarAppearance()
-        // 마이 페이지 네비게이션 컨트롤러 생성
-        let myPageNVC = UINavigationController(rootViewController: MyPageViewController())
-        myPageNVC.setupBarAppearance()
-        
-        tabBarController.setViewControllers([homeNVC, searchNVC, recommendNVC, myPageNVC], animated: true)
-        
-        if let items = tabBarController.tabBar.items {
-            items[0].image = .home
-            items[0].title = "홈"
-            items[1].image = .search
-            items[1].title = "검색"
-            items[2].image = .chatBot
-            items[2].title = "추천"
-            items[3].image = .myPage
-            items[3].title = "내정보"
-        }
+        let tabBarController = CustomTabBarController()
         // 루트 뷰 교체
         window.rootViewController = tabBarController
         UIView.transition(with: window, duration: 0.2, options: .transitionCrossDissolve, animations: nil)

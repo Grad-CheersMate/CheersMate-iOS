@@ -26,3 +26,11 @@ public enum Outcome: String {
     case success = "성공"
     case failure = "실패"
 }
+
+public enum Section: Hashable, CaseIterable {
+    case recommend // 추천 섹션
+}
+
+public enum Item: Hashable {
+    case recommendItem(RecommendItem)
+}

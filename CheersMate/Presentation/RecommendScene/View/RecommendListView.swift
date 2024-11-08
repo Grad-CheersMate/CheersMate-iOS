@@ -1,0 +1,142 @@
+//
+//  RecommendListView.swift
+//  CheersMate
+//
+//  Created by 재훈 on 11/5/24.
+//
+
+import UIKit
+
+final public class RecommendListView: UIView {
+    
+    // 컬렉션 뷰를 포함하는 스크롤 뷰
+    public let scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.showsVerticalScrollIndicator = false
+        sv.showsHorizontalScrollIndicator = false
+        sv.isDirectionalLockEnabled = true
+        sv.alwaysBounceVertical = true
+        return sv
+    }()
+    
+    // 컨테이너 뷰
+    private let containerView: UIView = {
+        let v = UIView()
+        return v
+    }()
+    
+    // 테스트 진행 상태 표시 뷰
+    public let progressView: UIProgressView = {
+        let pv = UIProgressView(progressViewStyle: .default)
+        pv.trackTintColor = .progressViewBackgroundColor
+        pv.progressTintColor = .mainColor
+        pv.progress = 0.25
+        pv.layer.cornerRadius = 3
+        pv.clipsToBounds = true
+        return pv
+    }()
+    
+    // 설명 레이블
+    private let infoLabel: UILabel = {
+        let lb = UILabel()
+        lb.textColor = .textColor
+        lb.text = "오늘 당신의 기분은 어떤가요?"
+        lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
+        lb.textAlignment = .left
+        lb.numberOfLines = 2
+        return lb
+    }()
+    
+    //  테이블 뷰
+    public let tableView: UITableView = {
+        let tv = UITableView()
+        tv.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.ID)
+        tv.backgroundColor = .white
+        tv.rowHeight = 120
+        tv.separatorStyle = .none
+        tv.showsVerticalScrollIndicator = false
+        tv.isScrollEnabled = false
+        return tv
+    }()
+    
+    // 확인 버튼
+    public let completeButton: UIButton = {
+        let bt = UIButton(type: .custom)
+        bt.setTitle("확인", for: .normal)
+        bt.setTitleColor(.white, for: .normal)
+        bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
+        bt.layer.cornerRadius = 12
+        bt.backgroundColor = .mainColor
+        return bt
+    }()
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+        setupLayout()
+    } // closed init
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    } // closed required init
+    
+    
+    // MARK: - UI 설정
+    private func setupUI() {
+        self.backgroundColor = .white
+        [scrollView, completeButton].forEach { self.addSubview($0) }
+        [containerView].forEach { scrollView.addSubview($0) }
+        [infoLabel, tableView].forEach { containerView.addSubview($0) }
+        
+    } // closed setupUI
+    
+    // MARK: - Layout 설정
+    private func setupLayout() {
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(completeButton.snp.top).offset(-20)
+        }
+        
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.leading.equalTo(scrollView.contentLayoutGuide.snp.leading)
+            make.trailing.equalTo(scrollView.contentLayoutGuide.snp.trailing)
+            make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
+            make.centerX.equalTo(scrollView.snp.centerX)
+        }
+        
+        progressView.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.height.equalTo(7)
+        }
+        
+        infoLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(infoLabel.snp.bottom).offset(60)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(400)
+        }
+        
+        completeButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+    } // closed setupLayout
+    
+    public func configure(infoText: String, level: Int) {
+        infoLabel.text = infoText
+        progressView.progress = 0.25 * Float(level)
+    } // closed configure
+    
+} // closed RecommendListView
