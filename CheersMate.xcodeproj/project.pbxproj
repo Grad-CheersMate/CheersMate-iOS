@@ -25,6 +25,12 @@
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
+		25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */; };
+		25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* LiquorNetwork.swift */; };
+		25737D6B2CDE7882004E9F6B /* SelectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* SelectionObject.swift */; };
+		25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D702CDE973F004E9F6B /* LiquorRepository.swift */; };
+		25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */; };
+		25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D742CDE9CE9004E9F6B /* Liquor.swift */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
 		259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountSearchView.swift */; };
 		259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* AccountSearchViewController.swift */; };
@@ -41,17 +47,21 @@
 		259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* UserNetworkManager.swift */; };
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82102CCE87DA00D63747 /* UserRepository.swift */; };
+		25A955A42CDFCD72001213CB /* SelectionRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A32CDFCD72001213CB /* SelectionRealm.swift */; };
+		25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A52CDFEB91001213CB /* RecommendRepository.swift */; };
+		25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */; };
+		25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A92CDFF460001213CB /* RecommendUseCase.swift */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
 		25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF142CD8F26200083081 /* RecommendHomeView.swift */; };
-		25CFEF172CD8F27400083081 /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF162CD8F27400083081 /* RecommendViewModel.swift */; };
+		25CFEF172CD8F27400083081 /* RecommendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF162CD8F27400083081 /* RecommendListViewModel.swift */; };
 		25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */; };
 		25CFEF1D2CD9528B00083081 /* RecommendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1C2CD9528B00083081 /* RecommendListView.swift */; };
 		25CFEF1F2CD9529B00083081 /* RecommendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */; };
 		25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */; };
 		25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* ListTableViewCell.swift */; };
-		25CFEF272CDB4AC800083081 /* RecommendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* RecommendItem.swift */; };
+		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
 		25CFEF332CDE635100083081 /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF322CDE635100083081 /* cheersLottie.json */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
@@ -103,6 +113,12 @@
 		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
+		25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetworkManager.swift; sourceTree = "<group>"; };
+		25737D682CDE7496004E9F6B /* LiquorNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetwork.swift; sourceTree = "<group>"; };
+		25737D6A2CDE7882004E9F6B /* SelectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionObject.swift; sourceTree = "<group>"; };
+		25737D702CDE973F004E9F6B /* LiquorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepository.swift; sourceTree = "<group>"; };
+		25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepositoryProtocol.swift; sourceTree = "<group>"; };
+		25737D742CDE9CE9004E9F6B /* Liquor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liquor.swift; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
 		259E81C62CCA40E800D63747 /* AccountSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchView.swift; sourceTree = "<group>"; };
 		259E81C82CCA417700D63747 /* AccountSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewController.swift; sourceTree = "<group>"; };
@@ -119,17 +135,21 @@
 		259E82082CCE801300D63747 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		259E82102CCE87DA00D63747 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		25A955A32CDFCD72001213CB /* SelectionRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionRealm.swift; sourceTree = "<group>"; };
+		25A955A52CDFEB91001213CB /* RecommendRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepository.swift; sourceTree = "<group>"; };
+		25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepositoryProtocol.swift; sourceTree = "<group>"; };
+		25A955A92CDFF460001213CB /* RecommendUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendUseCase.swift; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		25CFEF142CD8F26200083081 /* RecommendHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHomeView.swift; sourceTree = "<group>"; };
-		25CFEF162CD8F27400083081 /* RecommendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
+		25CFEF162CD8F27400083081 /* RecommendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListViewModel.swift; sourceTree = "<group>"; };
 		25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25CFEF1C2CD9528B00083081 /* RecommendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListView.swift; sourceTree = "<group>"; };
 		25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListViewController.swift; sourceTree = "<group>"; };
 		25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		25CFEF242CDA933D00083081 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
-		25CFEF262CDB4AC800083081 /* RecommendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItem.swift; sourceTree = "<group>"; };
+		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		25CFEF322CDE635100083081 /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -179,6 +199,7 @@
 				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
 				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
 				25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */,
+				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -212,7 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				25F4287F2CD4C0F60044240C /* User.swift */,
-				25CFEF262CDB4AC800083081 /* RecommendItem.swift */,
+				25737D742CDE9CE9004E9F6B /* Liquor.swift */,
+				25CFEF262CDB4AC800083081 /* Selection.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -221,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				25F428892CD6390F0044240C /* UserUseCase.swift */,
+				25A955A92CDFF460001213CB /* RecommendUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -237,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				25F428872CD633770044240C /* UserRepositoryProtocol.swift */,
+				25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */,
+				25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -256,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				259E82102CCE87DA00D63747 /* UserRepository.swift */,
+				25737D702CDE973F004E9F6B /* LiquorRepository.swift */,
+				25A955A52CDFEB91001213CB /* RecommendRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -263,8 +290,8 @@
 		253B1B6E2CC4045E00F7DBF9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				259E82082CCE801300D63747 /* UserNetworkManager.swift */,
-				259E820A2CCE80E800D63747 /* UserNetwork.swift */,
+				25737D642CDE7463004E9F6B /* User */,
+				25737D652CDE7473004E9F6B /* Liquor */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -272,7 +299,7 @@
 		253B1B6F2CC4046500F7DBF9 /* PersistentStorages */ = {
 			isa = PBXGroup;
 			children = (
-				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
+				25A955A22CDFCD59001213CB /* Selection */,
 			);
 			path = PersistentStorages;
 			sourceTree = "<group>";
@@ -427,6 +454,24 @@
 			path = CheersMate;
 			sourceTree = "<group>";
 		};
+		25737D642CDE7463004E9F6B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				259E82082CCE801300D63747 /* UserNetworkManager.swift */,
+				259E820A2CCE80E800D63747 /* UserNetwork.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		25737D652CDE7473004E9F6B /* Liquor */ = {
+			isa = PBXGroup;
+			children = (
+				25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */,
+				25737D682CDE7496004E9F6B /* LiquorNetwork.swift */,
+			);
+			path = Liquor;
+			sourceTree = "<group>";
+		};
 		259E81BF2CC9632A00D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,7 +578,7 @@
 		259E81F72CCCE6F200D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				25CFEF162CD8F27400083081 /* RecommendViewModel.swift */,
+				25CFEF162CD8F27400083081 /* RecommendListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -570,6 +615,15 @@
 			children = (
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		25A955A22CDFCD59001213CB /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+				25737D6A2CDE7882004E9F6B /* SelectionObject.swift */,
+				25A955A32CDFCD72001213CB /* SelectionRealm.swift */,
+			);
+			path = Selection;
 			sourceTree = "<group>";
 		};
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
@@ -863,22 +917,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */,
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
+				25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */,
+				25737D6B2CDE7882004E9F6B /* SelectionObject.swift in Sources */,
 				25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */,
+				25A955A42CDFCD72001213CB /* SelectionRealm.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
+				25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */,
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
+				25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
 				25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
-				25CFEF172CD8F27400083081 /* RecommendViewModel.swift in Sources */,
+				25CFEF172CD8F27400083081 /* RecommendListViewModel.swift in Sources */,
 				25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */,
 				25CFEF1D2CD9528B00083081 /* RecommendListView.swift in Sources */,
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
@@ -887,6 +947,7 @@
 				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
+				25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */,
 				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
 				259E81FE2CCCE77100D63747 /* RecommendHomeViewController.swift in Sources */,
 				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
@@ -895,6 +956,7 @@
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
+				25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */,
 				259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */,
 				25CFEF1F2CD9529B00083081 /* RecommendListViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
@@ -903,7 +965,9 @@
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
-				25CFEF272CDB4AC800083081 /* RecommendItem.swift in Sources */,
+				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
+				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
+				25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +1016,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -985,7 +1049,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

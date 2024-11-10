@@ -26,7 +26,9 @@ namespace _impl {
 
 class ArrayWriterBase {
 public:
-    virtual ~ArrayWriterBase() {}
+    virtual ~ArrayWriterBase()
+    {
+    }
 
     /// Write the specified array data and its checksum into free
     /// space.
@@ -36,7 +38,7 @@ public:
     virtual ref_type write_array(const char* data, size_t size, uint32_t checksum) = 0;
 };
 
-} // namespace _impl
+} // namespace impl_
 } // namespace realm
 
 #endif // REALM_ARRAY_WRITER_HPP

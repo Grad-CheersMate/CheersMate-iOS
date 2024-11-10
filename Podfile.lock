@@ -3,11 +3,11 @@ PODS:
   - Kingfisher (7.11.0)
   - lottie-ios (4.5.0)
   - Pageboy (4.2.0)
-  - Realm (10.50.0):
-    - Realm/Headers (= 10.50.0)
-  - Realm/Headers (10.50.0)
-  - RealmSwift (10.50.0):
-    - Realm (= 10.50.0)
+  - Realm (10.40.2):
+    - Realm/Headers (= 10.40.2)
+  - Realm/Headers (10.40.2)
+  - RealmSwift (10.40.2):
+    - Realm (= 10.40.2)
   - RxAlamofire (6.1.1):
     - RxAlamofire/Core (= 6.1.1)
   - RxAlamofire/Core (6.1.1):
@@ -62,8 +62,8 @@ SPEC CHECKSUMS:
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   lottie-ios: a881093fab623c467d3bce374367755c272bdd59
   Pageboy: 7f7886f61c76633df635861bf7839caf2cabdb3e
-  Realm: a0a6a99e3dfa8959358a95c3c05845b5e5d6af30
-  RealmSwift: fa111fb98e092a4dff1d0785ad0c3483feda607a
+  Realm: 731e86d9388287b18e36b0beb2493fc4845ce8a2
+  RealmSwift: c2a1059ba52e1e08467b1253b1d4ab354ef3177b
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxKeyboard: 4f5863f43b4ff0cbb2a20b94688d6b80c8a43c14

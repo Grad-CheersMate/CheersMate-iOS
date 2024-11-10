@@ -40,6 +40,8 @@ using namespace realm;
 using Level = realm::util::Logger::Level;
 
 namespace {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 Level levelForSyncLogLevel(RLMSyncLogLevel logLevel) {
     switch (logLevel) {
         case RLMSyncLogLevelOff:    return Level::off;
@@ -69,11 +71,12 @@ RLMSyncLogLevel logLevelForLevel(Level logLevel) {
     }
     REALM_UNREACHABLE();    // Unrecognized log level.
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Loggers
 
 struct CocoaSyncLogger : public realm::util::Logger {
-    void do_log(const realm::util::LogCategory&, Level, const std::string& message) override {
+    void do_log(Level, const std::string& message) override {
         NSLog(@"Sync: %@", RLMStringDataToNSString(message));
     }
 };
@@ -86,7 +89,7 @@ static std::unique_ptr<realm::util::Logger> defaultSyncLogger(realm::util::Logge
 
 struct CallbackLogger : public realm::util::Logger {
     RLMSyncLogFunction logFn;
-    void do_log(const realm::util::LogCategory&, Level level, const std::string& message) override {
+    void do_log(Level level, const std::string& message) override {
         @autoreleasepool {
             logFn(logLevelForLevel(level), RLMStringDataToNSString(message));
         }
@@ -104,6 +107,13 @@ std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction fn) {
 
 #pragma mark - RLMSyncManager
 
+@interface RLMSyncTimeoutOptions () {
+    @public
+    realm::SyncClientTimeouts _options;
+}
+- (instancetype)initWithOptions:(realm::SyncClientTimeouts)options;
+@end
+
 @implementation RLMSyncManager {
     RLMUnfairMutex _mutex;
     std::shared_ptr<SyncManager> _syncManager;
@@ -113,10 +123,37 @@ std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction fn) {
 
 - (instancetype)initWithSyncManager:(std::shared_ptr<realm::SyncManager>)syncManager {
     if (self = [super init]) {
+        [RLMUser _setUpBindingContextFactory];
         _syncManager = syncManager;
         return self;
     }
     return nil;
+}
+
++ (SyncClientConfig)configurationWithRootDirectory:(NSURL *)rootDirectory appId:(NSString *)appId {
+    SyncClientConfig config;
+    bool should_encrypt = !getenv("REALM_DISABLE_METADATA_ENCRYPTION") && !RLMIsRunningInPlayground();
+    config.logger_factory = defaultSyncLogger;
+    config.metadata_mode = should_encrypt ? SyncManager::MetadataMode::Encryption
+                                          : SyncManager::MetadataMode::NoEncryption;
+    @autoreleasepool {
+        rootDirectory = rootDirectory ?: [NSURL fileURLWithPath:RLMDefaultDirectoryForBundleIdentifier(nil)];
+        config.base_file_path = rootDirectory.path.UTF8String;
+
+        bool isSwift = !!NSClassFromString(@"RealmSwiftObjectUtil");
+        config.user_agent_binding_info =
+            util::format("Realm%1/%2", isSwift ? "Swift" : "ObjectiveC",
+                         RLMStringDataWithNSString(REALM_COCOA_VERSION));
+        config.user_agent_application_info = RLMStringDataWithNSString(appId);
+    }
+    // Session multiplexing is currently broken and causes use-after-frees
+    config.multiplex_sessions = false;
+
+    return config;
+}
+
+- (std::weak_ptr<realm::app::App>)app {
+    return _syncManager->app();
 }
 
 - (NSDictionary<NSString *,NSString *> *)customRequestHeaders {
@@ -130,13 +167,15 @@ std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction fn) {
         _customRequestHeaders = customRequestHeaders.copy;
     }
 
-    for (auto&& session : _syncManager->get_all_sessions()) {
-        auto config = session->config();
-        config.custom_http_headers.clear();
-        for (NSString *key in customRequestHeaders) {
-            config.custom_http_headers.emplace(key.UTF8String, customRequestHeaders[key].UTF8String);
+    for (auto&& user : _syncManager->all_users()) {
+        for (auto&& session : user->all_sessions()) {
+            auto config = session->config();
+            config.custom_http_headers.clear();
+            for (NSString *key in customRequestHeaders) {
+                config.custom_http_headers.emplace(key.UTF8String, customRequestHeaders[key].UTF8String);
+            }
+            session->update_configuration(std::move(config));
         }
-        session->update_configuration(std::move(config));
     }
 }
 
@@ -194,10 +233,12 @@ std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction fn) {
 - (void)resetForTesting {
     _errorHandler = nil;
     _logger = nil;
-    _syncManager->tear_down_for_testing();
+    _authorizationHeaderName = nil;
+    _customRequestHeaders = nil;
+    _syncManager->reset_for_testing();
 }
 
-- (std::shared_ptr<realm::SyncManager> const&)syncManager {
+- (std::shared_ptr<realm::SyncManager>)syncManager {
     return _syncManager;
 }
 
@@ -214,10 +255,6 @@ std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction fn) {
             config.custom_http_headers.emplace(key.UTF8String, header.UTF8String);
         }];
     }
-}
-
-- (bool)hasAnySessions {
-    return _syncManager->get_all_sessions().size() > 0;
 }
 @end
 

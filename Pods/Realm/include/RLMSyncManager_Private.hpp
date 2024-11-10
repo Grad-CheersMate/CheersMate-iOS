@@ -19,11 +19,10 @@
 #import <Realm/RLMSyncManager.h>
 
 #import "RLMNetworkTransport.h"
-
-#import <realm/object-store/sync/app_config.hpp>
 #import <memory>
 
 namespace realm {
+struct SyncClientConfig;
 struct SyncConfig;
 class SyncManager;
 namespace app {
@@ -39,21 +38,16 @@ class Logger;
 RLM_HEADER_AUDIT_BEGIN(nullability, sendability)
 
 @interface RLMSyncManager ()
-- (std::shared_ptr<realm::SyncManager> const&)syncManager;
+- (std::weak_ptr<realm::app::App>)app;
+- (std::shared_ptr<realm::SyncManager>)syncManager;
 - (instancetype)initWithSyncManager:(std::shared_ptr<realm::SyncManager>)syncManager;
 
-- (bool)hasAnySessions;
++ (realm::SyncClientConfig)configurationWithRootDirectory:(nullable NSURL *)rootDirectory
+                                                    appId:(nonnull NSString *)appId;
+
 - (void)resetForTesting;
 - (void)waitForSessionTermination;
 - (void)populateConfig:(realm::SyncConfig&)config;
-@end
-
-RLM_DIRECT_MEMBERS
-@interface RLMSyncTimeoutOptions () {
-    @public
-    realm::SyncClientTimeouts _options;
-}
-- (instancetype)initWithOptions:(realm::SyncClientTimeouts)options;
 @end
 
 std::shared_ptr<realm::util::Logger> RLMWrapLogFunction(RLMSyncLogFunction);

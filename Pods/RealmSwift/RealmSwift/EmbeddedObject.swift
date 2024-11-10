@@ -217,6 +217,7 @@ extension EmbeddedObject: _RealmCollectionValueInsideOptional {
         return _observe(on: queue, block)
     }
 
+#if swift(>=5.8)
     /**
     Registers a block to be called each time the object changes.
 
@@ -302,6 +303,7 @@ extension EmbeddedObject: _RealmCollectionValueInsideOptional {
     ) async -> NotificationToken {
         await observe(keyPaths: keyPaths.map(_name(for:)), on: actor, block)
     }
+#endif // swift(>=5.8)
 
     // MARK: Dynamic list
 

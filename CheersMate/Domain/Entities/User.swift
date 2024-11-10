@@ -8,8 +8,8 @@
 import Foundation
 // MARK: - Json 응답
 public struct UserResponse: Codable {
-    let result: Int
-    let resultCode: Int
+    let result: Bool
+    let httpCode: Int
     let user: User?
     let accessToken: String?
     let refreshToken: String?

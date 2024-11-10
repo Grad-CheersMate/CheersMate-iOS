@@ -24,12 +24,12 @@
 #import <Realm/RLMDictionary.h>
 #import <Realm/RLMEmbeddedObject.h>
 #import <Realm/RLMError.h>
-#import <Realm/RLMGeospatial.h>
 #import <Realm/RLMLogger.h>
 #import <Realm/RLMMigration.h>
 #import <Realm/RLMObject.h>
 #import <Realm/RLMObjectId.h>
 #import <Realm/RLMObjectSchema.h>
+#import <Realm/RLMPlatform.h>
 #import <Realm/RLMProperty.h>
 #import <Realm/RLMRealm.h>
 #import <Realm/RLMRealmConfiguration.h>
@@ -48,7 +48,6 @@
 #import <Realm/RLMEmailPasswordAuth.h>
 #import <Realm/RLMFindOneAndModifyOptions.h>
 #import <Realm/RLMFindOptions.h>
-#import <Realm/RLMInitialSubscriptionsConfiguration.h>
 #import <Realm/RLMMongoClient.h>
 #import <Realm/RLMMongoCollection.h>
 #import <Realm/RLMMongoDatabase.h>

@@ -21,7 +21,6 @@
 
 #include <realm/object-store/object_changeset.hpp>
 #include <realm/object-store/impl/collection_change_builder.hpp>
-#include <realm/collection_parent.hpp>
 
 #include <array>
 
@@ -34,6 +33,8 @@ class Table;
 class TableRef;
 class Transaction;
 
+using KeyPath = std::vector<std::pair<TableKey, ColKey>>;
+using KeyPathArray = std::vector<KeyPath>;
 using ref_type = size_t;
 
 namespace _impl {
@@ -42,7 +43,7 @@ class RealmCoordinator;
 struct CollectionChangeInfo {
     TableKey table_key;
     ObjKey obj_key;
-    StablePath path;
+    ColKey col_key;
     CollectionChangeBuilder* changes;
 };
 

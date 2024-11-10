@@ -34,7 +34,9 @@ public:
 
 class BinaryIterator {
 public:
-    BinaryIterator() {}
+    BinaryIterator()
+    {
+    }
 
     BinaryIterator(BinaryData binary)
         : m_binary(binary)

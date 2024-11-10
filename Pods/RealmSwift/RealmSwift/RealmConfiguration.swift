@@ -51,9 +51,8 @@ extension Realm {
         /**
          Creates a `Configuration` which can be used to create new `Realm` instances.
 
-         - note: The `fileURL`, and `inMemoryIdentifier`, parameters are mutually exclusive. Only
+         - note: The `fileURL`, `inMemoryIdentifier`, and `syncConfiguration` parameters are mutually exclusive. Only
                  set one of them, or none if you wish to use the default file URL.
-                 Synced Realms will set a unique file path unless is an in-memory realm.
 
          - parameter fileURL:            The local URL to the Realm file.
          - parameter inMemoryIdentifier: A string used to identify a particular in-memory Realm.
@@ -107,13 +106,15 @@ extension Realm {
         // MARK: Configuration Properties
 
         /**
-         A configuration value used to configure a Realm for synchronization with Atlas App Services.
+         A configuration value used to configure a Realm for synchronization with Atlas App Services. Mutually
+         exclusive with `inMemoryIdentifier`.
          */
         public var syncConfiguration: SyncConfiguration? {
             get {
                 return _syncConfiguration
             }
             set {
+                _inMemoryIdentifier = nil
                 _syncConfiguration = newValue
             }
         }
@@ -127,13 +128,15 @@ extension Realm {
             }
         }
 
-        /// A string used to identify a particular in-memory Realm. Mutually exclusive with `fileURL`.
+        /// A string used to identify a particular in-memory Realm. Mutually exclusive with `fileURL` and
+        /// `syncConfiguration`.
         public var inMemoryIdentifier: String? {
             get {
                 return _inMemoryIdentifier
             }
             set {
                 fileURL = nil
+                _syncConfiguration = nil
                 _inMemoryIdentifier = newValue
             }
         }
@@ -268,6 +271,14 @@ extension Realm {
         /// If `true`, disables automatic format upgrades when accessing the Realm.
         internal var disableFormatUpgrade: Bool = false
 
+        // MARK: Flexible Sync
+
+        /// Callback for adding subscriptions to the initialization of the Realm
+        internal var initialSubscriptions: (@Sendable (SyncSubscriptionSet) -> Void)?
+
+        /// If `true` Indicates that the `initialSubscriptions` will run on every app startup.
+        internal var rerunOnOpen: Bool = false
+
         // MARK: Private Methods
 
         internal var rlmConfiguration: RLMRealmConfiguration {
@@ -303,6 +314,11 @@ extension Realm {
                 configuration.eventConfiguration = rlmConfig
             }
 
+            if let initialSubscriptions = initialSubscriptions {
+                configuration.initialSubscriptions = ObjectiveCSupport.convert(block: initialSubscriptions)
+                configuration.rerunOnOpen = rerunOnOpen
+            }
+
             return configuration
         }
 
@@ -326,6 +342,9 @@ extension Realm {
                                                                       partitionPrefix: eventConfiguration.partitionPrefix,
                                                                       errorHandler: eventConfiguration.errorHandler)
             }
+
+            configuration.initialSubscriptions = ObjectiveCSupport.convert(block: rlmConfiguration.initialSubscriptions)
+            configuration.rerunOnOpen = rlmConfiguration.rerunOnOpen
 
             return configuration
         }

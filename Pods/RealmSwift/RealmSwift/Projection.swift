@@ -269,29 +269,6 @@ extension ProjectionObservable {
 
      - warning: This method cannot be called during a write transaction, or when
                 the containing Realm is read-only.
-     - warning: For projected properties where the original property has the same root property name,
-                this will trigger a `PropertyChange` for each of the Projected properties even though
-                the change only corresponds to one of them.
-                For the following `Projection` object
-                ```swift
-                class PersonProjection: Projection<Person> {
-                    @Projected(\Person.firstName) var name
-                    @Projected(\Person.address.country) originCountry
-                    @Projected(\Person.address.phone.number) mobile
-                }
-
-                let token = projectedPerson.observe { changes in
-                    if case .change(_, let propertyChanges) = changes {
-                        propertyChanges[0].newValue as? String, "Winterfell" // Will notify the new value
-                        propertyChanges[1].newValue as? String, "555-555-555" // Will notify with the current value, which hasn't change.
-                    }
-                })
-
-                try realm.write {
-                    person.address.country = "Winterfell"
-                }
-                ```
-
      - parameter keyPaths: Only properties contained in the key paths array will trigger
                            the block when they are modified. If `nil`, notifications
                            will be delivered for any projected property change on the object.
@@ -344,27 +321,15 @@ extension ProjectionObservable {
 
             var projectedChanges = [PropertyChange]()
             for i in 0..<newValues.count {
-                let filter: (ProjectionProperty) -> Bool = { prop in
-                    if prop.originPropertyKeyPathString.components(separatedBy: ".").first != names[i] {
-                        return false
-                    }
-                    guard let keyPaths, !keyPaths.isEmpty else {
-                        return true
-                    }
-
-                    // This will allow us to notify `PropertyChange`s associated only to the keyPaths passed by the user, instead of any Property which has the same root as the notified one.
-                    return keyPaths.contains(prop.originPropertyKeyPathString)
-                }
-                for property in schema.filter(filter) {
-                    // If the root is marked as modified this will build a `PropertyChange` for each of the Projection properties with the same original root, even if there is no change on their value.
+                for property in schema.filter({ $0.originPropertyKeyPathString == names[i] }) {
                     var changeOldValue: Any?
                     if oldValues != nil {
                         changeOldValue = unmanagedRoot![keyPath: property.projectedKeyPath]
                     }
-                    let changedNewValue = object[keyPath: property.projectedKeyPath]
+                    let changeNewValue = object[keyPath: property.projectedKeyPath]
                     projectedChanges.append(.init(name: property.label,
                                                   oldValue: changeOldValue,
-                                                  newValue: changedNewValue))
+                                                  newValue: changeNewValue))
                 }
             }
 
@@ -458,6 +423,7 @@ extension ProjectionObservable {
         observe(keyPaths: map(keyPaths: keyPaths), on: queue, block)
     }
 
+#if swift(>=5.8)
     /**
      Registers a block to be called each time the projection's underlying object changes.
 
@@ -621,6 +587,7 @@ extension ProjectionObservable {
     ) async -> NotificationToken {
         await observe(keyPaths: map(keyPaths: keyPaths), on: actor, block)
     }
+#endif
 
     fileprivate var schema: [ProjectionProperty] {
         projectionSchemaCache.schema(for: self)
@@ -786,22 +753,28 @@ private struct ProjectionProperty: @unchecked Sendable {
     let label: String
 }
 
-// A subset of OSAllocatedUnfairLock, which requires iOS 16
-internal final class AllocatedUnfairLock<Value>: @unchecked Sendable {
-    private var value: Value
-    private let impl: os_unfair_lock_t = .allocate(capacity: 1)
-
-    init(_ value: Value) {
-        impl.initialize(to: os_unfair_lock())
-        self.value = value
-    }
-
-    func withLock<R>(_ body: (inout Value) -> R) -> R {
+// An adaptor for os_unfair_lock to make it implement NSLocking
+@available(OSX 10.12, watchOS 3.0, iOS 10.0, iOSApplicationExtension 10.0, OSXApplicationExtension 10.12, tvOS 10.0, *)
+private final class UnfairLock: NSLocking, Sendable {
+    func lock() {
         os_unfair_lock_lock(impl)
-        let ret = body(&value)
-        os_unfair_lock_unlock(impl)
-        return ret
     }
+    func unlock() {
+        os_unfair_lock_unlock(impl)
+    }
+
+    private let impl: os_unfair_lock_t = .allocate(capacity: 1)
+    init() {
+        impl.initialize(to: os_unfair_lock())
+    }
+}
+
+// We want to use os_unfair_lock when it's available, but fall back to NSLock otherwise
+private func createLock() -> NSLocking {
+    if #available(OSX 10.12, watchOS 3.0, iOS 10.0, iOSApplicationExtension 10.0, OSXApplicationExtension 10.12, tvOS 10.0, *) {
+        return UnfairLock()
+    }
+    return NSLock()
 }
 
 // A property wrapper which unsafely disables concurrency checking for a property
@@ -820,11 +793,12 @@ internal struct Unchecked<Wrapped>: @unchecked Sendable {
 }
 
 private final class ProjectionSchemaCache: @unchecked Sendable {
-    private static let schema = AllocatedUnfairLock([ObjectIdentifier: [ProjectionProperty]]())
+    @Unchecked private static var schema = [ObjectIdentifier: [ProjectionProperty]]()
+    private static let lock = createLock()
 
     fileprivate func schema<T: ProjectionObservable>(for obj: T) -> [ProjectionProperty] {
         let identifier = ObjectIdentifier(type(of: obj))
-        if let schema = Self.schema.withLock({ $0[identifier] }) {
+        if let schema = Self.lock.withLock({ Self.schema[identifier] }) {
             return schema
         }
 
@@ -841,12 +815,11 @@ private final class ProjectionSchemaCache: @unchecked Sendable {
                                     originPropertyKeyPathString: originPropertyLabel,
                                     label: String(label)))
         }
-        let p = properties
-        Self.schema.withLock {
+        Self.lock.withLock {
             // This might overwrite a schema generated by a different thread
             // if we happened to do the initialization on multiple threads at
             // once, but if so that's fine.
-            $0[identifier] = p
+            Self.schema[identifier] = properties
         }
         return properties
     }

@@ -14,6 +14,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 final public class RecommendHomeViewController: UIViewController {
     
@@ -53,12 +54,17 @@ final public class RecommendHomeViewController: UIViewController {
         recommendHomeView.startButton.rx.tap
             .bind { [weak self] _ in
                 guard let self = self else { return }
-                let recommendListVC = RecommendListViewController()
+                // MARK: - Data Layer
+                let selectionRealm = SelectionRealm(realm: try! Realm())
+                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                // MARK: - Domain Layer
+                let recommendRP = RecommendRepository(network: network, realm: selectionRealm)
+                let recommendUC = RecommendUseCase(repository: recommendRP)
+                // MARK: - Presentation Layer
+                let recommendListVM = RecommendListViewModel(useCase: recommendUC)
+                let recommendListVC = RecommendListViewController(viewModel: recommendListVM)
                 self.navigationController?.pushViewController(recommendListVC, animated: true) }
             .disposed(by: disposeBag)
-        
-        
-        
     } // closed bindView
     
     

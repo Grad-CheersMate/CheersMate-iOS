@@ -17,6 +17,8 @@ extension UITabBarController {
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithTransparentBackground()
+        
+        tabBarAppearance.shadowColor = .lightGray // 탭 바 구분선 색상
         tabBar.standardAppearance = tabBarAppearance // 일반 상태
         tabBar.scrollEdgeAppearance = tabBarAppearance // 스크롤 상태
         // 커스텀 폰트

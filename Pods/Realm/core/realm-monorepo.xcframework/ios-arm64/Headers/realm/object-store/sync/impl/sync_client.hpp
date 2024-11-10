@@ -37,7 +37,8 @@
 #include <realm/object-store/sync/impl/emscripten/socket_provider.hpp>
 #endif
 
-namespace realm::_impl {
+namespace realm {
+namespace _impl {
 
 struct SyncClient {
     SyncClient(const std::shared_ptr<util::Logger>& logger, SyncClientConfig const& config,
@@ -73,16 +74,7 @@ struct SyncClient {
                 c.pong_keepalive_timeout = config.timeouts.pong_keepalive_timeout;
             if (config.timeouts.fast_reconnect_limit > 1000)
                 c.fast_reconnect_limit = config.timeouts.fast_reconnect_limit;
-            c.reconnect_backoff_info.resumption_delay_interval =
-                config.timeouts.reconnect_backoff_info.resumption_delay_interval;
-            c.reconnect_backoff_info.max_resumption_delay_interval =
-                config.timeouts.reconnect_backoff_info.max_resumption_delay_interval;
-            c.reconnect_backoff_info.resumption_delay_backoff_multiplier =
-                config.timeouts.reconnect_backoff_info.resumption_delay_backoff_multiplier;
-            if (c.reconnect_backoff_info.resumption_delay_interval.count() < 1000)
-                logger->warn("A resumption delay interval less than 1000 (1 second) is not recommended");
-            if (c.reconnect_backoff_info.resumption_delay_backoff_multiplier < 1)
-                throw InvalidArgument("Delay backoff multiplier in reconnect backoff info cannot be less than 1");
+
             return c;
         }())
         , m_logger_ptr(logger)
@@ -140,11 +132,7 @@ struct SyncClient {
         m_client.wait_for_session_terminations_or_client_stopped();
     }
 
-    // Async version of wait_for_session_terminations().
-    util::Future<void> notify_session_terminated()
-    {
-        return m_client.notify_session_terminated();
-    }
+    ~SyncClient() {}
 
 private:
     std::shared_ptr<sync::SyncSocketProvider> m_socket_provider;
@@ -156,6 +144,7 @@ private:
 #endif
 };
 
-} // namespace realm::_impl
+} // namespace _impl
+} // namespace realm
 
 #endif // REALM_OS_SYNC_CLIENT_HPP

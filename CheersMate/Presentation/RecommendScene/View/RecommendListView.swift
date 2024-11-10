@@ -30,20 +30,32 @@ final public class RecommendListView: UIView {
         let pv = UIProgressView(progressViewStyle: .default)
         pv.trackTintColor = .progressViewBackgroundColor
         pv.progressTintColor = .mainColor
-        pv.progress = 0.25
+        pv.progress = 0.20
         pv.layer.cornerRadius = 3
         pv.clipsToBounds = true
         return pv
     }()
     
-    // 설명 레이블
-    private let infoLabel: UILabel = {
+    // 메인 설명 레이블
+    private let mainInfoLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = .textColor
         lb.text = "오늘 당신의 기분은 어떤가요?"
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
         lb.textAlignment = .left
         lb.numberOfLines = 2
+        return lb
+    }()
+    
+    // 보충 설명 레이블
+    private let subInfoLabel: UILabel = {
+        let lb = UILabel()
+        lb.textColor = UIColor.systemGray
+        lb.text = "가장 비슷한 감정을 선택해 주세요."
+        lb.setLineSpacing(spacing: 3)
+        lb.numberOfLines = 2
+        lb.font = UIFont.gmarketSans(size: 15, family: .Medium)
+        lb.textAlignment = .left
         return lb
     }()
     
@@ -87,7 +99,7 @@ final public class RecommendListView: UIView {
         self.backgroundColor = .white
         [scrollView, completeButton].forEach { self.addSubview($0) }
         [containerView].forEach { scrollView.addSubview($0) }
-        [infoLabel, tableView].forEach { containerView.addSubview($0) }
+        [mainInfoLabel, subInfoLabel, tableView].forEach { containerView.addSubview($0) }
         
     } // closed setupUI
     
@@ -113,14 +125,20 @@ final public class RecommendListView: UIView {
             make.height.equalTo(7)
         }
         
-        infoLabel.snp.makeConstraints { make in
+        mainInfoLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
         
+        subInfoLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainInfoLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(infoLabel.snp.bottom).offset(60)
+            make.top.equalTo(subInfoLabel.snp.bottom).offset(40)
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(400)
         }
@@ -134,9 +152,29 @@ final public class RecommendListView: UIView {
         
     } // closed setupLayout
     
-    public func configure(infoText: String, level: Int) {
-        infoLabel.text = infoText
-        progressView.progress = 0.25 * Float(level)
+    // 페이지에 따른 텍스트와 진행률 설정
+    public func configure(page progress: Int) {
+        switch progress {
+        case 1: // 감정
+            updateLabelAndProgressBar(mainText: "오늘 당신의 기분은 어떤가요?", subText: "가장 비슷한 감정을 선택해 주세요.", progress: progress)
+        case 2: // 동반자
+            updateLabelAndProgressBar(mainText: "오늘 함께할 사람은 누구인가요?", subText: "이 순간을 나누고 싶은 사람을 선택해 주세요.", progress: progress)
+        case 3: // 선호 주종
+            updateLabelAndProgressBar(mainText: "어떤 주종을 선호하시나요?", subText: "가장 즐기고 싶은 술을 선택해 보세요.", progress: progress)
+        case 4: // 선호 도수
+            updateLabelAndProgressBar(mainText: "어느 정도의 도수가 좋으신가요?", subText: "선호하는 도수를 선택해 주세요.", progress: progress)
+        default:
+            break
+        }
     } // closed configure
+    
+    // 추천 화면에서 정보 레이블과 진행률을 업데이트하기 위한 설정
+    private func updateLabelAndProgressBar(mainText: String, subText: String, progress: Int) {
+        mainInfoLabel.text = mainText
+        subInfoLabel.text = subText
+        progressView.setProgress(0.20 * Float(progress), animated: true)
+    } // closed updateLabelAndProgressBar
+    
+    
     
 } // closed RecommendListView

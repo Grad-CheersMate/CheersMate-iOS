@@ -20,11 +20,7 @@
 
 #import <realm/object-store/sync/app.hpp>
 
-@interface RLMProviderClient () {
-    @public
-    std::shared_ptr<realm::app::App> _app;
-}
-- (instancetype _Nonnull)initWithApp:(std::shared_ptr<realm::app::App>)app;
+@interface RLMProviderClient ()
 
 /// A block type used to report an error
 typedef void(^RLMProviderClientOptionalErrorBlock)(NSError * _Nullable);

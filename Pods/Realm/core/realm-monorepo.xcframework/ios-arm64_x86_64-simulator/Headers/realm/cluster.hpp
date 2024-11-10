@@ -80,9 +80,9 @@ public:
     // This structure is used to bring information back to the upper nodes when
     // inserting new objects or finding existing ones.
     struct State {
-        int64_t split_key;          // When a node is split, this variable holds the value of the
-                                    // first key in the new node. (Relative to the key offset)
-        MemRef mem;                 // MemRef to the Cluster holding the new/found object
+        int64_t split_key; // When a node is split, this variable holds the value of the
+                           // first key in the new node. (Relative to the key offset)
+        MemRef mem;        // MemRef to the Cluster holding the new/found object
         size_t index = realm::npos; // The index within the Cluster at which the object is stored.
 
         operator bool() const
@@ -113,7 +113,9 @@ public:
     {
         m_keys.set_parent(this, 0);
     }
-    virtual ~ClusterNode() {}
+    virtual ~ClusterNode()
+    {
+    }
     void init_from_parent()
     {
         ref_type ref = get_ref_from_parent();
@@ -185,9 +187,9 @@ public:
     {
         return ObjKey(get_key_value(ndx) + m_offset);
     }
-    const ArrayUnsigned* get_key_array() const
+    const ClusterKeyArray* get_key_array() const
     {
-        return m_keys.is_attached() ? &m_keys : nullptr;
+        return &m_keys;
     }
     void set_offset(uint64_t offs)
     {
@@ -206,16 +208,6 @@ protected:
 #endif
 
     static constexpr size_t cluster_node_size = 1 << node_shift_factor;
-
-    class ClusterKeyArray : public ArrayUnsigned {
-    public:
-        using ArrayUnsigned::ArrayUnsigned;
-
-        uint64_t get(size_t ndx) const
-        {
-            return (m_data != nullptr) ? ArrayUnsigned::get(ndx) : uint64_t(ndx);
-        }
-    };
 
     const ClusterTree& m_tree_top;
     ClusterKeyArray m_keys;
@@ -311,10 +303,6 @@ public:
 
     void verify() const;
     void dump_objects(int64_t key_offset, std::string lead) const override;
-    static void remove_backlinks(const Table* origin_table, ObjKey origin_key, ColKey col,
-                                 const std::vector<ObjKey>& keys, CascadeState& state);
-    static void remove_backlinks(const Table* origin_table, ObjKey origin_key, ColKey col,
-                                 const std::vector<ObjLink>& links, CascadeState& state);
 
 private:
     friend class ClusterTree;
@@ -338,16 +326,9 @@ private:
     void do_move(size_t ndx, ColKey col, Cluster* to);
     template <class T>
     void do_erase(size_t ndx, ColKey col);
-    void do_remove_backlinks(ObjKey origin_key, ColKey col, const std::vector<ObjKey>& keys,
-                             CascadeState& state) const
-    {
-        remove_backlinks(get_owning_table(), origin_key, col, keys, state);
-    }
-    void do_remove_backlinks(ObjKey origin_key, ColKey col, const std::vector<ObjLink>& links,
-                             CascadeState& state) const
-    {
-        remove_backlinks(get_owning_table(), origin_key, col, links, state);
-    }
+    void remove_backlinks(ObjKey origin_key, ColKey col, const std::vector<ObjKey>& keys, CascadeState& state) const;
+    void remove_backlinks(ObjKey origin_key, ColKey col, const std::vector<ObjLink>& links,
+                          CascadeState& state) const;
     void do_erase_key(size_t ndx, ColKey col, CascadeState& state);
     void do_insert_key(size_t ndx, ColKey col, Mixed init_val, ObjKey origin_key);
     void do_insert_link(size_t ndx, ColKey col, Mixed init_val, ObjKey origin_key);
@@ -358,6 +339,6 @@ private:
     void verify(ref_type ref, size_t index, util::Optional<size_t>& sz) const;
 };
 
-} // namespace realm
+}
 
 #endif /* SRC_REALM_CLUSTER_HPP_ */

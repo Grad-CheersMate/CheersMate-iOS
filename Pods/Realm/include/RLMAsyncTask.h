@@ -41,18 +41,7 @@ RLM_SWIFT_SENDABLE RLM_FINAL // is internally thread-safe
  or the completion callback is called. Progress notifications are delivered on
  the main queue.
  */
-- (void)addProgressNotificationBlock:(RLMProgressNotificationBlock)block 
-    __attribute__((deprecated("Use addSyncProgressNotificationBlock instead", "addSyncProgressNotificationBlock")));
-
-/**
- Register a progress notification block.
-
- Each registered progress notification block is called whenever the sync
- subsystem has new progress data to report until the task is either cancelled
- or the completion callback is called. Progress notifications are delivered on
- the main queue.
- */
-- (void)addSyncProgressNotificationBlock:(RLMSyncProgressNotificationBlock)block;
+- (void)addProgressNotificationBlock:(RLMProgressNotificationBlock)block;
 
 /**
  Register a progress notification block which is called on the given queue.
@@ -63,19 +52,7 @@ RLM_SWIFT_SENDABLE RLM_FINAL // is internally thread-safe
  the supplied queue.
  */
 - (void)addProgressNotificationOnQueue:(dispatch_queue_t)queue
-                                 block:(RLMProgressNotificationBlock)block
-    __attribute__((deprecated("Use addSyncProgressNotificationOnQueue instead", "addSyncProgressNotificationOnQueue")));
-
-/**
- Register a progress notification block which is called on the given queue.
-
- Each registered progress notification block is called whenever the sync
- subsystem has new progress data to report until the task is either cancelled
- or the completion callback is called. Progress notifications are delivered on
- the supplied queue.
- */
-- (void)addSyncProgressNotificationOnQueue:(dispatch_queue_t)queue
-                                     block:(RLMSyncProgressNotificationBlock)block;
+                                 block:(RLMProgressNotificationBlock)block;
 
 /**
  Cancel the asynchronous open.

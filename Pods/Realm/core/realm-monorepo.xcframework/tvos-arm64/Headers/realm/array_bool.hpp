@@ -20,7 +20,6 @@
 #define REALM_ARRAY_BOOL_HPP
 
 #include <realm/array.hpp>
-#include <realm/mixed.hpp>
 
 namespace realm {
 
@@ -152,6 +151,6 @@ public:
         return (val == null_value) ? util::none : util::make_optional(val != 0);
     }
 };
-} // namespace realm
+}
 
 #endif /* REALM_ARRAY_BOOL_HPP */
