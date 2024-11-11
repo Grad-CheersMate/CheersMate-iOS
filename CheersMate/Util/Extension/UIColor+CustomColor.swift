@@ -16,9 +16,11 @@ extension UIColor {
     // MARK: - 앱 메인 색상
     static var mainColor: UIColor {
         return UIColor(red: 255.0 / 255.0, green: 69.0 / 255.0, blue: 69.0 / 255.0, alpha: 1) // 연핑크
-        // return UIColor(red: 97.0 / 255.0, green: 94.0 / 255.0, blue: 252.0 / 255.0, alpha: 1) // 보라
-        // return UIColor(red: 249.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0, alpha: 1) // 연핑크
-        // return UIColor(red: 24.0 / 255.0, green: 54.0 / 255.0, blue: 130.0 / 255.0, alpha: 1)
+    }
+    
+    // MARK: - 비활성화 색상
+    static var disableColor: UIColor {
+        return .systemGray4
     }
     
     // MARK: - 텍스트 색상

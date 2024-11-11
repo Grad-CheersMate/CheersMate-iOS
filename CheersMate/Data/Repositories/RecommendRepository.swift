@@ -22,11 +22,11 @@ public final class RecommendRepository: RecommendRepositoryProtocol {
     } // closed init
     
     // 사용자가 주류 추천 서비스에서 선택지의 모든 단계를 수행한 후 서버에 결과를 전달하기 위한 네트워크 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse> {
-        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion, preferredLiquor: preferredLiquor, preferredDegree: preferredDegree)
+    public func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse> {
+        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion, liquorVolume: liquorVolume)
     } // closed requestRecommendationsForSelection
     
-    public func readSelectionObject(type: SelectionType) -> [Selection] {
+    public func readSelectionObject(type: PageType) -> [Selection] {
         return realm.readSelectionObject(type: type)
     } // closed readSelectionObject
     

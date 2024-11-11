@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251DBE812CE2338100258E49 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE802CE2338100258E49 /* Haptics.swift */; };
+		251DBE832CE263E300258E49 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE822CE263E300258E49 /* DetailView.swift */; };
+		251DBE852CE2640300258E49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE842CE2640300258E49 /* DetailViewController.swift */; };
+		251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE862CE2640F00258E49 /* DetailViewModel.swift */; };
 		253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */; };
 		253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */; };
 		253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */; };
@@ -60,7 +64,7 @@
 		25CFEF1D2CD9528B00083081 /* RecommendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1C2CD9528B00083081 /* RecommendListView.swift */; };
 		25CFEF1F2CD9529B00083081 /* RecommendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */; };
 		25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */; };
-		25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* ListTableViewCell.swift */; };
+		25CFEF252CDA933D00083081 /* RecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* RecommendTableViewCell.swift */; };
 		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
 		25CFEF332CDE635100083081 /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF322CDE635100083081 /* cheersLottie.json */; };
@@ -91,6 +95,10 @@
 
 /* Begin PBXFileReference section */
 		1E2BDC45497AA9C950F7AF14 /* Pods_CheersMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheersMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		251DBE802CE2338100258E49 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		251DBE822CE263E300258E49 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		251DBE842CE2640300258E49 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		251DBE862CE2640F00258E49 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
@@ -148,7 +156,7 @@
 		25CFEF1C2CD9528B00083081 /* RecommendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListView.swift; sourceTree = "<group>"; };
 		25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListViewController.swift; sourceTree = "<group>"; };
 		25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		25CFEF242CDA933D00083081 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		25CFEF242CDA933D00083081 /* RecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTableViewCell.swift; sourceTree = "<group>"; };
 		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		25CFEF322CDE635100083081 /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
@@ -193,6 +201,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		251DBE7F2CE2336C00258E49 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				251DBE802CE2338100258E49 /* Haptics.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
 		253B1B642CC4037A00F7DBF9 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +347,7 @@
 		253B1B782CC40B5300F7DBF9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				251DBE7F2CE2336C00258E49 /* Haptics */,
 				259E82012CCD6E9600D63747 /* Error */,
 				253B1B7A2CC40CC800F7DBF9 /* Constant */,
 				253B1B792CC40C0900F7DBF9 /* Extension */,
@@ -545,6 +562,7 @@
 		259E81F32CCCE47600D63747 /* RecommendScene */ = {
 			isa = PBXGroup;
 			children = (
+				25CFEF232CDA931100083081 /* Cell */,
 				259E81F82CCCE6FA00D63747 /* View */,
 				259E81F72CCCE6F200D63747 /* ViewModel */,
 			);
@@ -563,6 +581,7 @@
 		259E81F52CCCE6D200D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				251DBE862CE2640F00258E49 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -570,6 +589,8 @@
 		259E81F62CCCE6EA00D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				251DBE822CE263E300258E49 /* DetailView.swift */,
+				251DBE842CE2640300258E49 /* DetailViewController.swift */,
 				259E81FB2CCCE74200D63747 /* SearchViewController.swift */,
 			);
 			path = View;
@@ -590,7 +611,6 @@
 				259E81FD2CCCE77100D63747 /* RecommendHomeViewController.swift */,
 				25CFEF1C2CD9528B00083081 /* RecommendListView.swift */,
 				25CFEF1E2CD9529B00083081 /* RecommendListViewController.swift */,
-				25CFEF232CDA931100083081 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -644,7 +664,7 @@
 		25CFEF232CDA931100083081 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				25CFEF242CDA933D00083081 /* ListTableViewCell.swift */,
+				25CFEF242CDA933D00083081 /* RecommendTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -926,6 +946,7 @@
 				25A955A42CDFCD72001213CB /* SelectionRealm.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
+				251DBE852CE2640300258E49 /* DetailViewController.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
@@ -934,9 +955,10 @@
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
-				25CFEF252CDA933D00083081 /* ListTableViewCell.swift in Sources */,
+				25CFEF252CDA933D00083081 /* RecommendTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
+				251DBE812CE2338100258E49 /* Haptics.swift in Sources */,
 				253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */,
 				25CFEF172CD8F27400083081 /* RecommendListViewModel.swift in Sources */,
 				25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */,
@@ -944,6 +966,7 @@
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
 				259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */,
 				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
+				251DBE832CE263E300258E49 /* DetailView.swift in Sources */,
 				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
@@ -967,6 +990,7 @@
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
+				251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */,
 				25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

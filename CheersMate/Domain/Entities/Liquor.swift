@@ -14,5 +14,7 @@ public struct LiquorResponse: Codable {
 
 // MARK: - 주류 엔티티
 public struct Liquor: Codable {
-    
+    let name: String
+    let volume: Int
+    let imageUrl: String
 }

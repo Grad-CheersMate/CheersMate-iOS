@@ -10,9 +10,9 @@ import RxSwift
 
 public protocol RecommendUseCaseProtocol {
     // 주류 추천 API
-    func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse>
+    func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse>
     // DB에서 감정, 동반자, 선호 주종, 선호 도수 선택지를 가져오기
-    func readSelectionObject(type: SelectionType) -> [Selection]
+    func readSelectionObject(type: PageType) -> [Selection]
     
 } // closed selectionUseCaseProtocol
 
@@ -25,12 +25,12 @@ public final class RecommendUseCase: RecommendUseCaseProtocol {
     } // closed init
     
     // AI 주류 추천 기능에서 사용자가 결과 확인 버튼을 클릭했을 때
-    public func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> RxSwift.Single<LiquorResponse> {
-        return repository.requestRecommendationsForSelection(emotion: emotion, companion: companion, preferredLiquor: preferredLiquor, preferredDegree: preferredDegree)
+    public func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> RxSwift.Single<LiquorResponse> {
+        return repository.requestRecommendationsForSelection(emotion: emotion, companion: companion, liquorVolume: liquorVolume)
     } // closed requestRecommendationsForSelection
     
     // AI 주류 추천 기능에서 화면에 따라 DB에서 셀 데이터를 가져오기
-    public func readSelectionObject(type: SelectionType) -> [Selection] {
+    public func readSelectionObject(type: PageType) -> [Selection] {
         return repository.readSelectionObject(type: type)
     } // closed readSelectionObject
     

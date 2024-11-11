@@ -157,8 +157,7 @@ final public class SignUpView: UIView {
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 12
-        //bt.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.7843137255, blue: 0.8, alpha: 1)
-        bt.backgroundColor = .mainColor
+        bt.backgroundColor = .disableColor
         return bt
     }()
     

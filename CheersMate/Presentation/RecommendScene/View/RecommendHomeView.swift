@@ -10,8 +10,8 @@ import SnapKit
 import Lottie
 
 final public class RecommendHomeView: UIView {
+    
     // MARK: - 프로퍼티 설정
-
     // 사용자 안내 메인 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
@@ -35,6 +35,7 @@ final public class RecommendHomeView: UIView {
         return lb
     }()
     
+    // 건배 애니메이션
     public let cheersAnimationView: LottieAnimationView = {
         let animationView = LottieAnimationView(name: "cheersLottie")
         animationView.loopMode = .loop // 애니메이션 무한 반복
@@ -54,18 +55,21 @@ final public class RecommendHomeView: UIView {
         return bt
     }()
 
-    
-    // MARK: - 초기화
+    // MARK: - 오버라이드 함수 설정
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayout()
-    }
+    } // closed init
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
+    } //closed required init
     
+} // closed RecommendView
+
+// MARK: - 초기 UI와 Layout 설정
+extension RecommendHomeView {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
@@ -103,7 +107,6 @@ final public class RecommendHomeView: UIView {
             make.height.equalTo(50)
         }
         
-        
     } // closed setupLayout
     
-} // closed RecommendView
+} // closed extension
