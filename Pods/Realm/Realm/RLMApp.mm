@@ -18,24 +18,15 @@
 
 #import "RLMApp_Private.hpp"
 
-#import <sys/utsname.h>
-#if __has_include(<UIKit/UIDevice.h>)
-#import <UIKit/UIDevice.h>
-#define REALM_UIDEVICE_AVAILABLE
-#endif
-
-#import "RLMAnalytics.hpp"
 #import "RLMBSON_Private.hpp"
 #import "RLMCredentials_Private.hpp"
 #import "RLMEmailPasswordAuth.h"
 #import "RLMLogger.h"
-#import "RLMProviderClient_Private.hpp"
 #import "RLMPushClient_Private.hpp"
 #import "RLMSyncManager_Private.hpp"
 #import "RLMUser_Private.hpp"
 #import "RLMUtil.hpp"
 
-#import <realm/object-store/sync/app_user.hpp>
 #import <realm/object-store/sync/sync_manager.hpp>
 #import <realm/sync/config.hpp>
 
@@ -96,17 +87,23 @@ namespace {
 
 #pragma mark RLMAppConfiguration
 @implementation RLMAppConfiguration {
-    realm::app::AppConfig _config;
+    realm::app::App::Config _config;
+}
+
+- (instancetype)initWithConfig:(const realm::app::App::Config &)config {
+    if (self = [super init]) {
+        _config = config;
+        return self;
+    }
+
+    return nil;
 }
 
 - (instancetype)init {
-    if (self = [super init]) {
-        self.enableSessionMultiplexing = true;
-        self.encryptMetadata = !getenv("REALM_DISABLE_METADATA_ENCRYPTION") && !RLMIsRunningInPlayground();
-        RLMNSStringToStdString(_config.base_file_path, RLMDefaultDirectoryForBundleIdentifier(nil));
-        configureSyncConnectionParameters(_config);
-    }
-    return self;
+    return [self initWithBaseURL:nil
+                       transport:nil
+                    localAppName:nil
+                 localAppVersion:nil];
 }
 
 - (instancetype)initWithBaseURL:(nullable NSString *)baseURL
@@ -125,101 +122,47 @@ namespace {
                    localAppName:(nullable NSString *)localAppName
                 localAppVersion:(nullable NSString *)localAppVersion
         defaultRequestTimeoutMS:(NSUInteger)defaultRequestTimeoutMS {
-    if (self = [self init]) {
+    if (self = [super init]) {
         self.baseURL = baseURL;
         self.transport = transport;
         self.localAppName = localAppName;
         self.localAppVersion = localAppVersion;
         self.defaultRequestTimeoutMS = defaultRequestTimeoutMS;
+
+        _config.device_info.sdk = "Realm Swift";
+
+        // Platform info isn't available when running via `swift test`.
+        // Non-Xcode SPM builds can't build for anything but macOS, so this is
+        // probably unimportant for now and we can just report "unknown"
+        auto processInfo = [NSProcessInfo processInfo];
+        RLMNSStringToStdString(_config.device_info.platform_version,
+                               [processInfo operatingSystemVersionString] ?: @"unknown");
+        RLMNSStringToStdString(_config.device_info.sdk_version, REALM_COCOA_VERSION);
+        return self;
     }
-    return self;
+    return nil;
 }
 
-- (instancetype)initWithBaseURL:(nullable NSString *)baseURL
-                      transport:(nullable id<RLMNetworkTransport>)transport {
-    return [self initWithBaseURL:baseURL
-                       transport:transport
-         defaultRequestTimeoutMS:60000];
-}
-
-- (instancetype)initWithBaseURL:(nullable NSString *)baseURL
-                      transport:(nullable id<RLMNetworkTransport>)transport
-        defaultRequestTimeoutMS:(NSUInteger)defaultRequestTimeoutMS {
-    if (self = [self init]) {
-        self.baseURL = baseURL;
-        self.transport = transport;
-        self.defaultRequestTimeoutMS = defaultRequestTimeoutMS;
-    }
-    return self;
-}
-
-static void configureSyncConnectionParameters(realm::app::AppConfig& config) {
-    // Anonymized BundleId
-    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
-    NSData *bundleIdData = [bundleId dataUsingEncoding:NSUTF8StringEncoding];
-    RLMNSStringToStdString(config.device_info.bundle_id, RLMHashBase16Data(bundleIdData.bytes, bundleIdData.length));
-
-    config.device_info.sdk = "Realm Swift";
-    RLMNSStringToStdString(config.device_info.sdk_version, REALM_COCOA_VERSION);
-
-    // Platform info isn't available when running via `swift test`.
-    // Non-Xcode SPM builds can't build for anything but macOS, so this is
-    // probably unimportant for now and we can just report "unknown"
-    auto processInfo = [NSProcessInfo processInfo];
-    RLMNSStringToStdString(config.device_info.platform_version,
-                           [processInfo operatingSystemVersionString] ?: @"unknown");
-
-    RLMNSStringToStdString(config.device_info.framework_version, @__clang_version__);
-
-#ifdef REALM_UIDEVICE_AVAILABLE
-    RLMNSStringToStdString(config.device_info.device_name, [UIDevice currentDevice].model);
-#endif
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    config.device_info.device_version = systemInfo.machine;
-}
-
-- (const realm::app::AppConfig&)config {
-    if (!_config.transport) {
-        self.transport = nil;
-    }
+- (realm::app::App::Config&)config {
     return _config;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-    RLMAppConfiguration *copy = [[RLMAppConfiguration alloc] init];
-    copy->_config = _config;
-    return copy;
-}
-
-- (NSString *)appId {
-    return RLMStringViewToNSString(_config.app_id);
-}
-
 - (void)setAppId:(NSString *)appId {
-    if ([appId length] == 0) {
-        @throw RLMException(@"AppId cannot be an empty string");
-    }
-
     RLMNSStringToStdString(_config.app_id, appId);
 }
 
-static NSString *getOptionalString(const std::optional<std::string>& str) {
-    return str ? RLMStringViewToNSString(*str) : nil;
+- (NSString *)baseURL {
+    if (_config.base_url) {
+        return @(_config.base_url->c_str());
+    }
+
+    return nil;
 }
 
 static void setOptionalString(std::optional<std::string>& dst, NSString *src) {
-    if (src.length == 0) {
-        dst.reset();
-    }
-    else {
-        dst.emplace();
-        RLMNSStringToStdString(*dst, src);
-    }
-}
-
-- (NSString *)baseURL {
-    return getOptionalString(_config.base_url) ?: RLMStringViewToNSString(app::App::default_base_url());
+    std::string tmp;
+    RLMNSStringToStdString(tmp, src);
+    dst = tmp.empty() ? util::none : std::optional(std::move(tmp));
 }
 
 - (void)setBaseURL:(nullable NSString *)baseURL {
@@ -237,45 +180,36 @@ static void setOptionalString(std::optional<std::string>& dst, NSString *src) {
     _config.transport = std::make_shared<CocoaNetworkTransport>(transport);
 }
 
+- (NSString *)localAppName {
+    if (_config.local_app_name) {
+        return @((_config.base_url)->c_str());
+    }
+
+    return nil;
+}
+
+- (void)setLocalAppName:(nullable NSString *)localAppName {
+    setOptionalString(_config.local_app_name, localAppName);
+}
+
+- (NSString *)localAppVersion {
+    if (_config.local_app_version) {
+        return @(_config.base_url->c_str());
+    }
+
+    return nil;
+}
+
+- (void)setLocalAppVersion:(nullable NSString *)localAppVersion {
+    setOptionalString(_config.local_app_version, localAppVersion);
+}
+
 - (NSUInteger)defaultRequestTimeoutMS {
     return _config.default_request_timeout_ms.value_or(60000U);
 }
 
 - (void)setDefaultRequestTimeoutMS:(NSUInteger)defaultRequestTimeoutMS {
     _config.default_request_timeout_ms = (uint64_t)defaultRequestTimeoutMS;
-}
-
-- (BOOL)enableSessionMultiplexing {
-    return _config.sync_client_config.multiplex_sessions;
-}
-
-- (void)setEnableSessionMultiplexing:(BOOL)enableSessionMultiplexing {
-    _config.sync_client_config.multiplex_sessions = enableSessionMultiplexing;
-}
-
-- (BOOL)encryptMetadata {
-    return _config.metadata_mode == app::AppConfig::MetadataMode::Encryption;
-}
-
-- (void)setEncryptMetadata:(BOOL)encryptMetadata {
-    _config.metadata_mode = encryptMetadata ? app::AppConfig::MetadataMode::Encryption
-                                            : app::AppConfig::MetadataMode::NoEncryption;
-}
-
-- (NSURL *)rootDirectory {
-    return [NSURL fileURLWithPath:RLMStringViewToNSString(_config.base_file_path)];
-}
-
-- (void)setRootDirectory:(NSURL *)rootDirectory {
-    RLMNSStringToStdString(_config.base_file_path, rootDirectory.path);
-}
-
-- (RLMSyncTimeoutOptions *)syncTimeouts {
-    return [[RLMSyncTimeoutOptions alloc] initWithOptions:_config.sync_client_config.timeouts];
-}
-
-- (void)setSyncTimeouts:(RLMSyncTimeoutOptions *)syncTimeouts {
-    _config.sync_client_config.timeouts = syncTimeouts->_options;
 }
 
 @end
@@ -318,72 +252,91 @@ static void setOptionalString(std::optional<std::string>& dst, NSString *src) {
     [RLMLogger class];
 }
 
-- (instancetype)initWithApp:(std::shared_ptr<realm::app::App>&&)app config:(RLMAppConfiguration *)config {
+- (instancetype)initWithApp:(std::shared_ptr<realm::app::App>)app {
     if (self = [super init]) {
-        _app = std::move(app);
-        _configuration = config;
+        _configuration = [[RLMAppConfiguration alloc] initWithConfig:app->config()];
+        _app = app;
         _syncManager = [[RLMSyncManager alloc] initWithSyncManager:_app->sync_manager()];
+        return self;
     }
-    return self;
+
+    return nil;
 }
 
-- (instancetype)initWithConfiguration:(RLMAppConfiguration *)configuration {
+- (instancetype)initWithId:(NSString *)appId
+             configuration:(RLMAppConfiguration *)configuration
+             rootDirectory:(NSURL *)rootDirectory {
+    if ([appId length] == 0) {
+        @throw RLMException(@"AppId cannot be an empty string");
+    }
+
     if (self = [super init]) {
-        _app = RLMTranslateError([&] {
-            return app::App::get_app(app::App::CacheMode::Disabled, configuration.config);
-        });
+        if (!configuration) {
+            configuration = [[RLMAppConfiguration alloc] initWithBaseURL:nil
+                                                               transport:nil
+                                                            localAppName:nil
+                                                         localAppVersion:nil];
+        }
         _configuration = configuration;
+        [_configuration setAppId:appId];
+
+        _app = RLMTranslateError([&] {
+            return app::App::get_shared_app(configuration.config,
+                                            [RLMSyncManager configurationWithRootDirectory:rootDirectory appId:appId]);
+        });
+
         _syncManager = [[RLMSyncManager alloc] initWithSyncManager:_app->sync_manager()];
+        return self;
     }
-    return self;
+    return nil;
 }
 
-static RLMUnfairMutex s_appMutex;
 static NSMutableDictionary *s_apps = [NSMutableDictionary new];
+static std::mutex& s_appMutex = *new std::mutex();
 
 + (NSArray *)allApps {
-    std::lock_guard lock(s_appMutex);
+    std::lock_guard<std::mutex> lock(s_appMutex);
     return s_apps.allValues;
 }
 
 + (void)resetAppCache {
-    std::lock_guard lock(s_appMutex);
+    std::lock_guard<std::mutex> lock(s_appMutex);
     [s_apps removeAllObjects];
     app::App::clear_cached_apps();
 }
 
-+ (instancetype)appWithConfiguration:(RLMAppConfiguration *)configuration {
-    std::lock_guard lock(s_appMutex);
-    NSString *appId = configuration.appId;
++ (instancetype)appWithId:(NSString *)appId
+            configuration:(RLMAppConfiguration *)configuration
+            rootDirectory:(NSURL *)rootDirectory {
+    std::lock_guard<std::mutex> lock(s_appMutex);
     if (RLMApp *app = s_apps[appId]) {
         return app;
     }
-    return s_apps[appId] = [[RLMApp alloc] initWithConfiguration:configuration.copy];
+
+    RLMApp *app = [[RLMApp alloc] initWithId:appId configuration:configuration rootDirectory:rootDirectory];
+    s_apps[appId] = app;
+    return app;
+}
+
++ (instancetype)uncachedAppWithId:(NSString *)appId
+                    configuration:(RLMAppConfiguration *)configuration
+                    rootDirectory:(NSURL *)rootDirectory {
+    REALM_ASSERT(appId.length);
+
+    [configuration setAppId:appId];
+    auto app = RLMTranslateError([&] {
+        return app::App::get_uncached_app(configuration.config,
+                                          [RLMSyncManager configurationWithRootDirectory:rootDirectory appId:appId]);
+    });
+    return [[RLMApp alloc] initWithApp:app];
 }
 
 + (instancetype)appWithId:(NSString *)appId configuration:(RLMAppConfiguration *)configuration {
-    std::lock_guard lock(s_appMutex);
-    if (RLMApp *app = s_apps[appId]) {
-        return app;
-    }
-    configuration = configuration.copy;
-    configuration.appId = appId;
-    return s_apps[appId] = [[RLMApp alloc] initWithConfiguration:configuration];
+    return [self appWithId:appId configuration:configuration rootDirectory:nil];
 }
 
 + (instancetype)appWithId:(NSString *)appId {
-    std::lock_guard lock(s_appMutex);
-    if (RLMApp *app = s_apps[appId]) {
-        return app;
-    }
-    auto config = [[RLMAppConfiguration alloc] init];
-    config.appId = appId;
-    return s_apps[appId] = [[RLMApp alloc] initWithConfiguration:config];
-}
-
-+ (RLMApp *_Nullable)cachedAppWithId:(NSString *)appId {
-    std::lock_guard lock(s_appMutex);
-    return s_apps[appId];
+    return [self appWithId:appId configuration:nil];
 }
 
 - (NSString *)appId {
@@ -396,51 +349,32 @@ static NSMutableDictionary *s_apps = [NSMutableDictionary new];
 
 - (NSDictionary<NSString *, RLMUser *> *)allUsers {
     NSMutableDictionary *buffer = [NSMutableDictionary new];
-    for (auto&& user : _app->all_users()) {
-        NSString *user_id = @(user->user_id().c_str());
-        buffer[user_id] = [[RLMUser alloc] initWithUser:std::move(user)];
+    for (auto&& user : _app->sync_manager()->all_users()) {
+        NSString *identity = @(user->identity().c_str());
+        buffer[identity] = [[RLMUser alloc] initWithUser:std::move(user) app:self];
     }
     return buffer;
 }
 
 - (RLMUser *)currentUser {
-    if (auto user = _app->current_user()) {
-        return [[RLMUser alloc] initWithUser:user];
+    if (auto user = _app->sync_manager()->get_current_user()) {
+        return [[RLMUser alloc] initWithUser:user app:self];
     }
     return nil;
 }
 
 - (RLMEmailPasswordAuth *)emailPasswordAuth {
-    return [[RLMEmailPasswordAuth alloc] initWithApp:_app];
-}
-
-- (NSString *)baseUrl {
-    return getOptionalString(_app->get_base_url()) ?: RLMStringViewToNSString(_app->default_base_url());
-}
-
-- (void)updateBaseURL:(NSString * _Nullable)baseURL completion:(nonnull RLMOptionalErrorBlock)completionHandler {
-    auto completion = ^(std::optional<app::AppError> error) {
-        if (error) {
-            return completionHandler(makeError(*error));
-        }
-
-        completionHandler(nil);
-    };
-    return RLMTranslateError([&] {
-        NSString *url = (baseURL ?: @"");
-        NSString *newUrl = [url stringByReplacingOccurrencesOfString:@"/" withString:@"" options:0 range:NSMakeRange(url.length-1, 1)];
-        return _app->update_base_url(newUrl.UTF8String, completion);
-    });
+    return [[RLMEmailPasswordAuth alloc] initWithApp: self];
 }
 
 - (void)loginWithCredential:(RLMCredentials *)credentials
                  completion:(RLMUserCompletionBlock)completionHandler {
-    auto completion = ^(std::shared_ptr<app::User> user, std::optional<app::AppError> error) {
+    auto completion = ^(std::shared_ptr<SyncUser> user, std::optional<app::AppError> error) {
         if (error) {
             return completionHandler(nil, makeError(*error));
         }
 
-        completionHandler([[RLMUser alloc] initWithUser:user], nil);
+        completionHandler([[RLMUser alloc] initWithUser:user app:self], nil);
     };
     return RLMTranslateError([&] {
         return _app->log_in_with_credentials(credentials.appCredentials, completion);
@@ -448,10 +382,9 @@ static NSMutableDictionary *s_apps = [NSMutableDictionary new];
 }
 
 - (RLMUser *)switchToUser:(RLMUser *)syncUser {
-    RLMTranslateError([&] {
-        _app->switch_user(syncUser.user);
+    return RLMTranslateError([&] {
+        return [[RLMUser alloc] initWithUser:_app->switch_user(syncUser._syncUser) app:self];
     });
-    return syncUser;
 }
 
 - (RLMPushClient *)pushClientWithServiceName:(NSString *)serviceName {

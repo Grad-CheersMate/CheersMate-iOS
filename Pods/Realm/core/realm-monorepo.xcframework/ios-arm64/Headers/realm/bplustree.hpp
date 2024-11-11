@@ -144,11 +144,6 @@ public:
         return bool(m_root);
     }
 
-    void detach()
-    {
-        m_root = nullptr;
-    }
-
     bool get_context_flag() const noexcept
     {
         return m_root->get_context_flag();
@@ -163,8 +158,6 @@ public:
     {
         return m_size;
     }
-
-    static size_t size_from_header(const char* header);
 
     bool is_empty() const
     {
@@ -190,11 +183,16 @@ public:
 
     bool init_from_parent()
     {
-        if (ref_type ref = m_parent->get_child_ref(m_ndx_in_parent)) {
-            init_from_ref(ref);
-            return true;
+        ref_type ref = m_parent->get_child_ref(m_ndx_in_parent);
+        if (!ref) {
+            return false;
         }
-        return false;
+        auto new_root = create_root_from_ref(ref);
+        new_root->bp_set_parent(m_parent, m_ndx_in_parent);
+        m_root = std::move(new_root);
+        invalidate_leaf_cache();
+        m_size = m_root->get_tree_size();
+        return true;
     }
 
     void set_parent(ArrayParent* parent, size_t ndx_in_parent)
@@ -207,7 +205,6 @@ public:
 
     virtual void erase(size_t) = 0;
     virtual void clear() = 0;
-    virtual void swap(size_t, size_t) = 0;
 
     void create();
     void destroy();
@@ -417,7 +414,7 @@ public:
         m_root->bptree_access(n, func);
     }
 
-    void swap(size_t ndx1, size_t ndx2) override
+    void swap(size_t ndx1, size_t ndx2)
     {
         if constexpr (std::is_same_v<T, StringData> || std::is_same_v<T, BinaryData>) {
             struct SwapBuffer {
@@ -549,11 +546,21 @@ public:
         });
     }
 
-    void split_if_needed()
+
+    void dump_values(std::ostream& o, int level) const
     {
-        while (m_root->get_node_size() > REALM_MAX_BPNODE_SIZE) {
-            split_root();
-        }
+        std::string indent(" ", level * 2);
+
+        auto func = [&o, indent](BPlusTreeNode* node, size_t) {
+            LeafNode* leaf = static_cast<LeafNode*>(node);
+            size_t sz = leaf->size();
+            for (size_t i = 0; i < sz; i++) {
+                o << indent << leaf->get(i) << std::endl;
+            }
+            return IteratorControl::AdvanceToNext;
+        };
+
+        m_root->bptree_traverse(func);
     }
 
 protected:
@@ -594,8 +601,6 @@ protected:
 
     template <class R>
     friend R bptree_sum(const BPlusTree<T>& tree);
-
-    void split_root();
 };
 
 template <class T>

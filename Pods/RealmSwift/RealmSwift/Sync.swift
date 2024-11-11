@@ -80,57 +80,6 @@ public typealias SyncManager = RLMSyncManager
   - see: `RLMSyncTimeoutOptions`
  */
 public typealias SyncTimeoutOptions = RLMSyncTimeoutOptions
-public extension SyncTimeoutOptions {
-    /**
-    Memberwise convenience initializer for SyncTimeoutOptions. All values are
-    in milliseconds, and use a default value if `nil`.
-
-    - Parameters:
-      - connectTimeout: The maximum time to allow for a connection to become
-        fully established. This includes the time to resolve the network
-        address, the TCP connect operation, the SSL handshake, and the
-        WebSocket handshake.
-      - connectionLingerTime: If session multiplexing is enabled, how long to
-        keep connections open while there are no active session.
-      - pingKeepalivePeriod: How long to wait between each ping message sent to
-        the server. The client periodically sends ping messages to the server
-        to check if the connection is still alive. Shorter periods make
-        connection state change notifications more responsive at the cost of
-        battery life (as the antenna will have to wake up more often).
-      - pongKeepaliveTimeout: How long to wait for the server to respond to a
-        ping message. Shorter values make connection state change notifications
-        more responsive, but increase the chance of spurious disconnections.
-      - fastReconnectLimit: When a client first connects to the server, it
-        downloads all data from the server before it begins to upload local
-        changes. This typically reduces the total amount of merging needed and
-        gets the local client into a useful state faster. If a disconnect and
-        reconnect happens within the time span of the fast reconnect limit,
-        this is skipped and the session behaves as if it were continuously
-        connected.
-     */
-    convenience init(connectTimeout: UInt? = nil,
-                     connectionLingerTime: UInt? = nil,
-                     pingKeepalivePeriod: UInt? = nil,
-                     pongKeepaliveTimeout: UInt? = nil,
-                     fastReconnectLimit: UInt? = nil) {
-        self.init()
-        if let connectTimeout {
-            self.connectTimeout = connectTimeout
-        }
-        if let connectionLingerTime {
-            self.connectionLingerTime = connectionLingerTime
-        }
-        if let pingKeepalivePeriod {
-            self.pingKeepalivePeriod = pingKeepalivePeriod
-        }
-        if let pongKeepaliveTimeout {
-            self.pongKeepaliveTimeout = pongKeepaliveTimeout
-        }
-        if let fastReconnectLimit {
-            self.fastReconnectLimit = fastReconnectLimit
-        }
-    }
-}
 
 /**
  A session object which represents communication between the client and server for a specific
@@ -274,6 +223,7 @@ extension AppError {
 
  - see: `RLMSyncLogLevel`
  */
+@available(*, deprecated)
 public typealias SyncLogLevel = RLMSyncLogLevel
 
 /**
@@ -515,14 +465,6 @@ public typealias Provider = RLMIdentityProvider
     case manual(errorHandler: ErrorReportingBlock? = nil)
 }
 
-
-/**
- A configuration controlling how the initial subscriptions are populated when a Realm file is first opened.
-
- - see: `RLMInitialSubscriptionsConfiguration`
- */
-public typealias InitialSubscriptionsConfiguration = RLMInitialSubscriptionsConfiguration
-
 /**
  A `SyncConfiguration` represents configuration parameters for Realms intended to sync with
  Atlas App Services.
@@ -575,13 +517,6 @@ public typealias InitialSubscriptionsConfiguration = RLMInitialSubscriptionsConf
      */
     public var cancelAsyncOpenOnNonFatalErrors: Bool {
         config.cancelAsyncOpenOnNonFatalErrors
-    }
-
-    /**
-     A configuration that controls how initial subscriptions are populated when the Realm is opened.
-     */
-    public var initialSubscriptions: InitialSubscriptionsConfiguration? {
-        config.initialSubscriptions
     }
 
     @Unchecked internal var config: RLMSyncConfiguration
@@ -816,7 +751,7 @@ public extension SyncSession {
      Progress notification blocks can be registered on sessions if your app wishes to be informed
      how many bytes have been uploaded or downloaded, for example to show progress indicator UIs.
      */
-    enum ProgressDirection: Sendable {
+    enum ProgressDirection {
         /// For monitoring upload progress.
         case upload
         /// For monitoring download progress.
@@ -829,7 +764,7 @@ public extension SyncSession {
      Progress notification blocks can be registered on sessions if your app wishes to be informed
      how many bytes have been uploaded or downloaded, for example to show progress indicator UIs.
      */
-    enum ProgressMode: Sendable {
+    enum ProgressMode {
         /**
          The block will be called forever, or until it is unregistered by calling
          `ProgressNotificationToken.invalidate()`.
@@ -859,15 +794,11 @@ public extension SyncSession {
     typealias ProgressNotificationToken = RLMProgressNotificationToken
 
     /**
-     A struct encapsulating progress information.
+     A struct encapsulating progress information, as well as useful helper methods.
      */
     struct Progress: Sendable {
-        private let _transferredBytes: Int // NEXT-MAJOR remove storage fields and deprecated props
-        private let _transferrableBytes: Int // NEXT-MAJOR remove storage fields and deprecated props
-
         /// The number of bytes that have been transferred.
-        @available(*, deprecated, message: "Use progressEstimate")
-        public var transferredBytes: Int { return _transferredBytes }
+        public let transferredBytes: Int
 
         /**
          The total number of transferrable bytes (bytes that have been transferred,
@@ -878,36 +809,27 @@ public extension SyncSession {
          If the notification block is tracking uploads, this number represents the size of the
          changesets representing the local changes on this client.
          */
-        @available(*, deprecated, message: "Use progressEstimate")
-        public var transferrableBytes: Int { return _transferrableBytes }
-
-        /**
-         A value between 0.0 and 1.0 representing the estimated transfer progress. This value is precise for
-         uploads, but will be based on historical data and certain heuristics applied by the server for downloads.
-         
-         Whenever the progress reporting mode is `forCurrentlyOutstandingWork`, that value
-         will monotonically increase until it reaches 1.0. If the progress mode is `reportIndefinitely`, the
-         value may either increase or decrease as new data needs to be transferred.
-         */
-        public let progressEstimate: Double
+        public let transferrableBytes: Int
 
         /// The fraction of bytes transferred out of all transferrable bytes. If this value is 1,
         /// no bytes are waiting to be transferred (either all bytes have already been transferred,
         /// or there are no bytes to be transferred in the first place).
-        @available(*, deprecated, message: "Use progressEstimate", renamed: "progressEstimate")
         public var fractionTransferred: Double {
-            return progressEstimate
+            if transferrableBytes == 0 {
+                return 1
+            }
+            let percentage = Double(transferredBytes) / Double(transferrableBytes)
+            return percentage > 1 ? 1 : percentage
         }
 
-        /// Whether all pending data has already been transferred.
+        /// Whether all pending bytes have already been transferred.
         public var isTransferComplete: Bool {
-            return progressEstimate == 1.0
+            return transferredBytes >= transferrableBytes
         }
 
-        internal init(transferred: UInt, transferrable: UInt, estimate: Double) {
-            _transferredBytes = Int(transferred)
-            _transferrableBytes = Int(transferrable)
-            progressEstimate = estimate
+        internal init(transferred: UInt, transferrable: UInt) {
+            transferredBytes = Int(transferred)
+            transferrableBytes = Int(transferrable)
         }
     }
 
@@ -944,55 +866,11 @@ public extension SyncSession {
     func addProgressNotification(for direction: ProgressDirection,
                                  mode: ProgressMode,
                                  block: @Sendable @escaping (Progress) -> Void) -> ProgressNotificationToken? {
-        return __addSyncProgressNotification(for: (direction == .upload ? .upload : .download),
-                                             mode: (mode == .reportIndefinitely
-                                                    ? .reportIndefinitely
-                                                    : .forCurrentlyOutstandingWork)) { progress in
-            block(Progress(transferred: progress.transferredBytes, transferrable: progress.transferrableBytes, estimate: progress.progressEstimate))
-        }
-    }
-
-    /**
-     Wait for pending uploads or downloads to complete or the session to expire, and dispatch the callback onto the specified queue.
-     - parameter direction: The transfer direction (upload or download) to wait for.
-     - parameter queue:     The queue to dispatch the callback onto.
-     - parameter block:     The block to invoke when waiting is complete.
-
-     - see: `ProgressDirection`
-     - warning: This method is not meant to be used except in special cases, notably for testing.
-     */
-    func wait(for direction: ProgressDirection,
-              queue: DispatchQueue? = nil,
-              block: @Sendable @escaping (Error?) -> Void) {
-        switch direction {
-        case .upload:
-            __waitForUploadCompletion(on: queue) { error in
-                block(error)
-            }
-        case .download:
-            __waitForDownloadCompletion(on: queue) { error in
-                block(error)
-            }
-        }
-    }
-
-    /**
-     Wait for pending uploads or downloads to complete or the session to expire.
-     - parameter direction: The transfer direction (upload or download) to wait for.
-
-     - see: `ProgressDirection`
-     - warning: This method is not meant to be used except in special cases, notably for testing.
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func wait(for direction: ProgressDirection) async throws {
-        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            wait(for: direction) { error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume()
-                }
-            }
+        return __addProgressNotification(for: (direction == .upload ? .upload : .download),
+                                         mode: (mode == .reportIndefinitely
+                                            ? .reportIndefinitely
+                                            : .forCurrentlyOutstandingWork)) { transferred, transferrable in
+                                                block(Progress(transferred: transferred, transferrable: transferrable))
         }
     }
 }

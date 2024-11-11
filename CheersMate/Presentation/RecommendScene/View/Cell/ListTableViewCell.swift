@@ -20,15 +20,12 @@ final public class ListTableViewCell: UITableViewCell {
         return v
     }()
     
-    // 이모지 레이블
-    private let emojiLabel: UILabel = {
-        let lb = UILabel()
-        lb.textColor = UIColor.textColor
-        lb.text = "😀"
-        lb.font = UIFont.gmarketSans(size: 28, family: .Medium)
-        lb.textAlignment = .left
-        lb.numberOfLines = 0
-        return lb
+    // 이미지 뷰
+    private let mainImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        return iv
     }()
     
     // 설명 레이블
@@ -68,7 +65,7 @@ final public class ListTableViewCell: UITableViewCell {
     private func setupUI() {
         contentView.addSubview(containerView)
         
-        [emojiLabel, descLabel, checkBoxImageView].forEach { containerView.addSubview($0) }
+        [mainImageView, descLabel, checkBoxImageView].forEach { containerView.addSubview($0) }
     } // closed setupUI
     
     public override func layoutSubviews() {
@@ -83,12 +80,13 @@ final public class ListTableViewCell: UITableViewCell {
             make.edges.equalToSuperview().inset(10)
         }
         
-        emojiLabel.snp.makeConstraints { make in
+        mainImageView.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview().inset(20)
+            make.width.equalTo(mainImageView.snp.height)
         }
         
         descLabel.snp.makeConstraints { make in
-            make.leading.equalTo(emojiLabel.snp.trailing).offset(30)
+            make.leading.equalTo(mainImageView.snp.trailing).offset(30)
             make.trailing.equalTo(checkBoxImageView.snp.leading)
             make.top.bottom.equalToSuperview().inset(5)
         }
@@ -105,8 +103,8 @@ final public class ListTableViewCell: UITableViewCell {
     
     // MARK: - 기타 함수 설정
     // 컨피규레이션
-    public func configure(emoji: String, desc: String, isChecked: Bool = false) {
-        emojiLabel.text = emoji
+    public func configure(imageName: String, desc: String, isChecked: Bool = false) {
+        mainImageView.image = UIImage(named: imageName)
         descLabel.text = desc
         checkBoxImageView.isHidden = !isChecked
     } // closed configure
@@ -121,10 +119,9 @@ final public class ListTableViewCell: UITableViewCell {
     } // closed setupShadow
     
     public func itemSelected() {
-        // containerView.layer.borderColor = UIColor.mainColor.cgColor
         descLabel.textColor = .mainColor
         checkBoxImageView.isHidden.toggle()
-    }
+    } // closed itemSelected
     
     
 } // clsoed ListTableViewCell

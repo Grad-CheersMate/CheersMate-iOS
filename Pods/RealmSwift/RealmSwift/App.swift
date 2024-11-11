@@ -26,59 +26,8 @@ import Realm.Private
 An object representing the Realm App configuration
 
 - see: `RLMAppConfiguration`
-
-- note: `AppConfiguration` options cannot be modified once the `App` using it
-         is created. App's configuration values are cached when the App is created so any modifications after it
-         will not have any effect.
 */
 public typealias AppConfiguration = RLMAppConfiguration
-public extension AppConfiguration {
-    /// :nodoc:
-    @available(*, deprecated, message: "localAppName and localAppVersion are not used for anything and should not be supplied")
-    convenience init(baseURL: String? = nil, transport: RLMNetworkTransport? = nil,
-                     localAppName: String?, localAppVersion: String?,
-                     defaultRequestTimeoutMS: UInt? = nil, enableSessionMultiplexing: Bool? = nil,
-                     syncTimeouts: SyncTimeoutOptions? = nil) {
-        self.init(baseURL: baseURL, transport: transport, localAppName: localAppName, localAppVersion: localAppVersion)
-        if let defaultRequestTimeoutMS {
-            self.defaultRequestTimeoutMS = defaultRequestTimeoutMS
-        }
-        if let enableSessionMultiplexing {
-            self.enableSessionMultiplexing = enableSessionMultiplexing
-        }
-        if let syncTimeouts {
-            self.syncTimeouts = syncTimeouts
-        }
-    }
-
-    /**
-     Memberwise convenience initializer
-
-     All fields have sensible defaults if not set and typically do not need to be customized.
-
-     - Parameters:
-       - baseURL: A custom Atlas App Services URL for when using a non-standard deployment
-       - transport: A network transport used for calls to the server.
-       - defaultRequestTimeoutMS: The default timeout for non-sync HTTP requests made to the server.
-       - enableSessionMultiplexing: Use a single network connection per sync user rather than one per sync Realm.
-       - syncTimeouts: Timeout options for sync connections.
-     */
-    @_disfavoredOverload // this is ambiguous with the base init if nil is explicitly passed
-    convenience init(baseURL: String? = nil, transport: RLMNetworkTransport? = nil,
-                     defaultRequestTimeoutMS: UInt? = nil, enableSessionMultiplexing: Bool? = nil,
-                     syncTimeouts: SyncTimeoutOptions? = nil) {
-        self.init(baseURL: baseURL, transport: transport)
-        if let defaultRequestTimeoutMS {
-            self.defaultRequestTimeoutMS = defaultRequestTimeoutMS
-        }
-        if let enableSessionMultiplexing {
-            self.enableSessionMultiplexing = enableSessionMultiplexing
-        }
-        if let syncTimeouts {
-            self.syncTimeouts = syncTimeouts
-        }
-    }
-}
 
 /**
 An object representing a client which performs network calls on
@@ -221,18 +170,6 @@ public typealias App = RLMApp
 
 public extension App {
     /**
-    Updates the base url used by Atlas device sync, in case the need to roam between servers (cloud and/or edge server).
-     - parameter url: The new base url to connect to. Setting `nil` will reset the base url to the default url.
-     - parameter completion: A callback invoked after completion.
-     - note: Updating the base URL would trigger a client reset.
-     */
-    @preconcurrency
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    @_spi(RealmSwiftExperimental) func updateBaseUrl(to url: String?, _ completion: @Sendable @escaping (Error?) -> Void) {
-        self.__updateBaseURL(url, completion: completion)
-    }
-
-    /**
      Login to a user for the Realm app.
      
      - parameter credentials: The credentials identifying the user.
@@ -249,51 +186,20 @@ public extension App {
         }
     }
 
-    /**
-    Updates the base url used by Atlas device sync, in case the need to roam between servers (cloud and/or edge server).
-     - parameter url: The new base url to connect to. Setting `nil` will reset the base url to the default url.
-     - parameter completion: A callback invoked after completion. Will return `Result.success` or `Result.failure(Error)`.
-     - note: Updating the base URL would trigger a client reset.
-     */
-    @preconcurrency
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    @_spi(RealmSwiftExperimental) func updateBaseUrl(to url: String?, _ completion: @Sendable @escaping (Result<Void, Error>) -> Void) {
-        self.__updateBaseURL(url, completion: { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(()))
-            }
-        })
-    }
-
-    /**
-    Login to a user for the Realm app.
-    - parameter credentials: The credentials identifying the user.
-    - returns: A publisher that eventually return `User` or `Error`.
-     */
+    /// Login to a user for the Realm app.
+    /// @param credentials The credentials identifying the user.
+    /// @returns A publisher that eventually return `User` or `Error`.
     @available(macOS 10.15, watchOS 6.0, iOS 13.0, tvOS 13.0, *)
     func login(credentials: Credentials) -> Future<User, Error> {
         return future { self.login(credentials: credentials, $0) }
     }
 
-    /**
-    Login to a user for the Realm app.
-     - parameter credentials: The credentials identifying the user.
-     */
+    /// Login to a user for the Realm app.
+    /// @param credentials The credentials identifying the user.
+    /// @returns A publisher that eventually return `User` or `Error`.
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func login(credentials: Credentials) async throws -> User {
         try await __login(withCredential: ObjectiveCSupport.convert(object: credentials))
-    }
-
-    /**
-    Updates the base url used by Atlas device sync, in case the need to roam between servers (cloud and/or edge server).
-     - parameter url: The new base url to connect to. Setting `nil` will reset the base url to the default url.
-     - note: Updating the base URL would trigger a client reset.
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    @_spi(RealmSwiftExperimental) func updateBaseUrl(to url: String?) async throws {
-        try await __updateBaseURL(url)
     }
 }
 

@@ -13,7 +13,7 @@ final public class RecommendHomeView: UIView {
     // MARK: - 프로퍼티 설정
 
     // 사용자 안내 메인 레이블
-    private let infoMainLabel: UILabel = {
+    private let mainInfoLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = UIColor.textColor
         lb.text = "나만을 위한 주류 및 안주 추천!"
@@ -24,7 +24,7 @@ final public class RecommendHomeView: UIView {
     }()
     
     // 사용자 안내 서브 레이블
-    private let infoSubLabel: UILabel = {
+    private let subInfoLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = UIColor.systemGray
         lb.text = "현재 나의 상태에 꼭 맞는 주류와 안주를\nAI가 추천해 드릴게요."
@@ -69,7 +69,7 @@ final public class RecommendHomeView: UIView {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [infoMainLabel, infoSubLabel, cheersAnimationView, startButton].forEach {
+        [mainInfoLabel, subInfoLabel, cheersAnimationView, startButton].forEach {
             self.addSubview($0) }
         
     } // closed setupUI
@@ -77,20 +77,20 @@ final public class RecommendHomeView: UIView {
     // MARK: - Layout 설정
     private func setupLayout() {
         
-        infoMainLabel.snp.makeConstraints { make in
+        mainInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
         
-        infoSubLabel.snp.makeConstraints { make in
-            make.top.equalTo(infoMainLabel.snp.bottom).offset(20)
+        subInfoLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainInfoLabel.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
         
         cheersAnimationView.snp.makeConstraints { make in
-            make.top.equalTo(infoSubLabel.snp.bottom).offset(100)
+            make.top.equalTo(subInfoLabel.snp.bottom).offset(100)
             make.leading.trailing.equalToSuperview().inset(25)
             make.height.equalTo(cheersAnimationView.snp.width)
             make.centerX.equalToSuperview()

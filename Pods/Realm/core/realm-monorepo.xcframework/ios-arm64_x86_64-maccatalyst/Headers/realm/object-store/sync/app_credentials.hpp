@@ -27,7 +27,9 @@
 namespace realm {
 namespace bson {
 class Bson;
-class BsonDocument;
+template <typename>
+class IndexedMap;
+using BsonDocument = IndexedMap<Bson>;
 } // namespace bson
 namespace app {
 

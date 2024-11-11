@@ -89,10 +89,16 @@ public:
 private:
     static constexpr size_t small_blob_max_size = 64;
 
-    Allocator& m_alloc;
-    Array* m_arr;
-    alignas(ArrayBigBlobs) std::byte m_storage[std::max(sizeof(ArraySmallBlobs), sizeof(ArrayBigBlobs))];
+    union Storage {
+        std::aligned_storage<sizeof(ArraySmallBlobs), alignof(ArraySmallBlobs)>::type m_small_blobs;
+        std::aligned_storage<sizeof(ArrayBigBlobs), alignof(ArrayBigBlobs)>::type m_big_blobs;
+    };
+
     bool m_is_big = false;
+
+    Allocator& m_alloc;
+    Storage m_storage;
+    Array* m_arr;
 
     bool upgrade_leaf(size_t value_size);
 };
@@ -107,6 +113,6 @@ inline BinaryData ArrayBinary::get(const char* header, size_t ndx, Allocator& al
         return ArrayBigBlobs::get(header, ndx, alloc);
     }
 }
-} // namespace realm
+}
 
 #endif /* SRC_REALM_ARRAY_BINARY_HPP_ */

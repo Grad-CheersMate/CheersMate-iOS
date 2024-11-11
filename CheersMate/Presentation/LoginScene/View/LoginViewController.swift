@@ -135,7 +135,7 @@ final public class LoginViewController: UIViewController {
         
         output.loginResponse
             .emit { [weak self] userResponse in
-                if userResponse.result == 1 {
+                if userResponse.result {
                     self?.changeRootViewController()
                 }
             }

@@ -453,6 +453,8 @@ id RLMMixedToObjc(realm::Mixed const& mixed,
         }
         case realm::type_UUID:
             return [[NSUUID alloc] initWithRealmUUID:mixed.get<realm::UUID>()];
+        case realm::type_LinkList:
+            REALM_UNREACHABLE();
         default:
             @throw RLMException(@"Invalid data type for RLMPropertyTypeAny property.");
     }

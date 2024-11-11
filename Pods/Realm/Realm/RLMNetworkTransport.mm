@@ -226,14 +226,12 @@ didCompleteWithError:(NSError *)error
 
     NSString *errorStatus = [NSString stringWithFormat:@"URLSession HTTP error code: %ld",
                              (long)httpResponse.statusCode];
-
-    // error may be nil when the http status code is 401/403 - replace it with [NSNull null] in that case
     NSError *wrappedError = [NSError errorWithDomain:RLMAppErrorDomain
                                                 code:RLMAppErrorHttpRequestFailed
                                             userInfo:@{NSLocalizedDescriptionKey: errorStatus,
-                                                       RLMHTTPStatusCodeKey: @(httpResponse.statusCode),
+                                                RLMHTTPStatusCodeKey: @(httpResponse.statusCode),
                                                        NSURLErrorFailingURLErrorKey: task.currentRequest.URL,
-                                                       NSUnderlyingErrorKey: error?: [NSNull null]}];
+                                                       NSUnderlyingErrorKey: error}];
     return [_subscriber didCloseWithError:wrappedError];
 }
 

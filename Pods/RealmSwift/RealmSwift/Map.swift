@@ -35,8 +35,8 @@ extension String: _MapKey { }
 
  - Note: Optional versions of the above types *except* `Object` are only supported in non-synchronized Realms.
  
- Map only supports `String` as a key.  Realm disallows the use of `.` or `$` characters within a dictionary key.
-
+ Map only supports String as a key.
+ 
  Unlike Swift's native collections, `Map`s is a reference types, and are only immutable if the Realm that manages them
  is opened as read-only.
  
@@ -520,6 +520,7 @@ public final class Map<Key: _MapKey, Value: RealmCollectionValue>: RLMSwiftColle
         return rlmDictionary.addNotificationBlock(wrapped, keyPaths: keyPaths, queue: queue)
     }
 
+#if swift(>=5.8)
     /**
     Registers a block to be called each time the map changes.
 
@@ -698,6 +699,7 @@ public final class Map<Key: _MapKey, Value: RealmCollectionValue>: RLMSwiftColle
     ) async -> NotificationToken where Value: OptionalProtocol, Value.Wrapped: ObjectBase {
         await observe(keyPaths: keyPaths.map(_name(for:)), on: actor, block)
     }
+#endif
 
     // MARK: Frozen Objects
 

@@ -198,6 +198,7 @@ public extension RealmSectionedResult {
         observe(keyPaths: keyPaths, on: queue, block)
     }
 
+#if swift(>=5.8)
     @available(macOS 10.15, tvOS 13.0, iOS 13.0, watchOS 6.0, *)
     @_unsafeInheritExecutor
     func observe<A: Actor>(
@@ -212,6 +213,7 @@ public extension RealmSectionedResult {
             }
         } ?? NotificationToken()
     }
+#endif
 }
 
 public extension RealmSectionedResult where Element: RealmSectionedResult, Element.Element: ObjectBase {
@@ -339,6 +341,7 @@ public extension RealmSectionedResult where Element: RealmSectionedResult, Eleme
         observe(keyPaths: keyPaths.map(_name(for:)), on: queue, block)
     }
 
+#if swift(>=5.8)
     @available(macOS 10.15, tvOS 13.0, iOS 13.0, watchOS 6.0, *)
     @_unsafeInheritExecutor
     func observe<A: Actor>(
@@ -347,6 +350,7 @@ public extension RealmSectionedResult where Element: RealmSectionedResult, Eleme
     ) async -> NotificationToken {
         await observe(keyPaths: keyPaths.map(_name(for:)), on: actor, block)
     }
+#endif
 }
 
 public extension RealmSectionedResult where Element: ObjectBase {
@@ -474,6 +478,7 @@ public extension RealmSectionedResult where Element: ObjectBase {
         observe(keyPaths: keyPaths.map(_name(for:)), on: queue, block)
     }
 
+#if swift(>=5.8)
     @available(macOS 10.15, tvOS 13.0, iOS 13.0, watchOS 6.0, *)
     @_unsafeInheritExecutor
     func observe<A: Actor>(
@@ -482,6 +487,7 @@ public extension RealmSectionedResult where Element: ObjectBase {
     ) async -> NotificationToken {
         await observe(keyPaths: keyPaths.map(_name(for:)), on: actor, block)
     }
+#endif
 }
 
 // Shared implementation of SectionedResults and ResultsSection

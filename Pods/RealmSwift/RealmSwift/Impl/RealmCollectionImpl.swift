@@ -120,6 +120,7 @@ extension RealmCollectionImpl {
         return collection.addNotificationBlock(wrapped, keyPaths: keyPaths, queue: queue)
     }
 
+#if swift(>=5.8)
     @available(macOS 10.15, tvOS 13.0, iOS 13.0, watchOS 6.0, *)
     @_unsafeInheritExecutor
     public func observe<A: Actor>(
@@ -134,6 +135,7 @@ extension RealmCollectionImpl {
             }
         } ?? NotificationToken()
     }
+#endif
 
     public var isFrozen: Bool {
         return collection.isFrozen
@@ -168,6 +170,7 @@ extension Optional: OptionalProtocol {
     public func _rlmInferWrappedType() -> Wrapped { return self! }
 }
 
+#if swift(>=5.8)
 // `with(object, on: actor) { object, actor in ... }` hands the object over
 // to the given actor and then invokes the callback within the actor.
 // This might make sense to expose publicly.
@@ -182,15 +185,7 @@ internal func with<A: Actor, Value: ThreadConfined, Return: Sendable>(
         let unchecked = Unchecked(wrappedValue: value)
         return try await actor.invoke { actor in
             if !Task.isCancelled {
-#if swift(>=5.10)
-                // As of Swift 5.10 the compiler incorrectly thinks that this
-                // is an async hop even though the isolation context is
-                // unchanged. This is fixed in 5.11.
-                nonisolated(unsafe) let value = unchecked.wrappedValue
-                return try await block(actor, value)
-#else
                 return try await block(actor, unchecked.wrappedValue)
-#endif
             }
             return nil
         }
@@ -207,14 +202,7 @@ internal func with<A: Actor, Value: ThreadConfined, Return: Sendable>(
         guard let value = tsr.resolve(in: realm) else {
             return nil
         }
-#if swift(>=5.10)
-        // As above; this is safe but 5.10's sendability checking can't prove it
-        // nonisolated(unsafe) can't be applied to a let in guard so we need
-        // a second variable
-        nonisolated(unsafe) let v = value
-        return try await block(actor, v)
-#else
         return try await block(actor, value)
-#endif
     }
 }
+#endif

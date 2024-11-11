@@ -32,8 +32,6 @@
 
 #import <realm/object-store/audit.hpp>
 #import <realm/object-store/audit_serializer.hpp>
-#import <realm/object-store/sync/app.hpp>
-#import <realm/object-store/sync/app_user.hpp>
 #import <external/json/json.hpp>
 
 using namespace realm;
@@ -126,7 +124,6 @@ RLMEventContext *RLMEventGetContext(RLMRealm *realm) {
     return reinterpret_cast<RLMEventContext *>(realm->_realm->audit_context());
 }
 
-namespace {
 class RLMEventSerializer : public realm::AuditObjectSerializer {
 public:
     RLMEventSerializer(RLMRealmConfiguration *c) : _config(c.copy) {
@@ -206,12 +203,11 @@ private:
         return acc;
     }
 };
-} // anonymous namespace
 
 @implementation RLMEventConfiguration
 - (std::shared_ptr<AuditConfig>)auditConfigWithRealmConfiguration:(RLMRealmConfiguration *)realmConfig {
     auto config = std::make_shared<realm::AuditConfig>();
-    config->audit_user = self.syncUser.user;
+    config->audit_user = self.syncUser._syncUser;
     config->partition_value_prefix = self.partitionPrefix.UTF8String;
     config->metadata = convertMetadata(self.metadata);
     config->serializer = std::make_shared<RLMEventSerializer>(realmConfig);
@@ -220,23 +216,11 @@ private:
     }
     if (_errorHandler) {
         config->sync_error_handler = [eh = _errorHandler](realm::SyncError e) {
-            if (auto error = makeError(std::move(e), nullptr)) {
+            if (auto error = makeError(std::move(e))) {
                 eh(error);
             }
         };
     }
-
-    std::shared_ptr<realm::app::App> app;
-    if (config->audit_user) {
-        app = static_cast<realm::app::User&>(*config->audit_user).app();
-    }
-    else if (auto user = realmConfig.syncConfiguration.user) {
-        app = user.user->app();
-    }
-    if (app) {
-        config->base_file_path = app->config().base_file_path;
-    }
-
     return config;
 }
 @end

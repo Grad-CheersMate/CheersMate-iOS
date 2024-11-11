@@ -31,11 +31,6 @@ namespace realm {
 using AnyDict = std::map<std::string, std::any>;
 using AnyVector = std::vector<std::any>;
 
-struct UnmanagedObject {
-    std::string object_type;
-    std::any properties;
-};
-
 // An object accessor context which can be used to create and access objects
 // using std::any as the type-erased value type. In addition, this serves as
 // the reference implementation of an accessor context that must be implemented
@@ -274,7 +269,7 @@ public:
         return {};
     }
 
-    // KVO hooks which will be called before and after modifying a property from
+    // KVO hooks which will be called before and after modying a property from
     // within Object::create().
     void will_change(Object const&, Property const&) {}
     void did_change() {}
@@ -328,14 +323,14 @@ template <>
 inline Obj CppContext::unbox(std::any& v, CreatePolicy policy, ObjKey current_obj) const
 {
     if (auto object = std::any_cast<Object>(&v))
-        return object->get_obj();
+        return object->obj();
     if (auto obj = std::any_cast<Obj>(&v))
         return *obj;
     if (!policy.create)
         return Obj();
 
     REALM_ASSERT(object_schema);
-    return Object::create(const_cast<CppContext&>(*this), realm, *object_schema, v, policy, current_obj).get_obj();
+    return Object::create(const_cast<CppContext&>(*this), realm, *object_schema, v, policy, current_obj).obj();
 }
 
 template <>
@@ -375,7 +370,7 @@ inline util::Optional<UUID> CppContext::unbox(std::any& v, CreatePolicy, ObjKey)
 }
 
 template <>
-inline Mixed CppContext::unbox(std::any& v, CreatePolicy policy, ObjKey) const
+inline Mixed CppContext::unbox(std::any& v, CreatePolicy, ObjKey) const
 {
     if (v.has_value()) {
         const std::type_info& this_type{v.type()};
@@ -412,23 +407,6 @@ inline Mixed CppContext::unbox(std::any& v, CreatePolicy policy, ObjKey) const
         }
         else if (this_type == typeid(UUID)) {
             return Mixed(util::any_cast<UUID>(v));
-        }
-        else if (this_type == typeid(AnyDict)) {
-            return Mixed(0, CollectionType::Dictionary);
-        }
-        else if (this_type == typeid(AnyVector)) {
-            return Mixed(0, CollectionType::List);
-        }
-        else if (this_type == typeid(UnmanagedObject)) {
-            UnmanagedObject unmanaged_obj = util::any_cast<UnmanagedObject>(v);
-            auto os = realm->schema().find(unmanaged_obj.object_type);
-            CppContext child_ctx(realm, &*os);
-            auto obj = child_ctx.unbox<Obj>(unmanaged_obj.properties, policy, ObjKey());
-            return Mixed(obj);
-        }
-        else if (this_type == typeid(Obj)) {
-            Obj obj = util::any_cast<Obj>(v);
-            return Mixed(obj);
         }
     }
     return Mixed{};

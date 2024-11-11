@@ -11,7 +11,6 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self  // Delegate 설정
         setupTabBar()
     }
 
@@ -53,41 +52,4 @@ class CustomTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.setupBarApperance()
     }
 
-    // 탭바 아이템이 선택될 때 호출되는 메서드
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
-        // 현재 선택된 뷰컨트롤러와 동일한 탭이 선택되었는지 확인
-        if viewController == tabBarController.selectedViewController {
-            
-            // 선택된 뷰컨트롤러가 네비게이션 컨트롤러인지 확인
-            if let navController = viewController as? UINavigationController {
-                
-                // 네비게이션 스택의 뷰컨트롤러 개수가 1보다 큰지 확인 (루트가 아닌 경우)
-                if navController.viewControllers.count > 1 {
-                    
-                    // 사용자에게 알림 표시
-                    let alert = UIAlertController(title: "처음 화면으로 이동", message: "현재 화면을 닫고 처음 화면으로 돌아가시겠습니까?", preferredStyle: .alert)
-                    
-                    let yesAction = UIAlertAction(title: "예", style: .default) { _ in
-                        // 네비게이션 스택을 팝하여 루트로 이동
-                        navController.popToRootViewController(animated: true)
-                    }
-                    
-                    let noAction = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
-                    
-                    alert.addAction(yesAction)
-                    alert.addAction(noAction)
-                    
-                    // 알림창을 표시
-                    navController.visibleViewController?.present(alert, animated: true, completion: nil)
-                    
-                    // 기본 동작을 막기 위해 false 반환
-                    return false
-                }
-            }
-        }
-        
-        // 기본 동작 허용
-        return true
-    }
 }

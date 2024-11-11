@@ -43,7 +43,9 @@ struct Backtrace {
     void print(std::ostream&) const;
 
     /// Construct an empty stack trace.
-    Backtrace() noexcept {}
+    Backtrace() noexcept
+    {
+    }
 
     /// Move constructor. This operation cannot fail.
     Backtrace(Backtrace&&) noexcept;

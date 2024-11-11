@@ -40,13 +40,13 @@
 // synchronous operations were to be used with an underlying TCP socket in
 // nonblocking mode. Currently, the underlying TCP socket is always in blocking
 // mode when performing synchronous operations, but that may continue to be the
-// case in the future.
+// case in teh future.
 
 
 namespace realm::sync::network::ssl {
 
 enum class Errors {
-    tls_handshake_failed = 1,
+    certificate_rejected = 1,
 };
 
 class ErrorCategory : public std::error_category {
@@ -140,11 +140,6 @@ public:
     /// SSL_CTX_load_verify_locations().
     void use_verify_file(const std::string& path);
 
-#if REALM_INCLUDE_CERTS
-    /// Load the bundled certificates from noinst/root_certs.hpp
-    void use_included_certificate_roots();
-#endif
-
 private:
     void ssl_init();
     void ssl_destroy() noexcept;
@@ -152,7 +147,6 @@ private:
     void ssl_use_private_key_file(const std::string& path, std::error_code&);
     void ssl_use_default_verify(std::error_code&);
     void ssl_use_verify_file(const std::string& path, std::error_code&);
-    void ssl_use_included_certificate_roots(std::error_code&);
 
 #if REALM_HAVE_OPENSSL
     SSL_CTX* m_ssl_ctx = nullptr;
@@ -194,6 +188,10 @@ private:
 /// until its completion handler starts executing.
 class Stream {
 public:
+#if REALM_HAVE_SECURE_TRANSPORT
+    struct MockSSLError;
+#endif
+
     using port_type = network::Endpoint::port_type;
     using SSLVerifyCallback = bool(const std::string& server_address, port_type server_port, const char* pem_data,
                                    size_t pem_size, int preverify_ok, int depth);
@@ -295,6 +293,15 @@ public:
     /// independent verification.
     void use_verify_callback(const std::function<SSLVerifyCallback>& callback);
 
+#if REALM_INCLUDE_CERTS
+    /// use_included_certificates() loads a set of certificates that are
+    /// included in the header file src/realm/noinst/root_certs.hpp. By using
+    /// the included certificates, the client can verify a server in the case
+    /// where the relevant certificate cannot be found, or is absent, in the
+    /// system trust store. This function is only implemented for OpenSSL.
+    void use_included_certificates();
+#endif
+
     /// @{
     ///
     /// Read and write operations behave the same way as they do on \ref
@@ -381,6 +388,11 @@ public:
     /// Returns a reference to the underlying socket.
     Socket& lowest_layer() noexcept;
 
+#if REALM_HAVE_SECURE_TRANSPORT
+    /// Mock the error value returned by ssl_perform() - currently only used by Apple Secure Transport
+    void set_mock_ssl_perform_error(std::unique_ptr<MockSSLError>&& error = nullptr);
+#endif
+
 private:
     using Want = Service::Want;
     using StreamOps = Service::BasicStreamOps<Stream>;
@@ -453,6 +465,7 @@ private:
     void ssl_set_verify_mode(VerifyMode, std::error_code&);
     void ssl_set_host_name(const std::string&, std::error_code&);
     void ssl_use_verify_callback(const std::function<SSLVerifyCallback>&, std::error_code&);
+    void ssl_use_included_certificates(std::error_code&);
 
     void ssl_handshake(std::error_code&, Want& want) noexcept;
     bool ssl_shutdown(std::error_code& ec, Want& want) noexcept;
@@ -491,9 +504,14 @@ private:
     // verify_callback_using_delegate() is also used as an argument to OpenSSL's set_verify_function.
     // verify_callback_using_delegate() calls out to the user supplied verify callback.
     static int verify_callback_using_delegate(int preverify_ok, X509_STORE_CTX* ctx) noexcept;
+
+    // verify_callback_using_root_certs is used by OpenSSL to handle certificate verification
+    // using the included root certifictes.
+    static int verify_callback_using_root_certs(int preverify_ok, X509_STORE_CTX* ctx);
 #elif REALM_HAVE_SECURE_TRANSPORT
     util::CFPtr<SSLContextRef> m_ssl;
     VerifyMode m_verify_mode = VerifyMode::none;
+    std::unique_ptr<MockSSLError> m_mock_ssl_perform_error;
 
     enum class BlockingOperation {
         read,
@@ -530,47 +548,6 @@ private:
     friend class network::ReadAheadBuffer;
 #if REALM_HAVE_SECURE_TRANSPORT
     friend struct MockSSLError; // for access to Service::Want
-#endif
-
-#if REALM_HAVE_SECURE_TRANSPORT
-public:
-    // Structure for mocking the error returned by Oper called by ssl_perform()
-    // By default, this is a one-shot error that will be cleared after it is read,
-    // unless clear_after_access is set to false.
-    struct MockSSLError {
-        using Operation = Stream::BlockingOperation;
-
-        explicit MockSSLError(Operation op, int ssl_error, int bytes_processed, bool clear_after_access = true)
-            : operation{op}
-            , ssl_error{ssl_error}
-            , sys_error{0}
-            , bytes_processed{bytes_processed}
-            , clear_after_access{clear_after_access}
-        {
-        }
-
-        explicit MockSSLError(Operation op, int ssl_error, int sys_error, int bytes_processed,
-                              bool clear_after_access = true)
-            : operation{op}
-            , ssl_error{ssl_error}
-            , sys_error{sys_error}
-            , bytes_processed{bytes_processed}
-            , clear_after_access{clear_after_access}
-        {
-        }
-
-        Operation operation;
-        int ssl_error;
-        int sys_error;
-        int bytes_processed;
-        bool clear_after_access;
-    };
-
-    /// Mock the error value returned by ssl_perform() - currently only used by Apple Secure Transport
-    void set_mock_ssl_perform_error(std::unique_ptr<MockSSLError>&& error = nullptr); ///
-
-private:
-    std::unique_ptr<MockSSLError> m_mock_ssl_perform_error;
 #endif
 };
 
@@ -624,17 +601,6 @@ inline void Context::use_verify_file(const std::string& path)
         throw std::system_error(ec);
     }
 }
-
-#if REALM_INCLUDE_CERTS
-inline void Context::use_included_certificate_roots()
-{
-    std::error_code ec;
-    ssl_use_included_certificate_roots(ec);
-    if (ec) {
-        throw std::system_error(ec);
-    }
-}
-#endif
 
 class Stream::HandshakeOperBase : public Service::IoOper {
 public:
@@ -821,6 +787,16 @@ inline void Stream::use_verify_callback(const std::function<SSLVerifyCallback>& 
     if (ec)
         throw std::system_error(ec);
 }
+
+#if REALM_INCLUDE_CERTS
+inline void Stream::use_included_certificates()
+{
+    std::error_code ec;
+    ssl_use_included_certificates(ec); // Throws
+    if (ec)
+        throw std::system_error(ec);
+}
+#endif
 
 inline void Stream::handshake()
 {
@@ -1170,7 +1146,7 @@ std::size_t Stream::ssl_perform(Oper oper, std::error_code& ec, Want& want) noex
     m_bio_error_code = std::error_code(); // Success
     int ret = oper();
     int ssl_error = SSL_get_error(m_ssl, ret);
-    int sys_error = int(ERR_peek_last_error());
+    int sys_error = int(ERR_get_error());
 
     // Guaranteed by the documentation of SSL_get_error()
     REALM_ASSERT((ret > 0) == (ssl_error == SSL_ERROR_NONE));
@@ -1304,8 +1280,44 @@ inline int Stream::do_ssl_shutdown() noexcept
 
 inline void Stream::set_mock_ssl_perform_error(std::unique_ptr<MockSSLError>&& error)
 {
-    m_mock_ssl_perform_error = std::move(error);
+    if (!error)
+        m_mock_ssl_perform_error.reset();
+    else
+        m_mock_ssl_perform_error = std::move(error);
 }
+
+// Structure for mocking the error returned by Oper called by ssl_perform()
+// By default, this is a one-shot error that will be cleared after it is read,
+// unless clear_after_access is set to false.
+struct Stream::MockSSLError {
+    using Operation = Stream::BlockingOperation;
+
+    explicit MockSSLError(Operation op, int ssl_error, int bytes_processed, bool clear_after_access = true)
+        : operation{op}
+        , ssl_error{ssl_error}
+        , sys_error{0}
+        , bytes_processed{bytes_processed}
+        , clear_after_access{clear_after_access}
+    {
+    }
+
+    explicit MockSSLError(Operation op, int ssl_error, int sys_error, int bytes_processed,
+                          bool clear_after_access = true)
+        : operation{op}
+        , ssl_error{ssl_error}
+        , sys_error{sys_error}
+        , bytes_processed{bytes_processed}
+        , clear_after_access{clear_after_access}
+    {
+    }
+
+    Operation operation;
+    int ssl_error;
+    int sys_error;
+    int bytes_processed;
+    bool clear_after_access;
+};
+
 
 // Provides a homogeneous, and mostly quirks-free interface across the SecureTransport
 // operations (handshake, read, write, shutdown).

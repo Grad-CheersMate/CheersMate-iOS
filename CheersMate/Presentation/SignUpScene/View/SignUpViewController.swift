@@ -123,7 +123,7 @@ final public class SignUpViewController: UIViewController {
         
         output.signUpResponse
             .emit { [weak self] userResponse in
-                if userResponse.result == 1 {
+                if userResponse.result {
                     self?.popUpAlert()
                 }
             }

@@ -20,7 +20,7 @@ import Realm
 
 /// A tag protocol which marks types that can be used as the partition value
 /// for synchronized Realms.
-public protocol PartitionValue: Sendable {
+public protocol PartitionValue {
 }
 
 /// Protocol representing a BSON value.

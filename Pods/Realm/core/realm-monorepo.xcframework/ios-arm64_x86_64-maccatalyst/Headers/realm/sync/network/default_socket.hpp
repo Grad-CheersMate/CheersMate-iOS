@@ -46,12 +46,16 @@ public:
         network::DeadlineTimer m_timer;
     };
 
-    struct AutoStartTag {};
+    struct AutoStartTag {
+    };
 
     using AutoStart = util::TaggedBool<AutoStartTag>;
-    DefaultSocketProvider(const std::shared_ptr<util::Logger>& logger, const std::string& user_agent,
+    DefaultSocketProvider(const std::shared_ptr<util::Logger>& logger, const std::string user_agent,
                           const std::shared_ptr<BindingCallbackThreadObserver>& observer_ptr = nullptr,
                           AutoStart auto_start = AutoStart{true});
+
+    // Don't allow move or copy constructor
+    DefaultSocketProvider(DefaultSocketProvider&&) = delete;
 
     ~DefaultSocketProvider();
 
@@ -77,14 +81,6 @@ public:
     {
         return std::unique_ptr<Timer>(new DefaultSocketProvider::Timer(m_service, delay, std::move(handler)));
     }
-
-    struct OnlyForTesting {
-        // Runs the event loop as though start() was called on the current thread so that the caller
-        // can catch and handle any thrown exceptions in tests.
-        static void run_event_loop_on_current_thread(DefaultSocketProvider* provider);
-
-        static void prep_event_loop_for_restart(DefaultSocketProvider* provider);
-    };
 
 private:
     enum class State { Starting, Running, Stopping, Stopped };

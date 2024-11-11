@@ -1,9 +1,10 @@
 #ifndef REALM_UTIL_URI_HPP
 #define REALM_UTIL_URI_HPP
 
-#include <realm/status_with.hpp>
+#include <string>
 
-namespace realm::util {
+namespace realm {
+namespace util {
 
 
 /// \brief A decomposed URI reference.
@@ -73,13 +74,7 @@ public:
     Uri();
 
     /// Decompose the specified URI reference into its five main parts.
-    Uri(std::string_view);
-
-    /// Parse the given string, throwing if it's not a valid Uri
-    static Uri parse(std::string_view str);
-
-    /// Parse the given string, returning an error if it's not a valid Uri.
-    static StatusWith<Uri> try_parse(std::string_view str);
+    Uri(const std::string&);
 
     /// Reconstruct a URI reference from its 5 components.
     std::string recompose() const;
@@ -229,6 +224,7 @@ inline bool Uri::is_absolute() const
     return !m_scheme.empty();
 }
 
-} // namespace realm::util
+} // namespace util
+} // namespace realm
 
 #endif // REALM_UTIL_URI_HPP

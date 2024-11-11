@@ -31,7 +31,7 @@ using namespace realm::app;
     return self.app._realmApp->provider_client<App::UserAPIKeyProviderClient>();
 }
 
-- (std::shared_ptr<realm::app::User>)currentUser {
+- (std::shared_ptr<realm::SyncUser>)currentUser {
     return self.app._realmApp->current_user();
 }
 
