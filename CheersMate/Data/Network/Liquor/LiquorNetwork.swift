@@ -11,7 +11,7 @@ import RxSwift
 // MARK: - 주류 API 명세서
 public protocol LiquorNetworkProtocol {
     // 주류 추천 API
-    func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse>
+    func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse>
     
 } // closed UserNetworkProtocol
 
@@ -26,8 +26,8 @@ final public class LiquorNetwork: LiquorNetworkProtocol {
     
     // MARK: - 주류와 관련된 네트워크 요청
     // 주류 추천
-    public func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse> {
-        return manager.requestRecommendationsForSelection(emotion: emotion, companion: companion, preferredLiquor: preferredLiquor, preferredDegree: preferredDegree)
+    public func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse> {
+        return manager.requestRecommendationsForSelection(emotion: emotion, companion: companion, liquorVolume: liquorVolume)
     } // closed requestRecommendationsForSelection
     
     

@@ -55,19 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 SelectionObject(imageName: "couple", desc: "연인", type: .companion),
                 SelectionObject(imageName: "family", desc: "가족", type: .companion),
                 SelectionObject(imageName: "peoples", desc: "기타", type: .companion),
-                // 주류 타입
-                SelectionObject(imageName: "beer", desc: "맥주", type: .liquorType),
-                SelectionObject(imageName: "soju", desc: "소주", type: .liquorType),
-                SelectionObject(imageName: "wine", desc: "와인", type: .liquorType),
-                SelectionObject(imageName: "riceWine", desc: "막걸리", type: .liquorType),
-                SelectionObject(imageName: "whiske", desc: "위스키", type: .liquorType),
-                SelectionObject(imageName: "sake", desc: "전통주", type: .liquorType),
                 // 선호 도수
-                SelectionObject(imageName: "one", desc: "0% ~ 5%\n(맥주, 막걸리 등)", type: .liquorLevel),
-                SelectionObject(imageName: "two", desc: "6% ~ 15%\n(와인, 전통주 등)", type: .liquorLevel),
-                SelectionObject(imageName: "three", desc: "16% ~ 25%\n(소주, 칵테일 베이스 등)", type: .liquorLevel),
-                SelectionObject(imageName: "four", desc: "26% ~ 40%\n(위스키, 보드카 등)", type: .liquorLevel),
-                SelectionObject(imageName: "five", desc: "40% ~ \n(기타 증류주 등)", type: .liquorLevel)])
+                SelectionObject(imageName: "drunk1", desc: "가볍게 살짝 기분만", type: .liquorVolume),
+                SelectionObject(imageName: "drunk2", desc: "알딸딸하게 딱 좋게", type: .liquorVolume),
+                SelectionObject(imageName: "drunk3", desc: "적당히 취할 정도로", type: .liquorVolume),
+                SelectionObject(imageName: "drunk4", desc: "제대로 확실하게", type: .liquorVolume)
+            ])
         } // closed realm.write
         
     } // closed initializeRealmData

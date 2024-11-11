@@ -11,8 +11,8 @@ import RealmSwift
 
 public protocol RecommendRepositoryProtocol {
     // 주류 추천 API
-    func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse>
+    func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse>
     // DB에서 감정, 동반자, 선호 주종, 선호 도수 선택지를 가져오기
-    func readSelectionObject(type: SelectionType) -> [Selection]
+    func readSelectionObject(type: PageType) -> [Selection]
     
 } // closed SelectionRepositoryProtocol

@@ -9,6 +9,7 @@ import UIKit
 
 final public class RecommendListView: UIView {
     
+    // MARK: - 프로퍼티 설정
     // 컬렉션 뷰를 포함하는 스크롤 뷰
     public let scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -62,7 +63,7 @@ final public class RecommendListView: UIView {
     //  테이블 뷰
     public let tableView: UITableView = {
         let tv = UITableView()
-        tv.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.ID)
+        tv.register(RecommendTableViewCell.self, forCellReuseIdentifier: RecommendTableViewCell.ID)
         tv.backgroundColor = .white
         tv.rowHeight = 120
         tv.separatorStyle = .none
@@ -78,10 +79,11 @@ final public class RecommendListView: UIView {
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 12
-        bt.backgroundColor = .mainColor
+        bt.backgroundColor = .systemGray4
         return bt
     }()
     
+    // MARK: - 오버라이드 함수 설정
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -93,7 +95,40 @@ final public class RecommendListView: UIView {
         fatalError("init(coder:) has not been implemented")
     } // closed required init
     
+    // MARK: - 기타 함수 설정
+    // 페이지에 따른 텍스트와 진행률 설정
+    public func configure(type: PageType) {
+        switch type {
+        case .emotion: // 감정
+            updateLabelAndProgressBar(mainText: "오늘 당신의 기분은 어떤가요?", subText: "가장 비슷한 감정을 선택해 주세요.", buttonText: "다음", progress: 1)
+        case .companion: // 동반자
+            updateLabelAndProgressBar(mainText: "오늘 함께할 사람은 누구인가요?", subText: "이 순간을 나누고 싶은 사람을 선택해 주세요.", buttonText: "다음", progress: 2)
+        case .liquorVolume: // 선호 도수
+            updateLabelAndProgressBar(mainText: "어느 정도의 도수가 좋으신가요?", subText: "선호하는 취기 정도를 선택해 주세요.", buttonText: "결과 확인", progress: 3)
+        case .recommendResult:
+            break
+        }
+    } // closed configure
     
+    // 추천 화면에서 정보 레이블과 진행률을 업데이트하기 위한 설정
+    private func updateLabelAndProgressBar(mainText: String, subText: String, buttonText: String, progress: Int) {
+        mainInfoLabel.text = mainText
+        subInfoLabel.text = subText
+        completeButton.setTitle(buttonText, for: .normal)
+        progressView.setProgress(0.25 * Float(progress), animated: true)
+    } // closed updateLabelAndProgressBar
+    
+    // 버튼의 활성화 설정
+    public func setCompleteButtonEnabled(_ condition: Bool) {
+        completeButton.isEnabled = condition
+        condition ? (completeButton.backgroundColor = .mainColor) : (completeButton.backgroundColor = .systemGray4)
+    } // closed isCompleteButtonActive
+    
+} // closed RecommendListView
+
+
+// MARK: - 초기 UI와 Layout 설정
+extension RecommendListView {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
@@ -151,30 +186,4 @@ final public class RecommendListView: UIView {
         }
         
     } // closed setupLayout
-    
-    // 페이지에 따른 텍스트와 진행률 설정
-    public func configure(page progress: Int) {
-        switch progress {
-        case 1: // 감정
-            updateLabelAndProgressBar(mainText: "오늘 당신의 기분은 어떤가요?", subText: "가장 비슷한 감정을 선택해 주세요.", progress: progress)
-        case 2: // 동반자
-            updateLabelAndProgressBar(mainText: "오늘 함께할 사람은 누구인가요?", subText: "이 순간을 나누고 싶은 사람을 선택해 주세요.", progress: progress)
-        case 3: // 선호 주종
-            updateLabelAndProgressBar(mainText: "어떤 주종을 선호하시나요?", subText: "가장 즐기고 싶은 술을 선택해 보세요.", progress: progress)
-        case 4: // 선호 도수
-            updateLabelAndProgressBar(mainText: "어느 정도의 도수가 좋으신가요?", subText: "선호하는 도수를 선택해 주세요.", progress: progress)
-        default:
-            break
-        }
-    } // closed configure
-    
-    // 추천 화면에서 정보 레이블과 진행률을 업데이트하기 위한 설정
-    private func updateLabelAndProgressBar(mainText: String, subText: String, progress: Int) {
-        mainInfoLabel.text = mainText
-        subInfoLabel.text = subText
-        progressView.setProgress(0.20 * Float(progress), animated: true)
-    } // closed updateLabelAndProgressBar
-    
-    
-    
-} // closed RecommendListView
+} // closed extension

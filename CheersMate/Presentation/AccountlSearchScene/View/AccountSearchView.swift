@@ -88,7 +88,7 @@ final public class AccountSearchView: UIView {
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 12
-        bt.backgroundColor = .mainColor
+        bt.backgroundColor = .disableColor
         return bt
     }()
     

@@ -14,7 +14,7 @@ public final class SelectionObject: Object {
     @Persisted var isChecked: Bool
     @Persisted var type: String
     
-    convenience init(imageName: String, desc: String, isChecked: Bool = false, type: SelectionType) {
+    convenience init(imageName: String, desc: String, isChecked: Bool = false, type: PageType) {
         self.init()
         self.imageName = imageName
         self.desc = desc

@@ -13,7 +13,7 @@ import RxSwift
 
 // MARK: - Single을 사용하여 단일 이벤트와 에러처리만. 이벤트가 끝나면 스트림 종료. 따라서 HTTP에 적절한 Traits
 public protocol LiquorNetworkManagerProtocol {
-    func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse>
+    func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse>
 }
 
 // MARK: - 주류 네트워크 매니저
@@ -47,9 +47,9 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     } // closed makeRequset
     
     // MARK: - 사용자의 선호를 종합하여 서버에 AI 추천 주류 및 안주 결과 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String, preferredLiquor: String, preferredDegree: Int) -> Single<LiquorResponse> {
-        let url = "\(endpoint)/api/liquors/recommend"
-        let parameters: Parameters = ["emotion": emotion, "companion": companion, "preferredLiquor": preferredLiquor, "preferredDegree": preferredDegree]
+    public func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse> {
+        let url = "\(endpoint)/api/recommend"
+        let parameters: Parameters = ["emotion": emotion, "companion": companion, "liquorVolume": liquorVolume]
         return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed recommendLiquor
     
