@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-final public class RecommendTableViewCell: UITableViewCell {
+final public class RecommendSelectionTableViewCell: UITableViewCell {
     
     // MARK: - 프로퍼티 설정
     // 셀 아이디
-    static let ID = "RecommendTableViewCell"
+    static let ID = "RecommendSelectionTableViewCell"
     private var status: Bool = false
     
     private let containerView: UIView = {
@@ -28,6 +28,7 @@ final public class RecommendTableViewCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
+        iv.kf.indicatorType = .activity
         return iv
     }()
     
@@ -78,10 +79,9 @@ final public class RecommendTableViewCell: UITableViewCell {
     
     // MARK: - 기타 함수 설정
     // 외부에서 셀을 변경하기 위한 설정
-    public func configure(imageName: String, desc: String, isChecked: Bool = false) {
+    public func configure(imageName: String, desc: String) {
         mainImageView.image = UIImage(named: imageName)
         descLabel.text = desc
-        checkBoxImageView.isHidden = !isChecked
     } // closed configure
     
     // 셀에 그림자 효과를 설정
@@ -115,7 +115,7 @@ final public class RecommendTableViewCell: UITableViewCell {
 } // clsoed ListTableViewCell
 
 // MARK: - 초기 UI와 Layout 설정
-extension RecommendTableViewCell {
+extension RecommendSelectionTableViewCell {
     // UI 설정
     private func setupUI() {
         contentView.addSubview(containerView)

@@ -9,10 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final public class RecommendListViewController: UIViewController {
+final public class RecommendSelectionViewController: UIViewController {
     // MARK: - 프로퍼티 설정
-    private let recommendListView: RecommendListView = RecommendListView()
-    private let viewModel: RecommendListViewModelProtocol
+    private let recommendListView: RecommendSelectionView = RecommendSelectionView()
+    private let viewModel: RecommendSelectionViewModelProtocol
     private var dataSource: UITableViewDiffableDataSource<Section, Selection>!
     private let disposeBag: DisposeBag = DisposeBag()
     
@@ -29,7 +29,7 @@ final public class RecommendListViewController: UIViewController {
         bindViewModel()
     } // closed viewDidLoad
     
-    public init(viewModel: RecommendListViewModelProtocol) {
+    public init(viewModel: RecommendSelectionViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     } // closed init
@@ -47,8 +47,8 @@ final public class RecommendListViewController: UIViewController {
     // MARK: - 테이블 뷰 설정
     private func setupTableView() {
         dataSource = UITableViewDiffableDataSource(tableView: recommendListView.tableView, cellProvider: { tableView, indexPath, item in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendTableViewCell.ID, for: indexPath) as? RecommendTableViewCell else { return UITableViewCell() }
-            cell.configure(imageName: item.imageName, desc: item.desc)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendSelectionTableViewCell.ID, for: indexPath) as? RecommendSelectionTableViewCell else { return UITableViewCell() }
+            cell.configure(imageName: item.title, desc: item.desc)
             cell.selectionStyle = .none
             return cell
         })
@@ -56,11 +56,13 @@ final public class RecommendListViewController: UIViewController {
     
     // MARK: - 바인드 뷰
     private func bindView() {
+
+        
     } // closed bindView
     
     // MARK: - 바인드 뷰 모델
     private func bindViewModel() {
-        let input = RecommendListViewModel.Input(
+        let input = RecommendSelectionViewModel.Input(
             itemSelected: recommendListView.tableView.rx.itemSelected.asObservable(), // 테이블 뷰 셀 클릭
             completeButtonTapped: recommendListView.completeButton.rx.tap // 확인 버튼 클릭
         )
@@ -80,40 +82,48 @@ final public class RecommendListViewController: UIViewController {
                 guard let self = self else { return }
                 
                 if let previousIndexPath = previousIndexPath, 
-                   let previousCell = self.recommendListView.tableView.cellForRow(at: previousIndexPath) as? RecommendTableViewCell {
+                   let previousCell = self.recommendListView.tableView.cellForRow(at: previousIndexPath) as? RecommendSelectionTableViewCell {
                     previousCell.resetCell()
                 }
                 
                 if let currentIndexPath = currentIndexPath,
                    !isDeselected,
-                   let currentCell = self.recommendListView.tableView.cellForRow(at: currentIndexPath) as? RecommendTableViewCell {
+                   let currentCell = self.recommendListView.tableView.cellForRow(at: currentIndexPath) as? RecommendSelectionTableViewCell {
                     currentCell.isCellSelected(true)
                 }
                 Haptics.shared.generateHaptics(style: .medium)
             }
             .disposed(by: disposeBag)
         
-        output.selectionType
+        // 현재 페이지 타입에 맞춰서 로직처리
+        output.currentPageType
             .bind { [weak self] type in
-                if type == .recommendResult {
-                    print("dasdasdad")
-                } else {
-                    self?.recommendListView.configure(type: type)
-                }
+                self?.recommendListView.configure(type: type)
             }
             .disposed(by: disposeBag)
         
+        // 선택지 배열을 가져오고 스냅샷 적용
         output.selections
-            .emit { [weak self] items in
+            .bind(onNext: { [weak self] selections in
                 guard let self = self else { return }
-                self.recommendListView.setCompleteButtonEnabled(false) // 확인 버튼 비활성화
-                let section = Section.recommend
+                self.recommendListView.setCompleteButtonEnabled(false)
+                self.updateTableViewHeight(cellCount: selections.count)
+                let section = Section.selection
                 var snapshot = NSDiffableDataSourceSnapshot<Section, Selection>()
                 snapshot.appendSections([section])
-                snapshot.appendItems(items, toSection: section)
+                snapshot.appendItems(selections, toSection: section)
                 self.dataSource.apply(snapshot)
-                self.updateTableViewHeight(cellCount: items.count)
-            }
+            })
+            .disposed(by: disposeBag)
+        
+        output.recommendResponse
+            .bind(onNext: { [weak self] response in
+                if response.result && response.httpCode == 200 {
+                    let recommendResultVC = RecommendResultViewController(data: response)
+                    recommendResultVC.modalPresentationStyle = .overFullScreen
+                    self?.present(recommendResultVC, animated: true)
+                }
+            })
             .disposed(by: disposeBag)
         
     } // closed bindViewModel

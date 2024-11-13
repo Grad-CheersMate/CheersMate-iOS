@@ -9,16 +9,14 @@ import Foundation
 import RealmSwift
 
 public final class SelectionObject: Object {
-    @Persisted(primaryKey: true) var imageName: String
+    @Persisted(primaryKey: true) var title: String
     @Persisted var desc: String
-    @Persisted var isChecked: Bool
     @Persisted var type: String
     
-    convenience init(imageName: String, desc: String, isChecked: Bool = false, type: PageType) {
+    convenience init(title: String, desc: String, type: PageType) {
         self.init()
-        self.imageName = imageName
+        self.title = title
         self.desc = desc
-        self.isChecked = isChecked
         self.type = type.rawValue
     } // closed init
     

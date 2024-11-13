@@ -9,12 +9,13 @@ import Foundation
 
 // MARK: - 주류 응답 엔티티
 public struct LiquorResponse: Codable {
-    
+    let liquor: Liquor
 }
 
 // MARK: - 주류 엔티티
-public struct Liquor: Codable {
-    let name: String
-    let volume: Int
-    let imageUrl: String
+public struct Liquor: Codable, Hashable {
+    let imageUrl: String?
+    let name: String?
+    let volume: Double?
+    let type: String?
 }

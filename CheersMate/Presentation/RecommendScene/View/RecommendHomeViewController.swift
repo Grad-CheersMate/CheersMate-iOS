@@ -61,9 +61,9 @@ final public class RecommendHomeViewController: UIViewController {
                 let recommendRP = RecommendRepository(network: network, realm: selectionRealm)
                 let recommendUC = RecommendUseCase(repository: recommendRP)
                 // MARK: - Presentation Layer
-                let recommendListVM = RecommendListViewModel(useCase: recommendUC)
-                let recommendListVC = RecommendListViewController(viewModel: recommendListVM)
-                self.navigationController?.pushViewController(recommendListVC, animated: true) }
+                let recommendSelectionVM = RecommendSelectionViewModel(useCase: recommendUC)
+                let recommendSelectionVC = RecommendSelectionViewController(viewModel: recommendSelectionVM)
+                self.navigationController?.pushViewController(recommendSelectionVC, animated: true) }
             .disposed(by: disposeBag)
     } // closed bindView
     
