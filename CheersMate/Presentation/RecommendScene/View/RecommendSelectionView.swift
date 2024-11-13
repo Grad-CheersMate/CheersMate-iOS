@@ -7,7 +7,7 @@
 
 import UIKit
 
-final public class RecommendListView: UIView {
+final public class RecommendSelectionView: UIView {
     
     // MARK: - 프로퍼티 설정
     // 컬렉션 뷰를 포함하는 스크롤 뷰
@@ -63,7 +63,7 @@ final public class RecommendListView: UIView {
     //  테이블 뷰
     public let tableView: UITableView = {
         let tv = UITableView()
-        tv.register(RecommendTableViewCell.self, forCellReuseIdentifier: RecommendTableViewCell.ID)
+        tv.register(RecommendSelectionTableViewCell.self, forCellReuseIdentifier: RecommendSelectionTableViewCell.ID)
         tv.backgroundColor = .white
         tv.rowHeight = 120
         tv.separatorStyle = .none
@@ -105,8 +105,6 @@ final public class RecommendListView: UIView {
             updateLabelAndProgressBar(mainText: "오늘 함께할 사람은 누구인가요?", subText: "이 순간을 나누고 싶은 사람을 선택해 주세요.", buttonText: "다음", progress: 2)
         case .liquorVolume: // 선호 도수
             updateLabelAndProgressBar(mainText: "어느 정도의 도수가 좋으신가요?", subText: "선호하는 취기 정도를 선택해 주세요.", buttonText: "결과 확인", progress: 3)
-        case .recommendResult:
-            break
         }
     } // closed configure
     
@@ -128,7 +126,7 @@ final public class RecommendListView: UIView {
 
 
 // MARK: - 초기 UI와 Layout 설정
-extension RecommendListView {
+extension RecommendSelectionView {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white

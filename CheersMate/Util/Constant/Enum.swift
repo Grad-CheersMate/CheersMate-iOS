@@ -26,7 +26,6 @@ public enum PageType: String, Hashable, Codable {
     case emotion // 감정 선택 화면
     case companion // 동반자 선택 화면
     case liquorVolume // 도수 선택 화면
-    case recommendResult // 추천 결과 화면
 }
 
 // MARK: - 성공 또는 실패 구분
@@ -35,10 +34,17 @@ public enum Outcome: String {
     case failure = "실패"
 }
 
+// MARK: - 컬렉션 뷰 섹션 정의
 public enum Section: Hashable {
-    case recommend // AI 추천 섹션
+    case selection // 선택지
+    case product // 메인 상품 섹션
+    case food(String) // 잘 어울리는 음식 섹션
+    case similar(String) // 비슷한 주류 섹션
 }
 
+// MARK: - 컬렉션 뷰 아이템
 public enum Item: Hashable {
-    case recommendListItem
+    case productItem(Liquor) // 메인 상품(주류) 데이터
+    case foodItem(Food) // 잘 어울리는 음식 데이터
+    case similarItem(Liquor) // 비슷한 주류 데이터
 }

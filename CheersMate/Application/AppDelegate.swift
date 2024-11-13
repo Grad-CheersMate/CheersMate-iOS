@@ -45,21 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try! realm.write {
             realm.add([
                 // 감정
-                SelectionObject(imageName: "smile", desc: "기쁨", type: .emotion),
-                SelectionObject(imageName: "sad", desc: "슬픔", type: .emotion),
-                SelectionObject(imageName: "angry", desc: "화남", type: .emotion),
-                SelectionObject(imageName: "calm", desc: "차분", type: .emotion),
+                SelectionObject(title: "smile", desc: "기쁨", type: .emotion),
+                SelectionObject(title: "sad", desc: "슬픔", type: .emotion),
+                SelectionObject(title: "angry", desc: "화남", type: .emotion),
+                SelectionObject(title: "calm", desc: "차분", type: .emotion),
                 // 동반자
-                SelectionObject(imageName: "solo", desc: "혼자", type: .companion),
-                SelectionObject(imageName: "friend", desc: "친구", type: .companion),
-                SelectionObject(imageName: "couple", desc: "연인", type: .companion),
-                SelectionObject(imageName: "family", desc: "가족", type: .companion),
-                SelectionObject(imageName: "peoples", desc: "기타", type: .companion),
+                SelectionObject(title: "solo", desc: "혼자", type: .companion),
+                SelectionObject(title: "friend", desc: "친구", type: .companion),
+                SelectionObject(title: "couple", desc: "연인", type: .companion),
+                SelectionObject(title: "family", desc: "가족", type: .companion),
+                SelectionObject(title: "peoples", desc: "기타", type: .companion),
                 // 선호 도수
-                SelectionObject(imageName: "drunk1", desc: "가볍게 살짝 기분만", type: .liquorVolume),
-                SelectionObject(imageName: "drunk2", desc: "알딸딸하게 딱 좋게", type: .liquorVolume),
-                SelectionObject(imageName: "drunk3", desc: "적당히 취할 정도로", type: .liquorVolume),
-                SelectionObject(imageName: "drunk4", desc: "제대로 확실하게", type: .liquorVolume)
+                SelectionObject(title: "light", desc: "가볍게 살짝 기분만", type: .liquorVolume),
+                SelectionObject(title: "tipsy", desc: "알딸딸하게 딱 좋게", type: .liquorVolume),
+                SelectionObject(title: "buzzed", desc: "적당히 취할 정도로", type: .liquorVolume),
+                SelectionObject(title: "drunk", desc: "제대로 확실하게", type: .liquorVolume)
             ])
         } // closed realm.write
         

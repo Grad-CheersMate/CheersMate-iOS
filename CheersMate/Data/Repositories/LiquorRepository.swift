@@ -19,8 +19,8 @@ public class LiquorRepository: LiquorRepositoryProtocol {
     } // closed init
     
     // 사용자가 AI 추천 주류 서비스를 이용할 때 네트워크 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String, liquorVolume: Int) -> Single<LiquorResponse> {
-        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion, liquorVolume: liquorVolume)
+    public func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse> {
+        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion)
     } // closed requestRecommendationsForSelection
     
 } // closed LiquorRepository

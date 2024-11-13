@@ -32,7 +32,7 @@ final public class UserNetworkManager: UserNetworkManagerProtocol {
         return HTTPHeaders([tokenHeader])
     }()
     
-    private func makeRequset<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> Single<T> {
+    private func makeRequest<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> Single<T> {
         return Single.create { single -> Disposable in
             let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -52,28 +52,28 @@ final public class UserNetworkManager: UserNetworkManagerProtocol {
     public func logIn(email: String, password: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/login"
         let parameters: Parameters = ["email": email, "password": password]
-        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
+        return makeRequest(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed login
     
     // MARK: - 회원가입 요청
     public func signUp(email: String, password: String, nickname: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/register"
         let parameters: Parameters = ["email": email, "password": password, "nickname": nickname, "tell": tell]
-        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
+        return makeRequest(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed signUp
     
     // MARK: - 이메일 찾기 요청
     public func searchEmail(nickname: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/emailFind"
         let parameters: Parameters = ["nickname": nickname, "tell": tell]
-        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
+        return makeRequest(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed searchEmail
     
     // MARK: - 비밀번호 찾기 요청
     public func searchPassword(email: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/passFind"
         let parameters: Parameters = ["email": email, "tell": tell]
-        return makeRequset(url: url, method: .post, parameters: parameters, headers: nil)
+        return makeRequest(url: url, method: .post, parameters: parameters, headers: nil)
     } // closed searchPassword
     
 } // closed NetworkManager
