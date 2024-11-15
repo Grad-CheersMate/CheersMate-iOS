@@ -105,12 +105,19 @@ extension RecommendSelectionViewModel {
         selectionsRelay.accept(selections)
     } // closed fetchSelection
     
+    // 서버에서 추천 결과 가져오기
     private func requestRecommendations() {
         guard titles.count >= 3 else { return }
         useCase.requestRecommendationsForSelection(emotion: titles[0], companion: titles[1])
             .subscribe(onSuccess: { [weak self] response in
-                self?.recommendResponseRelay.accept(response)
-        })
+                guard let self = self else { return }
+                if response.result && response.httpCode == 200 {
+                    // 선택을 종합하여 최종 결과 DB에 저장
+                    if self.useCase.saveRecommendResult(recommendData: response.data) {
+                        self.recommendResponseRelay.accept(response)
+                    }
+                }
+            })
             .disposed(by: disposeBag)
     } // closed requestRecommendations
     

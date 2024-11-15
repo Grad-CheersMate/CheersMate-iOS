@@ -54,8 +54,7 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
         return iv
     }()
     
-    // MARK: - 오버라이드 함수 설정
-    // 셀 재사용: UI 갱신
+    // MARK: - 셀 재사용
     public override func prepareForReuse() {
         super.prepareForReuse()
         resetCell()
@@ -66,6 +65,7 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
         self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30))
     } // closed layoutSubviews
     
+    // MARK: - init 설정
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()

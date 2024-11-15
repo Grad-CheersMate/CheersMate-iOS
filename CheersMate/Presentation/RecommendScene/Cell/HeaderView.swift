@@ -24,6 +24,13 @@ public final class HeaderView: UICollectionReusableView {
         return label
     }()
     
+    // MARK: - 셀 재사용
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+    } // closed prepareForReuse
+    
+    // MARK: - init 설정
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

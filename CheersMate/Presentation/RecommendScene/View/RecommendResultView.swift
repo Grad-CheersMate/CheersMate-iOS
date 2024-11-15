@@ -20,7 +20,7 @@ public final class RecommendResultView: UIView {
         return lb
     }()
     
-    public let cancelButton: UIButton = {
+    public let dismissButton: UIButton = {
         let bt = UIButton(type: .custom)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 22, weight: .light)
         let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
@@ -56,7 +56,7 @@ public final class RecommendResultView: UIView {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [titleLabel, cancelButton, collectionview].forEach { self.addSubview($0) }
+        [titleLabel, dismissButton, collectionview].forEach { self.addSubview($0) }
     } // closed setupUI
 
     // MARK: - Layout 설정
@@ -66,7 +66,7 @@ public final class RecommendResultView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        cancelButton.snp.makeConstraints { make in
+        dismissButton.snp.makeConstraints { make in
             make.centerY.equalTo(titleLabel)
             make.trailing.equalTo(safeAreaLayoutGuide).inset(20)
         }

@@ -8,19 +8,22 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 final public class RecommendResultViewController: UIViewController {
     
     private let recommendResultView = RecommendResultView()
-    private let disposeBag: DisposeBag = DisposeBag()
+    private let viewModel: RecommendResultViewModelProtocol
     private let resData: RecommendResponse
-    
+    private let disposeBag = DisposeBag()
+
     // MARK: - 뷰 교체
     public override func loadView() {
         self.view = recommendResultView
     } // closed loadView
     
-    public init(data: RecommendResponse) {
+    public init(viewModel: RecommendResultViewModelProtocol, data: RecommendResponse) {
+        self.viewModel = viewModel
         self.resData = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,13 +35,37 @@ final public class RecommendResultViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         bindView()
+        bindView()
         applySnapshot()
     } // closed viewDidLoad
     
     // MARK: - 바인드 뷰
     private func bindView() {
+        // X버튼을 눌렀을 때 이벤트 감지 - 팝업 창을 표시하여 사용자에게 별점을 매기도록 유도
+        recommendResultView.dismissButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                // MARK: - Data Layer
+                let realmDB = RealmDB(realm: try! Realm())
+                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                // MARK: - Domain Layer
+                let recommendRP = RecommendRepository(network: network, realm: realmDB)
+                let recommendUC = RecommendUseCase(repository: recommendRP)
+                // MARK: - Presentation Layer
+                let recommendEvaluateVM = RecommendEvaluateViewModel(useCase: recommendUC)
+                let recommendEvaluateVC = RecommendEvaluateViewController(viewModel: recommendEvaluateVM)
+                recommendEvaluateVC.modalPresentationStyle = .overFullScreen
+                recommendEvaluateVC.modalTransitionStyle = .crossDissolve // 흐릿하게 전환해주는 효과
+                self?.present(recommendEvaluateVC, animated: true)
+            })
+            .disposed(by: disposeBag)
         
     } // closed bindView
+    
+    // MARK: - 바인드 뷰 모델
+    private func bindViewModel() {
+        
+        
+    } // closed bindViewModel
     
     // MARK: - 주류 정보 섹션 스냅샷 적용
     private func applySnapshot() {
@@ -46,24 +73,15 @@ final public class RecommendResultViewController: UIViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
         
         // 주류 추천 결과
-        let recommendLiquorItems = [Item.productItem(resData.data.recommendLiquor.liquor)]
+        let recommendLiquorItems = [Item.productItem(resData.data.recommendLiquor[0].liquor)]
         let productSection = Section.product
         snapshot.appendSections([productSection])
         snapshot.appendItems(recommendLiquorItems, toSection: productSection)
         
-        let foodItem = Item.foodItem(resData.data.food)
         // 어울리는 음식 추천 결과
-        var foodItems = [
-            Item.foodItem(Food(name: "닭다리살 스테이크",
-                               imageUrl:"https://img.freepik.com/free-photo/fried-chicken-breast-with-vegetables_140725-4649.jpg?ga=GA1.1.969555387.1728058410&semt=ais_hybrid")),
-            Item.foodItem(Food(name: "김치볶음밥 삼겹살 정식",
-                               imageUrl:"https://img.freepik.com/free-photo/korean-food-fried-rice-with-kimchi-serve-with-fried-egg_1150-42929.jpg")),
-            Item.foodItem(Food(name: "소세시 볶음 정식",
-                               imageUrl:"https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg")),
-            Item.foodItem(Food(name: "된장찌개 삼겹살 정식",
-                               imageUrl:"https://img.freepik.com/free-photo/bean-paste-soup-korean-style_1150-42945.jpg"))]
         
-        foodItems.append(foodItem)
+        let foodItems = resData.data.food.map { Item.foodItem($0) }
+        //foodItems.append(foodItem)
         let foodSection = Section.food("해당 음식과 잘 어울려요")
         snapshot.appendSections([foodSection])
         snapshot.appendItems(foodItems, toSection: foodSection)
@@ -75,6 +93,7 @@ final public class RecommendResultViewController: UIViewController {
         snapshot.appendSections([similarSection])
         snapshot.appendItems(similarLiquorItems, toSection: similarSection)
         
+        // 스냅샷 적용
         recommendResultView.dataSource?.apply(snapshot, animatingDifferences: true)
     } // closed applyProductSnapshot
     

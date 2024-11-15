@@ -35,6 +35,13 @@ public final class HorizontalListCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    // MARK: - 셀 재사용
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        nameLabel.text = ""
+    } // closed prepareForReuse
+    
     // MARK: - init 설정
     public override init(frame: CGRect) {
         super.init(frame: frame)

@@ -13,7 +13,10 @@ import RxSwift
 
 // MARK: - Single을 사용하여 단일 이벤트와 에러처리만. 이벤트가 끝나면 스트림 종료. 따라서 HTTP에 적절한 Traits
 public protocol LiquorNetworkManagerProtocol {
+    // MARK: - 사용자의 선호를 종합하여 서버에 AI 추천 주류 및 안주 결과 요청
     func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse>
+    // MARK: - 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출
+    func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse>
 }
 
 // MARK: - 주류 네트워크 매니저
@@ -26,7 +29,7 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     }
     // MARK: -  나중에 jwt를 Bearer 뒤에 추가하기
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMxNTAwNjAzLCJleHAiOjE3MzE1ODcwMDN9.xnmSjlKB_Jv9EUXOAgT97X_0XaV8MtvtkiUspvPLzhtFhEfnCK35-nZOTTcU9_8VBDE7_G_H0jluDkF2Lp4z3w")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMxNTk0ODg2LCJleHAiOjE3MzE2ODEyODZ9.c5GekV4cjNKSN2i7FuWG-IucAgJtPIxuHgCk7LINTi-2y9aBIGz637s16mPJooQZMbYgmeg_pOReOZbNRc74-g")
         return HTTPHeaders([tokenHeader])
     }() // closed tokenHeader
     
@@ -51,9 +54,14 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
         let url = "\(endpoint)/api/recommend"
         let parameters: Parameters = ["emotion": emotion, "companion": companion]
         return makeRequest(url: url, method: .post, parameters: parameters, headers: tokenHeader)
-    } // closed recommendLiquor
+    } // closed requestRecommendationsForSelection
     
-    
+    // MARK: - 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출
+    public func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse> {
+        let url = "\(endpoint)/api/recommend/evaluate"
+        let parameters: Parameters = ["emotion": emotion, "companion": companion, "liquor": [ "name": liquor.name  ], "rating": rating]
+        return makeRequest(url: url, method: .post, parameters: parameters, headers: tokenHeader)
+    } // closed requestRecommendationsForSelection
     
 } // closed NetworkManager
 

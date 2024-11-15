@@ -34,9 +34,10 @@
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
+		2567CF412CE5307D00FB8860 /* RecommendResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */; };
 		25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */; };
 		25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* LiquorNetwork.swift */; };
-		25737D6B2CDE7882004E9F6B /* SelectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* SelectionObject.swift */; };
+		25737D6B2CDE7882004E9F6B /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* Object.swift */; };
 		25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D702CDE973F004E9F6B /* LiquorRepository.swift */; };
 		25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */; };
 		25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D742CDE9CE9004E9F6B /* Liquor.swift */; };
@@ -56,7 +57,10 @@
 		259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* UserNetworkManager.swift */; };
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82102CCE87DA00D63747 /* UserRepository.swift */; };
-		25A955A42CDFCD72001213CB /* SelectionRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A32CDFCD72001213CB /* SelectionRealm.swift */; };
+		25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */; };
+		25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */; };
+		25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */; };
+		25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A32CDFCD72001213CB /* RealmDB.swift */; };
 		25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A52CDFEB91001213CB /* RecommendRepository.swift */; };
 		25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */; };
 		25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A92CDFF460001213CB /* RecommendUseCase.swift */; };
@@ -131,9 +135,10 @@
 		255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
+		2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendResultViewModel.swift; sourceTree = "<group>"; };
 		25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetworkManager.swift; sourceTree = "<group>"; };
 		25737D682CDE7496004E9F6B /* LiquorNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetwork.swift; sourceTree = "<group>"; };
-		25737D6A2CDE7882004E9F6B /* SelectionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionObject.swift; sourceTree = "<group>"; };
+		25737D6A2CDE7882004E9F6B /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		25737D702CDE973F004E9F6B /* LiquorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepository.swift; sourceTree = "<group>"; };
 		25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25737D742CDE9CE9004E9F6B /* Liquor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liquor.swift; sourceTree = "<group>"; };
@@ -153,7 +158,10 @@
 		259E82082CCE801300D63747 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		259E82102CCE87DA00D63747 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		25A955A32CDFCD72001213CB /* SelectionRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionRealm.swift; sourceTree = "<group>"; };
+		25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateView.swift; sourceTree = "<group>"; };
+		25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewController.swift; sourceTree = "<group>"; };
+		25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewModel.swift; sourceTree = "<group>"; };
+		25A955A32CDFCD72001213CB /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		25A955A52CDFEB91001213CB /* RecommendRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepository.swift; sourceTree = "<group>"; };
 		25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25A955A92CDFF460001213CB /* RecommendUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendUseCase.swift; sourceTree = "<group>"; };
@@ -327,7 +335,8 @@
 		253B1B6F2CC4046500F7DBF9 /* PersistentStorages */ = {
 			isa = PBXGroup;
 			children = (
-				25A955A22CDFCD59001213CB /* Selection */,
+				25737D6A2CDE7882004E9F6B /* Object.swift */,
+				25A955A32CDFCD72001213CB /* RealmDB.swift */,
 			);
 			path = PersistentStorages;
 			sourceTree = "<group>";
@@ -610,6 +619,8 @@
 			isa = PBXGroup;
 			children = (
 				25CFEF162CD8F27400083081 /* RecommendSelectionViewModel.swift */,
+				2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */,
+				25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -623,6 +634,8 @@
 				25CFEF1E2CD9529B00083081 /* RecommendSelectionViewController.swift */,
 				251DBE822CE263E300258E49 /* RecommendResultView.swift */,
 				251DBE842CE2640300258E49 /* RecommendResultViewController.swift */,
+				25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */,
+				25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -647,15 +660,6 @@
 			children = (
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		25A955A22CDFCD59001213CB /* Selection */ = {
-			isa = PBXGroup;
-			children = (
-				25737D6A2CDE7882004E9F6B /* SelectionObject.swift */,
-				25A955A32CDFCD72001213CB /* SelectionRealm.swift */,
-			);
-			path = Selection;
 			sourceTree = "<group>";
 		};
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
@@ -957,10 +961,11 @@
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
 				25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */,
 				251DBE892CE39F0800258E49 /* Recommend.swift in Sources */,
-				25737D6B2CDE7882004E9F6B /* SelectionObject.swift in Sources */,
+				25737D6B2CDE7882004E9F6B /* Object.swift in Sources */,
 				25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */,
 				251DBE932CE4D44600258E49 /* HorizontalListCollectionViewCell.swift in Sources */,
-				25A955A42CDFCD72001213CB /* SelectionRealm.swift in Sources */,
+				25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */,
+				25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
 				251DBE852CE2640300258E49 /* RecommendResultViewController.swift in Sources */,
@@ -972,6 +977,7 @@
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
+				25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */,
 				25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
@@ -998,7 +1004,9 @@
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
+				25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */,
 				25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */,
+				2567CF412CE5307D00FB8860 /* RecommendResultViewModel.swift in Sources */,
 				259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */,
 				25CFEF1F2CD9529B00083081 /* RecommendSelectionViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 final public class RecommendSelectionViewController: UIViewController {
     // MARK: - 프로퍼티 설정
@@ -56,7 +57,6 @@ final public class RecommendSelectionViewController: UIViewController {
     
     // MARK: - 바인드 뷰
     private func bindView() {
-
         
     } // closed bindView
     
@@ -118,11 +118,19 @@ final public class RecommendSelectionViewController: UIViewController {
         
         output.recommendResponse
             .bind(onNext: { [weak self] response in
-                if response.result && response.httpCode == 200 {
-                    let recommendResultVC = RecommendResultViewController(data: response)
-                    recommendResultVC.modalPresentationStyle = .overFullScreen
-                    self?.present(recommendResultVC, animated: true)
-                }
+                // MARK: - Data Layer
+                let realmDB = RealmDB(realm: try! Realm())
+                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                // MARK: - Domain Layer
+                let recommendRP = RecommendRepository(network: network, realm: realmDB)
+                let recommendUC = RecommendUseCase(repository: recommendRP)
+                // MARK: - Presentation Layer
+                let recommendResultVM = RecommendResultViewModel(useCase: recommendUC)
+                let recommendResultVC = RecommendResultViewController(viewModel: recommendResultVM, data: response)
+                recommendResultVC.modalPresentationStyle = .overFullScreen
+                self?.present(recommendResultVC, animated: true, completion: {
+                    self?.navigationController?.popToRootViewController(animated: false)
+                })
             })
             .disposed(by: disposeBag)
         
