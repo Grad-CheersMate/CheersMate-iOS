@@ -55,10 +55,10 @@ final public class RecommendHomeViewController: UIViewController {
             .bind { [weak self] _ in
                 guard let self = self else { return }
                 // MARK: - Data Layer
-                let selectionRealm = SelectionRealm(realm: try! Realm())
+                let realmDB = RealmDB(realm: try! Realm())
                 let network = LiquorNetwork(manager: LiquorNetworkManager())
                 // MARK: - Domain Layer
-                let recommendRP = RecommendRepository(network: network, realm: selectionRealm)
+                let recommendRP = RecommendRepository(network: network, realm: realmDB)
                 let recommendUC = RecommendUseCase(repository: recommendRP)
                 // MARK: - Presentation Layer
                 let recommendSelectionVM = RecommendSelectionViewModel(useCase: recommendUC)

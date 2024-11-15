@@ -14,8 +14,14 @@ public struct LiquorResponse: Codable {
 
 // MARK: - 주류 엔티티
 public struct Liquor: Codable, Hashable {
-    let imageUrl: String?
     let name: String?
     let volume: Double?
     let type: String?
+    let imageUrl: String?
+    
+    // MARK: - Liquor를 Realm에 저장할 LiquorObject로 변환
+    static func convert(liquor: Liquor) -> LiquorObject {
+        return LiquorObject(name: liquor.name ?? "", volume: liquor.volume ?? 0.0, type: liquor.type ?? "", imageUrl: liquor.imageUrl ?? "")
+    } // closed convert
+    
 }

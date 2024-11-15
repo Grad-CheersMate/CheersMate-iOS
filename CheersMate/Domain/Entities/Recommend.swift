@@ -18,8 +18,8 @@ public struct RecommendResponse: Codable {
 
 public struct RecommendData: Codable {
     let request: RequestInfo
-    let recommendLiquor: LiquorResponse
-    let food: Food
+    let recommendLiquor: [LiquorResponse]
+    let food: [Food]
     let similarLiquor: [LiquorResponse]
     
     enum CodingKeys: String, CodingKey {
@@ -34,4 +34,27 @@ public struct RequestInfo: Codable {
     let weather: String
     let emotion: String
     let companion: String
+}
+
+// MARK: - AI 추천 결과 DB에서 가져올 때 사용할 구조체
+public struct RecommendResult {
+    let emotion: String
+    let companion: String
+    let recommendLiquor: Liquor
+    let foods: [Food]
+    let similarLiquors: [Liquor]
+    
+    public init(from object: RecommendObject) {
+        self.emotion = object.emotion
+        self.companion = object.companion
+        self.recommendLiquor = object.recommendLiquor!.toLiquor()
+        self.foods = object.foods.map{ $0.toFood() }
+        self.similarLiquors = object.similarLiquors.map{ $0.toLiquor() }
+    } // closed init
+}
+
+public struct RecommendResultResponse: Codable {
+    let result: Bool
+    let httpCode: Int
+    let text: String
 }

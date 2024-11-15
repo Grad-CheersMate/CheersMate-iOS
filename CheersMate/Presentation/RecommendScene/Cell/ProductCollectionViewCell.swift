@@ -13,7 +13,7 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     static let ID = "ProductCollectionViewCell"
     
     // 메인 이미지 뷰
-    private let ImageView: UIImageView = {
+    private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
@@ -67,14 +67,26 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     private let heartButton: UIButton = {
         let bt = UIButton(type: .custom)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .light)
-        let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
-        bt.setImage(image, for: .normal)
+        let normalImage = UIImage(systemName: "heart", withConfiguration: imageConfig)
+        let selectedImage = UIImage(systemName: "heart.fill", withConfiguration: imageConfig)
+        bt.setImage(normalImage, for: .normal)
+        bt.setImage(selectedImage, for: .selected)
         bt.tintColor = .mainColor
         bt.adjustsImageWhenHighlighted = false
         bt.clipsToBounds = true
         return bt
     }()
     
+    // MARK: - 셀 재사용
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        nameLabel.text = ""
+        typeLabel.text = ""
+        volumeLabel.text = ""
+    } // closed prepareForReuse
+    
+    // MARK: - init 설정
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -86,7 +98,7 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     } // closed required init
     
     public func configure(imageURL: String?, name: String?, type: String?, volume: Double?) {
-        ImageView.kf.setImage(with: URL(string: imageURL ?? ""))
+        imageView.kf.setImage(with: URL(string: imageURL ?? ""))
         nameLabel.text = name ?? "제품명이 없습니다"
         typeLabel.text = (type != nil) ? "주종: \(type!)" : "주종 정보가 없습니다"
         volumeLabel.text = (volume != nil) ? "도수: \(volume!)%" : "도수 정보가 없습니다"
@@ -99,13 +111,13 @@ extension ProductCollectionViewCell {
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [ImageView, labelStackView, heartButton].forEach { self.addSubview($0) }
+        [imageView, labelStackView, heartButton].forEach { self.addSubview($0) }
     } // closed setupUI
     
     // Layout 설정
     private func setupLayout() {
 
-        ImageView.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
@@ -113,13 +125,14 @@ extension ProductCollectionViewCell {
         }
         
         labelStackView.snp.makeConstraints { make in
-            make.top.equalTo(ImageView.snp.bottom).offset(40)
+            make.top.equalTo(imageView.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(25)
             make.trailing.lessThanOrEqualTo(heartButton.snp.leading).offset(-50)
             make.bottom.lessThanOrEqualToSuperview()
         }
         
         nameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        nameLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         typeLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         volumeLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
