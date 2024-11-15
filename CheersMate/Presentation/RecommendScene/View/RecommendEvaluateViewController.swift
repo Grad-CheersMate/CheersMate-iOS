@@ -43,30 +43,26 @@ final public class RecommendEvaluateViewController: UIViewController {
     
     // MARK: - 바인드 뷰 모델
     private func bindViewModel() {
+        let cosmosInfoRelay = BehaviorRelay<String?>(value: nil)
+        
+        // cosmosInfoLabel의 변경사항을 관찰하고 cosmosInfoRelay랑 bind
+        recommendEvaluateView.cosmosInfoLabel.rx.observe(String.self, "text")
+            .bind(to: cosmosInfoRelay)
+            .disposed(by: disposeBag)
+        
         let input = RecommendEvaluateViewModel.Input(
-            submitButtonTapped: recommendEvaluateView.submitButton.rx.tap.asObservable(),
-            evaluateRating: recommendEvaluateView.cosmosView.rx.ratingDidChange)
+            cosmosInfoText: cosmosInfoRelay.asObservable(),
+            submitButtonTapped: recommendEvaluateView.submitButton.rx.tap.asObservable()
+        )
         
         let output = viewModel.transform(input: input)
         
-        output.rating
-            .bind(onNext: { [weak self] rating in
-                self?.recommendEvaluateView.configureCosmosInfoLabel(rating: rating)
-                })
-            .disposed(by: disposeBag)
-        
         output.presentingDismiss
             .bind(onNext: { [weak self] text in
-                print(text)
                 self?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
         
     } // closed bindViewModel
-    
-    
-    
-
-    
 } // closed RecommendEvaluateViewController
