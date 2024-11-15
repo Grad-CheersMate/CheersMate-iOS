@@ -7,8 +7,6 @@
 
 import UIKit
 import Cosmos
-import RxSwift
-import RxCocoa
 
 // MARK: - 사용자가 AI 추천 주류 및 안주 서비스를 이용한 후 추천 결과를 평가하기 위한 뷰
 public final class RecommendEvaluateView: UIView {
@@ -47,15 +45,15 @@ public final class RecommendEvaluateView: UIView {
     }()
     
     // 별점 뷰
-    public let cosmosView: CosmosView = {
+    public lazy var cosmosView: CosmosView = {
         let v = CosmosView()
         v.settings.starSize = 40
         v.rating = 3.0
         return v
     }()
-    
+
     // 별점 안내 레이블
-    private let cosmosInfoLabel: UILabel = {
+    public let cosmosInfoLabel: UILabel = {
         let lb = UILabel()
         lb.text = "보통이에요 😐"
         lb.textColor = UIColor.systemGray
@@ -82,6 +80,7 @@ public final class RecommendEvaluateView: UIView {
         setupUI()
         setupLayout()
         setupShadow()
+        setupCosmos()
     } // closed init
     
     required init?(coder: NSCoder) {
@@ -98,19 +97,20 @@ public final class RecommendEvaluateView: UIView {
     } // closed setupShadow
     
     // MARK: - 코스모스 뷰 별점에 대한 CosmosInfoLabel Configure
-    public func configureCosmosInfoLabel(rating: Double) {
+    public func setupCosmos() {
         cosmosView.didTouchCosmos = { [weak self] rating in
+            guard let self = self else { return }
             switch rating {
             case 5.0:
-                self?.cosmosInfoLabel.text = "최고였어요 🥰"
+                self.cosmosInfoLabel.text = "최고였어요 🥰"
             case 4.0:
-                self?.cosmosInfoLabel.text = "만족했어요 😊"
+                self.cosmosInfoLabel.text = "만족했어요 😊"
             case 3.0:
-                self?.cosmosInfoLabel.text = "보통이에요 😐"
+                self.cosmosInfoLabel.text = "보통이에요 😐"
             case 2.0:
-                self?.cosmosInfoLabel.text = "부족했어요 😕"
+                self.cosmosInfoLabel.text = "부족했어요 😕"
             case 1.0:
-                self?.cosmosInfoLabel.text = "아쉬웠어요 😞"
+                self.cosmosInfoLabel.text = "아쉬웠어요 😞"
             default:
                 break
             }
@@ -172,14 +172,3 @@ extension RecommendEvaluateView {
     
 } // closed extension
 
-// MARK: - CosmosView Rx 확장
-extension Reactive where Base: CosmosView {
-    var ratingDidChange: Observable<Double> {
-        return Observable<Double>.create { [weak base] observer in
-            base?.didTouchCosmos = { rating in
-                observer.onNext(rating)
-            }
-            return Disposables.create()
-        }
-    }
-}
