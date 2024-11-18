@@ -15,7 +15,7 @@
 		251DBE8B2CE39FFC00258E49 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE8A2CE39FFC00258E49 /* Food.swift */; };
 		251DBE912CE4812C00258E49 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */; };
 		251DBE932CE4D44600258E49 /* HorizontalListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */; };
-		251DBE952CE501DD00258E49 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE942CE501DD00258E49 /* HeaderView.swift */; };
+		251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE942CE501DD00258E49 /* TitleHeaderView.swift */; };
 		253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */; };
 		253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */; };
 		253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */; };
@@ -35,6 +35,12 @@
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
 		2567CF412CE5307D00FB8860 /* RecommendResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */; };
+		2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA3F2CEB2A0900D61D70 /* WeatherNetworkManager.swift */; };
+		2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA412CEB2A1500D61D70 /* WeatherNetwork.swift */; };
+		2571BA442CEB35C400D61D70 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA432CEB35C400D61D70 /* Weather.swift */; };
+		2571BA462CEB3AD100D61D70 /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */; };
+		2571BA482CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */; };
+		2571BA4D2CEB40E200D61D70 /* WeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */; };
 		25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */; };
 		25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* LiquorNetwork.swift */; };
 		25737D6B2CDE7882004E9F6B /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* Object.swift */; };
@@ -60,6 +66,11 @@
 		25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */; };
 		25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */; };
 		25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */; };
+		25A8419E2CE7BA04002C64DD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8419D2CE7BA04002C64DD /* HomeViewModel.swift */; };
+		25A841A92CEA1C0F002C64DD /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841A82CEA1C0F002C64DD /* CategoryTableViewCell.swift */; };
+		25A841AB2CEA683E002C64DD /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841AA2CEA683E002C64DD /* WeatherView.swift */; };
+		25A841AD2CEA684A002C64DD /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841AC2CEA684A002C64DD /* WeatherViewController.swift */; };
+		25A841AF2CEA6854002C64DD /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841AE2CEA6854002C64DD /* WeatherViewModel.swift */; };
 		25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A32CDFCD72001213CB /* RealmDB.swift */; };
 		25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A52CDFEB91001213CB /* RecommendRepository.swift */; };
 		25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */; };
@@ -72,7 +83,7 @@
 		25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */; };
 		25CFEF1D2CD9528B00083081 /* RecommendSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1C2CD9528B00083081 /* RecommendSelectionView.swift */; };
 		25CFEF1F2CD9529B00083081 /* RecommendSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1E2CD9529B00083081 /* RecommendSelectionViewController.swift */; };
-		25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */; };
+		25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* MainTabBarController.swift */; };
 		25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */; };
 		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
@@ -112,7 +123,7 @@
 		251DBE8A2CE39FFC00258E49 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalListCollectionViewCell.swift; sourceTree = "<group>"; };
-		251DBE942CE501DD00258E49 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		251DBE942CE501DD00258E49 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
@@ -136,6 +147,12 @@
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
 		2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendResultViewModel.swift; sourceTree = "<group>"; };
+		2571BA3F2CEB2A0900D61D70 /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
+		2571BA412CEB2A1500D61D70 /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
+		2571BA432CEB35C400D61D70 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
+		2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepositoryProtocol.swift; sourceTree = "<group>"; };
+		2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCase.swift; sourceTree = "<group>"; };
 		25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetworkManager.swift; sourceTree = "<group>"; };
 		25737D682CDE7496004E9F6B /* LiquorNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetwork.swift; sourceTree = "<group>"; };
 		25737D6A2CDE7882004E9F6B /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
@@ -161,6 +178,11 @@
 		25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateView.swift; sourceTree = "<group>"; };
 		25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewController.swift; sourceTree = "<group>"; };
 		25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewModel.swift; sourceTree = "<group>"; };
+		25A8419D2CE7BA04002C64DD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		25A841A82CEA1C0F002C64DD /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		25A841AA2CEA683E002C64DD /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		25A841AC2CEA684A002C64DD /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		25A841AE2CEA6854002C64DD /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		25A955A32CDFCD72001213CB /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		25A955A52CDFEB91001213CB /* RecommendRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepository.swift; sourceTree = "<group>"; };
 		25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -173,7 +195,7 @@
 		25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25CFEF1C2CD9528B00083081 /* RecommendSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionView.swift; sourceTree = "<group>"; };
 		25CFEF1E2CD9529B00083081 /* RecommendSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionViewController.swift; sourceTree = "<group>"; };
-		25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		25CFEF202CDA7E5800083081 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -255,10 +277,11 @@
 				253B1B902CC82A0700F7DBF9 /* SignUpScene */,
 				259E81C32CCA3FAF00D63747 /* AccountlSearchScene */,
 				259E81E52CCB861900D63747 /* HomeScene */,
+				25A8419C2CE7B9B2002C64DD /* WeatherScene */,
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
 				259E81F42CCCE49C00D63747 /* MyPageScene */,
-				25CFEF222CDA7EE800083081 /* CustomTabBarScene */,
+				25CFEF222CDA7EE800083081 /* MainTabBarScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -271,6 +294,7 @@
 				251DBE8A2CE39FFC00258E49 /* Food.swift */,
 				251DBE882CE39F0800258E49 /* Recommend.swift */,
 				25CFEF262CDB4AC800083081 /* Selection.swift */,
+				2571BA432CEB35C400D61D70 /* Weather.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -280,6 +304,7 @@
 			children = (
 				25F428892CD6390F0044240C /* UserUseCase.swift */,
 				25A955A92CDFF460001213CB /* RecommendUseCase.swift */,
+				2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -298,6 +323,7 @@
 				25F428872CD633770044240C /* UserRepositoryProtocol.swift */,
 				25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */,
 				25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */,
+				2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -319,6 +345,7 @@
 				259E82102CCE87DA00D63747 /* UserRepository.swift */,
 				25737D702CDE973F004E9F6B /* LiquorRepository.swift */,
 				25A955A52CDFEB91001213CB /* RecommendRepository.swift */,
+				2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -328,6 +355,7 @@
 			children = (
 				25737D642CDE7463004E9F6B /* User */,
 				25737D652CDE7473004E9F6B /* Liquor */,
+				2571BA3E2CEB29EC00D61D70 /* Weather */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -492,6 +520,32 @@
 			path = CheersMate;
 			sourceTree = "<group>";
 		};
+		2571BA3E2CEB29EC00D61D70 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA3F2CEB2A0900D61D70 /* WeatherNetworkManager.swift */,
+				2571BA412CEB2A1500D61D70 /* WeatherNetwork.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		2571BA492CEB3BC800D61D70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				25A841AE2CEA6854002C64DD /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2571BA4A2CEB3BCF00D61D70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25A841AA2CEA683E002C64DD /* WeatherView.swift */,
+				25A841AC2CEA684A002C64DD /* WeatherViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25737D642CDE7463004E9F6B /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +603,7 @@
 		259E81E52CCB861900D63747 /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
+				25A8419F2CE7ED14002C64DD /* Cell */,
 				259E81E62CCB862D00D63747 /* View */,
 				259E81E72CCB863100D63747 /* ViewModel */,
 			);
@@ -567,6 +622,7 @@
 		259E81E72CCB863100D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25A8419D2CE7BA04002C64DD /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -662,6 +718,23 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		25A8419C2CE7B9B2002C64DD /* WeatherScene */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA4A2CEB3BCF00D61D70 /* View */,
+				2571BA492CEB3BC800D61D70 /* ViewModel */,
+			);
+			path = WeatherScene;
+			sourceTree = "<group>";
+		};
+		25A8419F2CE7ED14002C64DD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				25A841A82CEA1C0F002C64DD /* CategoryTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,12 +742,12 @@
 			path = KeyChain;
 			sourceTree = "<group>";
 		};
-		25CFEF222CDA7EE800083081 /* CustomTabBarScene */ = {
+		25CFEF222CDA7EE800083081 /* MainTabBarScene */ = {
 			isa = PBXGroup;
 			children = (
-				25CFEF202CDA7E5800083081 /* CustomTabBarController.swift */,
+				25CFEF202CDA7E5800083081 /* MainTabBarController.swift */,
 			);
-			path = CustomTabBarScene;
+			path = MainTabBarScene;
 			sourceTree = "<group>";
 		};
 		25CFEF232CDA931100083081 /* Cell */ = {
@@ -683,7 +756,7 @@
 				25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */,
 				251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */,
 				251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */,
-				251DBE942CE501DD00258E49 /* HeaderView.swift */,
+				251DBE942CE501DD00258E49 /* TitleHeaderView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -957,26 +1030,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */,
+				25A841AD2CEA684A002C64DD /* WeatherViewController.swift in Sources */,
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
 				25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */,
 				251DBE892CE39F0800258E49 /* Recommend.swift in Sources */,
 				25737D6B2CDE7882004E9F6B /* Object.swift in Sources */,
-				25CFEF212CDA7E5800083081 /* CustomTabBarController.swift in Sources */,
+				25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */,
 				251DBE932CE4D44600258E49 /* HorizontalListCollectionViewCell.swift in Sources */,
+				25A8419E2CE7BA04002C64DD /* HomeViewModel.swift in Sources */,
 				25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */,
 				25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
+				2571BA4D2CEB40E200D61D70 /* WeatherUseCase.swift in Sources */,
 				251DBE852CE2640300258E49 /* RecommendResultViewController.swift in Sources */,
 				259E81E92CCB864200D63747 /* HomeView.swift in Sources */,
 				253B1B7E2CC40DC200F7DBF9 /* UIFont+CustomFont.swift in Sources */,
+				2571BA462CEB3AD100D61D70 /* WeatherRepository.swift in Sources */,
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
+				25A841A92CEA1C0F002C64DD /* CategoryTableViewCell.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
 				25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */,
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
+				25A841AB2CEA683E002C64DD /* WeatherView.swift in Sources */,
 				25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */,
 				25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
@@ -992,9 +1071,11 @@
 				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
 				251DBE832CE263E300258E49 /* RecommendResultView.swift in Sources */,
 				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
+				2571BA442CEB35C400D61D70 /* Weather.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				251DBE912CE4812C00258E49 /* ProductCollectionViewCell.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
+				25A841AF2CEA6854002C64DD /* WeatherViewModel.swift in Sources */,
 				25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */,
 				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
 				259E81FE2CCCE77100D63747 /* RecommendHomeViewController.swift in Sources */,
@@ -1011,15 +1092,18 @@
 				25CFEF1F2CD9529B00083081 /* RecommendSelectionViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
 				25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */,
+				2571BA482CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift in Sources */,
 				259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */,
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
+				2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
-				251DBE952CE501DD00258E49 /* HeaderView.swift in Sources */,
+				251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
 				251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */,
 				25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */,
+				2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

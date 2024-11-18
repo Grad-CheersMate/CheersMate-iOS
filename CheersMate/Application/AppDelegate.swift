@@ -59,7 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 SelectionObject(title: "light", desc: "가볍게 살짝 기분만", type: .liquorVolume),
                 SelectionObject(title: "tipsy", desc: "알딸딸하게 딱 좋게", type: .liquorVolume),
                 SelectionObject(title: "buzzed", desc: "적당히 취할 정도로", type: .liquorVolume),
-                SelectionObject(title: "drunk", desc: "제대로 확실하게", type: .liquorVolume)
+                SelectionObject(title: "drunk", desc: "제대로 확실하게", type: .liquorVolume),
+                
+                LiquorObject(name: "", volume: 0, type: "", imageUrl: "")
             ])
         } // closed realm.write
         

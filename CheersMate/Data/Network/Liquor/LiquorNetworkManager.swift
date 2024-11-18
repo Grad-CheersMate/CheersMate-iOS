@@ -27,9 +27,9 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     public init(endpoint: String = "http://ceprj.gachon.ac.kr:60021") {
         self.endpoint = endpoint
     }
-    // MARK: -  나중에 jwt를 Bearer 뒤에 추가하기
+    // MARK: -  jwt 추가
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMxNTk0ODg2LCJleHAiOjE3MzE2ODEyODZ9.c5GekV4cjNKSN2i7FuWG-IucAgJtPIxuHgCk7LINTi-2y9aBIGz637s16mPJooQZMbYgmeg_pOReOZbNRc74-g")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMxOTI3MDUzLCJleHAiOjE3MzIwMTM0NTN9.WyFTjqILaX0-W-qVi-9vuzyOPV6_Ldk9Z1pwD8OmZOdKlUU8Zm06ZQJUkFaLbEaT0IDRW5wTV7NaoA0S2veLxg")
         return HTTPHeaders([tokenHeader])
     }() // closed tokenHeader
     

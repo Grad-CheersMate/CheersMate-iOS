@@ -25,7 +25,7 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor.textColor
+        label.textColor = .mainTextColor
         label.numberOfLines = 2
         label.font = UIFont.pretendard(size: 18, family: .SemiBold)
         label.textAlignment = .left
@@ -36,7 +36,7 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor.textColor
+        label.textColor = .mainTextColor
         label.font = UIFont.gmarketSans(size: 14, family: .Medium)
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -47,7 +47,7 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     private let volumeLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor.textColor
+        label.textColor = .mainTextColor
         label.font = UIFont.gmarketSans(size: 14, family: .Medium)
         label.numberOfLines = 0
         label.textAlignment = .left

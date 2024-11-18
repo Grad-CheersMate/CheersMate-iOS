@@ -11,7 +11,6 @@ class MyPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemCyan
+        self.view.backgroundColor = .backgroundColor
     }
-
 }

@@ -18,4 +18,4 @@ public protocol UserRepositoryProtocol {
     func searchEmail(nickname: String, tell: String) -> Single<UserResponse>
     // 사용자 비밀번호 찾기
     func searchPassword(email: String, tell: String) -> Single<UserResponse>
-} // closed UserRepositoryProtocol
+} 

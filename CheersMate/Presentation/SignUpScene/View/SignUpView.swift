@@ -22,7 +22,7 @@ final public class SignUpView: UIView {
     // 이메일 주소 레이블
     private let emailLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = "이메일 주소"
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left
@@ -52,7 +52,7 @@ final public class SignUpView: UIView {
     // 비밀번호 레이블
     public let passwordLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = "비밀번호"
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left
@@ -93,7 +93,7 @@ final public class SignUpView: UIView {
     // 닉네임 주소 레이블
     private let nickNameLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = "닉네임"
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left
@@ -123,7 +123,7 @@ final public class SignUpView: UIView {
     // 휴대폰 번호 레이블
     private let tellLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = "휴대폰 번호"
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left

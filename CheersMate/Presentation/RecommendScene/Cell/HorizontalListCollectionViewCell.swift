@@ -14,6 +14,15 @@ public final class HorizontalListCollectionViewCell: UICollectionViewCell {
     // 셀 아이디
     static let ID = "HorizontalListCollectionViewCell"
     
+    // 이미지와 레이블을 포함하는 스택뷰
+    private lazy var stackview: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [imageView, nameLabel])
+        sv.axis = .vertical
+        sv.alignment = .fill
+        sv.distribution = .equalSpacing
+        return sv
+    }()
+    
     // 음식 메인 이미지 뷰
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -28,10 +37,10 @@ public final class HorizontalListCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor.textColor
+        label.textColor = .mainTextColor
         label.numberOfLines = 2
         label.font = UIFont.pretendard(size: 15, family: .SemiBold)
-        label.textAlignment = .left
+        label.textAlignment = .center
         return label
     }()
     
@@ -59,30 +68,24 @@ public final class HorizontalListCollectionViewCell: UICollectionViewCell {
         nameLabel.text = name ?? "제품명이 없습니다"
     } // closed configure
     
-} // closed ProductCollectionViewCell
-
-extension HorizontalListCollectionViewCell {
     // MARK: - UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [imageView, nameLabel].forEach { self.addSubview($0) }
+        [stackview].forEach { self.addSubview($0) }
     } // closed setupUI
     
     // MARK: - Layout 설정
     private func setupLayout() {
-
-        imageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(150)
+        
+        stackview.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(25)
-            make.leading.trailing.equalTo(imageView)
-            make.bottom.lessThanOrEqualToSuperview()
+        
+        imageView.snp.makeConstraints { make in
+            make.height.equalToSuperview().multipliedBy(0.8)
         }
         
     } // closed setupLayout
     
-} // closed extension
+} // closed ProductCollectionViewCell

@@ -20,4 +20,4 @@ public protocol RecommendRepositoryProtocol {
     func saveRecommendResult(recommendData: RecommendData) -> Bool
     // MARK: - AI 추천 결과를 DB에서 가져오기
     func readRecommendResult() -> RecommendResult
-} // closed SelectionRepositoryProtocol
+}

@@ -9,24 +9,98 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class HomeViewController: UIViewController {
-    
+fileprivate struct Category {
+    let mainImageText: String
+    let descText: String
+}
+
+public final class HomeViewController: UIViewController {
+    // 프로퍼티
     private let homeView = HomeView()
+    private let viewModel: HomeViewModelProtocol
+    private let disposeBag = DisposeBag()
     
-    override func loadView() {
+    public init(viewModel: HomeViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // LoadView
+    public override func loadView() {
         self.view = homeView
     }
-    
-    override func viewDidLoad() {
+    // ViewDidLoad
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupNavi()
+        setupTableView()
+        bindView()
+        bindViewModel()
+    }
+    // 뷰 바인드
+    private func bindView() {
+        // 확인하기 버튼을 클릭했을 때 날씨 뷰로 이동
+        homeView.weatherButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                // MARK: - Data Layer
+                let weatherNet = WeatherNetwork(manager: WeatherNetworkManager())
+                let weatherRP = WeatherRepository(network: weatherNet)
+                // MARK: - Domain Layer
+                let weatherUC = WeatherUseCase(repository: weatherRP)
+                let weatherVM = WeatherViewModel(useCase: weatherUC)
+                // MARK: - Presentation Layer
+                let weatherVC = WeatherViewController(viewModel: weatherVM)
+                self?.navigationController?.pushViewController(weatherVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
-    // MARK: - 네비게이션 설정
+    // 뷰 모델 바인드
+    private func bindViewModel() {
+
+    }
+    
+    // 네비게이션 설정
     private func setupNavi() {
         // 네비게이션 바의 왼쪽과 오른쪽 설정
         navigationItem.leftBarButtonItem = homeView.leftBarButtonItem
         navigationItem.rightBarButtonItem = homeView.rightBarButtonItem
-    } // closed setupNavi
+        // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .mainNavyColor
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+    }
     
-}
+    // 테이블 뷰 설정
+    private func setupTableView() {
+        let items = Observable<[Category]>.just([
+            Category(mainImageText: "best", descText: "베스트"),
+            Category(mainImageText: "beer", descText: "맥주"),
+            Category(mainImageText: "wine", descText: "와인"),
+            Category(mainImageText: "whiske", descText: "위스키"),
+            Category(mainImageText: "soju", descText: "소주"),
+            Category(mainImageText: "riceWine", descText: "전통주"),
+            Category(mainImageText: "sake", descText: "사케")
+        ])
+        
+        updateTableViewHeight(cellCount: 7)
+        
+        items
+            .bind(to: homeView.categoryTableView.rx.items(cellIdentifier: CategoryTableViewCell.ID, cellType: CategoryTableViewCell.self)) { row, element, cell in
+                cell.configure(imageText: element.mainImageText, descText: element.descText)
+                cell.selectionStyle = .none
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    // 아이템 수에 따른 테이블 뷰 높이 제약 업데이트
+    private func updateTableViewHeight(cellCount: Int) {
+        homeView.categoryTableView.snp.updateConstraints { make in
+            make.height.equalTo(cellCount * 90)
+        }
+    }
+    
+} // closed HomeViewController
