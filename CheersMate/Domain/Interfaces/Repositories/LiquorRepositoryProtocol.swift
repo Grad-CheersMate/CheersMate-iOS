@@ -13,4 +13,4 @@ public protocol LiquorRepositoryProtocol {
     // 주류 추천
     func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse>
     
-} // closed LiquorRepositoryProtocol
+} 

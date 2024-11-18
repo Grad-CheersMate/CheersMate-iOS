@@ -40,7 +40,7 @@ final public class RecommendSelectionView: UIView {
     // 메인 설명 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .textColor
+        lb.textColor = .mainTextColor
         lb.text = "오늘 당신의 기분은 어떤가요?"
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
         lb.textAlignment = .left
@@ -64,7 +64,7 @@ final public class RecommendSelectionView: UIView {
     public let tableView: UITableView = {
         let tv = UITableView()
         tv.register(RecommendSelectionTableViewCell.self, forCellReuseIdentifier: RecommendSelectionTableViewCell.ID)
-        tv.backgroundColor = .white
+        tv.backgroundColor = .backgroundColor
         tv.rowHeight = 120
         tv.separatorStyle = .none
         tv.showsVerticalScrollIndicator = false
@@ -129,7 +129,7 @@ final public class RecommendSelectionView: UIView {
 extension RecommendSelectionView {
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         [scrollView, completeButton].forEach { self.addSubview($0) }
         [containerView].forEach { scrollView.addSubview($0) }
         [mainInfoLabel, subInfoLabel, tableView].forEach { containerView.addSubview($0) }

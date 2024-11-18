@@ -15,7 +15,7 @@ final public class RecommendHomeView: UIView {
     // 사용자 안내 메인 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainNavyColor
         lb.text = "나만을 위한 주류 및 안주 추천!"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
@@ -26,7 +26,7 @@ final public class RecommendHomeView: UIView {
     // 사용자 안내 서브 레이블
     private let subInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.systemGray
+        lb.textColor = .subTextColor
         lb.text = "현재 나의 상태에 꼭 맞는 주류와 안주를\nAI가 추천해 드릴게요."
         lb.setLineSpacing(spacing: 3)
         lb.numberOfLines = 2
@@ -72,7 +72,7 @@ final public class RecommendHomeView: UIView {
 extension RecommendHomeView {
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         [mainInfoLabel, subInfoLabel, cheersAnimationView, startButton].forEach {
             self.addSubview($0) }
         

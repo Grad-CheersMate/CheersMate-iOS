@@ -12,7 +12,7 @@ final public class AccountSearchResultView: UIView {
     // 사용자 안내 레이블
     private let infoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = ""
         lb.setLineSpacing(spacing: 3)
         lb.numberOfLines = 2
@@ -24,7 +24,7 @@ final public class AccountSearchResultView: UIView {
     // 이메일 주소 또는 전화번호 레이블
     private let contactLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.text = ""
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left

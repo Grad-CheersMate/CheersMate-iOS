@@ -17,7 +17,7 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
     
     private let containerView: UIView = {
         let v = UIView()
-        v.backgroundColor = .white
+        v.backgroundColor = .backgroundColor
         v.layer.cornerRadius = 12
         v.clipsToBounds = true
         return v
@@ -35,7 +35,7 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
     // 설명 레이블
     private let descLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainNavyColor
         lb.text = "기쁨"
         lb.font = UIFont.gmarketSans(size: 16, family: .Medium)
         lb.textAlignment = .left
@@ -101,13 +101,13 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
     
     // 셀의 활성화 여부 판단
     private func setCellActive(_ condition: Bool) {
-        condition ? (descLabel.textColor = .mainColor) : (descLabel.textColor = .textColor)
+        condition ? (descLabel.textColor = .mainColor) : (descLabel.textColor = .mainTextColor)
         checkBoxImageView.isHidden = !condition
     } // closed resetCellAppearance
     
     // 셀 리셋
     public func resetCell() {
-        descLabel.textColor = .textColor
+        descLabel.textColor = .mainTextColor
         checkBoxImageView.isHidden = true
         status = false
     } // closed resetCell
@@ -118,8 +118,8 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
 extension RecommendSelectionTableViewCell {
     // UI 설정
     private func setupUI() {
+        self.backgroundColor = .backgroundColor
         contentView.addSubview(containerView)
-        
         [mainImageView, descLabel, checkBoxImageView].forEach { containerView.addSubview($0) }
     } // closed setupUI
     

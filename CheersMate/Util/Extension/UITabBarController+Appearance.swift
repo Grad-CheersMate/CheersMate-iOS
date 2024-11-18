@@ -10,15 +10,15 @@ import UIKit
 extension UITabBarController {
     func setupBarApperance() {
         self.modalPresentationStyle = .fullScreen
-        self.tabBar.backgroundColor = .white
-        self.tabBar.tintColor = .black
+        self.tabBar.backgroundColor = .backgroundColor
+        self.tabBar.tintColor = .mainNavyColor
         self.tabBar.barTintColor = .white
         self.tabBar.isTranslucent = false
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithTransparentBackground()
         
-        tabBarAppearance.shadowColor = .lightGray // 탭 바 구분선 색상
+        tabBarAppearance.shadowColor = .mainNavyColor // 탭 바 구분선 색상
         tabBar.standardAppearance = tabBarAppearance // 일반 상태
         tabBar.scrollEdgeAppearance = tabBarAppearance // 스크롤 상태
         // 커스텀 폰트

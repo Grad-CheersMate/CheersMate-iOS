@@ -11,7 +11,7 @@ final class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemMint
+        self.view.backgroundColor = .backgroundColor
     }
 
 }

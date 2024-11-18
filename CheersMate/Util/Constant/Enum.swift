@@ -28,6 +28,7 @@ public enum PageType: String, Hashable, Codable {
     case liquorVolume // 도수 선택 화면
 }
 
+
 // MARK: - 성공 또는 실패 구분
 public enum Outcome: String {
     case success = "성공"
@@ -36,7 +37,8 @@ public enum Outcome: String {
 
 // MARK: - 컬렉션 뷰 섹션 정의
 public enum Section: Hashable {
-    case selection // 선택지
+    case category // 홈 주류 카테고리 섹션
+    case selection // 선택지 섹션
     case product // 메인 상품 섹션
     case food(String) // 잘 어울리는 음식 섹션
     case similar(String) // 비슷한 주류 섹션
@@ -44,7 +46,7 @@ public enum Section: Hashable {
 
 // MARK: - 컬렉션 뷰 아이템
 public enum Item: Hashable {
-    case productItem(Liquor) // 메인 상품(주류) 데이터
-    case foodItem(Food) // 잘 어울리는 음식 데이터
-    case similarItem(Liquor) // 비슷한 주류 데이터
+    case productItem(Liquor) // 메인 상품(주류) 아이템
+    case foodItem(Food) // 잘 어울리는 음식 아이템
+    case similarItem(Liquor) // 비슷한 주류 아이템
 }

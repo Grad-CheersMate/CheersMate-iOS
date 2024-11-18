@@ -23,5 +23,14 @@ public struct Liquor: Codable, Hashable {
     static func convert(liquor: Liquor) -> LiquorObject {
         return LiquorObject(name: liquor.name ?? "", volume: liquor.volume ?? 0.0, type: liquor.type ?? "", imageUrl: liquor.imageUrl ?? "")
     } // closed convert
-    
+}
+
+// MARK: -
+public enum LiquorType: String, Hashable {
+    case beer
+    case soju
+    case wine
+    case riceWine
+    case whiske
+    case sake
 }

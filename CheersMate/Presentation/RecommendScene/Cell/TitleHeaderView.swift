@@ -8,17 +8,17 @@
 import UIKit
 
 // MARK: - 컬렉션 뷰에서 사용되는 헤더 뷰
-public final class HeaderView: UICollectionReusableView {
+public final class TitleHeaderView: UICollectionReusableView {
     // MARK: - 프로퍼티
     // 아이디
-    static let ID = "HeaderView"
+    static let ID = "TitleHeaderView"
     
     // 타이틀 레이블
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.font = .gmarketSans(size: 20, family: .Bold)
-        label.textColor = .textColor
+        label.textColor = .mainTextColor
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -46,10 +46,6 @@ public final class HeaderView: UICollectionReusableView {
         titleLabel.text = title
     } // closed configure
     
-} // closed HeaderView
-
-extension HeaderView {
-    
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .white
@@ -61,8 +57,9 @@ extension HeaderView {
 
         titleLabel.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
     } // closed setupLayout
     
-} // closed extension
+} // closed HeaderView

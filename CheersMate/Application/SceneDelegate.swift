@@ -7,7 +7,6 @@
 
 // MARK: - VC: 뷰 컨트롤러, NVC: 네비게이션 뷰 컨트롤러, VM: 뷰 모델, UC: 유스케이스, RP: 리포지토리, Net: 네트워크
 
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -35,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func changeRootViewController() {
         guard let window = self.window else { return }
         // 탭 바
-        let tabBarController = CustomTabBarController()
+        let tabBarController = MainTabBarController()
         // 루트 뷰 교체
         window.rootViewController = tabBarController
         UIView.transition(with: window, duration: 0.2, options: .transitionCrossDissolve, animations: nil)

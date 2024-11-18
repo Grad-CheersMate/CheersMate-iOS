@@ -47,7 +47,7 @@ final public class AccountSearchViewController: UIViewController {
         self.navigationItem.title = naviTitle
         // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
+        backBarButtonItem.tintColor = .mainNavyColor
         self.navigationItem.backBarButtonItem = backBarButtonItem
     } // closed setupNavi
     

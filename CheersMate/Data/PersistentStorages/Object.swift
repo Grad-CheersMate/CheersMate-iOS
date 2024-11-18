@@ -75,3 +75,15 @@ public final class FoodObject: Object {
     
 } // closed FoodObject
 
+// MARK: - 카테고리 Object
+public final class categoryObject: Object {
+    @Persisted var name: String // 카테고리 이름
+    @Persisted var imageUrl: String // 이미지
+    
+    convenience init(name: String, imageUrl: String) {
+        self.init()
+        self.name = name
+        self.imageUrl = imageUrl
+    } // closed init
+    
+} // closed FoodObject

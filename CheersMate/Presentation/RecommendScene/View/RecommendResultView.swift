@@ -13,7 +13,7 @@ public final class RecommendResultView: UIView {
     private let titleLabel: UILabel = {
         let lb = UILabel()
         lb.text = "추천 결과"
-        lb.textColor = UIColor.textColor
+        lb.textColor = .mainTextColor
         lb.font = UIFont.gmarketSans(size: 20, family: .Bold)
         lb.numberOfLines = 0
         lb.textAlignment = .center
@@ -35,7 +35,7 @@ public final class RecommendResultView: UIView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         cv.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.ID)
         cv.register(HorizontalListCollectionViewCell.self, forCellWithReuseIdentifier: HorizontalListCollectionViewCell.ID)
-        cv.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.ID)
+        cv.register(TitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderView.ID)
         return cv
     }()
     
@@ -109,15 +109,20 @@ public final class RecommendResultView: UIView {
     // MARK: - 주류 상품과 어울리는 음식 정보를 보여주는 섹션 레이아웃 설정
     // MARK: - 주류 상품과 비슷한 또 다른 주류 상품을 보여주는 섹션 레이아웃 설정
     private func createHorizontalSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)) // 그룹과 상대적인 사이즈
+        // 아이템
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         //item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10) // 아이템 간 간격
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .absolute(230)) // 섹션과 상대적인 사이즈
+        // 그룹
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        // 섹션
         let section = NSCollectionLayoutSection(group: group)
+        // 섹션 내부 그룹 간 간격
         section.interGroupSpacing = 25
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
-        section.orthogonalScrollingBehavior = .continuous // 연속적인 스크롤 효과
+        // 연속적인 스크롤 효과
+        section.orthogonalScrollingBehavior = .continuous
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
         section.boundarySupplementaryItems = [header]
@@ -140,22 +145,24 @@ public final class RecommendResultView: UIView {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalListCollectionViewCell.ID, for: indexPath) as? HorizontalListCollectionViewCell
                 cell?.configure(imageURL: liquordata.imageUrl, name: liquordata.name)
                 return cell
+            default:
+                return UICollectionViewCell()
             }
         })
         
         dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.ID, for: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleHeaderView.ID, for: indexPath)
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
 
             switch section {
             case .food(let title), .similar(let title):
-                (header as? HeaderView)?.configure(title: title)
+                (header as? TitleHeaderView)?.configure(title: title)
             default:
                 break
             }
             return header
         }
-    } // closedsetupDatasource
+    } // closed setupDatasource
      
     
 } // closed main

@@ -23,7 +23,7 @@ final public class LoginView: UIView {
     // 이메일 주소 레이블
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.textColor
+        label.textColor = UIColor.mainTextColor
         label.text = "이메일 주소"
         label.font = UIFont.gmarketSans(size: 14, family: .Medium)
         label.textAlignment = .left
@@ -50,7 +50,7 @@ final public class LoginView: UIView {
     // 비밀번호 레이블
     private let passwordLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.textColor
+        label.textColor = .mainTextColor
         label.text = "비밀번호"
         label.font = UIFont.gmarketSans(size: 14, family: .Medium)
         label.textAlignment = .left
@@ -97,7 +97,7 @@ final public class LoginView: UIView {
     public let emailSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("이메일 찾기", for: .normal)
-        bt.setTitleColor(.textColor, for: .normal)
+        bt.setTitleColor(.mainTextColor, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
         return bt
     }()
@@ -105,7 +105,7 @@ final public class LoginView: UIView {
     public let passwordSearchButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("비밀번호 찾기", for: .normal)
-        bt.setTitleColor(.textColor, for: .normal)
+        bt.setTitleColor(.mainTextColor, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
         return bt
     }()
@@ -113,7 +113,7 @@ final public class LoginView: UIView {
     public let signUpButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setTitle("회원가입", for: .normal)
-        bt.setTitleColor(.textColor, for: .normal)
+        bt.setTitleColor(.mainTextColor, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
         return bt
     }()
