@@ -108,7 +108,7 @@ extension RecommendSelectionViewModel {
     // 서버에서 추천 결과 가져오기
     private func requestRecommendations() {
         guard titles.count >= 3 else { return }
-        useCase.requestRecommendationsForSelection(emotion: titles[0], companion: titles[1])
+        useCase.requestRecommendationsForSelection(emotion: titles[0], companion: titles[1], volume: titles[2])
             .subscribe(onSuccess: { [weak self] response in
                 guard let self = self else { return }
                 if response.result && response.httpCode == 200 {

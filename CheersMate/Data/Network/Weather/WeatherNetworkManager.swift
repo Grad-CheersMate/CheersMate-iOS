@@ -28,7 +28,7 @@ final public class WeatherNetworkManager: WeatherNetworkManagerProtocol {
     }
     // jwt 추가
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMxOTI3MDUzLCJleHAiOjE3MzIwMTM0NTN9.WyFTjqILaX0-W-qVi-9vuzyOPV6_Ldk9Z1pwD8OmZOdKlUU8Zm06ZQJUkFaLbEaT0IDRW5wTV7NaoA0S2veLxg")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMDM1Njg1LCJleHAiOjE3MzIxMjIwODV9.pgxNi8Jqyn7E_9DesnpS109asG46nj37mm9HZc4fSkkZeQQ8u1ddtmcuJ0xzQNXp2HpF8OgO0tjKaXjJzQXMgQ")
         return HTTPHeaders([tokenHeader])
     }()
     // 리퀘스트 생성

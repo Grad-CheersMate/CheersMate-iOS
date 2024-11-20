@@ -2,26 +2,28 @@
 //  LiquorRepository.swift
 //  CheersMate
 //
-//  Created by 재훈 on 11/9/24.
+//  Created by 재훈 on 11/20/24.
 //
+
+// MARK: - Domain과 Data 영역을 연결해주는 Repository
 
 import Foundation
 import RxSwift
 
-// MARK: - DB 또는 Network를 통해 Domain과 Data 영역을 연결해주는 Repository
-// MARK: - DB는 Realm을 사용
 public class LiquorRepository: LiquorRepositoryProtocol {
-    
+    // 네트워크 객체
     private let network: LiquorNetworkProtocol
-    
+    // init
     public init(network: LiquorNetworkProtocol) {
         self.network = network
-    } // closed init
+    }
+    // 카테고리 별 주류 데이터 조회하기
+    public func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse> {
+        return network.fetchLiquorListByCategory(category: category, page: page)
+    }
+    // 주류 데이터 상세 조회하기
+    public func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse> {
+        return network.fetchLiquorDetailsById(liquorId: liquorId)
+    }
     
-    // 사용자가 AI 추천 주류 서비스를 이용할 때 네트워크 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse> {
-        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion)
-    } // closed requestRecommendationsForSelection
-    
-} // closed LiquorRepository
-
+}

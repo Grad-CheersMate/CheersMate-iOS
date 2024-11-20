@@ -13,8 +13,8 @@ public final class RecommendResultView: UIView {
     private let titleLabel: UILabel = {
         let lb = UILabel()
         lb.text = "추천 결과"
-        lb.textColor = .mainTextColor
-        lb.font = UIFont.gmarketSans(size: 20, family: .Bold)
+        lb.textColor = .mainNavyColor
+        lb.font = UIFont.gmarketSans(size: 20, family: .Medium)
         lb.numberOfLines = 0
         lb.textAlignment = .center
         return lb
@@ -25,7 +25,7 @@ public final class RecommendResultView: UIView {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 22, weight: .light)
         let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
         bt.setImage(image, for: .normal)
-        bt.tintColor = .black
+        bt.tintColor = .mainNavyColor
         bt.adjustsImageWhenHighlighted = false
         bt.clipsToBounds = true
         return bt
@@ -34,8 +34,9 @@ public final class RecommendResultView: UIView {
     public lazy var collectionview: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         cv.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.ID)
-        cv.register(HorizontalListCollectionViewCell.self, forCellWithReuseIdentifier: HorizontalListCollectionViewCell.ID)
+        cv.register(RecommendFoodCollectionViewCell.self, forCellWithReuseIdentifier: RecommendFoodCollectionViewCell.ID)
         cv.register(TitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleHeaderView.ID)
+        cv.backgroundColor = .backgroundColor
         return cv
     }()
     
@@ -55,7 +56,7 @@ public final class RecommendResultView: UIView {
     
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         [titleLabel, dismissButton, collectionview].forEach { self.addSubview($0) }
     } // closed setupUI
 
@@ -72,7 +73,7 @@ public final class RecommendResultView: UIView {
         }
         
         collectionview.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -85,84 +86,105 @@ public final class RecommendResultView: UIView {
             guard let self = self else { return nil }
             let section = self.dataSource?.sectionIdentifier(for: sectionIndex)
             switch section {
-            case .product: // 메인 주류 상품 정보 섹션
-                return self.createProductSection()
-            case .food, .similar: // 잘 어울리는 음식 섹션 그리고 비슷한 주류 섹션
-                return self.createHorizontalSection() // 동일하게 수평 레이아웃 사용
+            case .recommendMain: // 추천 주류 메인 섹션
+                return self.createRecommendMainSection()
+            case .recommendFood: // 함께하면 어울리는 음식 섹션
+                return self.createRecommendFoodSection()
+            case .recommendSimilar: // 추천 결과와 비슷한 느낌의 주류 섹션
+                return self.createRecommendSimilarSection()
             default:
                 return nil
             }
         }, configuration: config)
-    } // closed createLayout
+    }
     
-    // MARK: - 주류 상품의 정보를 보여주는 섹션 레이아웃 설정
-    private func createProductSection() -> NSCollectionLayoutSection {
+    // 섹션 1
+    // 추천 결과 화면에서, 추천받은 주류 상품을 보여주기 위한 결과 섹션 레이아웃
+    private func createRecommendMainSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)) // 그룹과 상대적인 사이즈
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(450)) // 섹션과 상대적인 사이즈
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(350)) // 섹션과 상대적인 사이즈
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1) // 그룹 안 아이템은 1개만
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25) // 그룹의 inset
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none // 스크롤 효과 없음
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0)
         return section
-    } // closed createProductSection
+    }
     
-    // MARK: - 주류 상품과 어울리는 음식 정보를 보여주는 섹션 레이아웃 설정
-    // MARK: - 주류 상품과 비슷한 또 다른 주류 상품을 보여주는 섹션 레이아웃 설정
-    private func createHorizontalSection() -> NSCollectionLayoutSection {
-        // 아이템
+    // 섹션 2
+    // 추천 결과 화면에서, 추천받은 주류 상품과 어울리는 음식 정보를 보여주는 섹션 레이아웃
+    private func createRecommendFoodSection() -> NSCollectionLayoutSection {
+        // 아이템 설정
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        //item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10) // 아이템 간 간격
-        // 그룹
+        // 그룹 설정
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35), heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        // 섹션
+        // 섹션 설정
         let section = NSCollectionLayoutSection(group: group)
-        // 섹션 내부 그룹 간 간격
-        section.interGroupSpacing = 25
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
-        // 연속적인 스크롤 효과
-        section.orthogonalScrollingBehavior = .continuous
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        section.interGroupSpacing = 25 // 섹션 내부 그룹 간 간격
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25) // 컬렉션 뷰에 대해 상대적 inset
+        section.orthogonalScrollingBehavior = .continuous // 연속적인 스크롤 효과
+        // 헤더 설정
+        let header = createHeader()
         section.boundarySupplementaryItems = [header]
         return section
-    } // closed createFoodSection
+    }
     
-    // MARK: - 데이터 소스 설정
+    // 섹션 3
+    // 추천 결과 화면에서, 추천받은 주류 상품과 비슷한 주류 상품들을 보여주기 위한 섹션 레이아웃
+    private func createRecommendSimilarSection() -> NSCollectionLayoutSection {
+        // 아이템 설정
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)) // 그룹에 대해 너비와 높이는 동일한 크기
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        // 그룹 설정
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.65), heightDimension: .absolute(330)) // 섹션에 대해 너비는 0.65%, 높이는 330 크기
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        // group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10) // 그룹의 inset
+        // 섹션 설정
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25) // 컬렉션 뷰에 대해 상대적 inset
+        section.interGroupSpacing = 25 // 섹션 내부의 그룹 간격
+        section.orthogonalScrollingBehavior = .continuous // 연속적인 스크롤 효과
+        // 헤더 설정
+        let header = createHeader()
+        section.boundarySupplementaryItems = [header]
+        return section
+    }
+    
+    // 헤더 생성
+    private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+        return NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+    }
+    
+    // 데이터 소스 설정
     private func setupDatasource() {
         self.dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionview, cellProvider: { collectionView, indexPath, itemIdentifier in
             switch itemIdentifier {
-            case .productItem(let liquordata):
+            case .productItem(let liquordata), .similarItem(let liquordata):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.ID, for: indexPath) as? ProductCollectionViewCell
-                cell?.configure(imageURL: liquordata.imageUrl, name: liquordata.name, type: liquordata.type, volume: liquordata.volume)
+                cell?.configure(liquor: liquordata)
                 return cell
             case .foodItem(let foodData):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalListCollectionViewCell.ID, for: indexPath) as? HorizontalListCollectionViewCell
-                cell?.configure(imageURL: foodData.imageUrl, name: foodData.name)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendFoodCollectionViewCell.ID, for: indexPath) as? RecommendFoodCollectionViewCell
+                cell?.configure(food: foodData)
                 return cell
-            case .similarItem(let liquordata):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalListCollectionViewCell.ID, for: indexPath) as? HorizontalListCollectionViewCell
-                cell?.configure(imageURL: liquordata.imageUrl, name: liquordata.name)
-                return cell
-            default:
-                return UICollectionViewCell()
             }
         })
         
-        dataSource?.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath -> UICollectionReusableView in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath -> UICollectionReusableView in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleHeaderView.ID, for: indexPath)
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
-
             switch section {
-            case .food(let title), .similar(let title):
+            case .recommendFood(let title), .recommendSimilar(let title): // 함께하면 어울리는 음식 섹션과 추천 결과와 비슷한 느낌의 주류 섹션의 헤더 설정
                 (header as? TitleHeaderView)?.configure(title: title)
             default:
                 break
             }
             return header
         }
-    } // closed setupDatasource
+    }
      
-    
-} // closed main
+} // closed RecommendResultView

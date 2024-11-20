@@ -66,6 +66,7 @@ extension RecommendEvaluateViewModel {
     
     // 서버로 평가 제출하기
     private func submitRecommendationEvaluation(recommendResult: RecommendResult) {
+        print("submitRecommendationEvaluation", recommendResult)
         useCase.submitRecommendationEvaluation(emotion: recommendResult.emotion, companion: recommendResult.companion, liquor: recommendResult.recommendLiquor, rating: ratingRelay.value)
             .subscribe { [weak self] res in
                 if res.result && res.httpCode == 200 {

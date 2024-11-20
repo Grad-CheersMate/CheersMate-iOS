@@ -36,10 +36,12 @@ public final class CategoryTableViewCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.image = UIImage(systemName: "chevron.right")
-        iv.tintColor = UIColor(red: 200.0 / 255.0, green: 205.0 / 255.0, blue: 220.0 / 255.0, alpha: 1) // #C8CDDC
+        iv.tintColor = .buttonColor
         iv.clipsToBounds = true
         return iv
     }()
+    
+    private var productType: ProductType = .beer
     
     // 셀 재사용
     public override func prepareForReuse() {
@@ -87,9 +89,10 @@ public final class CategoryTableViewCell: UITableViewCell {
     }
     
     // configure 설정
-    public func configure(imageText: String, descText: String) {
-        mainImageView.image = UIImage(named: imageText)
-        descLabel.text = descText
+    public func configure(imageText: String, descText: String, productType: ProductType) {
+        self.mainImageView.image = UIImage(named: imageText)
+        self.descLabel.text = descText
+        self.productType = productType
     }
     
     

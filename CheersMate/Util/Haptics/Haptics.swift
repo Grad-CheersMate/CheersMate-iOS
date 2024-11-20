@@ -6,6 +6,7 @@
 //
 
 // MARK: - 사용자의 화면 터치를 감지하고 진동을 발생
+
 import UIKit
 
 public final class Haptics {

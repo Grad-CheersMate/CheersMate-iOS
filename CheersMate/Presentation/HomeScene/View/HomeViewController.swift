@@ -12,6 +12,7 @@ import RxCocoa
 fileprivate struct Category {
     let mainImageText: String
     let descText: String
+    let productType: ProductType
 }
 
 public final class HomeViewController: UIViewController {
@@ -54,13 +55,21 @@ public final class HomeViewController: UIViewController {
                 // MARK: - Presentation Layer
                 let weatherVC = WeatherViewController(viewModel: weatherVM)
                 self?.navigationController?.pushViewController(weatherVC, animated: true)
+                Haptics.shared.generateHaptics(style: .medium)
             })
             .disposed(by: disposeBag)
     }
     
     // 뷰 모델 바인드
     private func bindViewModel() {
-
+        // 셀이 클릭되었을 때, 해당 셀의 정보를 가져옴
+        homeView.categoryTableView.rx.modelSelected(Category.self)
+            .subscribe(onNext: { [weak self] model in
+                let categoryVC = CategoryTabmanViewCotroller(productType: model.productType)
+                Haptics.shared.generateHaptics(style: .medium)
+                self?.navigationController?.pushViewController(categoryVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     // 네비게이션 설정
@@ -77,20 +86,20 @@ public final class HomeViewController: UIViewController {
     // 테이블 뷰 설정
     private func setupTableView() {
         let items = Observable<[Category]>.just([
-            Category(mainImageText: "best", descText: "베스트"),
-            Category(mainImageText: "beer", descText: "맥주"),
-            Category(mainImageText: "wine", descText: "와인"),
-            Category(mainImageText: "whiske", descText: "위스키"),
-            Category(mainImageText: "soju", descText: "소주"),
-            Category(mainImageText: "riceWine", descText: "전통주"),
-            Category(mainImageText: "sake", descText: "사케")
+            Category(mainImageText: "best", descText: "베스트", productType: .best),
+            Category(mainImageText: "beer", descText: "맥주", productType: .beer),
+            Category(mainImageText: "wine", descText: "와인", productType: .wine),
+            Category(mainImageText: "whiske", descText: "위스키", productType: .wishke),
+            Category(mainImageText: "soju", descText: "소주", productType: .soju),
+            Category(mainImageText: "riceWine", descText: "막걸리", productType: .riceWine),
+            Category(mainImageText: "sake", descText: "전통주", productType: .sake)
         ])
         
         updateTableViewHeight(cellCount: 7)
         
         items
             .bind(to: homeView.categoryTableView.rx.items(cellIdentifier: CategoryTableViewCell.ID, cellType: CategoryTableViewCell.self)) { row, element, cell in
-                cell.configure(imageText: element.mainImageText, descText: element.descText)
+                cell.configure(imageText: element.mainImageText, descText: element.descText, productType: element.productType)
                 cell.selectionStyle = .none
             }
             .disposed(by: disposeBag)

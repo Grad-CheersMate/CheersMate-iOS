@@ -23,7 +23,7 @@ public final class RecommendEvaluateView: UIView {
     // 사용자 안내 메인 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainTextColor
+        lb.textColor = .mainNavyColor
         lb.text = "추천이 마음에 드셨나요?"
         lb.numberOfLines = 1
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
@@ -34,7 +34,7 @@ public final class RecommendEvaluateView: UIView {
     // 사용자 안내 서브 레이블
     private let subInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = UIColor.systemGray
+        lb.textColor = .subTextColor //UIColor.systemGray
         lb.text = "별점을 눌러 평가해 주세요!\n더 나은 추천을 위해 도움이 돼요."
         lb.setLineSpacing(spacing: 5)
         lb.numberOfLines = 0

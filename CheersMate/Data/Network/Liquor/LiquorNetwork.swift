@@ -2,38 +2,36 @@
 //  LiquorNetwork.swift
 //  CheersMate
 //
-//  Created by 재훈 on 11/9/24.
+//  Created by 재훈 on 11/20/24.
 //
 
 import Foundation
 import RxSwift
 
-// MARK: - 주류 API 명세서
+// 주류 API 명세서
 public protocol LiquorNetworkProtocol {
-    // MARK: - 사용자의 선호를 종합하여 서버에 AI 추천 주류 및 안주 결과 요청
-    func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse>
-    // MARK: - 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출
-    func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse>
+    // 카테고리 별 주류 데이터 조회
+    func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse>
+    // 주류 데이터 상세 조회
+    func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse>
 } // closed UserNetworkProtocol
 
-// MARK: - 주류 네트워크
+// 주류 네트워크
 final public class LiquorNetwork: LiquorNetworkProtocol {
-
+    // 주류 네트워크 매니저
     private let manager: LiquorNetworkManagerProtocol
-    
+    // init
     public init(manager: LiquorNetworkManagerProtocol) {
         self.manager = manager
-    } // closed init
+    }
+    // 네트워크 매니저로 카테고리 별 주류 데이터 조회 호출
+    public func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse> {
+        return manager.fetchLiquorListByCategory(category: category, page: page)
+    }
+    // 네트워크 매니저로 주류 데이터 상세 조회 호출
+    public func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse> {
+        return manager.fetchLiquorDetailsById(liquorId: liquorId)
+    }
     
+} // closed LiquorNetwork
 
-    // MARK: - 사용자의 선호를 종합하여 서버에 AI 추천 주류 및 안주 결과 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse> {
-        return manager.requestRecommendationsForSelection(emotion: emotion, companion: companion)
-    } // closed requestRecommendationsForSelection
-    
-    // MARK: - 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출
-    public func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse>{
-        return manager.submitRecommendationEvaluation(emotion: emotion, companion: companion, liquor: liquor, rating: rating)
-    } // closed submitRecommendationEvaluation
-    
-} // closed UserNetwork

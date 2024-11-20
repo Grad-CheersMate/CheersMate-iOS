@@ -13,17 +13,17 @@ import RealmSwift
 // MARK: - DB는 Realm을 사용
 public final class RecommendRepository: RecommendRepositoryProtocol {
 
-    private let network: LiquorNetworkProtocol
+    private let network: RecommendNetworkProtocol
     private let realm: RealmProtocol
     
-    public init(network: LiquorNetworkProtocol, realm: RealmProtocol) {
+    public init(network: RecommendNetworkProtocol, realm: RealmProtocol) {
         self.network = network
         self.realm = realm
     } // closed init
     
     // MARK: - 사용자의 선호를 종합하여 서버에 AI 추천 주류 및 안주 결과 요청
-    public func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse> {
-        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion)
+    public func requestRecommendationsForSelection(emotion: String, companion: String, volume: String) -> Single<RecommendResponse> {
+        return network.requestRecommendationsForSelection(emotion: emotion, companion: companion, volume: volume)
     } // closed requestRecommendationsForSelection
     
     // MARK: - 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출

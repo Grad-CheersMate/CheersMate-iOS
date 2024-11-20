@@ -10,7 +10,7 @@ import RxSwift
 
 public protocol RecommendUseCaseProtocol {
     // MARK: - 주류 추천 API 호출하기
-    func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse>
+    func requestRecommendationsForSelection(emotion: String, companion: String, volume: String) -> Single<RecommendResponse>
     // MARK: - AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가 API 호출하기
     func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse>
     // MARK: - 추천 선택지(감정, 동반자, 도수) DB에서 가져오기
@@ -31,11 +31,11 @@ public final class RecommendUseCase: RecommendUseCaseProtocol {
     } // closed init
     
     // AI 주류 추천 기능에서 사용자가 결과 확인 버튼을 클릭했을 때
-    public func requestRecommendationsForSelection(emotion: String, companion: String) -> Single<RecommendResponse> {
-        return repository.requestRecommendationsForSelection(emotion: emotion, companion: companion)
+    public func requestRecommendationsForSelection(emotion: String, companion: String, volume: String) -> Single<RecommendResponse> {
+        return repository.requestRecommendationsForSelection(emotion: emotion, companion: companion, volume: volume)
     } // closed requestRecommendationsForSelection
     
-    // MARK: - AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가 API 호출하기
+    // AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가 API 호출하기
     public func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse> {
         return repository.submitRecommendationEvaluation(emotion: emotion, companion: companion, liquor: liquor, rating: rating)
     } // closed submitRecommendationEvaluation
