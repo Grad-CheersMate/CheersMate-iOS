@@ -39,19 +39,10 @@ public final class ProductListViewController: UIViewController {
         bindViewModel()
         print("viewDidLoad")
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear")
-    }
-    
-    public override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDidDisappear")
-    }
-    
+
     // 바인드 뷰
     private func bindView() {
+        // 컬렉션 뷰의 아이템이 클릭됬을 때
         productListView.collectionView.rx.itemSelected
             .bind(onNext: { [weak self] indexPath in
                 let item = self?.productListView.dataSource?.itemIdentifier(for: indexPath)
@@ -67,10 +58,24 @@ public final class ProductListViewController: UIViewController {
     
     // 바인드 뷰 모델
     private func bindViewModel() {
-        let input = ProductListViewModel.Input()
-        
+        // 현재 페이지 정보
+        let currentPage = BehaviorRelay<Int>(value: 0)
+        // 컬렉션 뷰의 페이지네이션 구현
+        productListView.collectionView.rx.prefetchItems
+            .bind(onNext: { [weak self] indexPath in
+                let snapshot = self?.productListView.dataSource?.snapshot()
+                guard let lastIndexPath = indexPath.last, // 인덱스 정보
+                      let section = self?.productListView.dataSource?.sectionIdentifier(for: lastIndexPath.section), // 현재 섹션 정보
+                      let itemCountInSection = snapshot?.numberOfItems(inSection: section) else { return } // 현재 섹션의 아이템 수
+                if lastIndexPath.row > itemCountInSection - 4 { // 인덱스 값이 전체 아이템 개수 -4 이상일 경우
+                    currentPage.accept(currentPage.value + 1) // 페이지 증가
+                }
+            })
+            .disposed(by: disposeBag)
+        // 인풋
+        let input = ProductListViewModel.Input(currentPage: currentPage.asObservable())
+        //아웃풋
         let output = viewModel.transform(input: input)
-        
         // 아이템 리스트에 스냅샷에 적용하기
         output.items
             .bind(onNext: { [weak self] liquors in
