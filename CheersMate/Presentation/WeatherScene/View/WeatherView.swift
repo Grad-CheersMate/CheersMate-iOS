@@ -66,10 +66,10 @@ public final class WeatherView: UIView {
         let lb = UILabel()
         lb.textColor = .subTextColor
         lb.text = "2024년 11월 18일\n02:00"
+        lb.setLineSpacing(spacing: 5)
         lb.numberOfLines = 2
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left
-        lb.setLineSpacing(spacing: 5)
         return lb
     }()
     // 날씨 서브 컨테이너 뷰
@@ -218,7 +218,7 @@ public final class WeatherView: UIView {
     // 추천 주류 레이블 1
     public let recommendliquorFirstLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "주류 명: 새로\n타입: 소주\n도수: 4.3"
+        lb.text = "주류명: 새로\n타입: 소주\n도수: 4.3"
         lb.setLineSpacing(spacing: 5) // 위치를 마지막에 두면 레이블의 속성이 바뀔 수 있으니 가능한 먼저 호출
         lb.textColor = .mainNavyColor
         lb.numberOfLines = 0
@@ -259,29 +259,21 @@ public final class WeatherView: UIView {
     // 날씨 프로퍼티 업데이트
     private func updateWeatherProperties(_ weather: Weather) {
         tempLabel.text = "\(weather.temperature)℃" // 기온
-        dateLabel.text = "\(weather.date)\n\(weather.time)" // 날짜 그리고 시각
+        dateLabel.text = "\(weather.date)\n기준 \(weather.time)" // 날짜 그리고 시각
         humidityLabel.text = "습도\n\(weather.humidity)%" // 습도
         windLabel.text = "풍속\n\(weather.windSpeed)m/s" // 풍속
         precipitationLabel.text = "강수량\n\(weather.hourlyPrecipitation)mm" // 시간 당 강수량
-        switch weather.condition {
-        case "맑음": weatherImageView.image = UIImage(named: "sunny")
-        case "비": weatherImageView.image = UIImage(named: "rainy")
-        case "흐림": weatherImageView.image = UIImage(named: "cloudy")
-        case "더운 날": weatherImageView.image = UIImage(named: "hot")
-        case "추운 날": weatherImageView.image = UIImage(named: "cold")
-        case "눈": weatherImageView.image = UIImage(named: "snowy")
-        default: weatherImageView.image = UIImage(named: "windy")
-        }
+        weatherImageView.image = UIImage(named: weather.condition) // 날씨 상태
     }
     // 추천 주류 프로퍼티 업데이트
     private func updateLiquorProperties(id: Int, liquor: Liquor) {
         guard let url = liquor.imageUrl else { return }
         if id == 1 {
             recommendliquorFirstImageView.kf.setImage(with: URL(string: url))
-            recommendliquorFirstLabel.text = "주류 명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
+            recommendliquorFirstLabel.text = "주류명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
         } else {
             recommendliquorSecondImageView.kf.setImage(with: URL(string: url))
-            recommendliquorSecondLabel.text = "주류 명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
+            recommendliquorSecondLabel.text = "주류명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
         }
     }
     // UI 설정
@@ -323,7 +315,8 @@ public final class WeatherView: UIView {
         }
         // 날씨 이미지
         weatherImageView.snp.makeConstraints { make in
-            make.top.bottom.trailing.equalToSuperview().inset(25)
+            make.top.bottom.equalToSuperview().inset(30)
+            make.trailing.equalToSuperview().inset(25)
             make.centerY.equalToSuperview()
         }
         // 온도 레이블

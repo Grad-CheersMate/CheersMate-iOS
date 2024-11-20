@@ -27,8 +27,8 @@ final public class RecommendHomeView: UIView {
     private let subInfoLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = .subTextColor
-        lb.text = "현재 나의 상태에 꼭 맞는 주류와 안주를\nAI가 추천해 드릴게요."
-        lb.setLineSpacing(spacing: 3)
+        lb.text = "현재 나의 상태에 꼭 맞는 주류와 안주를\nCheersMate가 추천해 드릴게요."
+        lb.setLineSpacing(spacing: 5)
         lb.numberOfLines = 2
         lb.font = UIFont.gmarketSans(size: 15, family: .Medium)
         lb.textAlignment = .left

@@ -40,12 +40,12 @@ final public class RecommendSelectionViewController: UIViewController {
     } // closed required init
     
     
-    // MARK: - 네비게이션 설정
+    // 네비게이션 설정
     private func setupNavi() {
         self.navigationItem.titleView = recommendListView.progressView
-    } // closed setupNavi
+    }
     
-    // MARK: - 테이블 뷰 설정
+    // 테이블 뷰 설정
     private func setupTableView() {
         dataSource = UITableViewDiffableDataSource(tableView: recommendListView.tableView, cellProvider: { tableView, indexPath, item in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecommendSelectionTableViewCell.ID, for: indexPath) as? RecommendSelectionTableViewCell else { return UITableViewCell() }
@@ -53,14 +53,14 @@ final public class RecommendSelectionViewController: UIViewController {
             cell.selectionStyle = .none
             return cell
         })
-    } // closed setupTableView
+    }
     
-    // MARK: - 바인드 뷰
+    // 바인드 뷰
     private func bindView() {
         
-    } // closed bindView
+    }
     
-    // MARK: - 바인드 뷰 모델
+    // 바인드 뷰 모델
     private func bindViewModel() {
         let input = RecommendSelectionViewModel.Input(
             itemSelected: recommendListView.tableView.rx.itemSelected.asObservable(), // 테이블 뷰 셀 클릭
@@ -120,7 +120,7 @@ final public class RecommendSelectionViewController: UIViewController {
             .bind(onNext: { [weak self] response in
                 // MARK: - Data Layer
                 let realmDB = RealmDB(realm: try! Realm())
-                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                let network = RecommendNetwork(manager: RecommendNetworkManager())
                 // MARK: - Domain Layer
                 let recommendRP = RecommendRepository(network: network, realm: realmDB)
                 let recommendUC = RecommendUseCase(repository: recommendRP)
@@ -134,13 +134,13 @@ final public class RecommendSelectionViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-    } // closed bindViewModel
+    }
     
-    // MARK: - 테이블 뷰 높이 제약 업데이트
+    // 테이블 뷰 높이 제약 업데이트
     private func updateTableViewHeight(cellCount: Int) {
         recommendListView.tableView.snp.updateConstraints { make in
             make.height.equalTo(cellCount * 120)
         }
-    } // closed updateTableViewHeight
+    }
     
 } // closed RecommendListViewController

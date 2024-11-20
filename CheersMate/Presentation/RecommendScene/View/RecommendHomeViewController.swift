@@ -56,13 +56,14 @@ final public class RecommendHomeViewController: UIViewController {
                 guard let self = self else { return }
                 // MARK: - Data Layer
                 let realmDB = RealmDB(realm: try! Realm())
-                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                let network = RecommendNetwork(manager: RecommendNetworkManager())
                 // MARK: - Domain Layer
                 let recommendRP = RecommendRepository(network: network, realm: realmDB)
                 let recommendUC = RecommendUseCase(repository: recommendRP)
                 // MARK: - Presentation Layer
                 let recommendSelectionVM = RecommendSelectionViewModel(useCase: recommendUC)
                 let recommendSelectionVC = RecommendSelectionViewController(viewModel: recommendSelectionVM)
+                Haptics.shared.generateHaptics(style: .medium)
                 self.navigationController?.pushViewController(recommendSelectionVC, animated: true) }
             .disposed(by: disposeBag)
     } // closed bindView

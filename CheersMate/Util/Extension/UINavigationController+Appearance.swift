@@ -13,7 +13,7 @@ extension UINavigationController {
         appearance.configureWithTransparentBackground()
 
         appearance.titleTextAttributes = [.font:  UIFont.gmarketSans(size: 17, family: .Medium),
-                                          .foregroundColor: UIColor.black]
+                                          .foregroundColor: UIColor.mainNavyColor]
 
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance

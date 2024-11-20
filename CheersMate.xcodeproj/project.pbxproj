@@ -13,8 +13,7 @@
 		251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE862CE2640F00258E49 /* DetailViewModel.swift */; };
 		251DBE892CE39F0800258E49 /* Recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE882CE39F0800258E49 /* Recommend.swift */; };
 		251DBE8B2CE39FFC00258E49 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE8A2CE39FFC00258E49 /* Food.swift */; };
-		251DBE912CE4812C00258E49 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */; };
-		251DBE932CE4D44600258E49 /* HorizontalListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */; };
+		251DBE932CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE922CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift */; };
 		251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE942CE501DD00258E49 /* TitleHeaderView.swift */; };
 		253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */; };
 		253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */; };
@@ -41,11 +40,14 @@
 		2571BA462CEB3AD100D61D70 /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */; };
 		2571BA482CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */; };
 		2571BA4D2CEB40E200D61D70 /* WeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */; };
-		25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */; };
-		25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* LiquorNetwork.swift */; };
+		2571BA522CEC672300D61D70 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA512CEC672300D61D70 /* ProductListViewModel.swift */; };
+		2571BA542CEC673500D61D70 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA532CEC673500D61D70 /* ProductListView.swift */; };
+		2571BA562CEC675A00D61D70 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA552CEC675A00D61D70 /* ProductListViewController.swift */; };
+		2571BA582CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA572CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift */; };
+		2571BA5B2CEC94EB00D61D70 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA5A2CEC94EB00D61D70 /* ProductCollectionViewCell.swift */; };
+		25737D672CDE7487004E9F6B /* RecommendNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D662CDE7487004E9F6B /* RecommendNetworkManager.swift */; };
+		25737D692CDE7496004E9F6B /* RecommendNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* RecommendNetwork.swift */; };
 		25737D6B2CDE7882004E9F6B /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* Object.swift */; };
-		25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D702CDE973F004E9F6B /* LiquorRepository.swift */; };
-		25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */; };
 		25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D742CDE9CE9004E9F6B /* Liquor.swift */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
 		259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountSearchView.swift */; };
@@ -75,6 +77,12 @@
 		25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A52CDFEB91001213CB /* RecommendRepository.swift */; };
 		25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */; };
 		25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A955A92CDFF460001213CB /* RecommendUseCase.swift */; };
+		25BE34222CED0919005617DC /* LiquorNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34212CED0919005617DC /* LiquorNetwork.swift */; };
+		25BE34242CED0923005617DC /* LiquorNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34232CED0923005617DC /* LiquorNetworkManager.swift */; };
+		25BE34262CED0E2C005617DC /* LiquorRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34252CED0E2C005617DC /* LiquorRepository.swift */; };
+		25BE34282CED0EA5005617DC /* LiquorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34272CED0EA5005617DC /* LiquorRepositoryProtocol.swift */; };
+		25BE342A2CED10AA005617DC /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34292CED10AA005617DC /* CategoryUseCase.swift */; };
+		25BE342C2CEE1382005617DC /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25BE342B2CEE1382005617DC /* cheersLottie.json */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
@@ -87,7 +95,6 @@
 		25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */; };
 		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
-		25CFEF332CDE635100083081 /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF322CDE635100083081 /* cheersLottie.json */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
 		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
 		25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* UserUseCase.swift */; };
@@ -121,8 +128,7 @@
 		251DBE862CE2640F00258E49 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		251DBE882CE39F0800258E49 /* Recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommend.swift; sourceTree = "<group>"; };
 		251DBE8A2CE39FFC00258E49 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalListCollectionViewCell.swift; sourceTree = "<group>"; };
+		251DBE922CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendFoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		251DBE942CE501DD00258E49 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
@@ -153,11 +159,14 @@
 		2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
 		2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCase.swift; sourceTree = "<group>"; };
-		25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetworkManager.swift; sourceTree = "<group>"; };
-		25737D682CDE7496004E9F6B /* LiquorNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetwork.swift; sourceTree = "<group>"; };
+		2571BA512CEC672300D61D70 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
+		2571BA532CEC673500D61D70 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
+		2571BA552CEC675A00D61D70 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
+		2571BA572CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabmanViewCotroller.swift; sourceTree = "<group>"; };
+		2571BA5A2CEC94EB00D61D70 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		25737D662CDE7487004E9F6B /* RecommendNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendNetworkManager.swift; sourceTree = "<group>"; };
+		25737D682CDE7496004E9F6B /* RecommendNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendNetwork.swift; sourceTree = "<group>"; };
 		25737D6A2CDE7882004E9F6B /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		25737D702CDE973F004E9F6B /* LiquorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepository.swift; sourceTree = "<group>"; };
-		25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25737D742CDE9CE9004E9F6B /* Liquor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liquor.swift; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
 		259E81C62CCA40E800D63747 /* AccountSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchView.swift; sourceTree = "<group>"; };
@@ -187,6 +196,12 @@
 		25A955A52CDFEB91001213CB /* RecommendRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepository.swift; sourceTree = "<group>"; };
 		25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25A955A92CDFF460001213CB /* RecommendUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendUseCase.swift; sourceTree = "<group>"; };
+		25BE34212CED0919005617DC /* LiquorNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetwork.swift; sourceTree = "<group>"; };
+		25BE34232CED0923005617DC /* LiquorNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorNetworkManager.swift; sourceTree = "<group>"; };
+		25BE34252CED0E2C005617DC /* LiquorRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepository.swift; sourceTree = "<group>"; };
+		25BE34272CED0EA5005617DC /* LiquorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepositoryProtocol.swift; sourceTree = "<group>"; };
+		25BE34292CED10AA005617DC /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
+		25BE342B2CEE1382005617DC /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -199,7 +214,6 @@
 		25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
-		25CFEF322CDE635100083081 /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25F428892CD6390F0044240C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -278,6 +292,7 @@
 				259E81C32CCA3FAF00D63747 /* AccountlSearchScene */,
 				259E81E52CCB861900D63747 /* HomeScene */,
 				25A8419C2CE7B9B2002C64DD /* WeatherScene */,
+				2571BA4E2CEC656E00D61D70 /* CategoryScene */,
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
 				259E81F42CCCE49C00D63747 /* MyPageScene */,
@@ -305,6 +320,7 @@
 				25F428892CD6390F0044240C /* UserUseCase.swift */,
 				25A955A92CDFF460001213CB /* RecommendUseCase.swift */,
 				2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */,
+				25BE34292CED10AA005617DC /* CategoryUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -321,9 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				25F428872CD633770044240C /* UserRepositoryProtocol.swift */,
-				25737D722CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift */,
 				25A955A72CDFEDDB001213CB /* RecommendRepositoryProtocol.swift */,
 				2571BA472CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift */,
+				25BE34272CED0EA5005617DC /* LiquorRepositoryProtocol.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -343,9 +359,9 @@
 			isa = PBXGroup;
 			children = (
 				259E82102CCE87DA00D63747 /* UserRepository.swift */,
-				25737D702CDE973F004E9F6B /* LiquorRepository.swift */,
-				25A955A52CDFEB91001213CB /* RecommendRepository.swift */,
 				2571BA452CEB3AD100D61D70 /* WeatherRepository.swift */,
+				25BE34252CED0E2C005617DC /* LiquorRepository.swift */,
+				25A955A52CDFEB91001213CB /* RecommendRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -354,8 +370,9 @@
 			isa = PBXGroup;
 			children = (
 				25737D642CDE7463004E9F6B /* User */,
-				25737D652CDE7473004E9F6B /* Liquor */,
 				2571BA3E2CEB29EC00D61D70 /* Weather */,
+				25BE34202CED0905005617DC /* Liquor */,
+				25737D652CDE7473004E9F6B /* Recommend */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -374,7 +391,7 @@
 			children = (
 				253B1B712CC4051A00F7DBF9 /* Fonts */,
 				255B96582CBE4FF400D6AC8E /* Info.plist */,
-				25CFEF322CDE635100083081 /* cheersLottie.json */,
+				25BE342B2CEE1382005617DC /* cheersLottie.json */,
 				255B96562CBE4FF400D6AC8E /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -546,6 +563,42 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2571BA4E2CEC656E00D61D70 /* CategoryScene */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA592CEC94B500D61D70 /* Cell */,
+				2571BA4F2CEC662300D61D70 /* View */,
+				2571BA502CEC662800D61D70 /* ViewModel */,
+			);
+			path = CategoryScene;
+			sourceTree = "<group>";
+		};
+		2571BA4F2CEC662300D61D70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA532CEC673500D61D70 /* ProductListView.swift */,
+				2571BA552CEC675A00D61D70 /* ProductListViewController.swift */,
+				2571BA572CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2571BA502CEC662800D61D70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA512CEC672300D61D70 /* ProductListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2571BA592CEC94B500D61D70 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2571BA5A2CEC94EB00D61D70 /* ProductCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		25737D642CDE7463004E9F6B /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,13 +608,13 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		25737D652CDE7473004E9F6B /* Liquor */ = {
+		25737D652CDE7473004E9F6B /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				25737D662CDE7487004E9F6B /* LiquorNetworkManager.swift */,
-				25737D682CDE7496004E9F6B /* LiquorNetwork.swift */,
+				25737D662CDE7487004E9F6B /* RecommendNetworkManager.swift */,
+				25737D682CDE7496004E9F6B /* RecommendNetwork.swift */,
 			);
-			path = Liquor;
+			path = Recommend;
 			sourceTree = "<group>";
 		};
 		259E81BF2CC9632A00D63747 /* ViewModel */ = {
@@ -735,6 +788,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		25BE34202CED0905005617DC /* Liquor */ = {
+			isa = PBXGroup;
+			children = (
+				25BE34232CED0923005617DC /* LiquorNetworkManager.swift */,
+				25BE34212CED0919005617DC /* LiquorNetwork.swift */,
+			);
+			path = Liquor;
+			sourceTree = "<group>";
+		};
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,10 +815,9 @@
 		25CFEF232CDA931100083081 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */,
-				251DBE902CE4812C00258E49 /* ProductCollectionViewCell.swift */,
-				251DBE922CE4D44600258E49 /* HorizontalListCollectionViewCell.swift */,
 				251DBE942CE501DD00258E49 /* TitleHeaderView.swift */,
+				25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */,
+				251DBE922CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -895,13 +956,13 @@
 			files = (
 				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
 				253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */,
+				25BE342C2CEE1382005617DC /* cheersLottie.json in Resources */,
 				253B1B8B2CC506D200F7DBF9 /* Pretendard-Medium.otf in Resources */,
 				25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */,
 				253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */,
 				253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */,
 				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
 				253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */,
-				25CFEF332CDE635100083081 /* cheersLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,17 +1090,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25737D672CDE7487004E9F6B /* LiquorNetworkManager.swift in Sources */,
+				25737D672CDE7487004E9F6B /* RecommendNetworkManager.swift in Sources */,
 				25A841AD2CEA684A002C64DD /* WeatherViewController.swift in Sources */,
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
-				25737D712CDE973F004E9F6B /* LiquorRepository.swift in Sources */,
 				251DBE892CE39F0800258E49 /* Recommend.swift in Sources */,
 				25737D6B2CDE7882004E9F6B /* Object.swift in Sources */,
 				25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */,
-				251DBE932CE4D44600258E49 /* HorizontalListCollectionViewCell.swift in Sources */,
+				251DBE932CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift in Sources */,
 				25A8419E2CE7BA04002C64DD /* HomeViewModel.swift in Sources */,
+				25BE34282CED0EA5005617DC /* LiquorRepositoryProtocol.swift in Sources */,
 				25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */,
+				2571BA5B2CEC94EB00D61D70 /* ProductCollectionViewCell.swift in Sources */,
 				25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
@@ -1051,14 +1113,16 @@
 				253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */,
 				25A841A92CEA1C0F002C64DD /* CategoryTableViewCell.swift in Sources */,
 				255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */,
-				25737D692CDE7496004E9F6B /* LiquorNetwork.swift in Sources */,
+				25737D692CDE7496004E9F6B /* RecommendNetwork.swift in Sources */,
 				259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */,
 				25A955AA2CDFF460001213CB /* RecommendUseCase.swift in Sources */,
 				259E81EB2CCB865300D63747 /* HomeViewController.swift in Sources */,
+				2571BA542CEC673500D61D70 /* ProductListView.swift in Sources */,
 				25A841AB2CEA683E002C64DD /* WeatherView.swift in Sources */,
 				25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */,
 				25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */,
 				255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */,
+				2571BA562CEC675A00D61D70 /* ProductListViewController.swift in Sources */,
 				253B1B802CC40F7C00F7DBF9 /* UIColor+CustomColor.swift in Sources */,
 				251DBE812CE2338100258E49 /* Haptics.swift in Sources */,
 				251DBE8B2CE39FFC00258E49 /* Food.swift in Sources */,
@@ -1066,6 +1130,8 @@
 				25CFEF172CD8F27400083081 /* RecommendSelectionViewModel.swift in Sources */,
 				25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */,
 				25CFEF1D2CD9528B00083081 /* RecommendSelectionView.swift in Sources */,
+				2571BA522CEC672300D61D70 /* ProductListViewModel.swift in Sources */,
+				2571BA582CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift in Sources */,
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
 				259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */,
 				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
@@ -1073,7 +1139,6 @@
 				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
 				2571BA442CEB35C400D61D70 /* Weather.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
-				251DBE912CE4812C00258E49 /* ProductCollectionViewCell.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
 				25A841AF2CEA6854002C64DD /* WeatherViewModel.swift in Sources */,
 				25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */,
@@ -1082,18 +1147,22 @@
 				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				25F428802CD4C0F60044240C /* User.swift in Sources */,
+				25BE34262CED0E2C005617DC /* LiquorRepository.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */,
+				25BE342A2CED10AA005617DC /* CategoryUseCase.swift in Sources */,
 				25A955A82CDFEDDB001213CB /* RecommendRepositoryProtocol.swift in Sources */,
 				2567CF412CE5307D00FB8860 /* RecommendResultViewModel.swift in Sources */,
 				259E82002CCCE78400D63747 /* MyPageViewController.swift in Sources */,
 				25CFEF1F2CD9529B00083081 /* RecommendSelectionViewController.swift in Sources */,
 				253B1B852CC4250D00F7DBF9 /* LoginViewModel.swift in Sources */,
 				25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */,
+				25BE34222CED0919005617DC /* LiquorNetwork.swift in Sources */,
 				2571BA482CEB3B5200D61D70 /* WeatherRepositoryProtocol.swift in Sources */,
 				259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */,
+				25BE34242CED0923005617DC /* LiquorNetworkManager.swift in Sources */,
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */,
@@ -1102,7 +1171,6 @@
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
 				251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */,
-				25737D732CDE9A2C004E9F6B /* LiquorRepositoryProtocol.swift in Sources */,
 				2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -120,17 +120,6 @@ public final class HomeView: UIView {
         return bt
     }()
     
-    // 카테고리 안내 레이블
-    private let categoryInfoLabel: UILabel = {
-        let lb = UILabel()
-        lb.textColor = .mainNavyColor
-        lb.text = "카테고리"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
-        lb.textAlignment = .left
-        return lb
-    }()
-    
     //  테이블 뷰
     public let categoryTableView: UITableView = {
         let tv = UITableView()
@@ -143,9 +132,6 @@ public final class HomeView: UIView {
         tv.layer.cornerRadius = 25
         return tv
     }()
-    
-    // 데이터 소스
-    public var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
     // init
     public override init(frame: CGRect) {
@@ -163,7 +149,7 @@ public final class HomeView: UIView {
         self.backgroundColor = .backgroundColor
         [scrollView].forEach { self.addSubview($0) }
         [mainContainerView].forEach { scrollView.addSubview($0) }
-        [weatherContainerView, categoryInfoLabel, categoryTableView].forEach { mainContainerView.addSubview($0) }
+        [weatherContainerView, categoryTableView].forEach { mainContainerView.addSubview($0) }
         [weatherMainInfoLabel, weatherSubInfoLabel, weatherImageView, weatherButton].forEach { weatherContainerView.addSubview($0) }
         
     } // closed setupUI
@@ -189,8 +175,7 @@ public final class HomeView: UIView {
             make.edges.equalTo(scrollView.contentLayoutGuide)
             make.centerX.equalTo(scrollView.snp.centerX)
         }
-        
-        // 날씨
+        // MARK: - 섹션 1
         weatherContainerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.trailing.equalToSuperview().inset(25)
@@ -221,16 +206,9 @@ public final class HomeView: UIView {
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
         }
-        
-        // 카테고리
-        categoryInfoLabel.snp.makeConstraints { make in
-            make.top.equalTo(weatherContainerView.snp.bottom).offset(60)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.centerX.equalToSuperview()
-        }
-        
+        // MARK: - 섹션 2
         categoryTableView.snp.makeConstraints { make in
-            make.top.equalTo(categoryInfoLabel.snp.bottom).offset(20)
+            make.top.equalTo(weatherContainerView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(25)
             make.bottom.equalToSuperview().offset(-30)
             make.centerX.equalToSuperview()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// 서버에 저장된 실시간 날씨 데이터를 요청에 대한 응답 객체
+// 서버에 저장된 실시간 날씨 데이터 요청에 대한 Json 응답 객체
 public struct WeatherResponse: Codable {
     let result: Bool
     let httpCode: Int

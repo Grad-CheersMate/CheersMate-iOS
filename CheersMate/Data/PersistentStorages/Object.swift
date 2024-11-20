@@ -36,13 +36,15 @@ public final class RecommendObject: Object {
 
 // MARK: - 주류 Object
 public final class LiquorObject: Object {
+    @Persisted var id: Int? // 주류명
     @Persisted var name: String? // 주류명
     @Persisted var volume: Double? // 도수
     @Persisted var type: String? // 주종
     @Persisted var imageUrl: String? // 이미지
     
-    convenience init(name: String, volume: Double, type: String, imageUrl: String) {
+    convenience init(id: Int, name: String, volume: Double, type: String, imageUrl: String) {
         self.init()
+        self.id = id
         self.name = name
         self.volume = volume
         self.type = type
@@ -51,7 +53,7 @@ public final class LiquorObject: Object {
     
     // LiquorObject를 Liquor로 변환하는 메서드
     func toLiquor() -> Liquor {
-        return Liquor(name: name, volume: volume, type: type, imageUrl: imageUrl)
+        return Liquor(id: id, name: name, volume: volume, type: type, imageUrl: imageUrl)
     }
     
 } // closed LiquorObject

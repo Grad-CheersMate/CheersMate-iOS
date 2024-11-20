@@ -46,7 +46,7 @@ final public class RecommendResultViewController: UIViewController {
             .bind(onNext: { [weak self] _ in
                 // MARK: - Data Layer
                 let realmDB = RealmDB(realm: try! Realm())
-                let network = LiquorNetwork(manager: LiquorNetworkManager())
+                let network = RecommendNetwork(manager: RecommendNetworkManager())
                 // MARK: - Domain Layer
                 let recommendRP = RecommendRepository(network: network, realm: realmDB)
                 let recommendUC = RecommendUseCase(repository: recommendRP)
@@ -74,7 +74,7 @@ final public class RecommendResultViewController: UIViewController {
         
         // 주류 추천 결과
         let recommendLiquorItems = [Item.productItem(resData.data.recommendLiquor[0].liquor)]
-        let productSection = Section.product
+        let productSection = Section.recommendMain
         snapshot.appendSections([productSection])
         snapshot.appendItems(recommendLiquorItems, toSection: productSection)
         
@@ -82,14 +82,14 @@ final public class RecommendResultViewController: UIViewController {
         
         let foodItems = resData.data.food.map { Item.foodItem($0) }
         //foodItems.append(foodItem)
-        let foodSection = Section.food("해당 음식과 잘 어울려요")
+        let foodSection = Section.recommendFood("완벽한 페어링, 이 음식은 어때요?")
         snapshot.appendSections([foodSection])
         snapshot.appendItems(foodItems, toSection: foodSection)
         
         // 비슷한 제품 추천 결과
         let liquorItems = resData.data.similarLiquor.map { Item.similarItem($0.liquor) }
         let similarLiquorItems = liquorItems
-        let similarSection = Section.similar("해당 제품과 비슷해요")
+        let similarSection = Section.recommendSimilar("더 다양한 선택을 즐겨보세요")
         snapshot.appendSections([similarSection])
         snapshot.appendItems(similarLiquorItems, toSection: similarSection)
         

@@ -7,11 +7,12 @@
 
 import UIKit
 
-public final class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+public final class MainTabBarController: UITabBarController  {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
+        self.delegate = self
     }
 
     // 탭 바 및 뷰 컨트롤러 설정
@@ -54,3 +55,10 @@ public final class MainTabBarController: UITabBarController, UITabBarControllerD
         self.setupBarApperance()
     }
 } // closed MainTabBarController
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    // 탭 선택 시 호출되는 델리게이트 메서드
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        Haptics.shared.generateHaptics(style: .rigid)
+    }
+}

@@ -28,7 +28,7 @@ extension UIColor {
         return UIColor(red: 17.0 / 255.0, green: 17.0 / 255.0, blue: 17.0 / 255.0, alpha: 1)
     }
     
-    // MARK: - 메인 네이비 색상
+    // MARK: - 메인 네이비 텍스트 색상
     static var mainNavyColor: UIColor {
         return UIColor(red: 26.0 / 255.0, green: 31.0 / 255.0, blue: 54.0 / 255.0, alpha: 1)
     }
@@ -46,5 +46,10 @@ extension UIColor {
     // MARK: - 셀 선택 시 배경색상
     static var cellSelectedBackgroundColor: UIColor {
         return UIColor(red: 255.0 / 255.0, green: 207.0 / 255.0, blue: 150.0 / 255.0, alpha: 1)
+    }
+    
+    // MARK: - 버튼의 색상
+    static var buttonColor: UIColor {
+        return UIColor(red: 200.0 / 255.0, green: 205.0 / 255.0, blue: 220.0 / 255.0, alpha: 1)
     }
 }

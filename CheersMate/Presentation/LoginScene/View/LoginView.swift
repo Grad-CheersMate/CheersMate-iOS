@@ -164,7 +164,7 @@ final public class LoginView: UIView {
     
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         [logoImageView, emailLabel, emailTextField, emailUnderLine, passwordLabel, passwordTextField, passwordUnderLine, loginButton, stackView, kakaoLoginImageView].forEach {
             self.addSubview($0)
         }
