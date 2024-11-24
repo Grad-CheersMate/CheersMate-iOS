@@ -17,10 +17,8 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
     // 프로퍼티
     private let useCase: CategoryUseCaseProtocol
     private let type: ProductType // 보여줄 상품 타입
-    private var page: Int = 0 // 페이지 정보
     private var productList: [Liquors] = []
     private let listRelay = BehaviorRelay<[Liquors]>(value: [])
-    private let pageRelay = BehaviorRelay<Int>(value: 0) // 페이지
     private let errorRelay = PublishRelay<Error>() // 에러
     
     private let disposeBag: DisposeBag = DisposeBag()
@@ -29,16 +27,18 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
     public init(useCase: CategoryUseCaseProtocol, productType: ProductType) {
         self.useCase = useCase
         self.type = productType
-        // fetchLiquorList(type: productType, page: 0)
     }
+    
     // Input
     public struct Input {
         let currentPage: Observable<Int>
     }
+    
     // Output
     public struct Output {
         let items: Observable<[Liquors]>
     }
+    
     // transform
     public func transform(input: Input) -> Output {
         // 페이지 정보
@@ -48,7 +48,7 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
                 if page == 0 { // 페이지가 0일 경우
                     self.productList = [] // 배열 초기화
                 }
-                self.fetchLiquorList(type: self.type, page: page)
+                self.fetchLiquorList(type: type, page: page)
             })
             .disposed(by: disposeBag)
         

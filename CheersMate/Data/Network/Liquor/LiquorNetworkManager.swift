@@ -17,6 +17,8 @@ public protocol LiquorNetworkManagerProtocol {
     func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse>
     // 주류 데이터 상세 조회
     func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse>
+    // 주류 데이터 검색
+    func searchLiquors(keyword: String, page: Int) -> Single<LiquorsResponse>
 }
 
 // 주류 네트워크 매니저
@@ -29,7 +31,7 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     }
     // jwt 추가
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMTIyMjY0LCJleHAiOjE3MzIyMDg2NjR9.L-v54Em5MAKZrv2A4FEYdHC1kvlP_kEis4dcr35Wtvvkk5KbYVmNdNU2lbze0WcxXT_Y1cJpDaBNP5Vq02-onQ")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyNDQwODc3LCJleHAiOjE3MzI1MjcyNzd9.D0anPVkpv8bHc2wSXQjWKj6DiKocZJ8wdsG3pE3aqG7dPxvlP5KH3XRZafo8z0piCbD93v5VQuIM45F_9vSCYQ")
         return HTTPHeaders([tokenHeader])
     }()
     // 리퀘스트 생성
@@ -48,14 +50,22 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
             return Disposables.create { result.cancel() }
         }
     }
+    
     // 카테고리 별 주류 데이터 조회: 카테고리 타입(= 주류 타입)을 받고 rawValue로 변경
     public func fetchLiquorListByCategory(category: ProductType, page: Int = 0) -> Single<LiquorsResponse> {
         let url = "\(endpoint)/api/liquors/category?category=\(category.rawValue)&page=\(page)"
         return makeRequest(url: url, method: .get, parameters: nil, headers: tokenHeader)
     }
+    
     // 주류 데이터 상세 조회: 주류 고유 ID를 전달
     public func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse> {
         let url = "\(endpoint)/api/liquors/\(liquorId)"
+        return makeRequest(url: url, method: .get, parameters: nil, headers: tokenHeader)
+    }
+    
+    // 주류 데이터 검색
+    public func searchLiquors(keyword: String, page: Int) -> Single<LiquorsResponse> {
+        let url = "\(endpoint)/api/liquors/search?keyword=\(keyword)&page=\(page)"
         return makeRequest(url: url, method: .get, parameters: nil, headers: tokenHeader)
     }
     

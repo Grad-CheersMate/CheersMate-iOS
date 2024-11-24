@@ -28,7 +28,7 @@ final public class UserNetworkManager: UserNetworkManagerProtocol {
     }
     // MARK: -  나중에 jwt를 Bearer 뒤에 추가하기
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMDM1Njg1LCJleHAiOjE3MzIxMjIwODV9.pgxNi8Jqyn7E_9DesnpS109asG46nj37mm9HZc4fSkkZeQQ8u1ddtmcuJ0xzQNXp2HpF8OgO0tjKaXjJzQXMgQ")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyNDQwODc3LCJleHAiOjE3MzI1MjcyNzd9.D0anPVkpv8bHc2wSXQjWKj6DiKocZJ8wdsG3pE3aqG7dPxvlP5KH3XRZafo8z0piCbD93v5VQuIM45F_9vSCYQ")
         return HTTPHeaders([tokenHeader])
     }()
     

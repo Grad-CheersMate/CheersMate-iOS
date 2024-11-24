@@ -27,14 +27,22 @@ public final class MainTabBarController: UITabBarController  {
         let homeVC = HomeViewController(viewModel: homeVM)
         let homeNVC = UINavigationController(rootViewController: homeVC)
         homeNVC.setupBarAppearance()
-        // 검색 네비게이션 컨트롤러 생성
-        let searchVC = SearchViewController()
+        
+        // MARK: - Data Layer
+        let liquorNet = LiquorNetwork(manager: LiquorNetworkManager())
+        let liquorRP = LiquorRepository(network: liquorNet)
+        // MARK: - Domain Layer
+        let searchUC = SearchUseCase(repository: liquorRP)
+        let searchVM = SearchViewModel(useCase: searchUC)
+        let searchVC = SearchViewController(viewModel: searchVM)
         let searchNVC = UINavigationController(rootViewController: searchVC)
         searchNVC.setupBarAppearance()
-        // 챗 봇 네비게이션 컨트롤러 생성
+        
+        // AI 추천 네비게이션 컨트롤러 생성
         let recommendHomeVC = RecommendHomeViewController()
         let recommendHomeNVC = UINavigationController(rootViewController: recommendHomeVC)
         recommendHomeNVC.setupBarAppearance()
+        
         // 마이 페이지 네비게이션 컨트롤러 생성
         let myPageVC = MyPageViewController()
         let myPageNVC = UINavigationController(rootViewController: myPageVC)
@@ -59,6 +67,6 @@ public final class MainTabBarController: UITabBarController  {
 extension MainTabBarController: UITabBarControllerDelegate {
     // 탭 선택 시 호출되는 델리게이트 메서드
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        Haptics.shared.generateHaptics(style: .rigid)
+        Haptics.shared.generateHaptics(style: .light)
     }
 }

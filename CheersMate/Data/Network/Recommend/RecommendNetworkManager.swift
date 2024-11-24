@@ -30,7 +30,7 @@ final public class RecommendNetworkManager: RecommendNetworkManagerProtocol {
     
     // jwt 추가
     private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMTIyMjY0LCJleHAiOjE3MzIyMDg2NjR9.L-v54Em5MAKZrv2A4FEYdHC1kvlP_kEis4dcr35Wtvvkk5KbYVmNdNU2lbze0WcxXT_Y1cJpDaBNP5Vq02-onQ")
+        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMzUyNzM1LCJleHAiOjE3MzI0MzkxMzV9.xiM6CuiMDuTQ91g7xMxEdD7ScWd94CE4Tk-Fk3bzOI0Roc-Ou9_eFsU3Rp4bqyNlrXDjnEvYiRSN988RMkmcDg")
         return HTTPHeaders([tokenHeader])
     }()
     
@@ -55,6 +55,7 @@ final public class RecommendNetworkManager: RecommendNetworkManagerProtocol {
     public func requestRecommendationsForSelection(emotion: String, companion: String, volume: String) -> Single<RecommendResponse> {
         let url = "\(endpoint)/api/recommend"
         let parameters: Parameters = ["emotion": emotion, "companion": companion, "volume": volume]
+        print(parameters)
         return makeRequest(url: url, method: .post, parameters: parameters, headers: tokenHeader)
     }
     

@@ -48,8 +48,13 @@ extension UIColor {
         return UIColor(red: 255.0 / 255.0, green: 207.0 / 255.0, blue: 150.0 / 255.0, alpha: 1)
     }
     
-    // MARK: - 버튼의 색상
+    // MARK: - > 버튼의 색상
     static var buttonColor: UIColor {
         return UIColor(red: 200.0 / 255.0, green: 205.0 / 255.0, blue: 220.0 / 255.0, alpha: 1)
+    }
+    
+    // MARK: - 텍스트 입력란의 배경색상
+    static var textFieldBackgroundColor: UIColor {
+        return UIColor(red: 230.0 / 255.0, green: 232.0 / 255.0, blue: 240.0 / 255.0, alpha: 1)
     }
 }

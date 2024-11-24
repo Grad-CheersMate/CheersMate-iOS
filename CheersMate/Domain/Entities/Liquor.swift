@@ -22,7 +22,7 @@ public struct Liquor: Codable, Hashable {
     
     // MARK: - Liquor를 Realm에 저장할 LiquorObject로 변환
     static func convert(liquor: Liquor) -> LiquorObject {
-        return LiquorObject(id: liquor.id ?? 0, name: liquor.name ?? "", volume: liquor.volume ?? 0.0, type: liquor.type ?? "", imageUrl: liquor.imageUrl ?? "")
+        return LiquorObject(id: liquor.id ?? 0 , name: liquor.name ?? "", volume: liquor.volume ?? 0.0, type: liquor.type ?? "", imageUrl: liquor.imageUrl ?? "")
     } // closed convert
 }
 
@@ -36,14 +36,15 @@ public enum LiquorType: String, Hashable {
 }
 
 // Liquors 데이터 모델
-public struct LiquorsResponse: Codable {
+public struct LiquorsResponse: Codable{
     let result: Bool
     let httpCode: Int
     let liquors: LiquorsContent
 }
 // Liquors의 content 부분만 포함한 데이터 모델
-public struct LiquorsContent: Codable {
+public struct LiquorsContent: Codable{
     let content: [Liquors]
+    let totalPages: Int
 }
 // Liquor 데이터 모델
 public struct Liquors: Codable {
