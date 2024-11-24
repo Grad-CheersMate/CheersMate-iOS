@@ -15,4 +15,6 @@ public protocol LiquorRepositoryProtocol {
     func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse>
     // 주류 데이터 상세 조회 API
     func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse>
+    // 키워드로 주류 데이터 검색 API
+    func searchLiquors(keyword: String, page: Int) -> Single<LiquorsResponse>
 }

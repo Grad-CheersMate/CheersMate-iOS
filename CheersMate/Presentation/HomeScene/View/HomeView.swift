@@ -19,10 +19,10 @@ public final class HomeView: UIView {
         return lb
     }()
     
-    // 네비게이션 오른쪽 바 버튼 아이템 - 돋보기 이미지
+    // 네비게이션 오른쪽 바 버튼 아이템 - 하트 이미지
     public let rightBarSearchButton: UIButton =  {
         let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "search"), for: .normal)
+        bt.setImage(UIImage(named: "heart"), for: .normal)
         bt.tintColor = .mainNavyColor
         return bt
     }()
@@ -158,11 +158,11 @@ public final class HomeView: UIView {
     private func setupLayout() {
         // 네비게이션 바
         rightBarSearchButton.snp.makeConstraints { make in
-            make.height.width.equalTo(20)
+            make.height.width.equalTo(21)
         }
         
         rightBarBellButton.snp.makeConstraints { make in
-            make.height.width.equalTo(20)
+            make.height.width.equalTo(21)
         }
         
         // 스크롤 뷰

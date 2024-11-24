@@ -36,7 +36,7 @@ public final class RecommendObject: Object {
 
 // MARK: - 주류 Object
 public final class LiquorObject: Object {
-    @Persisted var id: Int? // 주류명
+    @Persisted var id: Int? // 아이디
     @Persisted var name: String? // 주류명
     @Persisted var volume: Double? // 도수
     @Persisted var type: String? // 주종

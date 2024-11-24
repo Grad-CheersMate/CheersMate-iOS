@@ -1,13 +1,51 @@
 //
-//  ProductView.swift
+//  SearchView.swift
 //  CheersMate
 //
-//  Created by 재훈 on 11/19/24.
+//  Created by 재훈 on 11/21/24.
 //
 
-import UIKit
+// MARK: - 사용자가 원하는 주류를 검색하기 위한 검색 화면
 
-public final class ProductListView: UIView {
+import UIKit
+import SnapKit
+
+public final class SearchView: UIView {
+    
+    // 프로퍼티
+    // 서치 바
+    public let searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.autocapitalizationType = .none // 자동 대문자
+        sb.autocorrectionType = .no // 자동 수정
+        sb.spellCheckingType = .no // 맞춤법 검사
+        sb.backgroundColor = .backgroundColor
+        sb.searchTextField.backgroundColor = .backgroundColor
+        sb.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal) // 돋보기 이미지 등록
+        sb.setImage(UIImage(systemName: "xmark.circle.fill")?.withTintColor(.buttonColor, renderingMode: .alwaysOriginal), for: .clear, state: .normal) // 텍스트 초기화 버튼 이미지 등록
+        sb.clipsToBounds = true
+        
+        if let textField = sb.value(forKey: "searchField") as? UITextField  {
+            textField.font = UIFont.pretendard(size: 17, family: .Medium)
+            textField.backgroundColor = .textFieldBackgroundColor
+            textField.attributedPlaceholder = NSAttributedString(string: "상품을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.subTextColor])
+            textField.textColor = .mainNavyColor
+        }
+        
+        return sb
+    }()
+    
+    // 네비게이션 바의 왼쪽 아이템 설정
+    public lazy var rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
+    
+    // 네비게이션 왼족 바 버튼 아이템 - 뒤로가기 이미지
+    public let rightBarButton: UIButton =  {
+        let bt = UIButton(type: .custom)
+        bt.setTitle("취소", for: .normal)
+        bt.setTitleColor(.mainNavyColor, for: .normal)
+        bt.titleLabel?.font = UIFont.gmarketSans(size: 16, family: .Medium)
+        return bt
+    }()
     
     //  컬렉션 뷰
     public lazy var collectionView: UICollectionView = {
@@ -15,51 +53,44 @@ public final class ProductListView: UIView {
         cv.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.ID)
         cv.backgroundColor = .backgroundColor
         cv.clipsToBounds = true
+        //cv.keyboardDismissMode = .onDrag // 드래그할 때 키보드 내리기
         return cv
     }()
     
-    // 영역을 구분하기 위한 뷰
-    public let seperateView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .buttonColor
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    // 데이터 소스
-    public var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    
-    // init
+    // init 설정
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayout()
         setupDataSource()
     }
-    public required init?(coder: NSCoder) {
+    
+    // 데이터 소스
+    public var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .backgroundColor
-        [seperateView, collectionView].forEach { self.addSubview($0) }
-        
+        [searchBar, collectionView].forEach { self.addSubview($0) }
     }
-    
+
     // Layout 설정
     private func setupLayout() {
         
-        seperateView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(1)
-            make.leading.trailing.centerX.equalToSuperview()
-            make.height.equalTo(1)
+        searchBar.snp.makeConstraints { make in
+            make.edges.centerY.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(seperateView.snp.bottom).offset(5)
+            make.top.equalTo(safeAreaLayoutGuide).offset(5)
             make.leading.trailing.bottom.centerX.equalToSuperview()
         }
+        
+        
     }
     
     // 컬렉션 뷰의 레이아웃 설정
@@ -93,4 +124,5 @@ public final class ProductListView: UIView {
         })
     }
     
-} // closed Class
+    
+} // closed SearchView

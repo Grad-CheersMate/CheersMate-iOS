@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 SelectionObject(title: "friend", desc: "친구", type: .companion),
                 SelectionObject(title: "couple", desc: "연인", type: .companion),
                 SelectionObject(title: "family", desc: "가족", type: .companion),
-                SelectionObject(title: "peoples", desc: "기타", type: .companion),
+                SelectionObject(title: "people", desc: "기타", type: .companion),
                 // 선호 도수
                 SelectionObject(title: "light", desc: "가볍게 살짝 기분만", type: .liquorVolume),
                 SelectionObject(title: "tipsy", desc: "알딸딸하게 딱 좋게", type: .liquorVolume),

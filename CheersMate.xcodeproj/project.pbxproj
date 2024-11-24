@@ -10,7 +10,7 @@
 		251DBE812CE2338100258E49 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE802CE2338100258E49 /* Haptics.swift */; };
 		251DBE832CE263E300258E49 /* RecommendResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE822CE263E300258E49 /* RecommendResultView.swift */; };
 		251DBE852CE2640300258E49 /* RecommendResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE842CE2640300258E49 /* RecommendResultViewController.swift */; };
-		251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE862CE2640F00258E49 /* DetailViewModel.swift */; };
+		251DBE872CE2640F00258E49 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE862CE2640F00258E49 /* SearchViewModel.swift */; };
 		251DBE892CE39F0800258E49 /* Recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE882CE39F0800258E49 /* Recommend.swift */; };
 		251DBE8B2CE39FFC00258E49 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE8A2CE39FFC00258E49 /* Food.swift */; };
 		251DBE932CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DBE922CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift */; };
@@ -83,6 +83,8 @@
 		25BE34282CED0EA5005617DC /* LiquorRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34272CED0EA5005617DC /* LiquorRepositoryProtocol.swift */; };
 		25BE342A2CED10AA005617DC /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34292CED10AA005617DC /* CategoryUseCase.swift */; };
 		25BE342C2CEE1382005617DC /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25BE342B2CEE1382005617DC /* cheersLottie.json */; };
+		25BE342E2CEE6B35005617DC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE342D2CEE6B35005617DC /* SearchView.swift */; };
+		25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE342F2CF07ED5005617DC /* SearchUseCase.swift */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
@@ -125,7 +127,7 @@
 		251DBE802CE2338100258E49 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		251DBE822CE263E300258E49 /* RecommendResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendResultView.swift; sourceTree = "<group>"; };
 		251DBE842CE2640300258E49 /* RecommendResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendResultViewController.swift; sourceTree = "<group>"; };
-		251DBE862CE2640F00258E49 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		251DBE862CE2640F00258E49 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		251DBE882CE39F0800258E49 /* Recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommend.swift; sourceTree = "<group>"; };
 		251DBE8A2CE39FFC00258E49 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		251DBE922CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendFoodCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -202,6 +204,8 @@
 		25BE34272CED0EA5005617DC /* LiquorRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquorRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25BE34292CED10AA005617DC /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
 		25BE342B2CEE1382005617DC /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
+		25BE342D2CEE6B35005617DC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		25BE342F2CF07ED5005617DC /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				25A955A92CDFF460001213CB /* RecommendUseCase.swift */,
 				2571BA4C2CEB40E200D61D70 /* WeatherUseCase.swift */,
 				25BE34292CED10AA005617DC /* CategoryUseCase.swift */,
+				25BE342F2CF07ED5005617DC /* SearchUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -711,7 +716,7 @@
 		259E81F52CCCE6D200D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				251DBE862CE2640F00258E49 /* DetailViewModel.swift */,
+				251DBE862CE2640F00258E49 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -719,6 +724,7 @@
 		259E81F62CCCE6EA00D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25BE342D2CEE6B35005617DC /* SearchView.swift */,
 				259E81FB2CCCE74200D63747 /* SearchViewController.swift */,
 			);
 			path = View;
@@ -1099,6 +1105,7 @@
 				25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */,
 				251DBE932CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift in Sources */,
 				25A8419E2CE7BA04002C64DD /* HomeViewModel.swift in Sources */,
+				25BE342E2CEE6B35005617DC /* SearchView.swift in Sources */,
 				25BE34282CED0EA5005617DC /* LiquorRepositoryProtocol.swift in Sources */,
 				25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */,
 				2571BA5B2CEC94EB00D61D70 /* ProductCollectionViewCell.swift in Sources */,
@@ -1166,11 +1173,12 @@
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */,
+				25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
 				251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
-				251DBE872CE2640F00258E49 /* DetailViewModel.swift in Sources */,
+				251DBE872CE2640F00258E49 /* SearchViewModel.swift in Sources */,
 				2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
