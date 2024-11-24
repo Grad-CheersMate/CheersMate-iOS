@@ -85,6 +85,8 @@
 		25BE342C2CEE1382005617DC /* cheersLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 25BE342B2CEE1382005617DC /* cheersLottie.json */; };
 		25BE342E2CEE6B35005617DC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE342D2CEE6B35005617DC /* SearchView.swift */; };
 		25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE342F2CF07ED5005617DC /* SearchUseCase.swift */; };
+		25BE34322CF3303A005617DC /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34312CF3303A005617DC /* KeyChainManager.swift */; };
+		25BE34342CF3718A005617DC /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34332CF3718A005617DC /* AuthInterceptor.swift */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
@@ -206,6 +208,8 @@
 		25BE342B2CEE1382005617DC /* cheersLottie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cheersLottie.json; sourceTree = "<group>"; };
 		25BE342D2CEE6B35005617DC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		25BE342F2CF07ED5005617DC /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		25BE34312CF3303A005617DC /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		25BE34332CF3718A005617DC /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 				2571BA3E2CEB29EC00D61D70 /* Weather */,
 				25BE34202CED0905005617DC /* Liquor */,
 				25737D652CDE7473004E9F6B /* Recommend */,
+				25BE34332CF3718A005617DC /* AuthInterceptor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -418,10 +423,10 @@
 		253B1B782CC40B5300F7DBF9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				253B1B792CC40C0900F7DBF9 /* Extension */,
+				253B1B7A2CC40CC800F7DBF9 /* Constant */,
 				251DBE7F2CE2336C00258E49 /* Haptics */,
 				259E82012CCD6E9600D63747 /* Error */,
-				253B1B7A2CC40CC800F7DBF9 /* Constant */,
-				253B1B792CC40C0900F7DBF9 /* Extension */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
+				25BE34312CF3303A005617DC /* KeyChainManager.swift */,
 			);
 			path = KeyChain;
 			sourceTree = "<group>";
@@ -1103,6 +1109,8 @@
 				251DBE892CE39F0800258E49 /* Recommend.swift in Sources */,
 				25737D6B2CDE7882004E9F6B /* Object.swift in Sources */,
 				25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */,
+				25BE34342CF3718A005617DC /* AuthInterceptor.swift in Sources */,
+				25BE34322CF3303A005617DC /* KeyChainManager.swift in Sources */,
 				251DBE932CE4D44600258E49 /* RecommendFoodCollectionViewCell.swift in Sources */,
 				25A8419E2CE7BA04002C64DD /* HomeViewModel.swift in Sources */,
 				25BE342E2CEE6B35005617DC /* SearchView.swift in Sources */,

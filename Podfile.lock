@@ -25,6 +25,7 @@ PODS:
   - RxSwift (6.5.0)
   - SkeletonView (1.30.4)
   - SnapKit (5.7.1)
+  - SwiftKeychainWrapper (4.0.1)
   - Tabman (3.2.0):
     - Pageboy (~> 4.2.0)
 
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - RxSwift (= 6.5.0)
   - SkeletonView
   - SnapKit (~> 5.7.0)
+  - SwiftKeychainWrapper
   - Tabman (~> 3.2)
 
 SPEC REPOS:
@@ -58,6 +60,7 @@ SPEC REPOS:
     - RxSwift
     - SkeletonView
     - SnapKit
+    - SwiftKeychainWrapper
     - Tabman
 
 SPEC CHECKSUMS:
@@ -75,8 +78,9 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   Tabman: 49f9181a2bfe5c29d002864dac2de8e0b7ea9180
 
-PODFILE CHECKSUM: 7501d4b991dec6d7121781a0c888338757e34753
+PODFILE CHECKSUM: 783033048f268af625ed41ca0c5737fbf6310e47
 
 COCOAPODS: 1.15.2
