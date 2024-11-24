@@ -104,6 +104,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftKeychainWrapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Tabman-Tabman.xcscheme</key>
 		<dict>
 			<key>isShown</key>
