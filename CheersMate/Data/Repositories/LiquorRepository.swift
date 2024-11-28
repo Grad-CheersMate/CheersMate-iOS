@@ -24,6 +24,11 @@ public class LiquorRepository: LiquorRepositoryProtocol {
         return network.fetchLiquorListByCategory(category: category, page: page)
     }
     
+    // BEST(TOP 30) 주류 데이터 조회하기
+    public func fetchBestLiquors() -> Single<BestResponse> {
+        return network.fetchBestLiquors()
+    }
+    
     // 주류 데이터 상세 조회하기
     public func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse> {
         return network.fetchLiquorDetailsById(liquorId: liquorId)

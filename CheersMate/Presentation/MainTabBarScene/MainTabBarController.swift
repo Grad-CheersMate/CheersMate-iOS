@@ -29,7 +29,7 @@ public final class MainTabBarController: UITabBarController  {
         homeNVC.setupBarAppearance()
         
         // MARK: - Data Layer
-        let liquorNet = LiquorNetwork(manager: LiquorNetworkManager())
+        let liquorNet = LiquorNetwork(manager: LiquorNetworkManager(requestInterceptor: AuthInterceptor()))
         let liquorRP = LiquorRepository(network: liquorNet)
         // MARK: - Domain Layer
         let searchUC = SearchUseCase(repository: liquorRP)

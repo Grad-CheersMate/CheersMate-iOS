@@ -15,6 +15,8 @@ import RxSwift
 public protocol LiquorNetworkManagerProtocol {
     // 카테고리 별 주류 데이터 조회
     func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse>
+    // BEST(TOP 30) 주류 데이터 조회
+    func fetchBestLiquors() -> Single<BestResponse>
     // 주류 데이터 상세 조회
     func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse>
     // 주류 데이터 검색
@@ -25,10 +27,12 @@ public protocol LiquorNetworkManagerProtocol {
 final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     // 엔드 포인트
     private let endpoint: String
+    private let requestInterceptor: RequestInterceptor
     
     // init
-    public init(endpoint: String = "http://ceprj.gachon.ac.kr:60021") {
+    public init(endpoint: String = "http://ceprj.gachon.ac.kr:60021", requestInterceptor: RequestInterceptor) {
         self.endpoint = endpoint
+        self.requestInterceptor = requestInterceptor
     }
 
     // 리퀘스트 생성
@@ -51,19 +55,25 @@ final public class LiquorNetworkManager: LiquorNetworkManagerProtocol {
     // 카테고리 별 주류 데이터 조회: 카테고리 타입(= 주류 타입)을 받고 rawValue로 변경
     public func fetchLiquorListByCategory(category: ProductType, page: Int = 0) -> Single<LiquorsResponse> {
         let url = "\(endpoint)/api/liquors/category?category=\(category.rawValue)&page=\(page)"
-        return makeRequest(url: url, method: .get, parameters: nil, interceptor: AuthInterceptor())
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: requestInterceptor)
+    }
+    
+    // BEST(TOP 30) 주류 데이터 조회
+    public func fetchBestLiquors() -> Single<BestResponse> {
+        let url = "\(endpoint)/api/recommend/rating"
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: requestInterceptor)
     }
     
     // 주류 데이터 상세 조회: 주류 고유 ID를 전달
     public func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse> {
         let url = "\(endpoint)/api/liquors/\(liquorId)"
-        return makeRequest(url: url, method: .get, parameters: nil, interceptor: AuthInterceptor())
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: requestInterceptor)
     }
     
     // 주류 데이터 검색
     public func searchLiquors(keyword: String, page: Int) -> Single<LiquorsResponse> {
         let url = "\(endpoint)/api/liquors/search?keyword=\(keyword)&page=\(page)"
-        return makeRequest(url: url, method: .get, parameters: nil, interceptor: AuthInterceptor())
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: requestInterceptor)
     }
     
 } // closed LiquorNetworkManager

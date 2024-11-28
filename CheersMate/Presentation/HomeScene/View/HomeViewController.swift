@@ -66,8 +66,8 @@ public final class HomeViewController: UIViewController {
         homeView.categoryTableView.rx.modelSelected(Category.self)
             .subscribe(onNext: { [weak self] model in
                 let categoryVC = CategoryTabmanViewCotroller(productType: model.productType)
-                Haptics.shared.generateHaptics(style: .medium)
                 self?.navigationController?.pushViewController(categoryVC, animated: true)
+                Haptics.shared.generateHaptics(style: .medium)
             })
             .disposed(by: disposeBag)
     }

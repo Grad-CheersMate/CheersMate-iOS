@@ -60,7 +60,7 @@ public final class CategoryTabmanViewCotroller: TabmanViewController {
     // 탭 바에 들어갈 뷰 컨트롤러를 카테고리(상품) 타입에 따라 생성
     private func createCategoryViewControllers(productType: ProductType) -> ProductListViewController {
         // MARK: - Data Layer
-        let liquorNet = LiquorNetwork(manager: LiquorNetworkManager())
+        let liquorNet = LiquorNetwork(manager: LiquorNetworkManager(requestInterceptor: AuthInterceptor()))
         let liquorRP = LiquorRepository(network: liquorNet)
         // MARK: - Domain Layer
         let categoryUC = CategoryUseCase(repository: liquorRP)
