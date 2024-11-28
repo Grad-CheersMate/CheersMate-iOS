@@ -49,6 +49,7 @@
 		25737D692CDE7496004E9F6B /* RecommendNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D682CDE7496004E9F6B /* RecommendNetwork.swift */; };
 		25737D6B2CDE7882004E9F6B /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D6A2CDE7882004E9F6B /* Object.swift */; };
 		25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D742CDE9CE9004E9F6B /* Liquor.swift */; };
+		258936912CF64D880017B9F6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258936902CF64D880017B9F6 /* SettingTableViewCell.swift */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
 		259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountSearchView.swift */; };
 		259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* AccountSearchViewController.swift */; };
@@ -65,6 +66,8 @@
 		259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82082CCE801300D63747 /* UserNetworkManager.swift */; };
 		259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E820A2CCE80E800D63747 /* UserNetwork.swift */; };
 		259E82112CCE87DA00D63747 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E82102CCE87DA00D63747 /* UserRepository.swift */; };
+		259F41C72CF7957F002CB66E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259F41C62CF7957F002CB66E /* ProfileView.swift */; };
+		259F41C92CF79750002CB66E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259F41C82CF79750002CB66E /* ProfileViewController.swift */; };
 		25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */; };
 		25A841992CE67756002C64DD /* RecommendEvaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */; };
 		25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */; };
@@ -87,6 +90,8 @@
 		25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE342F2CF07ED5005617DC /* SearchUseCase.swift */; };
 		25BE34322CF3303A005617DC /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34312CF3303A005617DC /* KeyChainManager.swift */; };
 		25BE34342CF3718A005617DC /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34332CF3718A005617DC /* AuthInterceptor.swift */; };
+		25BE34382CF45916005617DC /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34372CF45916005617DC /* MyPageView.swift */; };
+		25BE343A2CF497AD005617DC /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE34392CF497AD005617DC /* MyPageViewModel.swift */; };
 		25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */; };
 		25CFEF0D2CD7FBF000083081 /* AccountSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */; };
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
@@ -172,6 +177,7 @@
 		25737D682CDE7496004E9F6B /* RecommendNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendNetwork.swift; sourceTree = "<group>"; };
 		25737D6A2CDE7882004E9F6B /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		25737D742CDE9CE9004E9F6B /* Liquor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liquor.swift; sourceTree = "<group>"; };
+		258936902CF64D880017B9F6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
 		259E81C62CCA40E800D63747 /* AccountSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchView.swift; sourceTree = "<group>"; };
 		259E81C82CCA417700D63747 /* AccountSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 		259E82082CCE801300D63747 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		259E820A2CCE80E800D63747 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		259E82102CCE87DA00D63747 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		259F41C62CF7957F002CB66E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		259F41C82CF79750002CB66E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		25A841962CE672DF002C64DD /* RecommendEvaluateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateView.swift; sourceTree = "<group>"; };
 		25A841982CE67756002C64DD /* RecommendEvaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewController.swift; sourceTree = "<group>"; };
 		25A8419A2CE69592002C64DD /* RecommendEvaluateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendEvaluateViewModel.swift; sourceTree = "<group>"; };
@@ -210,6 +218,8 @@
 		25BE342F2CF07ED5005617DC /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		25BE34312CF3303A005617DC /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		25BE34332CF3718A005617DC /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		25BE34372CF45916005617DC /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		25BE34392CF497AD005617DC /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0A2CD6B72900083081 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		25CFEF0C2CD7FBF000083081 /* AccountSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewModel.swift; sourceTree = "<group>"; };
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -297,7 +307,7 @@
 			children = (
 				253B1B812CC424CC00F7DBF9 /* LoginScene */,
 				253B1B902CC82A0700F7DBF9 /* SignUpScene */,
-				259E81C32CCA3FAF00D63747 /* AccountlSearchScene */,
+				259E81C32CCA3FAF00D63747 /* AccountSearchScene */,
 				259E81E52CCB861900D63747 /* HomeScene */,
 				25A8419C2CE7B9B2002C64DD /* WeatherScene */,
 				2571BA4E2CEC656E00D61D70 /* CategoryScene */,
@@ -635,13 +645,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		259E81C32CCA3FAF00D63747 /* AccountlSearchScene */ = {
+		259E81C32CCA3FAF00D63747 /* AccountSearchScene */ = {
 			isa = PBXGroup;
 			children = (
 				259E81C42CCA40CF00D63747 /* View */,
 				259E81C52CCA40D500D63747 /* ViewModel */,
 			);
-			path = AccountlSearchScene;
+			path = AccountSearchScene;
 			sourceTree = "<group>";
 		};
 		259E81C42CCA40CF00D63747 /* View */ = {
@@ -712,6 +722,7 @@
 		259E81F42CCCE49C00D63747 /* MyPageScene */ = {
 			isa = PBXGroup;
 			children = (
+				25BE343B2CF5D35A005617DC /* Cell */,
 				259E81FA2CCCE70200D63747 /* View */,
 				259E81F92CCCE6FD00D63747 /* ViewModel */,
 			);
@@ -763,6 +774,7 @@
 		259E81F92CCCE6FD00D63747 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				25BE34392CF497AD005617DC /* MyPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -770,7 +782,10 @@
 		259E81FA2CCCE70200D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25BE34372CF45916005617DC /* MyPageView.swift */,
 				259E81FF2CCCE78400D63747 /* MyPageViewController.swift */,
+				259F41C62CF7957F002CB66E /* ProfileView.swift */,
+				259F41C82CF79750002CB66E /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -806,6 +821,14 @@
 				25BE34212CED0919005617DC /* LiquorNetwork.swift */,
 			);
 			path = Liquor;
+			sourceTree = "<group>";
+		};
+		25BE343B2CF5D35A005617DC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				258936902CF64D880017B9F6 /* SettingTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		25CFEF092CD6B39C00083081 /* KeyChain */ = {
@@ -1117,6 +1140,7 @@
 				25BE34282CED0EA5005617DC /* LiquorRepositoryProtocol.swift in Sources */,
 				25A841972CE672DF002C64DD /* RecommendEvaluateView.swift in Sources */,
 				2571BA5B2CEC94EB00D61D70 /* ProductCollectionViewCell.swift in Sources */,
+				25BE343A2CF497AD005617DC /* MyPageViewModel.swift in Sources */,
 				25A955A42CDFCD72001213CB /* RealmDB.swift in Sources */,
 				255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */,
 				25CFEF0B2CD6B72900083081 /* SignUpViewModel.swift in Sources */,
@@ -1155,10 +1179,12 @@
 				2571BA442CEB35C400D61D70 /* Weather.swift in Sources */,
 				259E82092CCE801300D63747 /* UserNetworkManager.swift in Sources */,
 				259E81F12CCCE25900D63747 /* UITabBarController+Appearance.swift in Sources */,
+				25BE34382CF45916005617DC /* MyPageView.swift in Sources */,
 				25A841AF2CEA6854002C64DD /* WeatherViewModel.swift in Sources */,
 				25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */,
 				25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */,
 				259E81FE2CCCE77100D63747 /* RecommendHomeViewController.swift in Sources */,
+				258936912CF64D880017B9F6 /* SettingTableViewCell.swift in Sources */,
 				259E820B2CCE80E800D63747 /* UserNetwork.swift in Sources */,
 				255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */,
 				25F428802CD4C0F60044240C /* User.swift in Sources */,
@@ -1181,11 +1207,13 @@
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
 				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
 				2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */,
+				259F41C72CF7957F002CB66E /* ProfileView.swift in Sources */,
 				25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
 				251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
+				259F41C92CF79750002CB66E /* ProfileViewController.swift in Sources */,
 				251DBE872CE2640F00258E49 /* SearchViewModel.swift in Sources */,
 				2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */,
 			);

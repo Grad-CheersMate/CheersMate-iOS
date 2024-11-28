@@ -104,7 +104,7 @@ final public class AccountSearchView: UIView {
     
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         
         [infoLabel, contactLabel, contactTextField, contactUnderLine, tellLabel, tellTextField, tellUnderLine, contactSearchButton]
             .forEach { self.addSubview($0) }

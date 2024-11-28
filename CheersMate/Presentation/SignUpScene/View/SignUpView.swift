@@ -172,7 +172,7 @@ final public class SignUpView: UIView {
     }
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         
         [infoLabel, emailLabel, emailTextField, emailUnderLine, passwordLabel, passwordTextField, passwordUnderLine, nickNameLabel, nickNameTextField, nickNameUnderLine, tellLabel, tellTextField, tellUnderLine, signUpButton].forEach { self.addSubview($0) }
     

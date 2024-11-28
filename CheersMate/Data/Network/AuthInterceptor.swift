@@ -31,15 +31,22 @@ public final class AuthInterceptor: RequestInterceptor {
             .contentType("application/json")
         ])
         
-//        AF.request("http://ceprj.gachon.ac.kr:60021/auth/token/refresh",
-//                   method: .post,
-//                   headers: headers)
-//        .validate(statusCode: 200..<300)
-//        .responseDecodable(of: ) {
-//            
-//        }
-        
-        
+        AF.request("http://ceprj.gachon.ac.kr:60021/auth/refresh",
+                   method: .post,
+                   headers: headers)
+        .validate(statusCode: 200..<300)
+        .responseDecodable(of: UserResponse.self) { response in
+            switch response.result {
+            case .success(let res):
+                if res.result, res.httpCode == 200 {
+                    guard let accessToken = res.accessToken else { return }
+                    _ = KeyChainManager.shared.saveKeyChain(accessToken, forKey: "AccessToken")
+                    completion(.retry)
+                }
+            case .failure(let err):
+                completion(.doNotRetryWithError(err))
+            }
+        }
     }
     
 } // closed AuthInterceptor

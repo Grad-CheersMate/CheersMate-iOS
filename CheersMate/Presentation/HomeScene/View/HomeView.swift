@@ -14,7 +14,7 @@ public final class HomeView: UIView {
         let lb = UILabel()
         lb.text = "CheersMate"
         lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
+        lb.font = UIFont.gmarketSans(size: 24, family: .Bold)
         lb.textColor = .mainNavyColor
         return lb
     }()

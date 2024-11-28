@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final public class LoginView: UIView {
-    // MARK: - 프로퍼티 설정
+
     // 메인 로고 이미지 뷰
     private let logoImageView: UIImageView = {
         let view = UIImageView()
@@ -20,6 +20,7 @@ final public class LoginView: UIView {
         view.layer.cornerRadius = 20
         return view
     }()
+    
     // 이메일 주소 레이블
     private let emailLabel: UILabel = {
         let label = UILabel()
@@ -29,6 +30,7 @@ final public class LoginView: UIView {
         label.textAlignment = .left
         return label
     }()
+    
     // 이메일 입력 창
     public let emailTextField: UITextField = {
         let tf = UITextField()
@@ -40,6 +42,7 @@ final public class LoginView: UIView {
         tf.contentVerticalAlignment = .center
         return tf
     }()
+    
     // 이메일 입력 창이 클릭됬을 때 표시하는 언더라인
     public var emailUnderLine: UIView = {
         let view = UIView()
@@ -47,6 +50,7 @@ final public class LoginView: UIView {
         view.clipsToBounds = true
         return view
     }()
+    
     // 비밀번호 레이블
     private let passwordLabel: UILabel = {
         let label = UILabel()

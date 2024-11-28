@@ -10,24 +10,27 @@ import RxSwift
 import RxCocoa
 
 final public class LoginViewController: UIViewController {
-    
+    // 프로퍼티
     private var loginView = LoginView()
     public let viewModel: LoginViewModelProtocol
     private let disposeBag = DisposeBag()
     
+    // init
     public init (viewModel: LoginViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    } // closed init
+    }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    } // closed required init
+    }
     
+    // loadView
     public override func loadView() {
         self.view = loginView
-    } // closed loadView
+    }
     
+    // viewDidLoad
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -37,7 +40,7 @@ final public class LoginViewController: UIViewController {
         setupTextFields()
     } // closed viewDidLoad
     
-    // MARK: - 네비게이션 설정
+    // 네비게이션 설정
     private func setupNavi() {
         // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -45,7 +48,7 @@ final public class LoginViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
     } // closed setupNavi
     
-    // MARK: - 바인드 뷰
+    // 바인드 뷰
     private func bindView() {
         // controlEvent는 에러를 방출하지 않고, 메인 스레드에서 동작
         // 회원가입 버튼이 클릭됬을 때 화면 전환
@@ -95,7 +98,7 @@ final public class LoginViewController: UIViewController {
         
     } // closed bindView
     
-    // MARK: - 텍스트필드의 입력 시작, 종료 여부에 따른 언더라인 색상 변경
+    // 텍스트필드의 입력 시작, 종료 여부에 따른 언더라인 색상 변경
     private func bindTextFieldEditing(_ textField: UITextField, underline: UIView) {
         PublishRelay
             .merge(textField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
@@ -104,7 +107,7 @@ final public class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     } // closed bindTextFieldEditing
     
-    // MARK: - 바인드 뷰 모델
+    // 바인드 뷰 모델
     private func bindViewModel() {
         let input = LoginViewModel.Input(
             // 이메일 텍스트를 뷰 모델로 전달
@@ -134,16 +137,16 @@ final public class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.loginResponse
-            .emit { [weak self] userResponse in
-                if userResponse.result {
+            .emit { [weak self] condition in
+                if condition {
                     self?.changeRootViewController()
                 }
             }
             .disposed(by: disposeBag)
         
-    }  // closed bindViewModel
+    }
     
-    // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
+    // 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {
         [loginView.emailTextField, loginView.passwordTextField]
             .forEach {
@@ -156,11 +159,11 @@ final public class LoginViewController: UIViewController {
             }
     } // closed setupTextFields
     
-    // MARK: - 로그인 버튼을 클릭했을 때 루트 뷰를 변경하여 메모리 최적화
+    // 로그인 버튼을 클릭했을 때 루트 뷰를 변경하여 메모리 최적화
     private func changeRootViewController() {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         sceneDelegate.changeRootViewController()
-    } // closed changeRootViewController
+    }
     
     
 } // closed LoginViewController

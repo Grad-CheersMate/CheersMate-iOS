@@ -54,6 +54,25 @@ public enum Section: Hashable {
     case recommendSimilar(String) // 추천 결과 화면에서 비슷한 주류 섹션
 }
 
+// 마이페이지 섹션
+public enum MyPageSection: Hashable {
+    case userInfo // 이미지 피커, 이름, 전화번호, 이메일
+    case editProfile // 프로필 수정 섹션
+    case customerSupport // 고객센터 섹션
+}
+
+// 마이 페이지 아이템
+public enum MyPageItem: Hashable {
+    case userInfoItem(User)
+    case editProfileItem(Option)
+}
+
+public struct Option: Hashable {
+    let imageText: String
+    let descTest: String
+}
+
+
 // 컬렉션 뷰에서 아이템 정의
 public enum Item: Hashable {
     case productItem(Liquor) // 메인 상품(주류) 아이템

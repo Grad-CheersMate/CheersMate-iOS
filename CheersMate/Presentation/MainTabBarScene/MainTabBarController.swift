@@ -57,8 +57,8 @@ public final class MainTabBarController: UITabBarController  {
             items[1].title = "검색"
             items[2].image = .sparkles
             items[2].title = "AI 추천"
-            items[3].image = .myPage
-            items[3].title = "내정보"
+            items[3].image = .human
+            items[3].title = "내 정보"
         }
         self.setupBarApperance()
     }
