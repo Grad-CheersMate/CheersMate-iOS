@@ -55,3 +55,9 @@ public struct Liquors: Codable {
     let category: String
 }
 
+
+public struct BestResponse: Codable {
+    let result: Bool
+    let httpCode: Int
+    let data: [Liquor]
+}

@@ -18,7 +18,9 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
     private let useCase: CategoryUseCaseProtocol
     private let type: ProductType // 보여줄 상품 타입
     private var productList: [Liquors] = []
+    private var bestList: [Liquor] = []
     private let listRelay = BehaviorRelay<[Liquors]>(value: [])
+    private let bestListRelay = BehaviorRelay<[Liquor]>(value: [])
     private let errorRelay = PublishRelay<Error>() // 에러
     
     private let disposeBag: DisposeBag = DisposeBag()
@@ -37,6 +39,7 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
     // Output
     public struct Output {
         let items: Observable<[Liquors]>
+        let bestItems: Observable<[Liquor]>
     }
     
     // transform
@@ -47,12 +50,17 @@ public final class ProductListViewModel: ProductListViewModelProtocol {
                 guard let self = self else { return }
                 if page == 0 { // 페이지가 0일 경우
                     self.productList = [] // 배열 초기화
+                    self.bestList = []
                 }
-                self.fetchLiquorList(type: type, page: page)
+                if type == .best {
+                    self.fetchBestLiquors()
+                } else {
+                    self.fetchLiquorList(type: type, page: page)
+                }
             })
             .disposed(by: disposeBag)
         
-        return Output(items: listRelay.asObservable())
+        return Output(items: listRelay.asObservable(), bestItems: bestListRelay.asObservable())
     }
     
 } // class ProductListViewModel
@@ -73,5 +81,22 @@ extension ProductListViewModel {
             }
             .disposed(by: disposeBag)
     }
+    
+    // 베스트(TOP 30) 주류 리스트를 가져오기
+    private func fetchBestLiquors() {
+        useCase.fetchBestLiquors()
+            .subscribe { [weak self] response in
+                guard let self = self else { return }
+                if response.result && response.httpCode == 200 {
+                    bestList = response.data
+                    self.bestListRelay.accept(bestList)
+                }
+            } onFailure: { [weak self] error in
+                print(error)
+                self?.errorRelay.accept(error)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     
 } // closed extension

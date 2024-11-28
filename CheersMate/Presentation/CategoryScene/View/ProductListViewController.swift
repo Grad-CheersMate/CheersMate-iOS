@@ -94,6 +94,21 @@ public final class ProductListViewController: UIViewController {
                 self?.productListView.dataSource?.apply(snapshot)
             })
             .disposed(by: disposeBag)
+        
+        // 베스트 아이템
+        output.bestItems
+            .bind(onNext: { [weak self] liquors in
+                let liquor = liquors.map {
+                    Item.productItem(Liquor(id: $0.id, name: $0.name, volume: $0.volume, type: $0.type, imageUrl: $0.imageUrl))
+                }
+                let items = liquor
+                let section = Section.best
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                snapshot.appendSections([section])
+                snapshot.appendItems(items, toSection: section)
+                self?.productListView.dataSource?.apply(snapshot)
+            })
+            .disposed(by: disposeBag)
     }
     
 } // closed CategoryViewCotroller

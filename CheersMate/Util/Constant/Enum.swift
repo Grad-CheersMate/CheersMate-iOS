@@ -48,6 +48,7 @@ public enum Outcome: String {
 // 컬렉션 뷰에서 섹션 정의
 public enum Section: Hashable {
     case category // 홈 화면에서 주류 카테고리 섹션
+    case best
     case selection // 추천 선택지 화면 선택지 섹션
     case recommendMain // 추천 결과 화면에서 추천 주류 섹션
     case recommendFood(String) // 추천 결과 화면에서 잘 어울리는 음식 섹션
