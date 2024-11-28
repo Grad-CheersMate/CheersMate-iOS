@@ -35,7 +35,7 @@ final public class AccountSearchResultView: UIView {
     public var contactTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.pretendard(size: 16, family: .Medium)
-        tf.text = "결과창입니다"
+        tf.text = "010-1234-5678"
         tf.isEnabled = false
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
@@ -75,7 +75,7 @@ final public class AccountSearchResultView: UIView {
     
     // MARK: - UI 설정
     private func setupUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .backgroundColor
         
         [infoLabel, contactLabel, contactTextField, contactUnderLine, completeButton]
             .forEach { self.addSubview($0) }

@@ -22,19 +22,16 @@ public protocol WeatherNetworkManagerProtocol {
 final public class WeatherNetworkManager: WeatherNetworkManagerProtocol {
     // 엔드 포인트
     private let endpoint: String
+    
     // init
     public init(endpoint: String = "http://ceprj.gachon.ac.kr:60021") {
         self.endpoint = endpoint
     }
-    // jwt 추가
-    private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyNDQwODc3LCJleHAiOjE3MzI1MjcyNzd9.D0anPVkpv8bHc2wSXQjWKj6DiKocZJ8wdsG3pE3aqG7dPxvlP5KH3XRZafo8z0piCbD93v5VQuIM45F_9vSCYQ")
-        return HTTPHeaders([tokenHeader])
-    }()
+
     // 리퀘스트 생성
-    private func makeRequest<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> Single<T> {
+    private func makeRequest<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, interceptor: RequestInterceptor) -> Single<T> {
         return Single.create { single -> Disposable in
-            let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, interceptor: interceptor)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: T.self) { response in
                     switch response.result {
@@ -47,15 +44,17 @@ final public class WeatherNetworkManager: WeatherNetworkManagerProtocol {
             return Disposables.create { result.cancel() }
         }
     }
+    
     // 서버에 저장된 실시간 날씨 데이터를 요청
     public func fetchWeatherData() -> Single<WeatherResponse> {
         let url = "\(endpoint)/weather"
-        return makeRequest(url: url, method: .get, parameters: nil, headers: tokenHeader)
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: AuthInterceptor())
     }
+    
     // 오늘의 날씨와 현재 위치를 기반으로 주류를 추천받기 위한 데이터 요청
     public func fetchLiquorRecommendation() -> Single<WeatherLiquorResponse> {
         let url = "\(endpoint)/api/recommend/weather"
-        return makeRequest(url: url, method: .get, parameters: nil, headers: tokenHeader)
+        return makeRequest(url: url, method: .get, parameters: nil, interceptor: AuthInterceptor())
     }
     
 } // closed NetworkManager

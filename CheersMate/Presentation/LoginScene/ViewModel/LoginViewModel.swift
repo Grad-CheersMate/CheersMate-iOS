@@ -16,7 +16,7 @@ public protocol LoginViewModelProtocol {
 final public class LoginViewModel: LoginViewModelProtocol {
     private let useCase: UserUseCaseProtocol
     private let isValidTextRelay = BehaviorRelay<Bool>(value: false) // 이메일과 비밀번호가 모두 유효한지 체크
-    private let logInResponseRelay = PublishRelay<UserResponse>() // 로그인 성공 통신
+    private let logInResponseRelay = PublishRelay<Bool>() // 로그인 성공 통신
     private let disposeBag: DisposeBag = DisposeBag()
 
     public init(useCase: UserUseCaseProtocol) {
@@ -31,7 +31,7 @@ final public class LoginViewModel: LoginViewModelProtocol {
     
     public struct Output {
         let loginButtonEnabled: Driver<Bool> // 로그인 버튼의 활성화 체크
-        let loginResponse: Signal<UserResponse> // 로그인 요청에 관한 응답
+        let loginResponse: Signal<Bool> // 로그인 요청에 관한 응답
         
     } // closed Output
     
@@ -57,8 +57,18 @@ final public class LoginViewModel: LoginViewModelProtocol {
                     return Single.never()
                 }
             }
-            .subscribe(onNext: { [weak self] userResponse in
-                self?.logInResponseRelay.accept(userResponse)
+            .subscribe(onNext: { [weak self] response in
+                if response.result && response.httpCode == 200 {
+                    guard let accessToken = response.accessToken, let refreshToken = response.refreshToken else {
+                        self?.logInResponseRelay.accept(false)
+                        return
+                    }
+                    if KeyChainManager.shared.saveKeyChain(accessToken, forKey: "AccessToken"),
+                       KeyChainManager.shared.saveKeyChain(refreshToken, forKey: "RefreshToken") {
+                        self?.logInResponseRelay.accept(true)
+                    }
+
+                }
             })
             .disposed(by: disposeBag)
         

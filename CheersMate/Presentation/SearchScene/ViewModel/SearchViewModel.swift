@@ -65,6 +65,7 @@ public final class SearchViewModel: SearchViewModelProtocol {
         
         // 검색 버튼을 누를 때 검색어 이벤트
         input.searchButtonTapped
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] keyword in
                 guard let self = self else { return }
                 resetProperty()

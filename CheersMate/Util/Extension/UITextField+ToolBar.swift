@@ -19,5 +19,11 @@ extension UITextField {
         
         self.inputAccessoryView = toolbar
     }
+    // 텍스트 필드의 텍스트 왼쪽에 간격주기
+    func leftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
 }
 

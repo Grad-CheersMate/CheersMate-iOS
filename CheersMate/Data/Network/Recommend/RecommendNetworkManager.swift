@@ -28,16 +28,10 @@ final public class RecommendNetworkManager: RecommendNetworkManagerProtocol {
         self.endpoint = endpoint
     }
     
-    // jwt 추가
-    private let tokenHeader: HTTPHeaders = {
-        let tokenHeader = HTTPHeader(name: "Authorization", value: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGUiOiJVU0VSIiwiaXNzIjoiVG9Eb0l0IiwiaWF0IjoxNzMyMzUyNzM1LCJleHAiOjE3MzI0MzkxMzV9.xiM6CuiMDuTQ91g7xMxEdD7ScWd94CE4Tk-Fk3bzOI0Roc-Ou9_eFsU3Rp4bqyNlrXDjnEvYiRSN988RMkmcDg")
-        return HTTPHeaders([tokenHeader])
-    }()
-    
     // 리퀘스트 생성
-    private func makeRequest<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> Single<T> {
+    private func makeRequest<T: Codable>(url: String, method: HTTPMethod, parameters: Parameters?, interceptor: RequestInterceptor?) -> Single<T> {
         return Single.create { single -> Disposable in
-            let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            let result = AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, interceptor: interceptor)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: T.self) { response in
                     switch response.result {
@@ -55,15 +49,14 @@ final public class RecommendNetworkManager: RecommendNetworkManagerProtocol {
     public func requestRecommendationsForSelection(emotion: String, companion: String, volume: String) -> Single<RecommendResponse> {
         let url = "\(endpoint)/api/recommend"
         let parameters: Parameters = ["emotion": emotion, "companion": companion, "volume": volume]
-        print(parameters)
-        return makeRequest(url: url, method: .post, parameters: parameters, headers: tokenHeader)
+        return makeRequest(url: url, method: .post, parameters: parameters, interceptor: AuthInterceptor())
     }
     
     // 사용자가 AI 주류 및 안주 추천 서비스를 사용하고 결과에 대한 평가를 서버에 제출
     public func submitRecommendationEvaluation(emotion: String, companion: String, liquor: Liquor, rating: Int) -> Single<RecommendResultResponse> {
         let url = "\(endpoint)/api/recommend/evaluate"
         let parameters: Parameters = ["emotion": emotion, "companion": companion, "liquor": [ "name": liquor.name  ], "rating": rating]
-        return makeRequest(url: url, method: .post, parameters: parameters, headers: tokenHeader)
+        return makeRequest(url: url, method: .post, parameters: parameters, interceptor: AuthInterceptor())
     }
     
 } // closed RecommendNetworkManager
