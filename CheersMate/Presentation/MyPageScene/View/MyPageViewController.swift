@@ -77,6 +77,7 @@ public final class MyPageViewController: UIViewController {
         myPageView.editProfileButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 let profileVC = ProfileViewController()
+                profileVC.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(profileVC, animated: true) // 프로필 수정 화면으로 이동
             })
             .disposed(by: disposeBag)

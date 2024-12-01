@@ -28,6 +28,8 @@
 		253B1B8F2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */; };
 		253B1B932CC82A7600F7DBF9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B922CC82A7600F7DBF9 /* SignUpView.swift */; };
 		253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B1B942CC82A8C00F7DBF9 /* SignUpViewController.swift */; };
+		2554710C2CFA2C2000796279 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2554710B2CFA2C2000796279 /* IntroView.swift */; };
+		2554710E2CFA2C2B00796279 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2554710D2CFA2C2B00796279 /* IntroViewController.swift */; };
 		255B96612CBE4FF400D6AC8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B96552CBE4FF400D6AC8E /* AppDelegate.swift */; };
 		255B96622CBE4FF400D6AC8E /* CheersMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */; };
 		255B96632CBE4FF400D6AC8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */; };
@@ -51,8 +53,8 @@
 		25737D752CDE9CE9004E9F6B /* Liquor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25737D742CDE9CE9004E9F6B /* Liquor.swift */; };
 		258936912CF64D880017B9F6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258936902CF64D880017B9F6 /* SettingTableViewCell.swift */; };
 		259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */; };
-		259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountSearchView.swift */; };
-		259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* AccountSearchViewController.swift */; };
+		259E81C72CCA40E800D63747 /* AccountFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C62CCA40E800D63747 /* AccountFinderView.swift */; };
+		259E81C92CCA417700D63747 /* AccountFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81C82CCA417700D63747 /* AccountFinderViewController.swift */; };
 		259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */; };
 		259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */; };
 		259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */; };
@@ -97,13 +99,13 @@
 		25CFEF132CD8BE5100083081 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF122CD8BE5100083081 /* Enum.swift */; };
 		25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF142CD8F26200083081 /* RecommendHomeView.swift */; };
 		25CFEF172CD8F27400083081 /* RecommendSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF162CD8F27400083081 /* RecommendSelectionViewModel.swift */; };
-		25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */; };
 		25CFEF1D2CD9528B00083081 /* RecommendSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1C2CD9528B00083081 /* RecommendSelectionView.swift */; };
 		25CFEF1F2CD9529B00083081 /* RecommendSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF1E2CD9529B00083081 /* RecommendSelectionViewController.swift */; };
 		25CFEF212CDA7E5800083081 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF202CDA7E5800083081 /* MainTabBarController.swift */; };
 		25CFEF252CDA933D00083081 /* RecommendSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */; };
 		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
+		25D570B72CFC8CA400815145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D570B62CFC8CA400815145 /* LaunchScreen.storyboard */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
 		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
 		25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* UserUseCase.swift */; };
@@ -152,6 +154,8 @@
 		253B1B8E2CC51D4700F7DBF9 /* UIViewController+customHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+customHideKeyboard.swift"; sourceTree = "<group>"; };
 		253B1B922CC82A7600F7DBF9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		253B1B942CC82A8C00F7DBF9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2554710B2CFA2C2000796279 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		2554710D2CFA2C2B00796279 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		255B96052CBE4EA500D6AC8E /* CheersMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheersMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B961E2CBE4EA600D6AC8E /* CheersMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B96282CBE4EA600D6AC8E /* CheersMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheersMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,8 +183,8 @@
 		25737D742CDE9CE9004E9F6B /* Liquor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liquor.swift; sourceTree = "<group>"; };
 		258936902CF64D880017B9F6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		259E81C02CC9793000D63747 /* UITextField+ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ToolBar.swift"; sourceTree = "<group>"; };
-		259E81C62CCA40E800D63747 /* AccountSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchView.swift; sourceTree = "<group>"; };
-		259E81C82CCA417700D63747 /* AccountSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchViewController.swift; sourceTree = "<group>"; };
+		259E81C62CCA40E800D63747 /* AccountFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFinderView.swift; sourceTree = "<group>"; };
+		259E81C82CCA417700D63747 /* AccountFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFinderViewController.swift; sourceTree = "<group>"; };
 		259E81CA2CCA78AF00D63747 /* UILabel+Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Spacing.swift"; sourceTree = "<group>"; };
 		259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchResultView.swift; sourceTree = "<group>"; };
 		259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchResultViewController.swift; sourceTree = "<group>"; };
@@ -225,13 +229,13 @@
 		25CFEF122CD8BE5100083081 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		25CFEF142CD8F26200083081 /* RecommendHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHomeView.swift; sourceTree = "<group>"; };
 		25CFEF162CD8F27400083081 /* RecommendSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionViewModel.swift; sourceTree = "<group>"; };
-		25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25CFEF1C2CD9528B00083081 /* RecommendSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionView.swift; sourceTree = "<group>"; };
 		25CFEF1E2CD9529B00083081 /* RecommendSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionViewController.swift; sourceTree = "<group>"; };
 		25CFEF202CDA7E5800083081 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		25CFEF242CDA933D00083081 /* RecommendSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		25D570B62CFC8CA400815145 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25F428892CD6390F0044240C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -286,7 +290,7 @@
 			children = (
 				255B96552CBE4FF400D6AC8E /* AppDelegate.swift */,
 				255B965D2CBE4FF400D6AC8E /* SceneDelegate.swift */,
-				25CFEF1A2CD93C2600083081 /* LaunchScreen.storyboard */,
+				25D570B62CFC8CA400815145 /* LaunchScreen.storyboard */,
 				255B96572CBE4FF400D6AC8E /* CheersMate.xcdatamodeld */,
 			);
 			path = Application;
@@ -305,6 +309,7 @@
 		253B1B662CC403A500F7DBF9 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				255471082CFA238100796279 /* IntroScene */,
 				253B1B812CC424CC00F7DBF9 /* LoginScene */,
 				253B1B902CC82A0700F7DBF9 /* SignUpScene */,
 				259E81C32CCA3FAF00D63747 /* AccountSearchScene */,
@@ -508,6 +513,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		255471082CFA238100796279 /* IntroScene */ = {
+			isa = PBXGroup;
+			children = (
+				255471092CFA23A900796279 /* View */,
+			);
+			path = IntroScene;
+			sourceTree = "<group>";
+		};
+		255471092CFA23A900796279 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2554710B2CFA2C2000796279 /* IntroView.swift */,
+				2554710D2CFA2C2B00796279 /* IntroViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		255B95FC2CBE4EA500D6AC8E = {
 			isa = PBXGroup;
 			children = (
@@ -657,8 +679,8 @@
 		259E81C42CCA40CF00D63747 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				259E81C62CCA40E800D63747 /* AccountSearchView.swift */,
-				259E81C82CCA417700D63747 /* AccountSearchViewController.swift */,
+				259E81C62CCA40E800D63747 /* AccountFinderView.swift */,
+				259E81C82CCA417700D63747 /* AccountFinderViewController.swift */,
 				259E81CC2CCA836A00D63747 /* AccountSearchResultView.swift */,
 				259E81CE2CCA895500D63747 /* AccountSearchResultViewController.swift */,
 			);
@@ -992,8 +1014,8 @@
 				255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */,
 				253B1B752CC4097800F7DBF9 /* GmarketSansMedium.otf in Resources */,
 				25BE342C2CEE1382005617DC /* cheersLottie.json in Resources */,
+				25D570B72CFC8CA400815145 /* LaunchScreen.storyboard in Resources */,
 				253B1B8B2CC506D200F7DBF9 /* Pretendard-Medium.otf in Resources */,
-				25CFEF1B2CD93C2600083081 /* LaunchScreen.storyboard in Resources */,
 				253B1B8C2CC506D200F7DBF9 /* Pretendard-Regular.otf in Resources */,
 				253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */,
 				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
@@ -1173,7 +1195,7 @@
 				2571BA582CEC69C800D61D70 /* CategoryTabmanViewCotroller.swift in Sources */,
 				259E81D92CCAAE7500D63747 /* UINavigationController+Appearance.swift in Sources */,
 				259E81CD2CCA836A00D63747 /* AccountSearchResultView.swift in Sources */,
-				259E81C92CCA417700D63747 /* AccountSearchViewController.swift in Sources */,
+				259E81C92CCA417700D63747 /* AccountFinderViewController.swift in Sources */,
 				251DBE832CE263E300258E49 /* RecommendResultView.swift in Sources */,
 				25CFEF132CD8BE5100083081 /* Enum.swift in Sources */,
 				2571BA442CEB35C400D61D70 /* Weather.swift in Sources */,
@@ -1190,6 +1212,7 @@
 				25F428802CD4C0F60044240C /* User.swift in Sources */,
 				25BE34262CED0E2C005617DC /* LiquorRepository.swift in Sources */,
 				259E81C12CC9793000D63747 /* UITextField+ToolBar.swift in Sources */,
+				2554710C2CFA2C2000796279 /* IntroView.swift in Sources */,
 				259E81FC2CCCE74200D63747 /* SearchViewController.swift in Sources */,
 				253B1B872CC4251A00F7DBF9 /* LoginView.swift in Sources */,
 				25A8419B2CE69592002C64DD /* RecommendEvaluateViewModel.swift in Sources */,
@@ -1205,13 +1228,14 @@
 				259E81CF2CCA895500D63747 /* AccountSearchResultViewController.swift in Sources */,
 				25BE34242CED0923005617DC /* LiquorNetworkManager.swift in Sources */,
 				25CFEF152CD8F26200083081 /* RecommendHomeView.swift in Sources */,
-				259E81C72CCA40E800D63747 /* AccountSearchView.swift in Sources */,
+				259E81C72CCA40E800D63747 /* AccountFinderView.swift in Sources */,
 				2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */,
 				259F41C72CF7957F002CB66E /* ProfileView.swift in Sources */,
 				25BE34302CF07ED5005617DC /* SearchUseCase.swift in Sources */,
 				25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */,
 				251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
+				2554710E2CFA2C2B00796279 /* IntroViewController.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
 				259F41C92CF79750002CB66E /* ProfileViewController.swift in Sources */,
 				251DBE872CE2640F00258E49 /* SearchViewModel.swift in Sources */,
@@ -1264,6 +1288,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1297,6 +1322,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

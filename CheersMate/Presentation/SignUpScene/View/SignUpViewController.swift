@@ -8,127 +8,147 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxKeyboard
 
 final public class SignUpViewController: UIViewController {
     
     private let signUpView = SignUpView()
     private let viewModel: SignUpViewModelProtocol
     private let disposeBag = DisposeBag()
-    private let naviTitle: String
     
+    // loadView
     public override func loadView() {
         self.view = signUpView
-    } // closed loadView
+    }
     
-    public init(viewModel: SignUpViewModelProtocol, title: String) {
-        self.naviTitle = title
+    // init
+    public init(viewModel: SignUpViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    } // closed init
+    }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    } // closed required init
+    }
     
+    // viewDidLoad
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         setupNavi()
         setupTextFields()
         bindView()
         bindViewModel()
-    } // closed viewDidLoad
+    }
     
-    // MARK: - 네비게이션 설정
+    // 네비게이션 설정
     private func setupNavi() {
-        self.navigationItem.title = naviTitle
-    } // closed setupNavi
+        self.title = "회원가입"
+        self.navigationItem.rightBarButtonItem = signUpView.rightBarButtonItem // 뒤로가기 버튼 등록
+    }
     
-    // MARK: - 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
-    private func setupTextFields() {
-        [signUpView.emailTextField, signUpView.passwordTextField, signUpView.nickNameTextField, signUpView.tellTextField]
-            .forEach {
-                // 툴바 등록
-                $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped))
-                // 키보드에서 리턴 버튼을 클릭했을 때
-                $0.rx.controlEvent(.editingDidEndOnExit)
-                    .bind(onNext: { [weak self] _ in
-                        self?.doneButtonTapped()
-                    })
-                    .disposed(by: disposeBag)
-            }
-    } // closed setupTextFields
-    
-    // MARK: - 바인드 뷰
+    // 바인드 뷰
     private func bindView() {
-        // 이메일 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(signUpView.emailTextField, underline: signUpView.emailUnderLine)
-        // 비밀번호 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(signUpView.passwordTextField, underline: signUpView.passwordUnderLine)
-        // 닉네임 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(signUpView.nickNameTextField, underline: signUpView.nickNameUnderLine)
-        // 전화번호 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(signUpView.tellTextField, underline: signUpView.tellUnderLine)
-    } // closed bindView
-    
-    // MARK: - 텍스트필드의 입력 시작, 종료 여부에 따른 언더라인 색상 변경
-    private func bindTextFieldEditing(_ textField: UITextField, underline: UIView) {
-        PublishRelay
-            .merge(textField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
-                   textField.rx.controlEvent(.editingDidEnd).map { false }) // 편집 종료
-            .bind(onNext: { $0 ? (underline.backgroundColor = .mainColor) : (underline.backgroundColor = .systemGray5) })
-            .disposed(by: disposeBag)
-    } // closed bindTextFieldEditing
-    
-    // MARK: - 바인드 뷰 모델
-    private func bindViewModel() {
-        let input = SignUpViewModel.Input(
-            // 이메일 텍스트를 뷰 모델로 전달
-            emailTextField: signUpView.emailTextField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
-            
-            // 비밀번호 텍스트를 뷰 모델로 전달
-            passwordTextField: signUpView.passwordTextField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
-            
-            // 닉네임 텍스트를 뷰 모델로 전달
-            nicknameTextField: signUpView.nickNameTextField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
-            
-            // 전화번호 텍스트를 뷰 모델로 전달
-            tellTextField: signUpView.tellTextField.rx.text
-                .orEmpty
-                .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
-            
-            // 회원가입 버튼 클릭 이벤트를 뷰 모델로 전달
-            signUpButtonTapped: signUpView.signUpButton.rx.tap)
-        
-        let output = viewModel.transform(input: input)
-        
-        output.signUpButtonEnabled
-            .drive(onNext: { [weak self] valid in
-                // 로그인 버튼의 활성화를 valid에 따라서 설정
-                self?.signUpView.signUpButton.isEnabled = valid
-                // 활성화에 따른 로그인 버튼의 색상 설정
-                valid ? (self?.signUpView.signUpButton.backgroundColor = .mainColor) : (self?.signUpView.signUpButton.backgroundColor = .systemGray4)
+        // 사용자가 x 버튼을 클릭했을 때
+        signUpView.rightBarCrossButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true) // 로그인 화면으로 돌아가기
             })
             .disposed(by: disposeBag)
         
-        output.signUpResponse
-            .emit { [weak self] userResponse in
-                if userResponse.result {
-                    self?.popUpAlert()
-                }
-            }
+        // 키보드가 올라왔을 때
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] keyboardHeight in
+                guard let self = self else { return }
+                
+                // 키보드 높이에 따라 contentInset 조정
+                let safeAreaBottom = self.view.safeAreaInsets.bottom
+                let inset = keyboardHeight - safeAreaBottom
+                signUpView.scrollView.contentInset.bottom = max(inset, 0)
+                signUpView.scrollView.scrollIndicatorInsets.bottom = max(inset, 0)
+                
+            })
             .disposed(by: disposeBag)
-    } // closed bindViewModel
+        
+        // 텍스트 필드가 선택되었을 때 가려지지 않도록 스크롤
+        Observable.merge(
+            signUpView.emailTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.emailTextField },
+            signUpView.passwordTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.passwordTextField },
+            signUpView.nickNameTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.nickNameTextField },
+            signUpView.tellTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.tellTextField }
+        )
+        .subscribe(onNext: { [weak self] textField in
+            guard let self = self else { return }
+            let frame = textField.convert(textField.bounds, to: signUpView.scrollView)
+            signUpView.scrollView.scrollRectToVisible(frame, animated: true)
+        })
+        .disposed(by: disposeBag)
+        
+        signUpView.signUpButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                
+                
+            })
+            .disposed(by: disposeBag)
+        
+    }
+    
+    // 바인드 뷰 모델
+    private func bindViewModel() {
+        let input = SignUpViewModel.Input(
+            // 이메일 텍스트
+            emailTextField: signUpView.emailTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asObservable(),
+            
+            // 비밀번호 텍스트
+            passwordTextField: signUpView.passwordTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asObservable(),
+            
+            // 휴대폰 번호 텍스트
+            tellTextField: signUpView.tellTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asObservable(),
+        
+            signUpButtonTapped: signUpView.signUpButton.rx.tap.asObservable())
+        
+        let output = viewModel.transform(input: input)
+        
+        // 이메일 주소 정규식 검증 결과
+        output.isValidEmail
+            .bind(onNext: { [weak self] valid in
+                self?.signUpView.emailFeedbackLabel.isHidden = valid
+            })
+            .disposed(by: disposeBag)
+        
+        // 비밀번호 정규식 검증 결과
+        output.isValidPassword
+            .bind(onNext: { [weak self] valid in
+                self?.signUpView.passwordFeedbackLabel.isHidden = valid
+            })
+            .disposed(by: disposeBag)
+        
+        // 휴대폰 번호 정규식 검증 결과
+        output.isValidTell
+            .bind(onNext: { [weak self] valid in
+                self?.signUpView.tellFeedbackLabel.isHidden = valid
+            })
+            .disposed(by: disposeBag)
+        
+        // 회원가입 버튼 활성화
+        output.isSignUpButtonEnabled
+            .bind(onNext: { [weak self] valid in
+                guard let self = self else { return }
+                signUpView.signUpButton.isEnabled = valid
+                valid ? (signUpView.signUpButton.backgroundColor = .buttonAbleColor) : (signUpView.signUpButton.backgroundColor = .buttonDisableColor)
+            })
+            .disposed(by: disposeBag)
+
+    }
     
     // 회원가입 버튼 클릭 시 나타나는 팝업 창
     private func popUpAlert() {
@@ -143,11 +163,26 @@ final public class SignUpViewController: UIViewController {
 } // closed Class
 
 
-// MARK: - extension
+// extension
 extension SignUpViewController {
-    // MARK: - 완료버튼을 누르면 키보드 내리기
+    // 키보드에 툴바를 적용하고, 완료버튼 클릭 시 키보드 내리기
+    private func setupTextFields() {
+        [signUpView.emailTextField, signUpView.passwordTextField, signUpView.nickNameTextField, signUpView.tellTextField]
+            .forEach {
+                // 툴바 등록
+                $0.addDoneToolbar(target: self, action: #selector(doneButtonTapped))
+                // 키보드에서 리턴 버튼을 클릭했을 때
+                $0.rx.controlEvent(.editingDidEndOnExit)
+                    .bind(onNext: { [weak self] _ in
+                        self?.doneButtonTapped()
+                    })
+                    .disposed(by: disposeBag)
+            }
+    }
+    
+    // 완료버튼을 누르면 키보드 내리기
     @objc public func doneButtonTapped() {
         view.endEditing(true)
-    } // closed doneButtonTapped
+    }
     
 } // closed extension
