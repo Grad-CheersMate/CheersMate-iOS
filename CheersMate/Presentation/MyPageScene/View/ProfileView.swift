@@ -31,9 +31,9 @@ public final class ProfileView: UIView {
     // 닉네임 레이블
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.mainNavyColor
+        label.textColor = .subTextColor2
         label.text = "닉네임"
-        label.font = UIFont.gmarketSans(size: 16, family: .Medium)
+        label.font = UIFont.gmarketSans(size: 15, family: .Medium)
         label.textAlignment = .left
         return label
     }()
@@ -46,6 +46,8 @@ public final class ProfileView: UIView {
         tf.placeholder = "닉네임"
         tf.backgroundColor = .textFieldBackgroundColor
         tf.textColor = .mainNavyColor
+        tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
+        tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
         tf.clipsToBounds = true
         tf.keyboardType = .emailAddress
@@ -59,9 +61,9 @@ public final class ProfileView: UIView {
     // 전화번호 레이블
     private let tellLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.mainNavyColor
+        label.textColor = .subTextColor2
         label.text = "전화번호"
-        label.font = UIFont.gmarketSans(size: 16, family: .Medium)
+        label.font = UIFont.gmarketSans(size: 15, family: .Medium)
         label.textAlignment = .left
         return label
     }()
@@ -74,6 +76,8 @@ public final class ProfileView: UIView {
         tf.placeholder = "전화번호"
         tf.backgroundColor = .textFieldBackgroundColor
         tf.textColor = .mainNavyColor
+        tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
+        tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
         tf.clipsToBounds = true
         tf.keyboardType = .emailAddress
@@ -87,10 +91,10 @@ public final class ProfileView: UIView {
     // 수정하기 버튼
     public var editButton: UIButton = {
         let bt = UIButton(type: .custom)
-        bt.setTitle("수정하기", for: .normal)
+        bt.setTitle("수정 완료", for: .normal)
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
-        bt.layer.cornerRadius = 12
+        bt.layer.cornerRadius = 16
         bt.backgroundColor = .mainColor
         return bt
     }()
@@ -115,7 +119,7 @@ public final class ProfileView: UIView {
     
     // UI 설정
     private func setupUI() {
-        self.backgroundColor = .backgroundColor
+        self.backgroundColor = .white
         [profileImageView, editProfileButton, nicknameLabel, nicknameTextField, tellLabel, tellTextField, editButton].forEach { self.addSubview($0) }
     }
     
@@ -146,7 +150,7 @@ public final class ProfileView: UIView {
             make.top.equalTo(nicknameLabel.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(53)
         }
         
         // 전화번호 레이블
@@ -161,15 +165,15 @@ public final class ProfileView: UIView {
             make.top.equalTo(tellLabel.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(53)
         }
         
         editButton.snp.makeConstraints { make in
             make.top.greaterThanOrEqualTo(tellTextField.snp.bottom).offset(30)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(40)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(55)
         }
         
     }

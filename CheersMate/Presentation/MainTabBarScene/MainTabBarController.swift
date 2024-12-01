@@ -12,6 +12,7 @@ public final class MainTabBarController: UITabBarController  {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
+        setupBarApperance()
         self.delegate = self
     }
 
@@ -26,7 +27,7 @@ public final class MainTabBarController: UITabBarController  {
         // MARK: - Presentation Layer
         let homeVC = HomeViewController(viewModel: homeVM)
         let homeNVC = UINavigationController(rootViewController: homeVC)
-        homeNVC.setupBarAppearance()
+        homeNVC.setupNaviBarAppearance()
         
         // MARK: - Data Layer
         let liquorNet = LiquorNetwork(manager: LiquorNetworkManager(requestInterceptor: AuthInterceptor()))
@@ -36,17 +37,17 @@ public final class MainTabBarController: UITabBarController  {
         let searchVM = SearchViewModel(useCase: searchUC)
         let searchVC = SearchViewController(viewModel: searchVM)
         let searchNVC = UINavigationController(rootViewController: searchVC)
-        searchNVC.setupBarAppearance()
+        searchNVC.setupNaviBarAppearance()
         
         // AI 추천 네비게이션 컨트롤러 생성
         let recommendHomeVC = RecommendHomeViewController()
         let recommendHomeNVC = UINavigationController(rootViewController: recommendHomeVC)
-        recommendHomeNVC.setupBarAppearance()
+        recommendHomeNVC.setupNaviBarAppearance()
         
         // 마이 페이지 네비게이션 컨트롤러 생성
         let myPageVC = MyPageViewController()
         let myPageNVC = UINavigationController(rootViewController: myPageVC)
-        myPageNVC.setupBarAppearance()
+        myPageNVC.setupNaviBarAppearance()
         
         self.setViewControllers([homeNVC, searchNVC, recommendHomeNVC, myPageNVC], animated: true)
         
@@ -60,7 +61,7 @@ public final class MainTabBarController: UITabBarController  {
             items[3].image = .human
             items[3].title = "내 정보"
         }
-        self.setupBarApperance()
+
     }
 } // closed MainTabBarController
 

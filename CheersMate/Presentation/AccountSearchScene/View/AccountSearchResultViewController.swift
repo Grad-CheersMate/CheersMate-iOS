@@ -14,8 +14,7 @@ final public class AccountSearchResultViewController: UIViewController {
     private let accountSearchResultView = AccountSearchResultView()
     private let disposeBag = DisposeBag()
     
-    public init(viewType: ViewType, outcome: Outcome) {
-        accountSearchResultView.configure(viewType: viewType, outcome: outcome)
+    public init(viewType: AccountFindType, outcome: Outcome) {
         super.init(nibName: nil, bundle: nil)
     } // closed init
     

@@ -7,18 +7,48 @@
 
 import Foundation
 
-// 텍스트 타입에 따른 정규식 검사 분류
-public enum TextType {
+// 정규식 검증 타입
+public enum RegExType {
     case email // 이메일
     case password // 비밀번호
-    case nickname // 닉네임
     case tell // 전화번호
 }
 
-// 뷰 타입에 따라 이메일 찾기 뷰 또는 비밀번호 찾기 뷰로 구분
-public enum ViewType: String {
-    case searchEmail = "이메일 찾기" // 이메일 찾기 뷰 타입
-    case searchPassword = "비밀번호 찾기" // 비밀번호 찾기 뷰 타입
+// 사용자의 계정을 찾기 위한 enum
+// 이메일 찾기와 비밀번호 찾기로 구분
+public enum AccountFindType: String {
+    case email // 이메일 찾기
+    case password // 비밀번호 찾기
+    
+    // 타이틀
+    var title: String {
+        switch self {
+        case .email:
+            return "이메일 찾기"
+        case .password:
+            return "비밀번호 찾기"
+        }
+    }
+    
+    // 설명
+    var description: String {
+        switch self {
+        case .email:
+            return "가입 시 등록한 정보를 입력하면\n이메일 주소를 알려드릴게요."
+        case .password:
+            return "가입 시 등록한 정보를 입력하면 휴대폰 번호로\n임시 비밀번호를 전송해 드릴게요."
+        }
+    }
+    
+    // 레이블과 플레이스 홀더 
+    var userInfo: (label: String, placeholder: String) {
+        switch self {
+        case .email:
+            return (label: "이메일 주소", placeholder: "이메일 주소를 입력해주세요")
+        case .password:
+            return (label: "닉네임", placeholder: "닉네임을 입력해주세요")
+        }
+    }
 }
 
 // 감정, 동반자, 도수, 결과 페이지

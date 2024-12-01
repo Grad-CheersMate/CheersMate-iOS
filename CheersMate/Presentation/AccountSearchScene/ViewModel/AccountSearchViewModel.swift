@@ -28,7 +28,7 @@ final public class AccountSearchViewModel: AccountSearchViewModelProtocol {
         let contactTextField: Driver<String> // 닉네임 또는 이메일 입력 문자열
         let tellTextField: Driver<String> // 전화번호 입력 문자열
         let contactSearchButtonTapped: ControlEvent<Void> // 닉네임 또는 이메일 찾기 버튼 클릭 이벤트
-        let viewType: ViewType // 이메일 찾기와 비밀번호 찾기를 구분하기 위한 타입
+        let viewType: AccountFindType // 이메일 찾기와 비밀번호 찾기를 구분하기 위한 타입
     } // closed Input
     
     public struct Output {
@@ -44,10 +44,9 @@ final public class AccountSearchViewModel: AccountSearchViewModelProtocol {
             input.tellTextField)
         .map { [weak self] contact, tell in
             switch input.viewType {
-            case .searchEmail:
-                (self?.useCase.isMatchingRegex(text: contact, type: .nickname) ?? false) &&
+            case .email:
                 (self?.useCase.isMatchingRegex(text: tell, type: .tell) ?? false)
-            case .searchPassword:
+            case .password:
                 (self?.useCase.isMatchingRegex(text: contact, type: .email) ?? false) &&
                 (self?.useCase.isMatchingRegex(text: tell, type: .tell) ?? false)
             }
@@ -64,13 +63,13 @@ final public class AccountSearchViewModel: AccountSearchViewModelProtocol {
             .flatMapLatest { [weak self] contact, tell, _ -> Single<UserResponse> in
                 guard let self = self else { return Single.never() }
                 switch input.viewType {
-                case .searchEmail:
+                case .email:
                     return self.useCase.searchEmail(nickname: contact, tell: tell)
                         .catch { [weak self] err in
                             self?.errorRelay.accept(err)
                             return Single.never()
                         }
-                case .searchPassword:
+                case .password:
                     return self.useCase.searchPassword(email: contact, tell: tell)
                         .catch { [weak self] err in
                             self?.errorRelay.accept(err)

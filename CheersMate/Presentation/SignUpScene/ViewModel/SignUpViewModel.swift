@@ -14,66 +14,68 @@ public protocol SignUpViewModelProtocol {
 }
 
 final public class SignUpViewModel: SignUpViewModelProtocol {
-    private let useCase: UserUseCaseProtocol
-    private let isValidTextRelay = BehaviorRelay<Bool>(value: false) // 이메일, 비밀번호, 전화번호가 모두 유효한지 체크
+    private let useCase: UserUseCaseProtocol // 유스케이스
+    private let isValidEmailRelay = PublishRelay<Bool>() // 이메일 정규식 릴레이
+    private let isValidPasswordRelay = PublishRelay<Bool>() // 이메일 정규식 릴레이
+    private let isValidTellRelay = PublishRelay<Bool>() // 이메일 정규식 릴레이
     private let responseRelay = PublishRelay<UserResponse>()
     private let disposeBag: DisposeBag = DisposeBag()
-
+    
+    // init
     public init(useCase: UserUseCaseProtocol) {
         self.useCase = useCase
-    } // closed init
+    }
     
+    // Input
     public struct Input {
-        let emailTextField: Driver<String> // 이메일 입력 문자열
-        let passwordTextField: Driver<String> // 비밀번호 입력 문자열
-        let nicknameTextField: Driver<String> // 닉네임 입력 문자열
-        let tellTextField: Driver<String> // 전화번호 입력 문자열
-        let signUpButtonTapped: ControlEvent<Void> // 회원가입 버튼 클릭 이벤트
-    } // closed Input
+        let emailTextField: Observable<String> // 이메일 입력 문자열
+        let passwordTextField: Observable<String> // 비밀번호 입력 문자열
+        let tellTextField: Observable<String> // 전화번호 입력 문자열
+        let signUpButtonTapped: Observable<Void> // 회원가입 버튼 클릭 이벤트
+    }
     
+    // Output
     public struct Output {
-        let signUpButtonEnabled: Driver<Bool> // 회원가입 버튼의 활성화 체크
-        let signUpResponse: Signal<UserResponse> // 로그인 요청에 관한 응답
-    } // closed Output
+        let isValidEmail: Observable<Bool>
+        let isValidPassword: Observable<Bool>
+        let isValidTell: Observable<Bool>
+        let isSignUpButtonEnabled: Observable<Bool> // 회원가입 버튼의 활성화 체크
+//        let signUpResponse: Signal<UserResponse> // 로그인 요청에 관한 응답
+    }
     
+    // transform
     public func transform(input: Input) -> Output {
         
-        Driver.combineLatest(
-            input.emailTextField,
-            input.passwordTextField,
-            input.nicknameTextField,
-            input.tellTextField)
-            .map { [weak self] email, password, nickname, tell in
-                (self?.useCase.isMatchingRegex(text: email, type: .email) ?? false) &&
-                (self?.useCase.isMatchingRegex(text: password, type: .password) ?? false) &&
-                (self?.useCase.isMatchingRegex(text: nickname, type: .nickname) ?? false) &&
-                (self?.useCase.isMatchingRegex(text: tell, type: .tell) ?? false)
-            }
-            .drive(isValidTextRelay)
-            .disposed(by: disposeBag)
-        
-        // flatMapLatest는 내부 옵저버블을 구독하는데 이때 에러가 발생하면 스트림이 끊어지니 주의할 것!
-        input.signUpButtonTapped
-            .withLatestFrom(Observable.combineLatest(input.emailTextField.asObservable(),
-                                                     input.passwordTextField.asObservable(),
-                                                     input.nicknameTextField.asObservable(),
-                                                     input.tellTextField.asObservable(),
-                                                     isValidTextRelay))
-            .filter { $4 }
-            .flatMapLatest { [weak self] email, password, nickname, tell, _ -> Single<UserResponse> in
-                guard let self = self else { return Single.never() }
-                return self.useCase.signUp(email: email, password: password, nickname: nickname, tell: tell)
-                    .catch { _ in
-                        return Single.never()
-                    }
-            }
-            .subscribe(onNext: { [weak self] userResponse in
-                self?.responseRelay.accept(userResponse)
+        // 사용자가 입력한 이메일 텍스트 값
+        input.emailTextField
+            .subscribe(onNext: { [weak self] email in
+                guard let self = self else { return }
+                let result = useCase.isMatchingRegex(text: email, type: .email)
+                isValidEmailRelay.accept(result)
             })
             .disposed(by: disposeBag)
-            
         
-        return Output(signUpButtonEnabled: isValidTextRelay.asDriver(), signUpResponse: responseRelay.asSignal())
-    } // closed transform
+        // 사용자가 입력한 비밀번호 텍스트 값
+        input.passwordTextField
+            .subscribe(onNext: { [weak self] password in
+                guard let self = self else { return }
+                let result = useCase.isMatchingRegex(text: password, type: .password)
+                isValidPasswordRelay.accept(result)
+            })
+            .disposed(by: disposeBag)
+        
+        // 사용자가 입력한 휴대폰 번호 텍스트 값
+        input.tellTextField
+            .subscribe(onNext: { [weak self] tell in
+                guard let self = self else { return }
+                let result = useCase.isMatchingRegex(text: tell, type: .tell)
+                isValidTellRelay.accept(result)
+            })
+            .disposed(by: disposeBag)
+        
+        let isEnableSignUpButton = Observable.combineLatest(isValidEmailRelay, isValidPasswordRelay, isValidTellRelay) { $0 && $1 && $2 }
+        
+        return Output(isValidEmail: isValidEmailRelay.asObservable(), isValidPassword: isValidPasswordRelay.asObservable(), isValidTell: isValidTellRelay.asObservable(), isSignUpButtonEnabled: isEnableSignUpButton)
+    }
     
 } // closed SignUpViewModel

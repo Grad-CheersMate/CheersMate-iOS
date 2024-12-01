@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final public class LoginViewController: UIViewController {
-    // 프로퍼티
+
     private var loginView = LoginView()
     public let viewModel: LoginViewModelProtocol
     private let disposeBag = DisposeBag()
@@ -21,7 +21,8 @@ final public class LoginViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    public required init?(coder: NSCoder) {
+    // required init
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -38,15 +39,15 @@ final public class LoginViewController: UIViewController {
         bindView()
         bindViewModel()
         setupTextFields()
-    } // closed viewDidLoad
+    }
     
-    // 네비게이션 설정
+    // setupNavi
     private func setupNavi() {
         // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .mainNavyColor
         self.navigationItem.backBarButtonItem = backBarButtonItem
-    } // closed setupNavi
+    }
     
     // 바인드 뷰
     private func bindView() {
@@ -59,8 +60,11 @@ final public class LoginViewController: UIViewController {
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
                 let signUpVM = SignUpViewModel(useCase: userUC)
-                let signUpVC = SignUpViewController(viewModel: signUpVM, title: "")
-                self.navigationController?.pushViewController(signUpVC, animated: true)
+                let signUpVC = SignUpViewController(viewModel: signUpVM)
+                let modalNVC = UINavigationController(rootViewController: signUpVC)
+                modalNVC.setupNaviBarAppearance()
+                modalNVC.modalPresentationStyle = .fullScreen
+                present(modalNVC, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -72,8 +76,8 @@ final public class LoginViewController: UIViewController {
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
                 let accountSearchVM = AccountSearchViewModel(useCase: userUC)
-                let accountSearchVC = AccountSearchViewController(viewModel: accountSearchVM, viewType: .searchEmail)
-                self.navigationController?.pushViewController(accountSearchVC, animated: true)
+                let accountFinderVC = AccountFinderViewController(viewModel: accountSearchVM, accountFindType: .email)
+                self.navigationController?.pushViewController(accountFinderVC, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -85,27 +89,12 @@ final public class LoginViewController: UIViewController {
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
                 let accountSearchVM = AccountSearchViewModel(useCase: userUC)
-                let accountSearchVC = AccountSearchViewController(viewModel: accountSearchVM, viewType: .searchPassword)
-                self.navigationController?.pushViewController(accountSearchVC, animated: true)
+                let accountFinderVC = AccountFinderViewController(viewModel: accountSearchVM, accountFindType: .password)
+                self.navigationController?.pushViewController(accountFinderVC, animated: true)
             }
             .disposed(by: disposeBag)
         
-        // 이메일 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(loginView.emailTextField, underline: loginView.emailUnderLine)
-        
-        // 비밀번호 텍스트필드의 editing 여부에 따른 언더라인 색상 설정
-        bindTextFieldEditing(loginView.passwordTextField, underline: loginView.passwordUnderLine)
-        
-    } // closed bindView
-    
-    // 텍스트필드의 입력 시작, 종료 여부에 따른 언더라인 색상 변경
-    private func bindTextFieldEditing(_ textField: UITextField, underline: UIView) {
-        PublishRelay
-            .merge(textField.rx.controlEvent(.editingDidBegin).map { true }, // 편집 시작
-                   textField.rx.controlEvent(.editingDidEnd).map { false }) // 편집 종료
-            .bind(onNext: { $0 ? (underline.backgroundColor = .mainColor) : (underline.backgroundColor = .systemGray5) })
-            .disposed(by: disposeBag)
-    } // closed bindTextFieldEditing
+    }
     
     // 바인드 뷰 모델
     private func bindViewModel() {
@@ -132,7 +121,7 @@ final public class LoginViewController: UIViewController {
                 // 로그인 버튼의 활성화를 valid에 따라서 설정
                 self?.loginView.loginButton.isEnabled = valid
                 // 활성화에 따른 로그인 버튼의 색상 설정
-                valid ? (self?.loginView.loginButton.backgroundColor = .mainColor) : (self?.loginView.loginButton.backgroundColor = .systemGray4)
+                valid ? (self?.loginView.loginButton.backgroundColor = .buttonAbleColor) : (self?.loginView.loginButton.backgroundColor = .buttonDisableColor)
             })
             .disposed(by: disposeBag)
         
@@ -168,9 +157,9 @@ final public class LoginViewController: UIViewController {
     
 } // closed LoginViewController
 
-// MARK: - @objc 설정
+// @objc 설정
 extension LoginViewController {
-    // MARK: - 완료버튼을 누르면 키보드 내리기
+    // 완료버튼을 누르면 키보드 내리기
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
