@@ -31,7 +31,7 @@ public final class ProfileView: UIView {
     // 닉네임 레이블
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .subTextColor2
+        label.textColor = .subTextColor
         label.text = "닉네임"
         label.font = UIFont.gmarketSans(size: 15, family: .Medium)
         label.textAlignment = .left
@@ -61,7 +61,7 @@ public final class ProfileView: UIView {
     // 전화번호 레이블
     private let tellLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .subTextColor2
+        label.textColor = .subTextColor
         label.text = "전화번호"
         label.font = UIFont.gmarketSans(size: 15, family: .Medium)
         label.textAlignment = .left

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Json 응답
+// Json 응답
 public struct UserResponse: Codable {
     let result: Bool
     let httpCode: Int
@@ -16,7 +16,7 @@ public struct UserResponse: Codable {
     let refreshToken: String?
 }
 
-// MARK: - 사용자 엔티티
+// 사용자 엔티티
 public struct User: Codable, Hashable {
     let email: String? // 이메일
     let password: String? // 비밀번호

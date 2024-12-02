@@ -14,7 +14,7 @@ public protocol UserUseCaseProtocol {
     func logIn(email: String, password: String) -> Single<UserResponse>
     
     // 사용자 회원가입
-    func signUp(email:String, password: String, nickname: String, tell: String) -> Single<UserResponse>
+    func signUp(registrationInfo: User) -> Single<UserResponse>
     
     // 사용자 이메일 찾기
     func searchEmail(nickname: String, tell: String) -> Single<UserResponse>
@@ -45,8 +45,8 @@ final public class UserUseCase: UserUseCaseProtocol {
     }
     
     // 사용자가 회원가입 버튼을 클릭했을 때
-    public func signUp(email: String, password: String, nickname: String, tell: String) -> Single<UserResponse> {
-        return repository.signUp(email: email, password: password, nickname: nickname, tell: tell)
+    public func signUp(registrationInfo: User) -> Single<UserResponse> {
+        return repository.signUp(email: registrationInfo.email!, password: registrationInfo.password!, nickname: registrationInfo.nickname!, tell: registrationInfo.tell!)
     }
     
     // 사용자가 이메일 찾기 버튼을 클릭했을 때

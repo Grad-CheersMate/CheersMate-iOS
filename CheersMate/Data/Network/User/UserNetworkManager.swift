@@ -19,7 +19,7 @@ public protocol UserNetworkManagerProtocol {
     func searchPassword(email: String, tell: String) -> Single<UserResponse>
 }
 
-final public class UserNetworkManager: UserNetworkManagerProtocol {
+public final class UserNetworkManager: UserNetworkManagerProtocol {
     
     private let endpoint: String
     
@@ -43,32 +43,32 @@ final public class UserNetworkManager: UserNetworkManagerProtocol {
         }
     }
     
-    // MARK: - 로그인 요청
+    // 로그인 요청
     public func logIn(email: String, password: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/login"
         let parameters: Parameters = ["email": email, "password": password]
         return makeRequest(url: url, method: .post, parameters: parameters)
-    } // closed login
+    }
     
-    // MARK: - 회원가입 요청
+    // 회원가입 요청
     public func signUp(email: String, password: String, nickname: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/register"
         let parameters: Parameters = ["email": email, "password": password, "nickname": nickname, "tell": tell]
         return makeRequest(url: url, method: .post, parameters: parameters)
-    } // closed signUp
+    }
     
-    // MARK: - 이메일 찾기 요청
+    // 이메일 찾기 요청
     public func searchEmail(nickname: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/emailFind"
         let parameters: Parameters = ["nickname": nickname, "tell": tell]
         return makeRequest(url: url, method: .post, parameters: parameters)
-    } // closed searchEmail
+    }
     
-    // MARK: - 비밀번호 찾기 요청
+    // 비밀번호 찾기 요청
     public func searchPassword(email: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/passFind"
         let parameters: Parameters = ["email": email, "tell": tell]
         return makeRequest(url: url, method: .post, parameters: parameters)
-    } // closed searchPassword
+    }
     
-} // closed NetworkManager
+} // closed UserNetworkManager
