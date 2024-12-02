@@ -106,6 +106,8 @@
 		25CFEF272CDB4AC800083081 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF262CDB4AC800083081 /* Selection.swift */; };
 		25CFEF312CDDF5CC00083081 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */; };
 		25D570B72CFC8CA400815145 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D570B62CFC8CA400815145 /* LaunchScreen.storyboard */; };
+		25D570B92CFCB53900815145 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D570B82CFCB53900815145 /* PopUpView.swift */; };
+		25D570BB2CFCBB1800815145 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D570BA2CFCBB1800815145 /* PopUpViewController.swift */; };
 		25F428802CD4C0F60044240C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F4287F2CD4C0F60044240C /* User.swift */; };
 		25F428882CD633770044240C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428872CD633770044240C /* UserRepositoryProtocol.swift */; };
 		25F4288A2CD6390F0044240C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F428892CD6390F0044240C /* UserUseCase.swift */; };
@@ -236,6 +238,8 @@
 		25CFEF262CDB4AC800083081 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		25CFEF302CDDF5CC00083081 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		25D570B62CFC8CA400815145 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		25D570B82CFCB53900815145 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		25D570BA2CFCBB1800815145 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		25F4287F2CD4C0F60044240C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25F428872CD633770044240C /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		25F428892CD6390F0044240C /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
@@ -319,7 +323,7 @@
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
 				259E81F42CCCE49C00D63747 /* MyPageScene */,
-				25CFEF222CDA7EE800083081 /* MainTabBarScene */,
+				25D570BC2CFCDE8D00815145 /* ETC */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -879,6 +883,24 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		25D570BC2CFCDE8D00815145 /* ETC */ = {
+			isa = PBXGroup;
+			children = (
+				25D570BD2CFCDE9C00815145 /* PopUpScene */,
+				25CFEF222CDA7EE800083081 /* MainTabBarScene */,
+			);
+			path = ETC;
+			sourceTree = "<group>";
+		};
+		25D570BD2CFCDE9C00815145 /* PopUpScene */ = {
+			isa = PBXGroup;
+			children = (
+				25D570B82CFCB53900815145 /* PopUpView.swift */,
+				25D570BA2CFCBB1800815145 /* PopUpViewController.swift */,
+			);
+			path = PopUpScene;
+			sourceTree = "<group>";
+		};
 		3D6E19BC6232515134862320 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1148,6 +1170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25737D672CDE7487004E9F6B /* RecommendNetworkManager.swift in Sources */,
+				25D570B92CFCB53900815145 /* PopUpView.swift in Sources */,
 				25A841AD2CEA684A002C64DD /* WeatherViewController.swift in Sources */,
 				259E81CB2CCA78AF00D63747 /* UILabel+Spacing.swift in Sources */,
 				253B1B952CC82A8C00F7DBF9 /* SignUpViewController.swift in Sources */,
@@ -1236,6 +1259,7 @@
 				251DBE952CE501DD00258E49 /* TitleHeaderView.swift in Sources */,
 				25A955A62CDFEB91001213CB /* RecommendRepository.swift in Sources */,
 				2554710E2CFA2C2B00796279 /* IntroViewController.swift in Sources */,
+				25D570BB2CFCBB1800815145 /* PopUpViewController.swift in Sources */,
 				25CFEF272CDB4AC800083081 /* Selection.swift in Sources */,
 				259F41C92CF79750002CB66E /* ProfileViewController.swift in Sources */,
 				251DBE872CE2640F00258E49 /* SearchViewModel.swift in Sources */,

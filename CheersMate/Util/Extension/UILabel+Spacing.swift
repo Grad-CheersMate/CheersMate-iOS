@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - 텍스트의 행간 설정
+
 extension UILabel {
     func setLineSpacing(spacing: CGFloat) {
         guard let text = text else { return }

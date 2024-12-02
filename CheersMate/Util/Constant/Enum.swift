@@ -9,13 +9,12 @@ import Foundation
 
 // 정규식 검증 타입
 public enum RegExType {
-    case email // 이메일
-    case password // 비밀번호
-    case tell // 전화번호
+    case email // 이메일을 검증
+    case password // 비밀번호를 검증
+    case tell // 휴대폰 번호를 검증
 }
 
-// 사용자의 계정을 찾기 위한 enum
-// 이메일 찾기와 비밀번호 찾기로 구분
+// 사용자의 계정을 찾을 때 뷰의 타입: 뷰의 재사용을 위함
 public enum AccountFindType: String {
     case email // 이메일 찾기
     case password // 비밀번호 찾기
@@ -49,6 +48,14 @@ public enum AccountFindType: String {
             return (label: "닉네임", placeholder: "닉네임을 입력해주세요")
         }
     }
+}
+
+// 팝업 화면을 닫을 때 처리 타입
+public enum PopUpCloseType: String {
+    case dismissSingleModal // aVC -> bVC (단일 모달 닫기). present
+    case dismissNestedModals // aVC -> bVC -> cVC (이중 모달 닫기). present + present
+    case dismissToRoot // aVC -> bVC -> cVC (네비게이션 초기로). push + present
+
 }
 
 // 감정, 동반자, 도수, 결과 페이지

@@ -72,10 +72,18 @@ final public class SignUpViewController: UIViewController {
         
         // 텍스트 필드가 선택되었을 때 가려지지 않도록 스크롤
         Observable.merge(
-            signUpView.emailTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.emailTextField },
-            signUpView.passwordTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.passwordTextField },
-            signUpView.nickNameTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.nickNameTextField },
-            signUpView.tellTextField.rx.controlEvent(.editingDidBegin).asObservable().map { self.signUpView.tellTextField }
+            signUpView.emailTextField.rx.controlEvent(.editingDidBegin)
+                .asObservable()
+                .map { self.signUpView.emailTextField },
+            signUpView.passwordTextField.rx.controlEvent(.editingDidBegin)
+                .asObservable()
+                .map { self.signUpView.passwordTextField },
+            signUpView.nickNameTextField.rx.controlEvent(.editingDidBegin)
+                .asObservable()
+                .map { self.signUpView.nickNameTextField },
+            signUpView.tellTextField.rx.controlEvent(.editingDidBegin)
+                .asObservable()
+                .map { self.signUpView.tellTextField }
         )
         .subscribe(onNext: { [weak self] textField in
             guard let self = self else { return }
@@ -83,14 +91,6 @@ final public class SignUpViewController: UIViewController {
             signUpView.scrollView.scrollRectToVisible(frame, animated: true)
         })
         .disposed(by: disposeBag)
-        
-        signUpView.signUpButton.rx.tap
-            .bind(onNext: { [weak self] _ in
-                
-                
-            })
-            .disposed(by: disposeBag)
-        
     }
     
     // 바인드 뷰 모델
@@ -104,6 +104,11 @@ final public class SignUpViewController: UIViewController {
             
             // 비밀번호 텍스트
             passwordTextField: signUpView.passwordTextField.rx.text
+                .orEmpty
+                .distinctUntilChanged()
+                .asObservable(),
+            
+            nicknameTextField: signUpView.nickNameTextField.rx.text
                 .orEmpty
                 .distinctUntilChanged()
                 .asObservable(),
@@ -147,20 +152,25 @@ final public class SignUpViewController: UIViewController {
                 valid ? (signUpView.signUpButton.backgroundColor = .buttonAbleColor) : (signUpView.signUpButton.backgroundColor = .buttonDisableColor)
             })
             .disposed(by: disposeBag)
-
+        
+        // 회원가입 성공
+        output.signUpSuccess
+            .bind(onNext: { [weak self] _ in
+                let popUpVC = PopUpViewController(title: "회원가입 완료", subTitle: "환영합니다! 🎉 로그인 후 CheersMate를 이용할 수 있어요.", closeType: .dismissNestedModals)
+                self?.present(popUpVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        // 회원가입 실패
+        output.signUpFailure
+            .bind(onNext: { [weak self] _ in
+                let popUpVC = PopUpViewController(title: "회원가입 실패", subTitle: "이미 등록된 이메일 주소 또는 닉네임입니다.", closeType: .dismissSingleModal)
+                self?.present(popUpVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
-    
-    // 회원가입 버튼 클릭 시 나타나는 팝업 창
-    private func popUpAlert() {
-        let alert = UIAlertController(title: "회원가입 완료", message: "로그인하여 서비스를 이용해보세요!", preferredStyle: .alert)
-        let success = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(success)
-        present(alert, animated: true)
-    }
 
-} // closed Class
+} // closed SignUpViewController
 
 
 // extension
