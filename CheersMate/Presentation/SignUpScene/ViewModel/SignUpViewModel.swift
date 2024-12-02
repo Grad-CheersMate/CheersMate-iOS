@@ -38,9 +38,9 @@ final public class SignUpViewModel: SignUpViewModelProtocol {
     
     // Output
     public struct Output {
-        let isValidEmail: Observable<Bool>
-        let isValidPassword: Observable<Bool>
-        let isValidTell: Observable<Bool>
+        let isValidEmail: Observable<Bool> // 이메일 정규식 검증 결과
+        let isValidPassword: Observable<Bool> // 비밀번호 정규식 검증 결과
+        let isValidTell: Observable<Bool> // 휴대폰 번호 정규식 검증 결과
         let isSignUpButtonEnabled: Observable<Bool> // 회원가입 버튼의 활성화 체크
         let signUpSuccess: Observable<Void> // 회원가입 성공
         let signUpFailure: Observable<Void> // 회원가입 실패
@@ -96,15 +96,15 @@ final public class SignUpViewModel: SignUpViewModelProtocol {
 
 // extension
 extension SignUpViewModel {
-    
+    // 회원가입 서버에 요청
     private func requsetSignUp(registrationInfo: User) {
         useCase.signUp(registrationInfo: registrationInfo)
             .subscribe { [weak self] res in
                 if res.result && res.httpCode == 200 {
-                    self?.responseRelay.accept(())
+                    self?.responseRelay.accept(()) // 성공
                 }
             } onFailure: { [weak self] err in
-                self?.errorRelay.accept(())
+                self?.errorRelay.accept(()) // 실패
             }
             .disposed(by: disposeBag)
     }

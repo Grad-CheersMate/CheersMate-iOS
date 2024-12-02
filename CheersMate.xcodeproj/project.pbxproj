@@ -323,7 +323,7 @@
 				259E81F22CCCE45F00D63747 /* SearchScene */,
 				259E81F32CCCE47600D63747 /* RecommendScene */,
 				259E81F42CCCE49C00D63747 /* MyPageScene */,
-				25D570BC2CFCDE8D00815145 /* ETC */,
+				25D570BC2CFCDE8D00815145 /* ETCScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -883,13 +883,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		25D570BC2CFCDE8D00815145 /* ETC */ = {
+		25D570BC2CFCDE8D00815145 /* ETCScene */ = {
 			isa = PBXGroup;
 			children = (
 				25D570BD2CFCDE9C00815145 /* PopUpScene */,
 				25CFEF222CDA7EE800083081 /* MainTabBarScene */,
 			);
-			path = ETC;
+			path = ETCScene;
 			sourceTree = "<group>";
 		};
 		25D570BD2CFCDE9C00815145 /* PopUpScene */ = {
