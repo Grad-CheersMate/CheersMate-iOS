@@ -16,7 +16,7 @@ public final class MyPageView: UIView {
         lb.text = "내 정보"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 24, family: .Bold)
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         return lb
     }()
     
@@ -27,7 +27,7 @@ public final class MyPageView: UIView {
     public let rightBarSettingButton: UIButton =  {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "gear"), for: .normal)
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         return bt
     }()
     
@@ -83,7 +83,7 @@ public final class MyPageView: UIView {
     // 닉네임 레이블
     private let nicknameLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "강슬기"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 20, family: .Medium)
@@ -125,7 +125,7 @@ public final class MyPageView: UIView {
         config.attributedTitle = AttributedString("좋아요", attributes: titleAttributes)
         let bt = UIButton(type: .custom)
         bt.configuration = config
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         bt.backgroundColor = .white
         bt.layer.cornerRadius = 25
         return bt
@@ -144,7 +144,7 @@ public final class MyPageView: UIView {
         config.attributedTitle = AttributedString("추천 목록", attributes: titleAttributes)
         let bt = UIButton(type: .custom)
         bt.configuration = config
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         bt.backgroundColor = .white
         bt.layer.cornerRadius = 25
         return bt

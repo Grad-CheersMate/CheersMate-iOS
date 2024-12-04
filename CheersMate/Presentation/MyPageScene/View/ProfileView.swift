@@ -45,7 +45,7 @@ public final class ProfileView: UIView {
         tf.text = "강슬기"
         tf.placeholder = "닉네임"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -75,7 +75,7 @@ public final class ProfileView: UIView {
         tf.text = "01012345678"
         tf.placeholder = "전화번호"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10

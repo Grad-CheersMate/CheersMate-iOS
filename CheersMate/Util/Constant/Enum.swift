@@ -11,20 +11,21 @@ import Foundation
 public enum RegExType {
     case email // 이메일을 검증
     case password // 비밀번호를 검증
+    case nickname // 닉네임을 검증
     case tell // 휴대폰 번호를 검증
 }
 
 // 사용자의 계정을 찾을 때 뷰의 타입: 뷰의 재사용을 위함
 public enum AccountFindType: String {
-    case email // 이메일 찾기
-    case password // 비밀번호 찾기
+    case findEmail // 이메일 찾기
+    case findPassword // 비밀번호 찾기
     
     // 타이틀
     var title: String {
         switch self {
-        case .email:
-            return "이메일 찾기"
-        case .password:
+        case .findEmail:
+            return "이메일 주소 찾기"
+        case .findPassword:
             return "비밀번호 찾기"
         }
     }
@@ -32,20 +33,20 @@ public enum AccountFindType: String {
     // 설명
     var description: String {
         switch self {
-        case .email:
-            return "가입 시 등록한 정보를 입력하면\n이메일 주소를 알려드릴게요."
-        case .password:
-            return "가입 시 등록한 정보를 입력하면 휴대폰 번호로\n임시 비밀번호를 전송해 드릴게요."
+        case .findEmail:
+            return "가입 시 등록한 정보를 입력하면\n이메일 주소를 알려드릴게요"
+        case .findPassword:
+            return "가입 시 등록한 정보를 입력하면\n임시 비밀번호를 알려드릴게요"
         }
     }
     
     // 레이블과 플레이스 홀더 
     var userInfo: (label: String, placeholder: String) {
         switch self {
-        case .email:
-            return (label: "이메일 주소", placeholder: "이메일 주소를 입력해주세요")
-        case .password:
+        case .findEmail:
             return (label: "닉네임", placeholder: "닉네임을 입력해주세요")
+        case .findPassword:
+            return (label: "이메일 주소", placeholder: "이메일 주소를 입력해주세요")
         }
     }
 }

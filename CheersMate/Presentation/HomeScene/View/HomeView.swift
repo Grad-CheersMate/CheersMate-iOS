@@ -15,7 +15,7 @@ public final class HomeView: UIView {
         lb.text = "CheersMate"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 24, family: .Bold)
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         return lb
     }()
     
@@ -23,7 +23,7 @@ public final class HomeView: UIView {
     public let rightBarSearchButton: UIButton =  {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "heart"), for: .normal)
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         return bt
     }()
     
@@ -31,7 +31,7 @@ public final class HomeView: UIView {
     public let rightBarBellButton: UIButton =  {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "bell"), for: .normal)
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         return bt
     }()
     
@@ -80,7 +80,7 @@ public final class HomeView: UIView {
     // 날씨 메인 안내 레이블
     private let weatherMainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "날씨에 딱 맞는 주류 추천받기"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 20, family: .Bold)

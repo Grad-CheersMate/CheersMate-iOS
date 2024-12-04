@@ -35,7 +35,7 @@ final public class RecommendSelectionTableViewCell: UITableViewCell {
     // 설명 레이블
     private let descLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "기쁨"
         lb.font = UIFont.gmarketSans(size: 16, family: .Medium)
         lb.textAlignment = .left

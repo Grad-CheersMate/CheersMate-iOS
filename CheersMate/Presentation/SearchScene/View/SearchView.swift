@@ -29,7 +29,7 @@ public final class SearchView: UIView {
             textField.font = UIFont.pretendard(size: 17, family: .Medium)
             textField.backgroundColor = .searchBarBackgroundColor
             textField.attributedPlaceholder = NSAttributedString(string: "상품을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.subTextColor])
-            textField.textColor = .mainNavyColor
+            textField.textColor = .mainTextColor
         }
         
         return sb
@@ -42,7 +42,7 @@ public final class SearchView: UIView {
     public let rightBarButton: UIButton =  {
         let bt = UIButton(type: .custom)
         bt.setTitle("취소", for: .normal)
-        bt.setTitleColor(.mainNavyColor, for: .normal)
+        bt.setTitleColor(.mainTextColor, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 16, family: .Medium)
         return bt
     }()

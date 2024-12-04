@@ -14,7 +14,7 @@ extension UINavigationController {
         appearance.configureWithTransparentBackground()
         // 네비게이션 바에 적용되는 텍스트 설정. 폰트 크기와 색상.
         appearance.titleTextAttributes = [.font:  UIFont.gmarketSans(size: 17, family: .Medium),
-                                          .foregroundColor: UIColor.mainNavyColor]
+                                          .foregroundColor: UIColor.mainTextColor]
 
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance

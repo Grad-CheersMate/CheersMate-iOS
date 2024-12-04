@@ -17,7 +17,7 @@ public final class TitleHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.text = ""
         label.font = .gmarketSans(size: 20, family: .Bold)
-        label.textColor = .mainNavyColor
+        label.textColor = .mainTextColor
         label.textAlignment = .left
         label.numberOfLines = 0
         return label

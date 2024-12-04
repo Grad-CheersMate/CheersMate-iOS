@@ -46,12 +46,6 @@ extension UIColor {
     
     // --------------------------- 여기 까지 픽스
     
-    
-    // 메인 네이비 텍스트 색상
-    static var mainNavyColor: UIColor {
-        return UIColor(red: 26.0 / 255.0, green: 31.0 / 255.0, blue: 54.0 / 255.0, alpha: 1)
-    }
-    
     // 진행상태 바 배경색상
     static var progressViewBackgroundColor: UIColor {
         return UIColor(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 244.0 / 255.0, alpha: 1)

@@ -23,7 +23,7 @@ public final class SettingTableViewCell: UITableViewCell {
     // 설명 레이블
     private let descLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = ""
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .left

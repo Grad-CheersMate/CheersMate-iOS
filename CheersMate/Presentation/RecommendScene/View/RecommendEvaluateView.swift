@@ -23,7 +23,7 @@ public final class RecommendEvaluateView: UIView {
     // 사용자 안내 메인 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "추천이 마음에 드셨나요?"
         lb.numberOfLines = 1
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)

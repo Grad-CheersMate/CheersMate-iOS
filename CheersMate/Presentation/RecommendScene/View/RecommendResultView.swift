@@ -13,7 +13,7 @@ public final class RecommendResultView: UIView {
     private let titleLabel: UILabel = {
         let lb = UILabel()
         lb.text = "추천 결과"
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.font = UIFont.gmarketSans(size: 20, family: .Medium)
         lb.numberOfLines = 0
         lb.textAlignment = .center
@@ -25,7 +25,7 @@ public final class RecommendResultView: UIView {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 22, weight: .light)
         let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
         bt.setImage(image, for: .normal)
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         bt.adjustsImageWhenHighlighted = false
         bt.clipsToBounds = true
         return bt

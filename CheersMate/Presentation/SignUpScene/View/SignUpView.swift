@@ -18,7 +18,7 @@ final public class SignUpView: UIView {
     public let rightBarCrossButton: UIButton =  {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "cross"), for: .normal)
-        bt.tintColor = .mainNavyColor
+        bt.tintColor = .mainTextColor
         return bt
     }()
     
@@ -67,9 +67,9 @@ final public class SignUpView: UIView {
     public let emailTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
-        tf.placeholder = "이메일 주소를 입력해주세요"
+        tf.placeholder = "이메일 주소를 입력해 주세요"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -115,9 +115,9 @@ final public class SignUpView: UIView {
     public let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
-        tf.placeholder = "최소 8자 이상의 소문자와 숫자"
+        tf.placeholder = "비밀번호를 입력해 주세요"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -134,7 +134,7 @@ final public class SignUpView: UIView {
     // 비밀번호 정규식 검증 레이블
     public let passwordFeedbackLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "최소 8자 이상의 소문자와 숫자를 입력해 주세요."
+        lb.text = "최소 8자의 대소문자와 숫자만 입력해 주세요."
         lb.font = .gmarketSans(size: 12, family: .Medium)
         lb.textColor = .systemRed
         lb.textAlignment = .left
@@ -156,9 +156,9 @@ final public class SignUpView: UIView {
     public let nickNameTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
-        tf.placeholder = "닉네임을 입력해주세요"
+        tf.placeholder = "닉네임을 입력해 주세요"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -169,6 +169,17 @@ final public class SignUpView: UIView {
         tf.contentVerticalAlignment = .center
         tf.leftPadding()
         return tf
+    }()
+    
+    // 닉네임 정규식 검증 레이블
+    public let nicknameFeedbackLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "2 ~ 16자의 한글, 영문, 숫자 조합으로 작성해 주세요."
+        lb.font = .gmarketSans(size: 12, family: .Medium)
+        lb.textColor = .systemRed
+        lb.textAlignment = .left
+        lb.isHidden = true
+        return lb
     }()
 
     // 휴대폰 번호 레이블
@@ -187,7 +198,7 @@ final public class SignUpView: UIView {
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
         tf.placeholder = "01012345678"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -238,7 +249,7 @@ final public class SignUpView: UIView {
         self.backgroundColor = .white
         [scrollView, signUpButton].forEach { self.addSubview($0) }
         [mainContainerView].forEach { scrollView.addSubview($0) }
-        [titleLabel, emailLabel, emailTextField, emailFeedbackLabel, passwordLabel, passwordTextField, passwordFeedbackLabel, nickNameLabel, nickNameTextField, tellLabel, tellTextField, tellFeedbackLabel].forEach { mainContainerView.addSubview($0) }
+        [titleLabel, emailLabel, emailTextField, emailFeedbackLabel, passwordLabel, passwordTextField, passwordFeedbackLabel, nickNameLabel, nickNameTextField, nicknameFeedbackLabel, tellLabel, tellTextField, tellFeedbackLabel].forEach { mainContainerView.addSubview($0) }
     
     }
 
@@ -310,6 +321,12 @@ final public class SignUpView: UIView {
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(53)
+        }
+        
+        nicknameFeedbackLabel.snp.makeConstraints { make in
+            make.top.equalTo(nickNameTextField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
         }
         
         tellLabel.snp.makeConstraints { make in

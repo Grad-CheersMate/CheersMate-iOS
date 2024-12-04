@@ -13,10 +13,10 @@ import RxSwift
 
 // MARK: - Single을 사용하여 단일 이벤트와 에러처리만. 이벤트가 끝나면 스트림 종료. 따라서 HTTP에 적절한 Traits
 public protocol UserNetworkManagerProtocol {
-    func logIn(email: String, password: String) -> Single<UserResponse>
+    func login(email: String, password: String) -> Single<UserResponse>
     func signUp(email:String, password: String, nickname: String, tell: String) -> Single<UserResponse>
-    func searchEmail(nickname: String, tell: String) -> Single<UserResponse>
-    func searchPassword(email: String, tell: String) -> Single<UserResponse>
+    func findEmail(nickname: String, tell: String) -> Single<UserResponse>
+    func findPassword(email: String, tell: String) -> Single<UserResponse>
 }
 
 public final class UserNetworkManager: UserNetworkManagerProtocol {
@@ -44,7 +44,7 @@ public final class UserNetworkManager: UserNetworkManagerProtocol {
     }
     
     // 로그인 요청
-    public func logIn(email: String, password: String) -> Single<UserResponse> {
+    public func login(email: String, password: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/login"
         let parameters: Parameters = ["email": email, "password": password]
         return makeRequest(url: url, method: .post, parameters: parameters)
@@ -58,14 +58,14 @@ public final class UserNetworkManager: UserNetworkManagerProtocol {
     }
     
     // 이메일 찾기 요청
-    public func searchEmail(nickname: String, tell: String) -> Single<UserResponse> {
+    public func findEmail(nickname: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/emailFind"
         let parameters: Parameters = ["nickname": nickname, "tell": tell]
         return makeRequest(url: url, method: .post, parameters: parameters)
     }
     
     // 비밀번호 찾기 요청
-    public func searchPassword(email: String, tell: String) -> Single<UserResponse> {
+    public func findPassword(email: String, tell: String) -> Single<UserResponse> {
         let url = "\(endpoint)/users/passFind"
         let parameters: Parameters = ["email": email, "tell": tell]
         return makeRequest(url: url, method: .post, parameters: parameters)
