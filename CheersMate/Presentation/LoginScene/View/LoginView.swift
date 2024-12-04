@@ -32,13 +32,24 @@ final public class LoginView: UIView {
         return label
     }()
     
+    // 이메일 주소 정규식 검증 레이블
+    public let emailFeedbackLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "잘못된 이메일 형식입니다."
+        lb.font = .gmarketSans(size: 12, family: .Medium)
+        lb.textColor = .systemRed
+        lb.textAlignment = .left
+        lb.isHidden = true
+        return lb
+    }()
+    
     // 이메일 주소 입력 창
     public let emailTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
         tf.placeholder = "이메일 주소를 입력해주세요"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -70,13 +81,24 @@ final public class LoginView: UIView {
         return bt
     }()
     
+    // 비밀번호 정규식 검증 레이블
+    public let passwordFeedbackLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "최소 8자의 대소문자와 숫자만 입력해 주세요."
+        lb.font = .gmarketSans(size: 12, family: .Medium)
+        lb.textColor = .systemRed
+        lb.textAlignment = .left
+        lb.isHidden = true
+        return lb
+    }()
+    
     // 비밀번호 입력 창
     public lazy var passwordTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
         tf.placeholder = "비밀번호를 입력해주세요"
         tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainNavyColor
+        tf.textColor = .mainTextColor
         tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 10
@@ -168,7 +190,7 @@ final public class LoginView: UIView {
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [titleLabel, emailLabel, emailTextField, passwordLabel, passwordTextField, stackView, loginButton]
+        [titleLabel, emailLabel, emailFeedbackLabel, emailTextField, passwordLabel, passwordFeedbackLabel, passwordTextField, stackView, loginButton]
             .forEach { self.addSubview($0) }
     }
 
@@ -194,8 +216,14 @@ final public class LoginView: UIView {
             make.height.equalTo(53)
         }
         
+        emailFeedbackLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
+        }
+        
         passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(40)
+            make.top.equalTo(emailTextField.snp.bottom).offset(45)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
@@ -207,8 +235,14 @@ final public class LoginView: UIView {
             make.height.equalTo(53)
         }
         
+        passwordFeedbackLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
+        }
+        
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(60)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(70)
             make.leading.trailing.equalToSuperview().inset(65)
             make.centerX.equalToSuperview()
             make.height.equalTo(17)

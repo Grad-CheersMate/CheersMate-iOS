@@ -22,6 +22,12 @@ public final class PopUpViewController: UIViewController {
         self.view = popUpView
     }
     
+    // viewWillAppear
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Haptics.shared.generateHaptics(style: .medium)
+    }
+    
     // viewDidLoad
     public override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,7 @@ extension UITabBarController {
     func setupBarApperance() {
         modalPresentationStyle = .fullScreen
         tabBar.backgroundColor = .backgroundColor
-        tabBar.tintColor = .mainNavyColor
+        tabBar.tintColor = .mainTextColor
         tabBar.barTintColor = .white
         tabBar.isTranslucent = false
         

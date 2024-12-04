@@ -28,7 +28,7 @@ public final class RecommendFoodCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let lb = UILabel()
         lb.text = ""
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .center

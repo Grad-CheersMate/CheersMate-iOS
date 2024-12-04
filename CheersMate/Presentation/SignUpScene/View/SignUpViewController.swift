@@ -108,6 +108,7 @@ final public class SignUpViewController: UIViewController {
                 .distinctUntilChanged()
                 .asObservable(),
             
+            // 닉네임 텍스트
             nicknameTextField: signUpView.nickNameTextField.rx.text
                 .orEmpty
                 .distinctUntilChanged()
@@ -118,8 +119,12 @@ final public class SignUpViewController: UIViewController {
                 .orEmpty
                 .distinctUntilChanged()
                 .asObservable(),
-        
-            signUpButtonTapped: signUpView.signUpButton.rx.tap.asObservable())
+            
+            // 회원가입 버튼 클릭
+            signUpButtonTapped: signUpView.signUpButton.rx.tap
+                .throttle(.seconds(1), scheduler: MainScheduler.instance) // throttle로 중복 클릭 방지
+                .asObservable()
+        )
         
         let output = viewModel.transform(input: input)
         
@@ -134,6 +139,14 @@ final public class SignUpViewController: UIViewController {
         output.isValidPassword
             .bind(onNext: { [weak self] valid in
                 self?.signUpView.passwordFeedbackLabel.isHidden = valid
+            })
+            .disposed(by: disposeBag)
+        
+        // 닉네임 정규식 검증 결과
+        output.isValidNickname
+            .bind(onNext: { [weak self] valid in
+                print(valid)
+                self?.signUpView.nicknameFeedbackLabel.isHidden = valid
             })
             .disposed(by: disposeBag)
         
@@ -156,7 +169,7 @@ final public class SignUpViewController: UIViewController {
         // 회원가입 성공
         output.signUpSuccess
             .bind(onNext: { [weak self] _ in
-                let popUpVC = PopUpViewController(title: "회원가입 완료", subTitle: "환영합니다! 🎉 로그인 후 CheersMate를 이용할 수 있어요.", closeType: .dismissNestedModals)
+                let popUpVC = PopUpViewController(title: "회원가입에 성공했어요", subTitle: "환영합니다! 🎉 로그인 후 CheersMate를 이용할 수 있어요", closeType: .dismissNestedModals)
                 self?.present(popUpVC, animated: true)
             })
             .disposed(by: disposeBag)
@@ -164,7 +177,7 @@ final public class SignUpViewController: UIViewController {
         // 회원가입 실패
         output.signUpFailure
             .bind(onNext: { [weak self] _ in
-                let popUpVC = PopUpViewController(title: "회원가입 실패", subTitle: "이미 등록된 이메일 주소 또는 닉네임입니다.", closeType: .dismissSingleModal)
+                let popUpVC = PopUpViewController(title: "회원가입에 실패했어요", subTitle: "해당 정보는 이미 사용 중이에요. 다른 이메일 주소나 닉네임으로 다시 시도해주세요", closeType: .dismissSingleModal)
                 self?.present(popUpVC, animated: true)
             })
             .disposed(by: disposeBag)

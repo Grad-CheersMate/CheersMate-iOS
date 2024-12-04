@@ -44,7 +44,7 @@ public final class WeatherView: UIView {
     // 온도 레이블
     private let tempLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "17.5 ℃"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 42, family: .Bold)
@@ -54,7 +54,7 @@ public final class WeatherView: UIView {
     // 지역 레이블
     private let locationLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "성남시 수정구"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 15, family: .Bold)
@@ -220,7 +220,7 @@ public final class WeatherView: UIView {
         let lb = UILabel()
         lb.text = "주류명: 새로\n타입: 소주\n도수: 4.3"
         lb.setLineSpacing(spacing: 5) // 위치를 마지막에 두면 레이블의 속성이 바뀔 수 있으니 가능한 먼저 호출
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .center
@@ -232,7 +232,7 @@ public final class WeatherView: UIView {
         let lb = UILabel()
         lb.text = "주류명: 새로\n타입: 소주\n도수: 4.3"
         lb.setLineSpacing(spacing: 5) // 위치를 마지막에 두면 레이블의 속성이 바뀔 수 있으니 가능한 먼저 호출
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .center

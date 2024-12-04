@@ -83,7 +83,7 @@ public final class PopUpView: UIView {
     
     // UI 설정
     private func setupUI() {
-        self.backgroundColor = .popUpBackgroundColor.withAlphaComponent(0.7)
+        self.backgroundColor = .popUpBackgroundColor.withAlphaComponent(0.8)
         [containerView].forEach { self.addSubview($0) }
         [stackView].forEach { containerView.addSubview($0) }
     }

@@ -12,7 +12,7 @@ import RxCocoa
 final public class LoginViewController: UIViewController {
 
     private var loginView = LoginView()
-    public let viewModel: LoginViewModelProtocol
+    private let viewModel: LoginViewModelProtocol
     private let disposeBag = DisposeBag()
     
     // init
@@ -45,7 +45,7 @@ final public class LoginViewController: UIViewController {
     private func setupNavi() {
         // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .mainNavyColor
+        backBarButtonItem.tintColor = .mainTextColor
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
@@ -75,8 +75,8 @@ final public class LoginViewController: UIViewController {
                 let userNT = UserNetwork(manager: UserNetworkManager())
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
-                let accountSearchVM = AccountSearchViewModel(useCase: userUC)
-                let accountFinderVC = AccountFinderViewController(viewModel: accountSearchVM, accountFindType: .email)
+                let accountFinderVM = AccountFinderViewModel(useCase: userUC)
+                let accountFinderVC = AccountFinderViewController(viewModel: accountFinderVM, viewType: .findEmail)
                 self.navigationController?.pushViewController(accountFinderVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -88,8 +88,8 @@ final public class LoginViewController: UIViewController {
                 let userNT = UserNetwork(manager: UserNetworkManager())
                 let userRP = UserRepository(network: userNT)
                 let userUC = UserUseCase(repository: userRP)
-                let accountSearchVM = AccountSearchViewModel(useCase: userUC)
-                let accountFinderVC = AccountFinderViewController(viewModel: accountSearchVM, accountFindType: .password)
+                let accountFinderVM = AccountFinderViewModel(useCase: userUC)
+                let accountFinderVC = AccountFinderViewController(viewModel: accountFinderVM, viewType: .findPassword)
                 self.navigationController?.pushViewController(accountFinderVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -99,42 +99,78 @@ final public class LoginViewController: UIViewController {
     // 바인드 뷰 모델
     private func bindViewModel() {
         let input = LoginViewModel.Input(
-            // 이메일 텍스트를 뷰 모델로 전달
+            // 이메일 주소 텍스트
             emailTextField: loginView.emailTextField.rx.text
                 .orEmpty
                 .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
-            // 비밀번호 텍스트를 뷰 모델로 전달
+                .asObservable(),
+            
+            // 비밀번호 텍스트
             passwordTextField: loginView.passwordTextField.rx.text
                 .orEmpty
                 .distinctUntilChanged()
-                .asDriver(onErrorJustReturn: ""),
+                .asObservable(),
             
-            // 로그인 버튼 클릭 이벤트를 뷰 모델로 전달
+            // 로그인 버튼 클릭 이벤트
             loginButtonTapped: loginView.loginButton.rx.tap
+                .throttle(.seconds(1), scheduler: MainScheduler.instance) // throttle로 중복 클릭 방지
+                .asObservable()
         )
         
         let output = viewModel.transform(input: input)
         
-        output.loginButtonEnabled
-            .drive(onNext: {[weak self] valid in
-                // 로그인 버튼의 활성화를 valid에 따라서 설정
-                self?.loginView.loginButton.isEnabled = valid
-                // 활성화에 따른 로그인 버튼의 색상 설정
-                valid ? (self?.loginView.loginButton.backgroundColor = .buttonAbleColor) : (self?.loginView.loginButton.backgroundColor = .buttonDisableColor)
+        // 이메일 주소 정규식 검증 결과
+        output.isValidEmail
+            .bind(onNext: { [weak self] valid in
+                self?.loginView.emailFeedbackLabel.isHidden = valid
             })
             .disposed(by: disposeBag)
         
-        output.loginResponse
-            .emit { [weak self] condition in
-                if condition {
-                    self?.changeRootViewController()
-                }
-            }
+        // 비밀번호 정규식 검증 결과
+        output.isValidPassword
+            .bind(onNext: { [weak self] valid in
+                self?.loginView.passwordFeedbackLabel.isHidden = valid
+            })
             .disposed(by: disposeBag)
         
+        // 로그인 버튼 활성화
+        output.isLoginButtonEnabled
+            .bind(onNext: { [weak self] valid in
+                guard let self = self else { return }
+                loginView.loginButton.isEnabled = valid // 활성화 여부
+                valid ? (loginView.loginButton.backgroundColor = .buttonAbleColor) : (loginView.loginButton.backgroundColor = .buttonDisableColor) // 배경색상
+            })
+            .disposed(by: disposeBag)
+        
+        // 로그인 성공
+        output.loginSuccess
+            .bind(onNext: { [weak self] _ in
+                self?.changeRootViewController()
+            })
+            .disposed(by: disposeBag)
+        
+        // 로그인 실패
+        output.loginFailure
+            .bind(onNext: { [weak self] _ in
+                let popUpVC = PopUpViewController(title: "로그인에 실패했어요", subTitle: "이메일 주소 또는 비밀번호를 확인 후\n다시 시도해주세요", closeType: .dismissSingleModal)
+                self?.present(popUpVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        
+        
+    }
+
+    // 로그인 버튼을 클릭했을 때 루트 뷰를 변경하여 메모리 최적화
+    private func changeRootViewController() {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+        sceneDelegate.changeRootViewController()
     }
     
+} // closed LoginViewController
+
+// extension
+extension LoginViewController {
     // 키보드가 올라왔을 때 툴바를 적용하고, 완료버튼을 누르면 키보드 내리기
     private func setupTextFields() {
         [loginView.emailTextField, loginView.passwordTextField]
@@ -146,22 +182,11 @@ final public class LoginViewController: UIViewController {
                     })
                     .disposed(by: disposeBag)
             }
-    } // closed setupTextFields
-    
-    // 로그인 버튼을 클릭했을 때 루트 뷰를 변경하여 메모리 최적화
-    private func changeRootViewController() {
-        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-        sceneDelegate.changeRootViewController()
     }
     
-    
-} // closed LoginViewController
-
-// @objc 설정
-extension LoginViewController {
     // 완료버튼을 누르면 키보드 내리기
     @objc func doneButtonTapped() {
         view.endEditing(true)
     }
-    
+
 } // closed Extension

@@ -36,7 +36,7 @@ public final class MyPageViewController: UIViewController {
     private func setupNavi() {
         // 뒤로가기 버튼
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .mainNavyColor
+        backBarButtonItem.tintColor = .mainTextColor
         self.navigationItem.backBarButtonItem = backBarButtonItem
         // 네비게이션 바의 왼쪽과 오른쪽 설정
         navigationItem.leftBarButtonItem = myPageView.leftBarButtonItem

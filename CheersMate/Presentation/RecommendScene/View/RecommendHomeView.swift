@@ -15,7 +15,7 @@ final public class RecommendHomeView: UIView {
     // 사용자 안내 메인 레이블
     private let mainInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainNavyColor
+        lb.textColor = .mainTextColor
         lb.text = "나만을 위한 주류 및 안주 추천!"
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 23, family: .Bold)
