@@ -51,11 +51,6 @@ extension UIColor {
         return UIColor(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 244.0 / 255.0, alpha: 1)
     }
     
-    // 셀 선택 시 배경색상
-    static var cellSelectedBackgroundColor: UIColor {
-        return UIColor(red: 255.0 / 255.0, green: 207.0 / 255.0, blue: 150.0 / 255.0, alpha: 1)
-    }
-    
     // > 버튼의 색상
     static var buttonColor: UIColor {
         return UIColor(red: 200.0 / 255.0, green: 205.0 / 255.0, blue: 220.0 / 255.0, alpha: 1)
@@ -75,8 +70,5 @@ extension UIColor {
     static var textFieldLayerColor: UIColor {
         return UIColor(red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
     }
-    
-
-    
     
 }

@@ -46,7 +46,7 @@ final public class SignUpView: UIView {
         let lb = UILabel()
         lb.text = "당신만을 위한 주류 추천 서비스\nCheersMate와 함께하세요!"
         lb.setLineSpacing(spacing: 5)
-        lb.font = .gmarketSans(size: 16, family: .Medium)
+        lb.font = .gmarketSans(size: 17, family: .Medium)
         lb.textColor = .mainTextColor
         lb.textAlignment = .left
         lb.numberOfLines = 2
@@ -134,7 +134,7 @@ final public class SignUpView: UIView {
     // 비밀번호 정규식 검증 레이블
     public let passwordFeedbackLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "최소 8자의 대소문자와 숫자만 입력해 주세요."
+        lb.text = "최소 8자의 대/소문자와 숫자만 입력해 주세요."
         lb.font = .gmarketSans(size: 12, family: .Medium)
         lb.textColor = .systemRed
         lb.textAlignment = .left
