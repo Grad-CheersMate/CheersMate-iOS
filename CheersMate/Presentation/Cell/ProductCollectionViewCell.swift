@@ -24,9 +24,8 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     // 주류 정보 레이블 1
     public let liquorInfoLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "주류명: 새로\n타입: 소주\n도수: 4.3"
-        lb.setLineSpacing(spacing: 5) // 위치를 마지막에 두면 레이블의 속성이 바뀔 수 있으니 가능한 먼저 호출
-        lb.textColor = .mainTextColor
+        lb.text = ""
+        lb.textColor = .subTextColor
         lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .center
@@ -62,39 +61,50 @@ public final class ProductCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // configure 설정
-    public func configure(liquor: Liquor) {
-        liquorImageView.kf.setImage(with: URL(string: liquor.imageUrl ?? ""))
-        liquorInfoLabel.text = "주류명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
-    }
     
-} // closed ProductCollectionViewCell
-
-extension ProductCollectionViewCell {
     // UI 설정
     private func setupUI() {
-        self.backgroundColor = .backgroundColor
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 15
+        
         self.contentView.backgroundColor = .white
         self.contentView.layer.cornerRadius = 15
         self.contentView.clipsToBounds = true
+        
         [liquorImageView, liquorInfoLabel].forEach { self.contentView.addSubview($0) }
     }
+    
     // Layout 설정
     private func setupLayout() {
-
-        // 주류 이미지
         liquorImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
             make.height.equalTo(200)
         }
-        // 주류 레이블
+        
         liquorInfoLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         liquorInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(liquorImageView.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(10)
-            make.centerX.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(25)
+            make.centerX.equalToSuperview()
         }
     }
     
-} // closed extension
+    // configure
+    public func configure(liquor: Liquor) {
+        liquorImageView.kf.setImage(with: URL(string: liquor.imageUrl ?? ""))
+        
+        liquorInfoLabel.text = liquor.name
+        liquorInfoLabel.setLineSpacing(spacing: 5)
+        liquorInfoLabel.textAlignment = .center
+    }
+    
+    public func updateLiquorImage(_ height: Int) {
+        liquorImageView.snp.updateConstraints { make in
+            make.height.equalTo(height)
+        }
+    }
+    
+    
+} // closed ProductCollectionViewCell

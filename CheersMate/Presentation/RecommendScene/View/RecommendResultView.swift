@@ -77,8 +77,9 @@ public final class RecommendResultView: UIView {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-    } // closed setupLayout
+    }
     
+    // createLayout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 60 // 섹션 사이 간격 조정
@@ -179,7 +180,7 @@ public final class RecommendResultView: UIView {
             let section = self?.dataSource?.sectionIdentifier(for: indexPath.section)
             switch section {
             case .recommendFood(let title), .recommendSimilar(let title): // 함께하면 어울리는 음식 섹션과 추천 결과와 비슷한 느낌의 주류 섹션의 헤더 설정
-                (header as? TitleHeaderView)?.configure(title: title)
+                (header as? TitleHeaderView)?.configure(title: title, isSubButtonHidden: false)
             default:
                 break
             }

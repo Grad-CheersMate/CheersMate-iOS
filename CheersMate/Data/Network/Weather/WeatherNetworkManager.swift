@@ -10,16 +10,17 @@ import RxSwift
 
 // MARK: - http://ceprj.gachon.ac.kr:60021
 
-// Single을 사용하여 단일 이벤트와 에러처리만. 이벤트가 끝나면 스트림 종료. 따라서 HTTP에 적절한 Traits
 public protocol WeatherNetworkManagerProtocol {
     // 서버에 저장된 실시간 날씨 데이터를 요청
     func fetchWeatherData() -> Single<WeatherResponse>
+    
     // 오늘의 날씨와 현재 위치를 기반으로 주류를 추천받기 위한 데이터 요청
     func fetchLiquorRecommendation() -> Single<WeatherLiquorResponse>
+    
 }
 
 // 날씨 네트워크 매니저
-final public class WeatherNetworkManager: WeatherNetworkManagerProtocol {
+public final class WeatherNetworkManager: WeatherNetworkManagerProtocol {
     // 엔드 포인트
     private let endpoint: String
     

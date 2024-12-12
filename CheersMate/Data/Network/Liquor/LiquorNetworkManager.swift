@@ -15,10 +15,13 @@ import RxSwift
 public protocol LiquorNetworkManagerProtocol {
     // 카테고리 별 주류 데이터 조회
     func fetchLiquorListByCategory(category: ProductType, page: Int) -> Single<LiquorsResponse>
+    
     // BEST(TOP 30) 주류 데이터 조회
     func fetchBestLiquors() -> Single<BestResponse>
+    
     // 주류 데이터 상세 조회
     func fetchLiquorDetailsById(liquorId: Int) -> Single<LiquorsResponse>
+    
     // 주류 데이터 검색
     func searchLiquors(keyword: String, page: Int) -> Single<LiquorsResponse>
 }

@@ -248,14 +248,14 @@ public final class WeatherView: UIView {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     // configure 설정
     public func configure(weather: Weather, firstLiquor: Liquor, secondLiquor: Liquor) {
         updateWeatherProperties(weather)
         updateLiquorProperties(id: 1, liquor: firstLiquor)
         updateLiquorProperties(id: 2, liquor: secondLiquor)
-        dump(firstLiquor)
-        dump(secondLiquor)
     }
+    
     // 날씨 프로퍼티 업데이트
     private func updateWeatherProperties(_ weather: Weather) {
         tempLabel.text = "\(weather.temperature)℃" // 기온
@@ -265,17 +265,19 @@ public final class WeatherView: UIView {
         precipitationLabel.text = "강수량\n\(weather.hourlyPrecipitation)mm" // 시간 당 강수량
         weatherImageView.image = UIImage(named: weather.condition) // 날씨 상태
     }
+    
     // 추천 주류 프로퍼티 업데이트
     private func updateLiquorProperties(id: Int, liquor: Liquor) {
         guard let url = liquor.imageUrl else { return }
         if id == 1 {
             recommendliquorFirstImageView.kf.setImage(with: URL(string: url))
-            recommendliquorFirstLabel.text = "주류명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
+            recommendliquorFirstLabel.text = liquor.name
         } else {
             recommendliquorSecondImageView.kf.setImage(with: URL(string: url))
-            recommendliquorSecondLabel.text = "주류명: \(liquor.name ?? "이름 정보 없음")\n타입: \(liquor.type ?? "타입 정보 없음")\n도수: \(liquor.volume ?? 0.0)"
+            recommendliquorSecondLabel.text =  liquor.name
         }
     }
+    
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .backgroundColor
@@ -294,6 +296,7 @@ public final class WeatherView: UIView {
         [recommendliquorFirstImageView, recommendliquorFirstLabel].forEach { recommendLiquorFirstSubContainerView.addSubview($0) }
         [recommendliquorSecondImageView, recommendliquorSecondLabel].forEach { recommendLiquorSecondSubContainerView.addSubview($0) }
     }
+    
     // Layout 설정
     private func setupLayout() {
         // 스크롤 뷰

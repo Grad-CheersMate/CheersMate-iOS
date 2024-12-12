@@ -13,26 +13,47 @@ public protocol HomeViewModelProtocol {
 }
 
 final public class HomeViewModel: HomeViewModelProtocol {
-    // 프로퍼티
-    private let useCase: WeatherUseCaseProtocol
+    
+    private let useCase: CategoryUseCaseProtocol
     private let disposeBag: DisposeBag = DisposeBag()
+    private let bestLiquorsRelay = BehaviorRelay<[Liquor]>(value: []) // 베스트 주류
+    private let errorRealy = BehaviorRelay<Error?>(value: nil) // 에러
+    
     // init
-    public init(useCase: WeatherUseCaseProtocol) {
+    public init(useCase: CategoryUseCase) {
         self.useCase = useCase
+        fetchBestLiquors()
     }
+    
     // Input
     public struct Input {
-        //let weatherButtonTapped: Observable<Void>
-    }
-    // Output
-    public struct Output {
         
     }
+    
+    // Output
+    public struct Output {
+        let bestLiquors: Observable<[Liquor]>
+    }
+    
     // transform
     public func transform(input: Input) -> Output {
         
-        return Output()
+        
+        return Output(bestLiquors: bestLiquorsRelay.asObservable())
     }
     
 } // closed HomeViewModel
 
+extension HomeViewModel {
+    private func fetchBestLiquors() {
+        useCase.fetchBestLiquors()
+            .subscribe { [weak self] response in
+                if response.result && response.httpCode == 200 {
+                    self?.bestLiquorsRelay.accept(response.data)
+                }
+            } onFailure: { [weak self] error in
+                self?.errorRealy.accept(error)
+            }
+            .disposed(by: disposeBag)
+    }
+}

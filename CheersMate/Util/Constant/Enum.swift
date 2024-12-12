@@ -7,6 +7,18 @@
 
 import Foundation
 
+// 홈 화면 섹션
+public enum HomeSection: Hashable {
+    case category(String) // 카테고리
+    case best(String) // 베스트
+}
+
+// 홈 화면 섹션
+public enum HomeItem: Hashable {
+    case categoryItem(Category) // 카테고리
+    case bestItem(Liquor) // 베스트
+}
+
 // 정규식 검증 타입
 public enum RegExType {
     case email // 이메일을 검증
@@ -93,14 +105,14 @@ public enum Section: Hashable {
     case recommendSimilar(String) // 추천 결과 화면에서 비슷한 주류 섹션
 }
 
-// 마이페이지 섹션
+// 내 정보 화면 섹션
 public enum MyPageSection: Hashable {
     case userInfo // 이미지 피커, 이름, 전화번호, 이메일
     case editProfile // 프로필 수정 섹션
     case customerSupport // 고객센터 섹션
 }
 
-// 마이 페이지 아이템
+// 내 정보 화면 아이템
 public enum MyPageItem: Hashable {
     case userInfoItem(User)
     case editProfileItem(Option)
@@ -110,7 +122,6 @@ public struct Option: Hashable {
     let imageText: String
     let descTest: String
 }
-
 
 // 컬렉션 뷰에서 아이템 정의
 public enum Item: Hashable {

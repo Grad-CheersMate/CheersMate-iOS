@@ -24,7 +24,7 @@ final public class RecommendHomeViewController: UIViewController {
     public override func loadView() {
         self.view = recommendHomeView
     } // closed loadView
-
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupNavi()
@@ -63,8 +63,10 @@ final public class RecommendHomeViewController: UIViewController {
                 // MARK: - Presentation Layer
                 let recommendSelectionVM = RecommendSelectionViewModel(useCase: recommendUC)
                 let recommendSelectionVC = RecommendSelectionViewController(viewModel: recommendSelectionVM)
+                recommendSelectionVC.hidesBottomBarWhenPushed = true // 네비게이션에 Push할 때 탭 바를 화면에서 제거
+                self.navigationController?.pushViewController(recommendSelectionVC, animated: true)
                 Haptics.shared.generateHaptics(style: .medium)
-                self.navigationController?.pushViewController(recommendSelectionVC, animated: true) }
+            }
             .disposed(by: disposeBag)
     } // closed bindView
     

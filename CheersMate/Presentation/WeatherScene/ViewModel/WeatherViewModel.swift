@@ -20,6 +20,7 @@ final public class WeatherViewModel: WeatherViewModelProtocol {
     private let weatherRelay = BehaviorRelay<Weather?>(value: nil) // 날씨 정보
     private let weatherLiquorRelay = PublishRelay<[LiquorRecommendation]>() // 날씨맞춤 추천 주류
     private let errorRealy = BehaviorRelay<Error?>(value: nil) // 에러
+    
     // init
     public init(useCase: WeatherUseCaseProtocol) {
         self.useCase = useCase

@@ -53,7 +53,6 @@ public final class SearchView: UIView {
         cv.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.ID)
         cv.backgroundColor = .backgroundColor
         cv.clipsToBounds = true
-        //cv.keyboardDismissMode = .onDrag // 드래그할 때 키보드 내리기
         return cv
     }()
     
@@ -99,7 +98,7 @@ public final class SearchView: UIView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0)) // 그룹에 대해 너비는 절반, 높이는 동일한 크기
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         // 그룹 설정
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(330)) // 섹션에 대해 너비는 동일, 높이는 사이즈 지정
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(300)) // 섹션에 대해 너비는 동일, 높이는 사이즈 지정
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2) // 하나의 수평 그룹에 아이템 2개씩 배치
         group.interItemSpacing = .fixed(8) // 그룹 내부의 아이템 간격
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10) // 그룹의 inset

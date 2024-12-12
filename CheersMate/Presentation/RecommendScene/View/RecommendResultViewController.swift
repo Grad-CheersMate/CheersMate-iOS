@@ -37,9 +37,9 @@ final public class RecommendResultViewController: UIViewController {
         bindView()
         bindView()
         applySnapshot()
-    } // closed viewDidLoad
+    }
     
-    // MARK: - 바인드 뷰
+    // 바인드 뷰
     private func bindView() {
         // X버튼을 눌렀을 때 이벤트 감지 - 팝업 창을 표시하여 사용자에게 별점을 매기도록 유도
         recommendResultView.dismissButton.rx.tap
@@ -59,15 +59,15 @@ final public class RecommendResultViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-    } // closed bindView
+    }
     
-    // MARK: - 바인드 뷰 모델
+    // 바인드 뷰 모델
     private func bindViewModel() {
         
         
-    } // closed bindViewModel
+    }
     
-    // MARK: - 주류 정보 섹션 스냅샷 적용
+    // applySnapshot
     private func applySnapshot() {
         // 스냅샷
         var snapshot = NSDiffableDataSourceSnapshot<Section,Item>()
@@ -79,7 +79,6 @@ final public class RecommendResultViewController: UIViewController {
         snapshot.appendItems(recommendLiquorItems, toSection: productSection)
         
         // 어울리는 음식 추천 결과
-        
         let foodItems = resData.data.food.map { Item.foodItem($0) }
         //foodItems.append(foodItem)
         let foodSection = Section.recommendFood("완벽한 페어링, 이 음식은 어때요?")
@@ -87,14 +86,13 @@ final public class RecommendResultViewController: UIViewController {
         snapshot.appendItems(foodItems, toSection: foodSection)
         
         // 비슷한 제품 추천 결과
-        let liquorItems = resData.data.similarLiquor.map { Item.similarItem($0.liquor) }
-        let similarLiquorItems = liquorItems
+        let similarLiquorItems = resData.data.similarLiquor.map { Item.similarItem($0.liquor) }
         let similarSection = Section.recommendSimilar("더 다양한 선택을 즐겨보세요")
         snapshot.appendSections([similarSection])
         snapshot.appendItems(similarLiquorItems, toSection: similarSection)
         
         // 스냅샷 적용
         recommendResultView.dataSource?.apply(snapshot, animatingDifferences: true)
-    } // closed applyProductSnapshot
+    }
     
 } // closed DetailViewController
