@@ -23,9 +23,9 @@ public final class SettingTableViewCell: UITableViewCell {
     // 설명 레이블
     private let descLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainTextColor
         lb.text = ""
         lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
+        lb.textColor = .subTextColor
         lb.textAlignment = .left
         lb.numberOfLines = 1
         return lb
@@ -34,14 +34,13 @@ public final class SettingTableViewCell: UITableViewCell {
     // 서브 이미지 뷰
     private let subImageView: UIImageView = {
         let iv = UIImageView()
+        // iv.image = UIImage(systemName: "chevron.right")
+        iv.image = UIImage(named: "right")?.withRenderingMode(.alwaysTemplate)
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(systemName: "chevron.right")
-        iv.tintColor = .buttonColor
+        iv.tintColor = .subTextSecondaryColor
         iv.clipsToBounds = true
         return iv
     }()
-    
-    // private var productType: ProductType = .beer
     
     // 셀 재사용
     public override func prepareForReuse() {

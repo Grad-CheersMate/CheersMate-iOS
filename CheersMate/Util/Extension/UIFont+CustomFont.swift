@@ -8,27 +8,31 @@
 import UIKit
 
 // MARK: - 텍스트의 폰트를 설정
+
 extension UIFont {
-    // 폰트의 굵기
-    enum gmarketSansFamily: String {
+    // 지마켓 산스 굵기
+    enum GmarketSansFamily: String {
         case Light, Medium, Bold
     }
-    enum pretendardFamily: String {
+    
+    // 프리텐다드 굵기
+    enum PretendardFamily: String {
         case Regular, Medium, SemiBold
     }
     
     // 지마켓 산스
-    static func gmarketSans(size: CGFloat = 10, family: gmarketSansFamily = .Medium) -> UIFont {
+    static func gmarketSans(size: CGFloat = 10, family: GmarketSansFamily = .Medium) -> UIFont {
         return UIFont(name: "GmarketSans\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
-    // 프리텐다드 폰트
-    static func pretendard(size: CGFloat = 10, family: pretendardFamily = .Medium) -> UIFont {
+    
+    // 프리텐다드
+    static func pretendard(size: CGFloat = 10, family: PretendardFamily = .Medium) -> UIFont {
         return UIFont(name: "Pretendard-\(family)", size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
-    // 어그로 폰트
-    static func Aggro(size: CGFloat = 10) -> UIFont {
-        return UIFont(name: "OTSBAggroB", size: size) ?? UIFont.systemFont(ofSize: size)
+    // 머니그라피
+    static func Moneygraphy(size: CGFloat) -> UIFont {
+        return UIFont(name: "Moneygraphy-Rounded", size: size) ?? UIFont.systemFont(ofSize: size)
     }
 }
 

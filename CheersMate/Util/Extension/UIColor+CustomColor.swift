@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    // 앱 메인 배경색상
+    // 앱 배경색상
     static var backgroundColor: UIColor {
         return UIColor(red: 242.0 / 255.0, green: 244.0 / 255.0, blue: 246.0 / 255.0, alpha: 1)
     }
@@ -35,7 +35,12 @@ extension UIColor {
     
     // 서브 텍스트 색상
     static var subTextColor: UIColor {
-        return UIColor(red: 93.0 / 255.0, green: 103.0 / 255.0, blue: 117.0 / 255.0, alpha: 1)
+        return UIColor(red: 53.0 / 255.0, green: 62.0 / 255.0, blue: 77.0 / 255.0, alpha: 1)
+    }
+    
+    // 서브 텍스트2 색상
+    static var subTextSecondaryColor: UIColor {
+        return UIColor(red: 177.0 / 255.0, green: 184.0 / 255.0, blue: 192.0 / 255.0, alpha: 1)
     }
     
     // 팝업 배경 색상
@@ -43,6 +48,15 @@ extension UIColor {
         return UIColor(red: 76.0 / 255.0, green: 76.0 / 255.0, blue: 76.0 / 255.0, alpha: 1)
     }
     
+    // 아이콘 기본 색상
+    static var normalIconColor: UIColor {
+        return UIColor(red: 174.0 / 255.0, green: 184.0 / 255.0, blue: 194.0 / 255.0, alpha: 1)
+    }
+    
+    // 아이콘 선택 시 색상
+    static var selectedIconColor: UIColor {
+        return UIColor(red: 22.0 / 255.0, green: 31.0 / 255.0, blue: 40.0 / 255.0, alpha: 1)
+    }
     
     // --------------------------- 여기 까지 픽스
     

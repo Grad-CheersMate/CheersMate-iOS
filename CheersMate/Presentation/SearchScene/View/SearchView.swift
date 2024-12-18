@@ -27,9 +27,10 @@ public final class SearchView: UIView {
         
         if let textField = sb.value(forKey: "searchField") as? UITextField  {
             textField.font = UIFont.pretendard(size: 17, family: .Medium)
-            textField.backgroundColor = .searchBarBackgroundColor
-            textField.attributedPlaceholder = NSAttributedString(string: "상품을 검색해보세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.subTextColor])
             textField.textColor = .mainTextColor
+            textField.backgroundColor = .searchBarBackgroundColor
+            textField.attributedPlaceholder = NSAttributedString(string: "상품을 검색해보세요", attributes: [
+                NSAttributedString.Key.foregroundColor : UIColor.subTextSecondaryColor])
         }
         
         return sb

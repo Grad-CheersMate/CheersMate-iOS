@@ -13,9 +13,10 @@ public final class MainTabBarController: UITabBarController  {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .backgroundColor
+        self.modalPresentationStyle = .fullScreen
         self.delegate = self
         setupTabBar()
-        setupBarApperance()
+        setupTabBarApperance()
     }
 
     // 탭 바 및 뷰 컨트롤러 설정
@@ -76,7 +77,7 @@ public final class MainTabBarController: UITabBarController  {
         // AI 추천 네비게이션 컨트롤러 생성
         let recommendHomeVC = RecommendHomeViewController()
         let recommendHomeNVC = UINavigationController(rootViewController: recommendHomeVC)
-        recommendHomeNVC.setupNaviBarAppearance()
+        recommendHomeNVC.setupNaviBarAppearance(backgroundColor: .white)
         return recommendHomeNVC
     }
     
@@ -90,24 +91,40 @@ public final class MainTabBarController: UITabBarController  {
     }
     
     // setupBarApperance
-    private func setupBarApperance() {
-        modalPresentationStyle = .fullScreen
-        tabBar.backgroundColor = .backgroundColor
-        tabBar.tintColor = .mainTextColor
-        tabBar.barTintColor = .backgroundColor
+    private func setupTabBarApperance() {
+        tabBar.backgroundColor = .white
+        tabBar.tintColor = .mainTextColor // 탭 바 아이템을 선택했을 때 색상
         tabBar.isTranslucent = false
-        
-        tabBar.layer.borderWidth = 0.1
+        tabBar.layer.borderWidth = 0.5
+        tabBar.layer.borderColor = #colorLiteral(red: 0.8941176471, green: 0.9098039216, blue: 0.9215686275, alpha: 1)
+        tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
+        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         let tabBarAppearance = UITabBarAppearance()
+        let tabBarItemAppearance =  UITabBarItemAppearance()
+        
+        // 탭 바 아이템 노말 상태
+        tabBarItemAppearance.normal.iconColor = .normalIconColor
+        tabBarItemAppearance.normal.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.gmarketSans(size: 10, family: .Medium),
+            NSAttributedString.Key.foregroundColor: UIColor.normalIconColor
+        ]
+        
+        // 탭 바 아이템 클릭 상태
+        tabBarItemAppearance.selected.iconColor = .selectedIconColor
+        tabBarItemAppearance.selected.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.gmarketSans(size: 10, family: .Medium),
+            NSAttributedString.Key.foregroundColor: UIColor.selectedIconColor
+        ]
+    
+        tabBarAppearance.inlineLayoutAppearance = tabBarItemAppearance
+        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+        tabBarAppearance.compactInlineLayoutAppearance = tabBarItemAppearance
         tabBarAppearance.configureWithTransparentBackground()
         
-        tabBarAppearance.shadowColor = .buttonColor // 탭 바 구분선 색상
+        // tabBarAppearance.shadowColor =  // 탭 바 구분선 색상
         tabBar.standardAppearance = tabBarAppearance // 일반 상태
         tabBar.scrollEdgeAppearance = tabBarAppearance // 스크롤 상태
-        
-        let attributes = [NSAttributedString.Key.font: UIFont.gmarketSans(size: 12, family: .Medium)]
-        UITabBarItem.appearance().setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
     }
     
     
@@ -118,7 +135,7 @@ public final class MainTabBarController: UITabBarController  {
 extension MainTabBarController: UITabBarControllerDelegate {
     // 탭 선택 시 호출되는 델리게이트 메서드
     public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        Haptics.shared.generateHaptics(style: .light)
+        Haptics.shared.generateHaptics(style: .soft)
     }
     
 
