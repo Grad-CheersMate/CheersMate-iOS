@@ -30,7 +30,7 @@ public final class TitleHeaderView: UICollectionReusableView {
         let bt = UIButton(type: .custom)
         bt.setTitle("더보기", for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 14, family: .Medium)
-        bt.setTitleColor(.subTextColor, for: .normal)
+        bt.setTitleColor(.subTextSecondaryColor, for: .normal)
         bt.isHidden = false
         return bt
     }()

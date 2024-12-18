@@ -14,9 +14,9 @@ public final class MyPageView: UIView {
     public let leftBarLabel: UILabel = {
         let lb = UILabel()
         lb.text = "내 정보"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 24, family: .Bold)
+        lb.font = .Moneygraphy(size: 24)
         lb.textColor = .mainTextColor
+        lb.numberOfLines = 0
         return lb
     }()
     
@@ -26,8 +26,8 @@ public final class MyPageView: UIView {
     // 네비게이션 오른쪽 바 버튼 아이템 - 설정 톱니 이미지
     public let rightBarSettingButton: UIButton =  {
         let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "gear"), for: .normal)
-        bt.tintColor = .mainTextColor
+        bt.setImage(UIImage(named: "gear")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        bt.tintColor = .normalIconColor
         return bt
     }()
     
@@ -105,8 +105,8 @@ public final class MyPageView: UIView {
     // 프로필 수정 버튼
     public let editProfileButton: UIButton = {
         let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        bt.tintColor = .buttonColor
+        bt.setImage(UIImage(named: "right")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        bt.tintColor = .subTextSecondaryColor
         bt.backgroundColor = .white
         bt.adjustsImageWhenHighlighted = false // 버튼 클릭 하이라이트 제거
         return bt

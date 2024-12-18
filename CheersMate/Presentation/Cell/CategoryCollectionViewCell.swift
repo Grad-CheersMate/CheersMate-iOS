@@ -24,10 +24,10 @@ public final class CategoryCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .subTextColor
         lb.text = "맥주"
-        lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 15, family: .Medium)
+        lb.textColor = .subTextColor
+        lb.numberOfLines = 0
         lb.textAlignment = .center
         return lb
     }()

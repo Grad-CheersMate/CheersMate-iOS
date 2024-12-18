@@ -13,25 +13,24 @@ public final class HomeView: UIView {
     public let leftBarLabel: UILabel = {
         let lb = UILabel()
         lb.text = "CheersMate"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 24, family: .Bold)
-        lb.textColor = .mainTextColor
+        lb.font = UIFont.Moneygraphy(size: 24)
+        lb.textColor = .selectedIconColor
         return lb
     }()
     
     // 네비게이션 오른쪽 바 버튼 아이템 - 하트 이미지
     public let rightBarSearchButton: UIButton =  {
         let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "heart"), for: .normal)
-        bt.tintColor = .mainTextColor
+        bt.setImage(UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        bt.tintColor = .normalIconColor
         return bt
     }()
     
     // 네비게이션 오른쪽 바 버튼 아이템 - 종 이미지
     public let rightBarBellButton: UIButton =  {
         let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "bell"), for: .normal)
-        bt.tintColor = .mainTextColor
+        bt.setImage(UIImage(named: "bell")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        bt.tintColor = .normalIconColor
         return bt
     }()
     
@@ -55,7 +54,7 @@ public final class HomeView: UIView {
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.backgroundColor = .clear
-        sv.showsVerticalScrollIndicator = false
+        sv.showsVerticalScrollIndicator = true
         sv.showsHorizontalScrollIndicator = false
         sv.isDirectionalLockEnabled = true
         sv.alwaysBounceVertical = true
@@ -80,10 +79,9 @@ public final class HomeView: UIView {
     // 날씨 메인 안내 레이블
     private let weatherMainInfoLabel: UILabel = {
         let lb = UILabel()
+        lb.text = "지금 날씨와 어울리는 주류는?"
+        lb.font = .gmarketSans(size: 19, family: .Medium)
         lb.textColor = .mainTextColor
-        lb.text = "날씨에 딱 맞는 주류 추천받기"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 20, family: .Bold)
         lb.textAlignment = .center
         return lb
     }()
@@ -91,10 +89,9 @@ public final class HomeView: UIView {
     // 날씨 서브 안내 레이블
     private let weatherSubInfoLabel: UILabel = {
         let lb = UILabel()
+        lb.text = "현재 위치를 기반으로 추천해 드릴게요"
+        lb.font = UIFont.gmarketSans(size: 13, family: .Medium)
         lb.textColor = .subTextColor
-        lb.text = "위치와 날씨를 분석해 추천해 드릴게요"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 14, family: .Medium)
         lb.textAlignment = .center
         return lb
     }()
@@ -179,6 +176,7 @@ public final class HomeView: UIView {
             make.edges.equalTo(scrollView.contentLayoutGuide)
             make.centerX.equalTo(scrollView.snp.centerX)
         }
+        
         // MARK: - 섹션 1
         weatherContainerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -193,7 +191,7 @@ public final class HomeView: UIView {
         }
         
         weatherSubInfoLabel.snp.makeConstraints { make in
-            make.top.equalTo(weatherMainInfoLabel.snp.bottom).offset(20)
+            make.top.equalTo(weatherMainInfoLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
         }
@@ -216,8 +214,7 @@ public final class HomeView: UIView {
             make.top.equalTo(weatherContainerView.snp.bottom).offset(35)
             make.leading.trailing.bottom.equalToSuperview().inset(25)
             make.centerX.equalToSuperview()
-            // make.height.equalTo(605)
-            make.height.equalTo(800)
+            make.height.equalTo(640)
         }
     }
     
@@ -341,3 +338,8 @@ public final class HomeView: UIView {
     }
     
 } // closed HomeView
+
+
+#Preview {
+    HomeView()
+}

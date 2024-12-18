@@ -21,34 +21,39 @@ final public class RecommendHomeViewController: UIViewController {
     private let recommendHomeView: RecommendHomeView = RecommendHomeView()
     private let disposeBag: DisposeBag = DisposeBag()
     
+    // loadView
     public override func loadView() {
         self.view = recommendHomeView
-    } // closed loadView
+    }
     
+    // viewDidLoad
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupNavi()
         bindView()
-        
-    } // closed viewDidLoad
+    }
     
+    // viewWillAppear
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         recommendHomeView.cheersAnimationView.play()
-    } // closed viewWillAppear
+    }
     
-    public override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    // viewWillDisappear
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         recommendHomeView.cheersAnimationView.stop()
-    } // closed viewDidDisappear
+    }
     
+    // setupNavi
     private func setupNavi() {
         // 뒤로가기 버튼 아이템 커스텀(A에서 B로 화면전환일 경우 A가 아닌 B의 속성이 변경)
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .mainTextColor
         self.navigationItem.backBarButtonItem = backBarButtonItem
-    } // closed setupNavi
+    }
     
+    // bindView
     private func bindView() {
         
         recommendHomeView.startButton.rx.tap
@@ -68,9 +73,6 @@ final public class RecommendHomeViewController: UIViewController {
                 Haptics.shared.generateHaptics(style: .medium)
             }
             .disposed(by: disposeBag)
-    } // closed bindView
-    
-    
-    
+    }
     
 } // closed RecommendViewController

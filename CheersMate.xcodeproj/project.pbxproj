@@ -37,6 +37,7 @@
 		255B96642CBE4FF400D6AC8E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */; };
 		255B96652CBE4FF400D6AC8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B96562CBE4FF400D6AC8E /* Assets.xcassets */; };
 		2567CF412CE5307D00FB8860 /* RecommendResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */; };
+		2567F07D2D0C496100E5763C /* Moneygraphy-Rounded.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2567F07C2D0C496100E5763C /* Moneygraphy-Rounded.otf */; };
 		2571BA402CEB2A0900D61D70 /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA3F2CEB2A0900D61D70 /* WeatherNetworkManager.swift */; };
 		2571BA422CEB2A1500D61D70 /* WeatherNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA412CEB2A1500D61D70 /* WeatherNetwork.swift */; };
 		2571BA442CEB35C400D61D70 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2571BA432CEB35C400D61D70 /* Weather.swift */; };
@@ -170,6 +171,7 @@
 		255B965E2CBE4FF400D6AC8E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		255B96602CBE4FF400D6AC8E /* CheersMate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CheersMate.xcdatamodel; sourceTree = "<group>"; };
 		2567CF402CE5307D00FB8860 /* RecommendResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendResultViewModel.swift; sourceTree = "<group>"; };
+		2567F07C2D0C496100E5763C /* Moneygraphy-Rounded.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Moneygraphy-Rounded.otf"; sourceTree = "<group>"; };
 		2571BA3F2CEB2A0900D61D70 /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
 		2571BA412CEB2A1500D61D70 /* WeatherNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetwork.swift; sourceTree = "<group>"; };
 		2571BA432CEB35C400D61D70 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -446,12 +448,9 @@
 		253B1B712CC4051A00F7DBF9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */,
-				253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */,
-				253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */,
-				253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */,
-				253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */,
-				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
+				2588604E2D132CB100A6BFD4 /* Moneygraphy */,
+				2588604D2D132C9C00A6BFD4 /* GmarketSans */,
+				2588604C2D132C8A00A6BFD4 /* Pretendard */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -669,6 +668,34 @@
 				25737D682CDE7496004E9F6B /* RecommendNetwork.swift */,
 			);
 			path = Recommend;
+			sourceTree = "<group>";
+		};
+		2588604C2D132C8A00A6BFD4 /* Pretendard */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B8A2CC506D200F7DBF9 /* Pretendard-SemiBold.otf */,
+				253B1B882CC506D200F7DBF9 /* Pretendard-Medium.otf */,
+				253B1B892CC506D200F7DBF9 /* Pretendard-Regular.otf */,
+			);
+			path = Pretendard;
+			sourceTree = "<group>";
+		};
+		2588604D2D132C9C00A6BFD4 /* GmarketSans */ = {
+			isa = PBXGroup;
+			children = (
+				253B1B722CC4097800F7DBF9 /* GmarketSansBold.otf */,
+				253B1B742CC4097800F7DBF9 /* GmarketSansMedium.otf */,
+				253B1B732CC4097800F7DBF9 /* GmarketSansLight.otf */,
+			);
+			path = GmarketSans;
+			sourceTree = "<group>";
+		};
+		2588604E2D132CB100A6BFD4 /* Moneygraphy */ = {
+			isa = PBXGroup;
+			children = (
+				2567F07C2D0C496100E5763C /* Moneygraphy-Rounded.otf */,
+			);
+			path = Moneygraphy;
 			sourceTree = "<group>";
 		};
 		259E81BF2CC9632A00D63747 /* ViewModel */ = {
@@ -1021,6 +1048,7 @@
 				253B1B8D2CC506D200F7DBF9 /* Pretendard-SemiBold.otf in Resources */,
 				253B1B762CC4097800F7DBF9 /* GmarketSansBold.otf in Resources */,
 				253B1B772CC4097800F7DBF9 /* GmarketSansLight.otf in Resources */,
+				2567F07D2D0C496100E5763C /* Moneygraphy-Rounded.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,20 +44,18 @@ public final class WeatherView: UIView {
     // 온도 레이블
     private let tempLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainTextColor
         lb.text = "17.5 ℃"
-        lb.numberOfLines = 0
         lb.font = UIFont.gmarketSans(size: 42, family: .Bold)
+        lb.textColor = .mainTextColor
         lb.textAlignment = .left
         return lb
     }()
     // 지역 레이블
     private let locationLabel: UILabel = {
         let lb = UILabel()
-        lb.textColor = .mainTextColor
         lb.text = "성남시 수정구"
-        lb.numberOfLines = 0
-        lb.font = UIFont.gmarketSans(size: 15, family: .Bold)
+        lb.font = UIFont.gmarketSans(size: 15, family: .Medium)
+        lb.textColor = .mainTextColor
         lb.textAlignment = .left
         return lb
     }()
