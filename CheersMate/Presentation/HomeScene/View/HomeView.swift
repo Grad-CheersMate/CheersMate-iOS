@@ -10,71 +10,66 @@ import UIKit
 public final class HomeView: UIView {
     
     // 네비게이션 왼쪽 바 버튼 아이템 - 메인 타이틀
-    public let leftBarLabel: UILabel = {
-        let lb = UILabel()
-        lb.text = "CheersMate"
-        lb.font = UIFont.Moneygraphy(size: 24)
-        lb.textColor = .selectedIconColor
-        return lb
-    }()
+    public let leftBarLabel = UILabel().then {
+        $0.text = "CheersMate"
+        $0.font = UIFont.Moneygraphy(size: 24)
+        $0.textColor = .selectedIconColor
+    }
     
-    // 네비게이션 오른쪽 바 버튼 아이템 - 하트 이미지
-    public let rightBarSearchButton: UIButton =  {
-        let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "heart")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        bt.tintColor = .normalIconColor
-        return bt
-    }()
+    // 네비게이션 오른쪽 바 버튼 아이템 - 하트 아이콘 인터페이스
+    public let rightBarSearchButton = UIButton(type: .system).then {
+        $0.setImage(UIImage(named: "heart"), for: .normal)
+        $0.tintColor = .buttonColor
+        
+    }
     
-    // 네비게이션 오른쪽 바 버튼 아이템 - 종 이미지
-    public let rightBarBellButton: UIButton =  {
-        let bt = UIButton(type: .custom)
-        bt.setImage(UIImage(named: "bell")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        bt.tintColor = .normalIconColor
-        return bt
-    }()
+    // 네비게이션 오른쪽 바 버튼 아이템 - 종 아이콘 인터페이스
+    public let rightBarBellButton = UIButton(type: .system).then{
+        $0.setImage(UIImage(named: "bell"), for: .normal)
+        $0.tintColor = .buttonColor
+    }
     
-    // 네비게이션 오른쪽 바 버튼을 담고 있는 스택 뷰
-    public lazy var rightBarButtonStackview: UIStackView = {
-        let sv = UIStackView.init(arrangedSubviews: [rightBarSearchButton, rightBarBellButton])
-        sv.distribution = .equalSpacing
-        sv.axis = .horizontal
-        sv.alignment = .center
-        sv.spacing = 25
-        return sv
-    }()
+    // 네비게이션 오른쪽 바 버튼을 담고 있는 스택 뷰(하트 + 종)
+    public lazy var rightBarButtonStackView = UIStackView.init(arrangedSubviews: [rightBarSearchButton, rightBarBellButton]).then {
+        $0.axis = .horizontal
+        $0.distribution = .equalSpacing
+        $0.alignment = .fill
+        $0.spacing = 25
+    }
     
-    // 제목 label을 네비게이션 바의 왼쪽 아이템으로 설정
+    // 타이틀 label을 네비게이션 바의 왼쪽 아이템으로 설정
     public lazy var leftBarButtonItem = UIBarButtonItem(customView: leftBarLabel)
     
-    // 버튼 stackView를 네비게이션 바의 오른쪽 아이템으로 설정
-    public lazy var rightBarButtonItem = UIBarButtonItem(customView: rightBarButtonStackview)
+    // rightBarButtonStackview를 네비게이션 바의 오른쪽 아이템으로 설정
+    public lazy var rightBarButtonItem = UIBarButtonItem(customView: rightBarButtonStackView)
     
     // 스크롤 뷰
-    private let scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.backgroundColor = .clear
-        sv.showsVerticalScrollIndicator = true
-        sv.showsHorizontalScrollIndicator = false
-        sv.isDirectionalLockEnabled = true
-        sv.alwaysBounceVertical = true
-        return sv
-    }()
+    private let scrollView = UIScrollView().then {
+        $0.backgroundColor = .backgroundColor
+        $0.showsVerticalScrollIndicator = true
+        $0.showsHorizontalScrollIndicator = false
+        $0.isDirectionalLockEnabled = true
+        $0.alwaysBounceVertical = true
+    }
+    
+    private let stackView = UIStackView(arrangedSubviews: []).then {
+        $0.axis = .vertical
+        $0.alignment = .center
+        $0.distribution = .equalSpacing
+        $0.spacing = 12
+        $0.backgroundColor = .white
+    }
     
     // 메인 컨테이너 뷰
-    private let mainContainerView: UIView = {
-        let v = UIView()
-        v.backgroundColor = .clear
-        return v
-    }()
+    private let mainContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
     
     // 날씨 컨테이너 뷰
-    private let weatherContainerView: UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
-        v.layer.cornerRadius = 25
-        return v
-    }()
+    private let weatherContainerView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 25
+    }
     
     // 날씨 메인 안내 레이블
     private let weatherMainInfoLabel: UILabel = {
@@ -113,7 +108,7 @@ public final class HomeView: UIView {
         bt.setTitleColor(.white, for: .normal)
         bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
         bt.layer.cornerRadius = 12.5
-        bt.backgroundColor = .mainColor
+        bt.backgroundColor = .buttonAbleColor
         return bt
     }()
     
@@ -157,6 +152,7 @@ public final class HomeView: UIView {
 
     // Layout 설정
     private func setupLayout() {
+        let horizontalInset: CGFloat = 15
         // 네비게이션 바
         rightBarSearchButton.snp.makeConstraints { make in
             make.height.width.equalTo(21)
@@ -180,31 +176,31 @@ public final class HomeView: UIView {
         // MARK: - 섹션 1
         weatherContainerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
             make.height.equalTo(350)
         }
         
         weatherMainInfoLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(25)
+            make.top.leading.trailing.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
         }
         
         weatherSubInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(weatherMainInfoLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
         }
         
         weatherImageView.snp.makeConstraints { make in
             make.top.equalTo(weatherSubInfoLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(25)
+            make.leading.trailing.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
         }
         
         weatherButton.snp.makeConstraints { make in
             make.top.equalTo(weatherImageView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview().inset(25)
+            make.leading.trailing.bottom.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
         }
@@ -212,7 +208,7 @@ public final class HomeView: UIView {
         // MARK: - 섹션 2
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(weatherContainerView.snp.bottom).offset(35)
-            make.leading.trailing.bottom.equalToSuperview().inset(25)
+            make.leading.trailing.bottom.equalToSuperview().inset(horizontalInset)
             make.centerX.equalToSuperview()
             make.height.equalTo(640)
         }
@@ -340,6 +336,3 @@ public final class HomeView: UIView {
 } // closed HomeView
 
 
-#Preview {
-    HomeView()
-}

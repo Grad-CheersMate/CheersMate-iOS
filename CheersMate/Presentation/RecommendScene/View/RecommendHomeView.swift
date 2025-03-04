@@ -277,6 +277,3 @@ public final class RecommendHomeView: UIView {
     
 } // closed RecommendHomeView
 
-#Preview {
-    RecommendHomeViewController()
-}

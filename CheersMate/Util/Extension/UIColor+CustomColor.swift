@@ -10,7 +10,7 @@ import UIKit
 extension UIColor {
     // 앱 배경색상
     static var backgroundColor: UIColor {
-        return UIColor(red: 242.0 / 255.0, green: 244.0 / 255.0, blue: 246.0 / 255.0, alpha: 1)
+        return UIColor(red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1)
     }
     
     // 앱 메인 색상
@@ -20,7 +20,7 @@ extension UIColor {
     
     // 버튼의 활성화 색상
     static var buttonAbleColor: UIColor {
-        return UIColor(red: 49.0 / 255.0, green: 130.0 / 255.0, blue: 246.0 / 255.0, alpha: 1)
+        return UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 21.0 / 255.0, alpha: 1)
     }
     
     // 버튼의 비활성화 색상
@@ -65,9 +65,9 @@ extension UIColor {
         return UIColor(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 244.0 / 255.0, alpha: 1)
     }
     
-    // > 버튼의 색상
+    // 버튼의 색상
     static var buttonColor: UIColor {
-        return UIColor(red: 200.0 / 255.0, green: 205.0 / 255.0, blue: 220.0 / 255.0, alpha: 1)
+        return UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 21.0 / 255.0, alpha: 1)
     }
     
     // 서치 바의 배경색상

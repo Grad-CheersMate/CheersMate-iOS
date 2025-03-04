@@ -16,20 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-//        // Data Layer
-//        let userNet = UserNetwork(manager: UserNetworkManager())
-//        let userRP = UserRepository(network: userNet)
-//        // Domain Layer
-//        let userUC = UserUseCase(repository: userRP)
-//        let loginVM = LoginViewModel(useCase: userUC)
-//        // Presentation Layer
-        let introVC = IntroViewController()
-        let introNC = UINavigationController(rootViewController: introVC)
-        introNC.setupNaviBarAppearance()
+        let userNT = UserNetwork(manager: UserNetworkManager())
+        let userRP = UserRepository(network: userNT)
+        let userUC = UserUseCase(repository: userRP)
+        let loginVM = LoginViewModel(userUseCase: userUC)
+        let loginVC = LoginViewController(viewModel: loginVM)
+        let loginNC = UINavigationController(rootViewController: loginVC)
         
-        window?.rootViewController = introNC
+        window?.rootViewController = loginNC
         window?.makeKeyAndVisible()
     }
+    
     // 로그인 버튼이 클릭됐을 때 메인 홈 화면으로 루트 뷰 교체
     func changeRootViewController() {
         guard let window = self.window else { return }
