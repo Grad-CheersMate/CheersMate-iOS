@@ -29,11 +29,14 @@ final public class WeatherViewModel: WeatherViewModelProtocol {
     }
     // Input
     public struct Input {
+        
     }
+    
     // Output
     public struct Output {
         let responseWeatherData: Observable<(Weather?, [LiquorRecommendation])>
     }
+    
     // transform
     public func transform(input: Input) -> Output {
         let result = Observable.combineLatest(weatherRelay.asObservable(), weatherLiquorRelay.asObservable())

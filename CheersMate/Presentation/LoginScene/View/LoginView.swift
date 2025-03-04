@@ -1,180 +1,50 @@
 //
-//  LoginView.swift
+//  IntroView.swift
 //  CheersMate
 //
-//  Created by 재훈 on 10/20/24.
+//  Created by 재훈 on 11/30/24.
 //
 
-// MARK: - 사용자가 자신의 계정으로 로그인을 하기 위한 화면.
+// MARK: - 사용자가 앱을 시작했을 때 처음으로 보여지는 화면. 로고 및 로그인 선택지를 제공.
 
 import UIKit
-import SnapKit
+import Then
+// 애플 로그인을 위한 프레임워크
+import AuthenticationServices
 
-final public class LoginView: UIView {
+public final class LoginView: UIView {
+    // 버튼의 테두리 둥글기
+    private static let buttonCornerRadius: CGFloat = 15
     
-    // 타이틀 레이블
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "로그인"
-        label.font = .gmarketSans(size: 30, family: .Medium)
-        label.textColor = .mainTextColor
-        label.textAlignment = .left
-        return label
-    }()
+    // 로고 이미지 뷰
+    private let logoImageView = UIImageView().then {
+        $0.image = .cheersMate
+        $0.contentMode = .scaleAspectFit
+        $0.clipsToBounds = true
+    }
     
-    // 이메일 주소 레이블
-    private let emailLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .mainTextColor
-        label.text = "이메일 주소"
-        label.font = UIFont.gmarketSans(size: 14, family: .Medium)
-        label.textAlignment = .left
-        return label
-    }()
+    // 애플 로그인 버튼
+    public let appleLoginButton = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black).then {
+        $0.layer.cornerRadius = buttonCornerRadius
+        $0.clipsToBounds = true
+    }
     
-    // 이메일 주소 정규식 검증 레이블
-    public let emailFeedbackLabel: UILabel = {
-        let lb = UILabel()
-        lb.text = "잘못된 이메일 형식입니다."
-        lb.font = .gmarketSans(size: 12, family: .Medium)
-        lb.textColor = .systemRed
-        lb.textAlignment = .left
-        lb.isHidden = true
-        return lb
-    }()
+    // 카카오톡으로 로그인하기 버튼
+    public let kakaoLoginImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.layer.cornerRadius = buttonCornerRadius
+        $0.image = .kakaoLogin
+        $0.clipsToBounds = true
+    }
     
-    // 이메일 주소 입력 창
-    public let emailTextField: UITextField = {
-        let tf = UITextField()
-        tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
-        tf.placeholder = "이메일 주소를 입력해주세요"
-        tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainTextColor
-        tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
-        tf.layer.borderWidth = 1
-        tf.layer.cornerRadius = 10
-        tf.clipsToBounds = true
-        tf.keyboardType = .emailAddress
-        tf.autocapitalizationType = .none
-        tf.autocorrectionType = .no
-        tf.contentVerticalAlignment = .center
-        tf.leftPadding()
-        return tf
-    }()
     
-    // 비밀번호 레이블
-    private let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .mainTextColor
-        label.text = "비밀번호"
-        label.font = UIFont.gmarketSans(size: 14, family: .Medium)
-        label.textAlignment = .left
-        return label
-    }()
+    // 카카오톡으로 로그인하기 버튼
+    public let kakaoLoginButton = UIButton(type: .custom).then {
+        $0.setBackgroundImage(UIImage(resource: .kakaoLogin), for: .normal)
+        $0.layer.cornerRadius = buttonCornerRadius
+        $0.clipsToBounds = true
+    }
     
-    // 비밀번호를 표시 여부 버튼
-    private let secureButton: UIButton = {
-        let bt = UIButton()
-        bt.setImage(UIImage(systemName: "eye"), for: .normal)
-        bt.setImage(UIImage(systemName: "eye.slash"), for: .selected)
-        bt.isHighlighted = false
-        return bt
-    }()
-    
-    // 비밀번호 정규식 검증 레이블
-    public let passwordFeedbackLabel: UILabel = {
-        let lb = UILabel()
-        lb.text = "최소 8자의 대소문자와 숫자만 입력해 주세요."
-        lb.font = .gmarketSans(size: 12, family: .Medium)
-        lb.textColor = .systemRed
-        lb.textAlignment = .left
-        lb.isHidden = true
-        return lb
-    }()
-    
-    // 비밀번호 입력 창
-    public lazy var passwordTextField: UITextField = {
-        let tf = UITextField()
-        tf.font = UIFont.gmarketSans(size: 16, family: .Medium)
-        tf.placeholder = "비밀번호를 입력해주세요"
-        tf.backgroundColor = .textFieldBackgroundColor
-        tf.textColor = .mainTextColor
-        tf.layer.borderColor = UIColor.textFieldLayerColor.cgColor
-        tf.layer.borderWidth = 1
-        tf.layer.cornerRadius = 10
-        tf.clipsToBounds = true
-        tf.keyboardType = .default
-        tf.autocapitalizationType = .none
-        tf.autocorrectionType = .no
-        tf.contentVerticalAlignment = .center
-        tf.isSecureTextEntry = true
-        tf.leftPadding()
-        return tf
-    }()
-    
-    // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 묶는 스택 뷰
-    private lazy var stackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [emailSearchButton, seperateView1, passwordSearchButton, seperateView2, signUpButton])
-        sv.axis = .horizontal
-        sv.distribution = .equalSpacing
-        sv.alignment = .fill
-        return sv
-    }()
-    
-    // 이메일 찾기 버튼
-    public let emailSearchButton: UIButton = {
-        let bt = UIButton(type: .custom)
-        bt.setTitle("이메일 찾기", for: .normal)
-        bt.setTitleColor(.mainTextColor, for: .normal)
-        bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
-        return bt
-    }()
-    
-    // 비밀번호 찾기 버튼
-    public let passwordSearchButton: UIButton = {
-        let bt = UIButton(type: .custom)
-        bt.setTitle("비밀번호 찾기", for: .normal)
-        bt.setTitleColor(.mainTextColor, for: .normal)
-        bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
-        return bt
-    }()
-    
-    // 회원가입 버튼
-    public let signUpButton: UIButton = {
-        let bt = UIButton(type: .custom)
-        bt.setTitle("회원가입", for: .normal)
-        bt.setTitleColor(.mainTextColor, for: .normal)
-        bt.titleLabel?.font = UIFont.gmarketSans(size: 12, family: .Medium)
-        return bt
-    }()
-    
-    // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 나누기 위한 경계선1
-    public let seperateView1: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray4
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    // 이메일 찾기 버튼, 비밀번호 찾기 버튼, 계정 찾기 버튼을 나누기 위한 경계선2
-    public let seperateView2: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray4
-        view.clipsToBounds = true
-        return view
-    }()
-    
-    // 로그인 버튼
-    public var loginButton: UIButton = {
-        let bt = UIButton(type: .custom)
-        bt.setTitle("로그인", for: .normal)
-        bt.setTitleColor(.white, for: .normal)
-        bt.titleLabel?.font = UIFont.gmarketSans(size: 17, family: .Medium)
-        bt.layer.cornerRadius = 15
-        bt.backgroundColor = .buttonDisableColor
-        return bt
-    }()
-
     // init
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -190,78 +60,33 @@ final public class LoginView: UIView {
     // UI 설정
     private func setupUI() {
         self.backgroundColor = .white
-        [titleLabel, emailLabel, emailFeedbackLabel, emailTextField, passwordLabel, passwordFeedbackLabel, passwordTextField, stackView, loginButton]
-            .forEach { self.addSubview($0) }
+        [logoImageView, appleLoginButton, kakaoLoginButton].forEach { self.addSubview($0) }
     }
 
     // Layout 설정
     private func setupLayout() {
+        let buttonHeight = 55
+        let buttonHorizonInset = 30
         
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(50)
-            make.leading.trailing.equalToSuperview().inset(25)
+        logoImageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(50)
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalTo(300)
+            make.width.equalTo(logoImageView.snp.height)
+        }
+        
+        appleLoginButton.snp.makeConstraints { make in
+            make.bottom.equalTo(kakaoLoginButton.snp.top).offset(-20)
+            make.leading.trailing.equalToSuperview().inset(buttonHorizonInset)
             make.centerX.equalToSuperview()
+            make.height.equalTo(buttonHeight)
         }
-
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(70)
-            make.leading.trailing.equalToSuperview().inset(25)
+        
+        kakaoLoginButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(40)
+            make.leading.trailing.equalToSuperview().inset(buttonHorizonInset)
             make.centerX.equalToSuperview()
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(25)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(53)
-        }
-        
-        emailFeedbackLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(25)
-            make.centerX.equalToSuperview()
-        }
-        
-        passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(45)
-            make.leading.trailing.equalToSuperview().inset(25)
-            make.centerX.equalToSuperview()
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(25)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(53)
-        }
-        
-        passwordFeedbackLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(25)
-            make.centerX.equalToSuperview()
-        }
-        
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(70)
-            make.leading.trailing.equalToSuperview().inset(65)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(17)
-        }
-        
-        seperateView1.snp.makeConstraints { make in
-            make.width.equalTo(1)
-        }
-        
-        seperateView2.snp.makeConstraints { make in
-            make.width.equalTo(1)
-        }
-        
-        loginButton.snp.makeConstraints { make in
-            make.top.greaterThanOrEqualTo(stackView.snp.bottom).offset(-20)
-            make.bottom.equalTo(safeAreaLayoutGuide).inset(115)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(55)
+            make.height.equalTo(buttonHeight)
         }
     }
     

@@ -19,6 +19,7 @@ target 'CheersMate' do
     pod 'lottie-ios'
     pod 'Cosmos', '~> 23.0'
     pod 'SwiftKeychainWrapper'
+    pod 'Then'
 
   target 'CheersMateTests' do
     inherit! :search_paths

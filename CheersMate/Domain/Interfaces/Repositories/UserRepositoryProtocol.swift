@@ -11,15 +11,9 @@ import Foundation
 import RxSwift
 
 public protocol UserRepositoryProtocol {
-    // 사용자 로그인 API
-    func login(email: String, password: String) -> Single<UserResponse>
+    // 애플 로그인
+    func loginWithApple()
     
-    // 사용자 회원가입 API
-    func signUp(email:String, password: String, nickname: String, tell: String) -> Single<UserResponse>
-    
-    // 사용자 이메일 찾기 API
-    func findEmail(nickname: String, tell: String) -> Single<UserResponse>
-    
-    // 사용자 비밀번호 찾기 API
-    func findPassword(email: String, tell: String) -> Single<UserResponse>
+    // 카카오 로그인
+    func loginWithKakao()
 }
